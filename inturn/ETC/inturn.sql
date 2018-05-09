@@ -88,7 +88,7 @@ CREATE TABLE certificate(
 CREATE TABLE introduce(
 		num                           		NUMBER		 NULL ,
 		title                         		VARCHAR2(200)		 NOT NULL,
-		content                       		VARCHAR2(1000)		 NOT NULL,
+		content                       		VARCHAR2(4000)		 NOT NULL,
 		id                            		VARCHAR2(20)		 NULL 
 );
 
@@ -97,12 +97,11 @@ CREATE TABLE introduce(
 /**********************************/
 CREATE TABLE mentorBoard(
 		num                           		NUMBER		 NOT NULL,
-		user_id                       		VARCHAR2(40)		 NOT NULL,
+		id                            		VARCHAR2(20)		 NULL,
 		title                         		VARCHAR2(100)		 NOT NULL,
-		content                       		VARCHAR2(1000)		 NOT NULL,
+		content                       		VARCHAR2(4000)		 NOT NULL,
 		dicNum                        		NUMBER		 NOT NULL,
-		regDate                       		DATE		 NOT NULL,
-		id                            		VARCHAR2(20)		 NULL 
+		regDate                       		DATE		 NOT NULL
 );
 
 /**********************************/
@@ -111,9 +110,9 @@ CREATE TABLE mentorBoard(
 CREATE TABLE review(
 		num                           		NUMBER		 NOT NULL,
 		dicNum                        		NUMBER		 NOT NULL,
-		id                            		VARCHAR2(40)		 NOT NULL,
+		id                            		VARCHAR2(20)		 NOT NULL,
 		title                         		VARCHAR2(100)		 NOT NULL,
-		content                       		VARCHAR2(1000)		 NOT NULL,
+		content                       		VARCHAR2(4000)		 NOT NULL,
 		score                         		DOUBLE PRECISION		 NOT NULL,
 		earn_id                       		VARCHAR2(40)		 NOT NULL
 );
@@ -123,8 +122,8 @@ CREATE TABLE review(
 /**********************************/
 CREATE TABLE counselStatus(
 		counselNum                    		NUMBER		 NOT NULL,
-		mentee_id                     		VARCHAR2(40)		 NOT NULL,
-		mentor_id                     		VARCHAR2(40)		 NOT NULL,
+		mentee_id                     		VARCHAR2(20)		 NOT NULL,
+		mentor_id                     		VARCHAR2(20)		 NOT NULL,
 		status                        		VARCHAR2(10)		 NOT NULL
 );
 
@@ -134,14 +133,13 @@ CREATE TABLE counselStatus(
 /**********************************/
 CREATE TABLE counselBoard(
 		num                           		NUMBER		 NOT NULL,
-		user_id                       		VARCHAR2(40)		 NOT NULL,
+		id                            		VARCHAR2(20)		 NULL,
 		title                         		VARCHAR2(100)		 NOT NULL,
-		content                       		VARCHAR2(1000)		 NOT NULL,
+		content                       		VARCHAR2(4000)		 NOT NULL,
 		makePublic                    		VARCHAR(3)		 NOT NULL,
 		dicNum                        		NUMBER		 NULL ,
 		counselNum                    		NUMBER		 NOT NULL,
-		regDate                       		DATE		 NOT NULL,
-		id                            		VARCHAR2(20)		 NULL 
+		regDate                       		DATE		 NOT NULL
 );
 
 /**********************************/
@@ -149,15 +147,14 @@ CREATE TABLE counselBoard(
 /**********************************/
 CREATE TABLE replyBoard(
 		num                           		NUMBER		 NOT NULL,
+		id                            		VARCHAR2(20)		 NULL,
 		title                         		VARCHAR2(100)		 NOT NULL,
-		content                       		VARCHAR2(1000)		 NOT NULL,
+		content                       		VARCHAR2(4000)		 NOT NULL,
 		regDate                       		DATE		 NOT NULL,
-		user_id                       		VARCHAR2(40)		 NOT NULL,
 		parentNum                     		NUMBER		 NOT NULL,
 		childCount                    		NUMBER		 NOT NULL,
 		position                      		VARCHAR2(30)		 NOT NULL,
-		freeBoardNum                  		NUMBER		 NOT NULL,
-		id                            		VARCHAR2(20)		 NULL 
+		freeBoardNum                  		NUMBER		 NOT NULL
 );
 
 /**********************************/
@@ -165,16 +162,15 @@ CREATE TABLE replyBoard(
 /**********************************/
 CREATE TABLE csBoard(
 		csBoardNum                    		NUMBER		 NOT NULL,
+		id                            		VARCHAR2(20)		 NULL,
 		title                         		VARCHAR2(100)		 NOT NULL,
-		content                       		VARCHAR2(1000)		 NOT NULL,
+		content                       		VARCHAR2(4000)		 NOT NULL,
 		regDate                       		DATE		 NOT NULL,
 		count                         		NUMBER		 NOT NULL,
-		user_id                       		VARCHAR2(40)		 NOT NULL,
 		secret                        		VARCHAR2(3)		 NOT NULL,
 		parentNum                     		VARCHAR2(10)		 NOT NULL,
 		childCount                    		NUMBER		 NOT NULL,
-		position                      		NUMBER		 NOT NULL,
-		id                            		VARCHAR2(20)		 NULL 
+		position                      		NUMBER		 NOT NULL
 );
 
 /**********************************/
@@ -182,12 +178,11 @@ CREATE TABLE csBoard(
 /**********************************/
 CREATE TABLE freeBoard(
 		freeBoardNum                  		NUMBER		 NOT NULL,
+		id                            		VARCHAR2(20)		 NULL, 
 		title                         		VARCHAR2(100)		 NOT NULL,
-		content                       		VARCHAR2(1000)		 NOT NULL,
+		content                       		VARCHAR2(4000)		 NOT NULL,
 		regDate                       		DATE		 NOT NULL,
-		count                         		NUMBER		 NOT NULL,
-		user_id                       		VARCHAR2(40)		 NOT NULL,
-		id                            		VARCHAR2(20)		 NULL 
+		count                         		NUMBER		 NOT NULL
 );
 
 /**********************************/
@@ -206,7 +201,7 @@ CREATE TABLE files(
 		fileNum                       		NUMBER		 NOT NULL,
 		fileName                      		VARCHAR2(100)		 NOT NULL,
 		fileSize                      		NUMBER		 NOT NULL,
-		fileHash                      		VARCHAR2(1000)		 NOT NULL,
+		fileHash                      		VARCHAR2(4000)		 NOT NULL,
 		fileGroupNum                  		NUMBER		 NOT NULL
 );
 
