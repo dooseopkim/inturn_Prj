@@ -1,10 +1,10 @@
-package com.inturn.biz.users.dao;
+package com.intrun.biz.users.service;
 
 import java.util.List;
 
 import com.inturn.biz.users.vo.UserVO;
 
-public interface UserDAO {
+public interface UserService {
 	public List<UserVO> getUsers();
 	public int insertUser(UserVO vo);
 	public int modifyUser(UserVO vo);

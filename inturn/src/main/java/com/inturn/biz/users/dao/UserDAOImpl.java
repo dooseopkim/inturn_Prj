@@ -17,4 +17,34 @@ public class UserDAOImpl implements UserDAO{
 	public List<UserVO> getUsers() {
 		return mybatis.selectList("UserMapper.selectUser");
 	}
+
+	@Override
+	public int insertUser(UserVO vo) {
+		return 0;
+	}
+
+	@Override
+	public int modifyUser(UserVO vo) {
+		return 0;
+	}
+
+	@Override
+	public int deleteUser(UserVO vo) {
+		return 0;
+	}
+
+	@Override
+	public UserVO login(String id, String pw) {
+		return null;
+	}
+
+	@Override
+	public String findID(UserVO vo) {
+		return null;
+	}
+
+	@Override
+	public Boolean findPw(UserVO vo) {
+		return null;
+	}
 }
