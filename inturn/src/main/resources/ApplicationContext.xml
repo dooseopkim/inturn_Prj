@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<context:component-scan base-package="com.inturn.biz.users.dao" />
+	<context:component-scan base-package="com.inturn.biz.*.dao, com.inturn.biz.*.service" />
 
 	<!-- Spring JDBC 연동 (JdbcTemplate 필요) -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
