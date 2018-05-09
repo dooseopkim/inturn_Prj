@@ -4,10 +4,14 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<context:component-scan base-package="com.inturn.biz.users.dao" />
 
 	<!-- Spring JDBC 연동 (JdbcTemplate 필요) -->
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -23,17 +27,17 @@
 	</bean>
 	
 	<!-- Mybatis 연동 설정 -->
-	<!-- <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 	</bean>
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
 	
-	<bean id="txManager"
+	<!-- <bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSourceWindow" />
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 	<tx:advice id="txAdvice" transaction-manager="txManager">
