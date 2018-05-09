@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<!-- <meta charset="utf-8"> -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Neat &mdash; Free Website Template, Free HTML5 Template by freehtml5.co</title>
+	<title>人Turn &mdash; 다시 인생을 시작하다.</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -63,8 +63,6 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-	</head>
-	<title>Insert title here</title>
 </head>
 <body>
 	<div class="fh5co-loader"></div>
@@ -103,34 +101,6 @@
 		<aside id="fh5co-hero">
 			<div class="flexslider">
 				<ul class="slides">
-			   	<li style="background-image: url(images/img_bg_1.jpg);">
-			   		<div class="overlay-gradient"></div>
-			   		<div class="container-fluid">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-offset-3 col-md-pull-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<h1>Not Every Project Needs To Be Perfect</h1>
-										<h2>Free html5 templates Available at <a href="http://Themewagon.com/theme_tag/free/" target="_blank">Themewagon</a></h2>
-										<p><a class="btn btn-primary btn-demo" href="#"></i> View Demo</a> <a class="btn btn-primary btn-learn">Learn More</a></p>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   	<li style="background-image: url(images/img_bg_2.jpg);">
-			   		<div class="overlay-gradient"></div>
-			   		<div class="container-fluid">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<h1>WordPress Theme For People Who Tell Stories</h1>
-										<h2>Free html5 templates Available at <a href="http://Themewagon.com/theme_tag/free/" target="_blank">Themewagon</a></h2>
-										<p><a class="btn btn-primary btn-demo" href="#"></i> View Demo</a> <a class="btn btn-primary btn-learn">Learn More</a></p>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
 			   	<li style="background-image: url(images/img_bg_3.jpg);">
 			   		<div class="overlay-gradient"></div>
 			   		<div class="container-fluids">
@@ -145,20 +115,6 @@
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url(images/img_bg_4.jpg);">
-			   		<div class="overlay-gradient"></div>
-			   		<div class="container-fluid">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-offset-3 col-md-push-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<h1>I Love to Tell My Story</h1>
-										<h2>Free html5 templates Available at <a href="http://Themewagon.com/theme_tag/free/" target="_blank">Themewagon</a></h2>
-										<p><a class="btn btn-primary btn-demo" href="#"></i> View Demo</a> <a class="btn btn-primary btn-learn">Learn More</a></p>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>	   	
 			  	</ul>
 		  	</div>
 		</aside>
