@@ -21,4 +21,5 @@
   <jdbcSchema></jdbcSchema>
   <jdbcCatalog></jdbcCatalog>
   <includeView>false</includeView>
+  <fontData></fontData>
 </net.java.amateras.db.visual.model.RootModel>
