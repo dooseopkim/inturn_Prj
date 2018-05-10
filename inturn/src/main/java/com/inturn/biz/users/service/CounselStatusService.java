@@ -1,4 +1,4 @@
-package com.intrun.biz.users.service;
+package com.inturn.biz.users.service;
 
 public interface CounselStatusService {
 
