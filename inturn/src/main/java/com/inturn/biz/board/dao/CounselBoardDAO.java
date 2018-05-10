@@ -1,5 +1,5 @@
 package com.inturn.biz.board.dao;
 
-public interface BoardDAO {
+public interface CounselBoardDAO {
 
 }
