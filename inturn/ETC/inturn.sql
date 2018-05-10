@@ -39,7 +39,8 @@ CREATE TABLE job(
 		job_num                       		NUMBER		 NULL ,
 		position                      		VARCHAR2(30)		 NOT NULL,
 		kinds                         		VARCHAR2(30)		 NOT NULL,
-		duty                          		VARCHAR2(100)		 NOT NULL
+		duty                          		VARCHAR2(100)		 NOT NULL,
+		id                            		VARCHAR2(20)		 NULL
 );
 
 /**********************************/
@@ -51,7 +52,6 @@ CREATE TABLE career(
 		department_name               		VARCHAR2(50)		 NULL ,
 		join_date                     		DATE		 NULL ,
 		retirement_date               		DATE		 NULL ,
-		job_num                       		NUMBER		 NULL ,
 		id                            		VARCHAR2(20)		 NULL 
 );
 
@@ -208,10 +208,10 @@ CREATE TABLE files(
 ALTER TABLE users ADD CONSTRAINT IDX_users_PK PRIMARY KEY (id);
 
 ALTER TABLE job ADD CONSTRAINT IDX_job_PK PRIMARY KEY (job_num);
+ALTER TABLE job ADD CONSTRAINT IDX_job_FK0 FOREIGN KEY (id) REFERENCES users (id);
 
 ALTER TABLE career ADD CONSTRAINT IDX_career_PK PRIMARY KEY (num);
 ALTER TABLE career ADD CONSTRAINT IDX_career_FK0 FOREIGN KEY (id) REFERENCES users (id);
-ALTER TABLE career ADD CONSTRAINT IDX_career_FK1 FOREIGN KEY (job_num) REFERENCES job (job_num);
 
 ALTER TABLE educational_level ADD CONSTRAINT IDX_educational_level_PK PRIMARY KEY (num);
 ALTER TABLE educational_level ADD CONSTRAINT IDX_educational_level_FK0 FOREIGN KEY (id) REFERENCES users (id);
