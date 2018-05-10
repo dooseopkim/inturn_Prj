@@ -13,6 +13,7 @@ drop table introduce;
 drop table mentorBoard;
 drop table review;
 drop table counselStatus;
+drop table counselReply;
 drop table counselBoard;
 drop table replyBoard;
 drop table csBoard;
@@ -39,7 +40,8 @@ CREATE TABLE job(
 		job_num                       		NUMBER		 NULL ,
 		position                      		VARCHAR2(30)		 NOT NULL,
 		kinds                         		VARCHAR2(30)		 NOT NULL,
-		duty                          		VARCHAR2(100)		 NOT NULL
+		duty                          		VARCHAR2(100)		 NOT NULL,
+		id                            		VARCHAR2(20)		 NULL
 );
 
 /**********************************/
@@ -51,7 +53,6 @@ CREATE TABLE career(
 		department_name               		VARCHAR2(50)		 NULL ,
 		join_date                     		DATE		 NULL ,
 		retirement_date               		DATE		 NULL ,
-		job_num                       		NUMBER		 NULL ,
 		id                            		VARCHAR2(20)		 NULL 
 );
 
@@ -118,28 +119,38 @@ CREATE TABLE review(
 );
 
 /**********************************/
+/* Table Name: counselBoard */
+/**********************************/
+CREATE TABLE counselBoard(
+		counselBoardNum               		NUMBER		 NOT NULL,
+		id                            		VARCHAR2(20)		 NULL ,
+		title                         		VARCHAR2(100)		 NOT NULL,
+		content                       		VARCHAR2(4000)		 NOT NULL,
+		makePublic                    		VARCHAR(3)		 NOT NULL,
+		dicNum                        		NUMBER		 NULL ,
+		regDate                       		DATE		 NOT NULL
+);
+
+/**********************************/
 /* Table Name: counselStatus */
 /**********************************/
 CREATE TABLE counselStatus(
 		counselNum                    		NUMBER		 NOT NULL,
 		mentee_id                     		VARCHAR2(20)		 NOT NULL,
 		mentor_id                     		VARCHAR2(20)		 NOT NULL,
-		status                        		VARCHAR2(10)		 NOT NULL
+		status                        		VARCHAR2(10)		 NOT NULL,
+		counselBoardNum               		NUMBER		 NULL 
 );
 
-
 /**********************************/
-/* Table Name: counselBoard */
+/* Table Name: counselReply */
 /**********************************/
-CREATE TABLE counselBoard(
-		num                           		NUMBER		 NOT NULL,
-		id                            		VARCHAR2(20)		 NULL,
-		title                         		VARCHAR2(100)		 NOT NULL,
-		content                       		VARCHAR2(4000)		 NOT NULL,
-		makePublic                    		VARCHAR(3)		 NOT NULL,
-		dicNum                        		NUMBER		 NULL ,
-		counselNum                    		NUMBER		 NOT NULL,
-		regDate                       		DATE		 NOT NULL
+CREATE TABLE counselReply(
+		num                           		NUMBER		 NULL ,
+		title                         		VARCHAR2(100)		 NULL ,
+		content                       		VARCHAR2(4000)		 NULL ,
+		regDate                       		DATE		 NULL ,
+		counselBoardNum               		NUMBER(10)		 NULL 
 );
 
 /**********************************/
@@ -208,10 +219,10 @@ CREATE TABLE files(
 ALTER TABLE users ADD CONSTRAINT IDX_users_PK PRIMARY KEY (id);
 
 ALTER TABLE job ADD CONSTRAINT IDX_job_PK PRIMARY KEY (job_num);
+ALTER TABLE job ADD CONSTRAINT IDX_job_FK0 FOREIGN KEY (id) REFERENCES users (id);
 
 ALTER TABLE career ADD CONSTRAINT IDX_career_PK PRIMARY KEY (num);
 ALTER TABLE career ADD CONSTRAINT IDX_career_FK0 FOREIGN KEY (id) REFERENCES users (id);
-ALTER TABLE career ADD CONSTRAINT IDX_career_FK1 FOREIGN KEY (job_num) REFERENCES job (job_num);
 
 ALTER TABLE educational_level ADD CONSTRAINT IDX_educational_level_PK PRIMARY KEY (num);
 ALTER TABLE educational_level ADD CONSTRAINT IDX_educational_level_FK0 FOREIGN KEY (id) REFERENCES users (id);
@@ -228,11 +239,14 @@ ALTER TABLE mentorBoard ADD CONSTRAINT IDX_mentorBoard_FK0 FOREIGN KEY (id) REFE
 ALTER TABLE review ADD CONSTRAINT IDX_review_PK PRIMARY KEY (num);
 ALTER TABLE review ADD CONSTRAINT IDX_review_FK0 FOREIGN KEY (id) REFERENCES users (id);
 
-ALTER TABLE counselStatus ADD CONSTRAINT IDX_counselStatus_PK PRIMARY KEY (counselNum);
+ALTER TABLE counselBoard ADD CONSTRAINT IDX_counselBoard_PK PRIMARY KEY (counselBoardNum);
+ALTER TABLE counselBoard ADD CONSTRAINT IDX_counselBoard_FK0 FOREIGN KEY (id) REFERENCES users (id);
 
-ALTER TABLE counselBoard ADD CONSTRAINT IDX_counselBoard_PK PRIMARY KEY (num);
-ALTER TABLE counselBoard ADD CONSTRAINT IDX_counselBoard_FK0 FOREIGN KEY (counselNum) REFERENCES counselStatus (counselNum);
-ALTER TABLE counselBoard ADD CONSTRAINT IDX_counselBoard_FK1 FOREIGN KEY (id) REFERENCES users (id);
+ALTER TABLE counselReply ADD CONSTRAINT IDX_counselReply_PK PRIMARY KEY (num);
+ALTER TABLE counselReply ADD CONSTRAINT IDX_counselReply_FK0 FOREIGN KEY (counselBoardNum) REFERENCES counselBoard (counselBoardNum);
+
+ALTER TABLE counselStatus ADD CONSTRAINT IDX_counselStatus_PK PRIMARY KEY (counselNum);
+ALTER TABLE counselStatus ADD CONSTRAINT IDX_counselStatus_FK0 FOREIGN KEY (counselBoardNum) REFERENCES counselBoard (counselBoardNum);
 
 ALTER TABLE freeBoard ADD CONSTRAINT IDX_freeBoard_PK PRIMARY KEY (freeBoardNum);
 ALTER TABLE freeBoard ADD CONSTRAINT IDX_freeBoard_FK0 FOREIGN KEY (id) REFERENCES users (id);
