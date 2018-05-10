@@ -1,4 +1,4 @@
-package com.intrun.biz.users.service;
+package com.inturn.biz.users.service;
 
 import javax.annotation.Resource;
 
@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.inturn.biz.users.dao.CareerDAO;
 
-@Service("JobService")
-public class JobServiceImpl implements JobService{
-	@Resource(name="JobDAO")
+@Service("CareerService")
+public class CareerServiceImpl implements CareerService{
+	@Resource(name="CareerDAO")
 	CareerDAO dao;
 }
