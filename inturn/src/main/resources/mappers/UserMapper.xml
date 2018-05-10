@@ -4,6 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserMapper">
 	<select id="selectUser" resultType="UserVO">
-		select * from users
+		SELECT id, pw, name, phone, birthday, type
+		FROM users
 	</select>
+	
+	<delete id="deleteUser">
+		DELETE FROM users
+		WHERE id = #{id}
+	</delete>
+	
+	<update id="">
+		UPDATE FROM users
+		SET pw = #{pw},
+			name = #{name},
+			phone = #{phone},
+			birthday = #{birthday},
+			type = #{type}
+		WHERE id = #{id}
+	</update>
+	
+	<insert id="addUser">
+		INSERT INTO users(id, pw, name, phone, birthday, type)
+		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{type})
+	</insert>
 </mapper>
