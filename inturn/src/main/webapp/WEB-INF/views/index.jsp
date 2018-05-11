@@ -50,7 +50,6 @@
 
 </head>
 <body>
-	<jsp:include page="userMenu.jsp" />
 	<div id="page">
 		<c:choose>
 			<c:when test="${!empty content }">
