@@ -51,34 +51,35 @@
 		<nav class="fh5co-nav" role="navigation">
 		<div class="container-wrap">
 			<div class="top-menu">
-		<div class="row">
-			<div class="col-xs-2">
-				<div id="fh5co-logo">
-					<a href="index.jsp">人Turn</a>
+				<div class="row">
+					<div class="col-xs-2">
+						<div id="fh5co-logo">
+							<a href="index.jsp">人Turn</a>
+						</div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li><a href="index.jsp">홈</a></li>
+							<li class="active has-dropdown"><a href="intro1.jsp">소개</a>
+								<ul class="dropdown">
+									<li><a href="intro1.jsp">사업소개</a></li>
+									<li><a href="intro2.jsp">서비스소개</a></li>
+								</ul></li>
+							<li><a href="mentor.jsp">오늘의멘토링</a></li>
+							<li><a href="mentor.jsp">멘토찾기</a></li>
+							<li><a href="mentee.jsp">멘티찾기</a></li>
+							<li><a href="contact.html">자유게시판</a></li>
+							<li class="has-dropdown"><a href="blog.html">이용안내</a>
+								<ul class="dropdown">
+									<li><a href="#">공지사항</a></li>
+									<li><a href="#">Q&A</a></li>
+									<li><a href="#">웹 가이드</a></li>
+									<li><a href="#">모바일 가이드</a></li>
+								</ul></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-			<div class="col-xs-10 text-right menu-1">
-				<ul>
-					<li><a href="index.jsp">홈</a></li>
-					<li class="active has-dropdown"><a href="intro1.jsp">소개</a>
-						<ul class="dropdown">
-							<li><a href="intro1.jsp">사업소개</a></li>
-							<li><a href="intro2.jsp">서비스소개</a></li>
-						</ul></li>
-					<li><a href="mentor.jsp">멘토찾기</a></li>
-					<li><a href="mentee.jsp">멘티찾기</a></li>
-					<li><a href="contact.html">자유게시판</a></li>
-					<li class="has-dropdown"><a href="blog.html">이용안내</a>
-						<ul class="dropdown">
-							<li><a href="#">공지사항</a></li>
-							<li><a href="#">자주 묻는 질문</a></li>
-							<li><a href="#">웹 가이드</a></li>
-							<li><a href="#">모바일 가이드</a></li>
-						</ul></li>
-				</ul>
-			</div>
-		</div>
-	</div>
 		</div>
 		</nav>
 		<div class="container-wrap">

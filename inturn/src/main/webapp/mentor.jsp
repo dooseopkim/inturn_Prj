@@ -65,13 +65,14 @@
 									<li><a href="intro1.jsp">사업소개</a></li>
 									<li><a href="intro2.jsp">서비스소개</a></li>
 								</ul></li>
+							<li><a href="mentor.jsp">오늘의멘토링</a></li>
 							<li class="active"><a href="mentor.jsp">멘토찾기</a></li>
 							<li><a href="mentee.jsp">멘티찾기</a></li>
 							<li><a href="contact.html">자유게시판</a></li>
 							<li class="has-dropdown"><a href="blog.html">이용안내</a>
 								<ul class="dropdown">
 									<li><a href="#">공지사항</a></li>
-									<li><a href="#">자주 묻는 질문</a></li>
+									<li><a href="#">Q&A</a></li>
 									<li><a href="#">웹 가이드</a></li>
 									<li><a href="#">모바일 가이드</a></li>
 								</ul></li>
@@ -92,59 +93,119 @@
 				</div>
 				<br>
 				<div class="row">
-					<div class="col-md-4 text-center animate-box">
-						<a href="work-single.html" class="work"
-							style="background-image: url(images/portfolio-1.jpg);">
-							<div class="desc">
-								<h3>Project Name</h3>
-								<span>Illustration</span>
+					<div class="col-md-4">
+						<div class="fh5co-blog animate-box">
+							<a href="#" class="blog-bg"
+								style="background-image: url(images/blog-1.jpg);"></a>
+							<div class="blog-text">
+								<span class="posted_on">Feb. 15th 2016</span>
+								<h3>
+									<a href="#">Photoshoot On The Street</a>
+								</h3>
+								<p>Far far away, behind the word mountains, far from the
+									countries Vokalia and Consonantia, there live the blind texts.</p>
+								<ul class="stuff">
+									<li><i class="icon-heart3"></i>249</li>
+									<li><i class="icon-eye2"></i>1,308</li>
+									<li><a href="#">Read More<i class="icon-arrow-right22"></i></a></li>
+								</ul>
 							</div>
-						</a>
+						</div>
 					</div>
-					<div class="col-md-4 text-center animate-box">
-						<a href="work-single.html" class="work"
-							style="background-image: url(images/portfolio-2.jpg);">
-							<div class="desc">
-								<h3>Project Name</h3>
-								<span>Brading</span>
+					<div class="col-md-4">
+						<div class="fh5co-blog animate-box">
+							<a href="#" class="blog-bg"
+								style="background-image: url(images/blog-2.jpg);"></a>
+							<div class="blog-text">
+								<span class="posted_on">Feb. 15th 2016</span>
+								<h3>
+									<a href="#">Surfing at Philippines</a>
+								</h3>
+								<p>Far far away, behind the word mountains, far from the
+									countries Vokalia and Consonantia, there live the blind texts.</p>
+								<ul class="stuff">
+									<li><i class="icon-heart3"></i>249</li>
+									<li><i class="icon-eye2"></i>1,308</li>
+									<li><a href="#">Read More<i class="icon-arrow-right22"></i></a></li>
+								</ul>
 							</div>
-						</a>
+						</div>
 					</div>
-					<div class="col-md-4 text-center animate-box">
-						<a href="work-single.html" class="work"
-							style="background-image: url(images/portfolio-3.jpg);">
-							<div class="desc">
-								<h3>Project Name</h3>
-								<span>Illustration</span>
+					<div class="col-md-4">
+						<div class="fh5co-blog animate-box">
+							<a href="#" class="blog-bg"
+								style="background-image: url(images/blog-3.jpg);"></a>
+							<div class="blog-text">
+								<span class="posted_on">Feb. 15th 2016</span>
+								<h3>
+									<a href="#">Focus On Uderwater</a>
+								</h3>
+								<p>Far far away, behind the word mountains, far from the
+									countries Vokalia and Consonantia, there live the blind texts.</p>
+								<ul class="stuff">
+									<li><i class="icon-heart3"></i>249</li>
+									<li><i class="icon-eye2"></i>1,308</li>
+									<li><a href="#">Read More<i class="icon-arrow-right22"></i></a></li>
+								</ul>
 							</div>
-						</a>
+						</div>
 					</div>
-					<div class="col-md-4 text-center animate-box">
-						<a href="work-single.html" class="work"
-							style="background-image: url(images/portfolio-4.jpg);">
-							<div class="desc">
-								<h3>Project Name</h3>
-								<span>Illustration</span>
+					<div class="col-md-4">
+						<div class="fh5co-blog animate-box">
+							<a href="#" class="blog-bg"
+								style="background-image: url(images/blog-1.jpg);"></a>
+							<div class="blog-text">
+								<span class="posted_on">Feb. 15th 2016</span>
+								<h3>
+									<a href="#">Photoshoot On The Street</a>
+								</h3>
+								<p>Far far away, behind the word mountains, far from the
+									countries Vokalia and Consonantia, there live the blind texts.</p>
+								<ul class="stuff">
+									<li><i class="icon-heart3"></i>249</li>
+									<li><i class="icon-eye2"></i>1,308</li>
+									<li><a href="#">Read More<i class="icon-arrow-right22"></i></a></li>
+								</ul>
 							</div>
-						</a>
+						</div>
 					</div>
-					<div class="col-md-4 text-center animate-box">
-						<a href="work-single.html" class="work"
-							style="background-image: url(images/portfolio-5.jpg);">
-							<div class="desc">
-								<h3>Project Name</h3>
-								<span>Brading</span>
+					<div class="col-md-4">
+						<div class="fh5co-blog animate-box">
+							<a href="#" class="blog-bg"
+								style="background-image: url(images/blog-2.jpg);"></a>
+							<div class="blog-text">
+								<span class="posted_on">Feb. 15th 2016</span>
+								<h3>
+									<a href="#">Surfing at Philippines</a>
+								</h3>
+								<p>Far far away, behind the word mountains, far from the
+									countries Vokalia and Consonantia, there live the blind texts.</p>
+								<ul class="stuff">
+									<li><i class="icon-heart3"></i>249</li>
+									<li><i class="icon-eye2"></i>1,308</li>
+									<li><a href="#">Read More<i class="icon-arrow-right22"></i></a></li>
+								</ul>
 							</div>
-						</a>
+						</div>
 					</div>
-					<div class="col-md-4 text-center animate-box">
-						<a href="work-single.html" class="work"
-							style="background-image: url(images/portfolio-6.jpg);">
-							<div class="desc">
-								<h3>Project Name</h3>
-								<span>Illustration</span>
+					<div class="col-md-4">
+						<div class="fh5co-blog animate-box">
+							<a href="#" class="blog-bg"
+								style="background-image: url(images/blog-3.jpg);"></a>
+							<div class="blog-text">
+								<span class="posted_on">Feb. 15th 2016</span>
+								<h3>
+									<a href="#">Focus On Uderwater</a>
+								</h3>
+								<p>Far far away, behind the word mountains, far from the
+									countries Vokalia and Consonantia, there live the blind texts.</p>
+								<ul class="stuff">
+									<li><i class="icon-heart3"></i>249</li>
+									<li><i class="icon-eye2"></i>1,308</li>
+									<li><a href="#">Read More<i class="icon-arrow-right22"></i></a></li>
+								</ul>
 							</div>
-						</a>
+						</div>
 					</div>
 				</div>
 			</div>

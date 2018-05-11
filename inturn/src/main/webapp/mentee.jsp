@@ -66,13 +66,14 @@
 									<li><a href="intro1.jsp">사업소개</a></li>
 									<li><a href="intro2.jsp">서비스소개</a></li>
 								</ul></li>
+							<li><a href="mentor.jsp">오늘의멘토링</a></li>
 							<li><a href="mentor.jsp">멘토찾기</a></li>
 							<li class="active"><a href="mentee.jsp">멘티찾기</a></li>
 							<li><a href="contact.html">자유게시판</a></li>
 							<li class="has-dropdown"><a href="blog.html">이용안내</a>
 								<ul class="dropdown">
 									<li><a href="#">공지사항</a></li>
-									<li><a href="#">자주 묻는 질문</a></li>
+									<li><a href="#">Q&A</a></li>
 									<li><a href="#">웹 가이드</a></li>
 									<li><a href="#">모바일 가이드</a></li>
 								</ul></li>
@@ -85,7 +86,7 @@
 		</nav>
 		<div class="container-wrap">
 			<div id="fh5co-blog">
-			<div class="row animate-box">
+				<div class="row animate-box">
 					<div class="col-md-6 col-md-offset-3 text-center heading-section">
 						<h3>청년 멘티 찾기</h3>
 						<p>도움을 필요로 하는 청년들에게 나만의 노하우를 전해주세요 :D</p>
