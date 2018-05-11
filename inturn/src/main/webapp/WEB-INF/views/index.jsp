@@ -4,6 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"
+	type="text/javascript" charset="utf-8"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <meta charset="utf-8"> -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,16 +52,16 @@
 <body>
 	<div id="page">
 		<c:choose>
-		<c:when test="${!empty content }">
-			<jsp:include page="${content}" />
-		</c:when>
-		<c:when test="${param.content != null }">
-			<jsp:include page="${param.content}" />
-		</c:when>
-		<c:otherwise>
-			<jsp:include page="main.jsp" />
-		</c:otherwise>
-	</c:choose>
+			<c:when test="${!empty content }">
+				<jsp:include page="${content}" />
+			</c:when>
+			<c:when test="${param.content != null }">
+				<jsp:include page="${param.content}" />
+			</c:when>
+			<c:otherwise>
+				<jsp:include page="main.jsp" />
+			</c:otherwise>
+		</c:choose>
 
 		<div class="container-wrap">
 			<jsp:include page="footer.jsp" />
