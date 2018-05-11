@@ -20,22 +20,21 @@
 				</div>
 				<div class="col-xs-10 text-right menu-1">
 					<ul>
-						<li><a href="index.jsp">홈</a></li>
-						<li class="active has-dropdown"><a href="intro1.jsp">소개</a>
+						<li class="active"><a href="main.do">홈</a></li>
+						<li class="has-dropdown"><a href="intro1.do">소개</a>
 							<ul class="dropdown">
-								<li><a href="intro1.jsp">사업소개</a></li>
-								<li><a href="intro2.jsp">서비스소개</a></li>
+								<li><a href="intro1.do">사업소개</a></li>
+								<li><a href="intro2.do">서비스소개</a></li>
 							</ul></li>
-						<li><a href="mentor.jsp">멘토찾기</a></li>
-						<li><a href="mentee.jsp">멘티찾기</a></li>
-						<li><a href="contact.html">자유게시판</a></li>
-						<li class="has-dropdown"><a href="blog.html">이용안내</a>
+						<li><a href="mentor.do">멘토찾기</a></li>
+						<li><a href="mentee.do">멘티찾기</a></li>
+						<li><a href="freeBoard.do">자유게시판</a></li>
+						<li class="has-dropdown"><a href="#">이용안내</a>
 							<ul class="dropdown">
-								<li><a href="#">공지사항</a></li>
 								<li><a href="#">자주 묻는 질문</a></li>
-								<li><a href="#">웹 가이드</a></li>
-								<li><a href="#">모바일 가이드</a></li>
-							</ul></li>
+								<li><a href="csBoard.do">고객서비스</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>
