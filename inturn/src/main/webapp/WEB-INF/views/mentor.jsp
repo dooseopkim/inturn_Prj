@@ -8,6 +8,7 @@
 <title>mentor</title>
 </head>
 <body>
+	<jsp:include page="userMenu.jsp" />
 	<nav class="fh5co-nav" role="navigation">
 	<div class="container-wrap">
 		<div class="top-menu">
