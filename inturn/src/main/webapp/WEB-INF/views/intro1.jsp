@@ -15,13 +15,13 @@
 			<div class="row">
 				<div class="col-xs-2">
 					<div id="fh5co-logo">
-						<a href="index.jsp">人Turn</a>
+						<a href="main.do">人Turn</a>
 					</div>
 				</div>
 				<div class="col-xs-10 text-right menu-1">
 					<ul>
-						<li class="active"><a href="main.do">홈</a></li>
-						<li class="has-dropdown"><a href="intro1.do">소개</a>
+						<li><a href="main.do">홈</a></li>
+						<li class="active has-dropdown"><a href="intro1.do">소개</a>
 							<ul class="dropdown">
 								<li><a href="intro1.do">사업소개</a></li>
 								<li><a href="intro2.do">서비스소개</a></li>
@@ -78,10 +78,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="container-wrap">
-		<jsp:include page="footer.jsp" />
 	</div>
 	<!-- END footer container-wrap -->
 </body>
