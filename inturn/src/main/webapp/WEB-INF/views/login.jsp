@@ -66,7 +66,7 @@
 						</p> -->
 							<!-- <a href="javascript:void(0);" class="btn-login"
 							onclick="fn_SSO_login()">로그인</a> -->
-							<input type="submit" id="btn_login" class="btn btn-secondary"
+							<input type="submit" id="btn_login" class="btn btn-outline-success"
 								value="로그인">
 						</fieldset>
 					</form>
@@ -85,13 +85,11 @@
 							</li>
 							<li>
 								<a id="naverIdLogin">
-									<img alt="login_naver.png" src="/images/btn/login_naver.png" width="300">
+									<img alt="login_naver.png" src="/images/btn/login_naver.png">
 								</a>
 							</li>
-							<!--  -->
 						</ul>
-						<p class="etc-login-text">※ 공용 PC에서 SNS 로그인 사용 후 로그아웃 시 SNS
-							로그아웃을 확인하세요.</p>
+						<p class="etc-login-text">※ 공용 PC에서 SNS 로그인 사용 후 로그아웃 시 SNS 로그아웃을 확인하세요.</p>
 						<!-- <input type="hidden" name="snsLoginId" id="snsLoginId">
 					<input type="hidden" name="snsTypeCode" id="snsTypeCode"> -->
 					</form>

@@ -19,7 +19,7 @@
 .box-login .etc-login li {float:left; width:50%; margin-top:10px; padding-left:10px;}
 .box-login .etc-login li a {display:block; height:50px; border:1px solid #f1f1f1; background:#f6f6f8; color:#444; font-size:18px; font-weight:800; line-height:50px; text-align:center; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
 .box-login .etc-login li a:before {content:''; float:left; width:57px; height:38px; margin-top:5px; border-right:1px solid #ebebeb;}
-.box-login .etc-login li.kakao a:before {background:url('../images/common/icon/icon_kakao.png') no-repeat center;}
+.box-login .etc-login li.kakao a:before {background:url('../images/common/icon/icon_kakao.png') no-repeat center; }
 .box-login .etc-login li.google a:before {background:url('../images/common/icon/icon_google.png') no-repeat center;}
 .box-login .etc-login li.naver a:before {background:url('../images/common/icon/icon_naver.png') no-repeat center;}
 .box-login .etc-login li.facebook a:before {background:url('../images/common/icon/icon_facebook.png') no-repeat center;}
@@ -564,5 +564,39 @@
 
 .snsLoginList li{
 	margin: 30px;
+}
+
+.btn-outline-success {
+  color: #28a745;
+  background-color: transparent;
+  background-image: none;
+  border-color: #28a745;
+}
+
+.btn-outline-success:hover {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-outline-success:focus, .btn-outline-success.focus {
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+}
+
+.btn-outline-success.disabled, .btn-outline-success:disabled {
+  color: #28a745;
+  background-color: transparent;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active, .btn-outline-success:not(:disabled):not(.disabled).active,
+.show > .btn-outline-success.dropdown-toggle {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active:focus, .btn-outline-success:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
 }
 
