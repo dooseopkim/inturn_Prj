@@ -33,4 +33,15 @@ public class UserController {
 	public String signupForm_torDo() {
 		return "index.jsp?content=signup1";
 	}
+	
+	/**
+	 * userMenu에서 로그인 클릭 시
+	 * @return
+	 */
+	@RequestMapping("loginForm.do")
+	public String loginFormDo() {
+		return "index.jsp?content=login";
+	}
+	
+	
 }

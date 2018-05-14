@@ -12,7 +12,7 @@
 		<div class="col-sm-10"></div>
 		<div class="col-md-3 col-md-push-9">
 			<c:if test="${empty login.id}">
-				<a class="btn" id="login" href="/login.do">로그인</a>
+				<a class="btn" id="login" href="/loginForm.do">로그인</a>
 				<a class="btn" id="signUp" href="signUp.do">회원가입</a>
 			</c:if>
 			<c:if test="${!empty login.id}">
