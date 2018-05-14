@@ -7,22 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/login.css">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type='text/javascript'>
-  //<![CDATA[
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('YOUR APP KEY');
-    // 카카오 로그인 버튼을 생성합니다.
-    Kakao.Auth.createLoginButton({
-      container: '#kakao-login-btn',
-      success: function(authObj) {
-        alert(JSON.stringify(authObj));
-      },
-      fail: function(err) {
-         alert(JSON.stringify(err));
-      }
-    });
-  //]]>
-</script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 </head>
 <body>
 <jsp:include page="userMenu.jsp" />
@@ -90,12 +75,12 @@
 		<div class="col-sm-6 box-snsLogin">
 		<form name="SnsLoginForm" id="SnsLoginForm" action="/cloud/oneid/saml2/sso/login.process.do" method="post">
 					<ul class="snsLoginList">
-						<li><a id="kakao-login-btn"  class="btn btn-snsLogin" ><img alt="login_kakao.png" src="/images/btn/login_kakao.png" width="300"></a></li>
-						<li><a href="#" class="btn btn-snsLogin"><img alt="login_naver.png" src="/images/btn/login_naver.png" width="300"></a></li>
+						<li><a id="kakao-login-btn" class="btn btn-snsLogin"></a></li>
+						<li><a id="naverIdLogin" class="btn btn-snsLogin"><img alt="login_naver.png" src="/images/btn/login_naver.png" width="300"></a></li> 
 					</ul>
 					<p class="etc-login-text">※ 공용 PC에서 SNS 로그인 사용 후 로그아웃 시 SNS 로그아웃을 확인하세요.</p>
-					<input type="hidden" name="snsLoginId" id="snsLoginId">
-					<input type="hidden" name="snsTypeCode" id="snsTypeCode">
+					<!-- <input type="hidden" name="snsLoginId" id="snsLoginId">
+					<input type="hidden" name="snsTypeCode" id="snsTypeCode"> -->
 					</form>
 					
 		</div>
@@ -112,5 +97,37 @@
 	</div>
 	</div>
 	</div>
+	
+   
+    <script type='text/javascript'>
+      //<![CDATA[
+        // 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('YOUR APP KEY');
+        // 카카오 로그인 버튼을 생성합니다.
+        Kakao.Auth.createLoginButton({
+          container: '#kakao-login-btn',
+          success: function(authObj) {
+            alert(JSON.stringify(authObj));
+          },
+          fail: function(err) {
+             alert(JSON.stringify(err));
+          }
+        });
+      //]]>
+      
+        /* 네이버아디디로로그인 초기화 Script */
+        var naverLogin = new naver.LoginWithNaverId(
+        		{
+        			clientId: "{YOUR_CLIENT_ID}",
+        			callbackUrl: "{YOUR_REDIRECT_URL}",
+        			isPopup: true, /* 팝업을 통한 연동처리 여부 */
+        			loginButton: {color: "green", type: 3, height: 50} /* 로그인 버튼의 타입을 지정 */
+        		}
+        	);
+        	
+        	/* 설정정보를 초기화하고 연동을 준비 */
+        	naverLogin.init();
+    </script>
+
 </body>
 </html>
