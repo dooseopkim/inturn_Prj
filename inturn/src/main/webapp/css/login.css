@@ -555,7 +555,6 @@
 
 .box-snsLogin{
 	overflow:hidden;
-	padding-top: 10px;
 	
 }
 
@@ -563,4 +562,7 @@
 	list-style: none; 
 }
 
+.snsLoginList li{
+	margin: 30px;
+}
 

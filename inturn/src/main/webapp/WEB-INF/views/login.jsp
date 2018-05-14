@@ -7,11 +7,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/login.css">
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+	charset="utf-8"></script>
 </head>
 <body>
-<jsp:include page="userMenu.jsp" />
-<nav class="fh5co-nav" role="navigation">
+	<jsp:include page="userMenu.jsp" />
+	<nav class="fh5co-nav" role="navigation">
 	<div class="container-wrap">
 		<div class="top-menu">
 			<div class="row">
@@ -43,91 +45,117 @@
 	</div>
 	</nav>
 
-<div class="container-wrap">
-	<div class="page-login">
-	<!-- 로그인 창 -->
-	<div class="row">
-		<h2 class="login-h2">회원 로그인</h2>
+	<div class="container-wrap">
+		<div class="page-login">
+			<!-- 로그인 창 -->
+			<div class="row">
+				<h2 class="login-h2">회원 로그인</h2>
 				<div class="col-sm-5 box-login">
-				<form action="login.do" method="post">
-					<fieldset>
-						<!-- <legend>로그인</legend> -->
+					<form action="login.do" method="post">
+						<fieldset>
+							<!-- <legend>로그인</legend> -->
 							<label for="loginId" class="invisible">아이디</label> <input
 								type="text" name="loginId" id="loginId" placeholder="아이디"
-								title="아이디 입력">
-							<label for="password" class="invisible">비밀번호</label> <input
-								type="password" name="password" id="password"
+								title="아이디 입력"> <label for="password" class="invisible">비밀번호</label>
+							<input type="password" name="password" id="password"
 								onkeypress="if(event.keyCode==13){fn_SSO_login();}"
 								placeholder="비밀번호" title="비밀번호 입력">
-						<!-- <p>
+							<!-- <p>
 							<input type="checkbox" id="chk_log" class="common-check">
 							<label for="chk_log">아이디저장</label>
 						</p> -->
-						<!-- <a href="javascript:void(0);" class="btn-login"
+							<!-- <a href="javascript:void(0);" class="btn-login"
 							onclick="fn_SSO_login()">로그인</a> -->
-						<input type="submit" id="btn_login" class="btn btn-secondary" value="로그인">	
-					</fieldset>
-				</form>
-			</div>
-		
-		<div class="col-sm-1"></div>
-		<!-- 카카오/네이버 로그인 -->
-		<div class="col-sm-6 box-snsLogin">
-		<form name="SnsLoginForm" id="SnsLoginForm" action="/cloud/oneid/saml2/sso/login.process.do" method="post">
-					<ul class="snsLoginList">
-						<li><a id="kakao-login-btn" class="btn btn-snsLogin"></a></li>
-						<li><a id="naverIdLogin" class="btn btn-snsLogin"><img alt="login_naver.png" src="/images/btn/login_naver.png" width="300"></a></li> 
-					</ul>
-					<p class="etc-login-text">※ 공용 PC에서 SNS 로그인 사용 후 로그아웃 시 SNS 로그아웃을 확인하세요.</p>
-					<!-- <input type="hidden" name="snsLoginId" id="snsLoginId">
+							<input type="submit" id="btn_login" class="btn btn-secondary"
+								value="로그인">
+						</fieldset>
+					</form>
+				</div>
+
+				<div class="col-sm-1"></div>
+				<!-- 카카오/네이버 로그인 -->
+				<div class="col-sm-6 box-snsLogin">
+					<form name="SnsLoginForm" id="SnsLoginForm"
+						action="/cloud/oneid/saml2/sso/login.process.do" method="post">
+						<ul class="snsLoginList">
+							<li>
+								<a id="kakaoIdLogin" href="javascript:loginWithKakao()">
+									<img src="/images/btn/login_kakao.png"/>
+								</a>
+							</li>
+							<li>
+								<a id="naverIdLogin">
+									<img alt="login_naver.png" src="/images/btn/login_naver.png" width="300">
+								</a>
+							</li>
+							<!--  -->
+						</ul>
+						<p class="etc-login-text">※ 공용 PC에서 SNS 로그인 사용 후 로그아웃 시 SNS
+							로그아웃을 확인하세요.</p>
+						<!-- <input type="hidden" name="snsLoginId" id="snsLoginId">
 					<input type="hidden" name="snsTypeCode" id="snsTypeCode"> -->
 					</form>
-					
+
+				</div>
+			</div>
+
+			<!-- 회원가입, ID 및 비밀번호 찾기 -->
+			<div>
+				<ul class="utill-login">
+					<li class="btn-join"><a href="javascript:void(0);"
+						onclick="javascript: window.location='signUp.do' ; return false ;"><strong>회원가입</strong>
+							아직 회원이 아니신가요?</a></li>
+					<li class="find-id"><a href="javascript:void(0);"
+						onclick="javascript: window.location='findID.do' ; return false ;"><strong>아이디
+								찾기</strong> 아이디를 분실하셨나요?</a></li>
+					<li class="find-pw"><a href="javascript:void(0);"
+						onclick="javascript: window.location='sendNewPW.do' ; return false ;"><strong>비밀번호
+								찾기</strong> 비밀번호를 분실하셨나요?</a></li>
+				</ul>
+
+			</div>
 		</div>
 	</div>
+
+	<script type='text/javascript'>
 	
-	<!-- 회원가입, ID 및 비밀번호 찾기 -->
-	<div>
-	<ul class="utill-login">
-		<li class="btn-join"><a href="javascript:void(0);" onclick="javascript: window.location='signUp.do' ; return false ;"><strong>회원가입</strong> 아직 회원이 아니신가요?</a></li>
-		<li class="find-id"><a href="javascript:void(0);" onclick="javascript: window.location='findID.do' ; return false ;"><strong>아이디 찾기</strong> 아이디를 분실하셨나요?</a></li>
-		<li class="find-pw"><a href="javascript:void(0);" onclick="javascript: window.location='sendNewPW.do' ; return false ;"><strong>비밀번호 찾기</strong> 비밀번호를 분실하셨나요?</a></li>
-	</ul>
+	/* 카카오아이디로로그인 */
+		//<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('{JavaScript키}');
+    // 카카오 로그인 버튼을 생성합니다.
+    function loginWithKakao() {
+      // 로그인 창을 띄웁니다.
+      Kakao.Auth.login({
+        success: function(authObj) {
+          alert(JSON.stringify(authObj));
+          alert("로그인 성공")
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+    };
+
+  //]]>
+
+		/* 네이버아디디로로그인 초기화 Script */
+		var naverLogin = new naver.LoginWithNaverId({
+			clientId : "{clientId}",
+			callbackUrl : "{callbackUrl}",
+			isPopup : true, /* 팝업을 통한 연동처리 여부 */
+			loginButton : {
+				color : "green",
+				type : 4,
+				height: 50
+			}
+		/* 로그인 버튼의 타입을 지정 */
+		});
+
+		/* 설정정보를 초기화하고 연동을 준비 */
+		naverLogin.init();
 	
-	</div>
-	</div>
-	</div>
-	
-   
-    <script type='text/javascript'>
-      //<![CDATA[
-        // 사용할 앱의 JavaScript 키를 설정해 주세요.
-        Kakao.init('YOUR APP KEY');
-        // 카카오 로그인 버튼을 생성합니다.
-        Kakao.Auth.createLoginButton({
-          container: '#kakao-login-btn',
-          success: function(authObj) {
-            alert(JSON.stringify(authObj));
-          },
-          fail: function(err) {
-             alert(JSON.stringify(err));
-          }
-        });
-      //]]>
-      
-        /* 네이버아디디로로그인 초기화 Script */
-        var naverLogin = new naver.LoginWithNaverId(
-        		{
-        			clientId: "{YOUR_CLIENT_ID}",
-        			callbackUrl: "{YOUR_REDIRECT_URL}",
-        			isPopup: true, /* 팝업을 통한 연동처리 여부 */
-        			loginButton: {color: "green", type: 3, height: 50} /* 로그인 버튼의 타입을 지정 */
-        		}
-        	);
-        	
-        	/* 설정정보를 초기화하고 연동을 준비 */
-        	naverLogin.init();
-    </script>
+	</script>
 
 </body>
 </html>
