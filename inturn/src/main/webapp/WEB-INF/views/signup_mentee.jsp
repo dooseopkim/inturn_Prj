@@ -86,6 +86,7 @@
 			</div>
 			<div class="row">
 				<form action="">
+					<input id="type" type="hidden" class="form-control" name="type" value="mentee">
 					<div class="col-md-4 col-md-push-4 animate-box">
 						<div class="row">
 							<div id="nameDiv" class="form-group">
@@ -114,8 +115,9 @@
 								</p>
 							</div>
 							<div id="nameDiv" class="form-group">
-								<input id="phone" type="text" maxlength="11" class="form-control"
-									name="phone" placeholder="휴대전화 번호" requierd="requierd">
+								<input id="phone" type="text" maxlength="11"
+									class="form-control" name="phone" placeholder="휴대전화 번호"
+									requierd="requierd">
 							</div>
 							<div id="birthDiv" class="form-group form-inline">
 								<input type="text" id="yy" name="yy" maxlength="4"
@@ -225,7 +227,7 @@
 
 							<div class="col-md-12 col-md-push-3">
 								<div class="form-group">
-									<button id="signUpBtn" type="button" class="btn btn-primary">다음</button> 
+									<button id="signUpBtn" type="button" class="btn btn-primary">다음</button>
 									<a href="" class="btn btn-primary">뒤로</a>
 								</div>
 							</div>
