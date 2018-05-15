@@ -1,7 +1,12 @@
 package com.inturn.biz.web.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
@@ -40,8 +45,20 @@ public class UserController {
 	 */
 	@RequestMapping("loginForm.do")
 	public String loginFormDo() {
-		return "index.jsp?content=login";
+		return "index.jsp?content=user/login";
 	}
 	
+	@RequestMapping(value="login.do", method=RequestMethod.POST)
+	public ModelAndView loginDo() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", "success");
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
+	@RequestMapping("searchIdForm.do")
+	public String SearchIdFormDo() {
+		return "index.jsp?content=user/searchId";
+	}
 	
 }

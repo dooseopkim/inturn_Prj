@@ -50,6 +50,7 @@
 
 </head>
 <body>
+	<div class="container-wrap">
 	<div id="page">
 		<c:choose>
 			<c:when test="${!empty content }">
@@ -63,7 +64,6 @@
 			</c:otherwise>
 		</c:choose>
 
-		<div class="container-wrap">
 			<jsp:include page="footer.jsp" />
 		</div>
 		<!-- END footer container-wrap -->
