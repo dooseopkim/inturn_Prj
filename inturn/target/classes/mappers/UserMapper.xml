@@ -32,5 +32,6 @@
 		SELECT id, name, phone, birthday, type
 		FROM USERS
 		WHERE id = #{id}
+			AND pw = #{pw}
 	</select>
 </mapper>
