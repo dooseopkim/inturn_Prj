@@ -61,4 +61,13 @@ public class UserController {
 		return "index.jsp?content=user/searchId";
 	}
 	
+	@RequestMapping(value="searchId.do", method=RequestMethod.POST)
+	public ModelAndView searchIdDo() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", "success");
+		mav.addObject("id", "test");
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
 }

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/user/user.css">
 <link rel="stylesheet" href="/css/user/searchId.css">
+<script type="text/javascript" src="/js/user/searchId.js"></script>
 </head>
 <body>
 	<jsp:include page="../userMenu.jsp" />
@@ -41,16 +42,17 @@
 		</div>
 	</div>
 	</nav>
-<h2 class="text-center"><strong>아이디찾기</strong></h2>
+
 <div class="page-searchId">
 <div class="row">
-<div class="col-sm-3 border border-info">하나</div>
-<div class="col-sm-6 border border-info">
-	<input type="text" class="form-control" placeholder="이름">
-	<input type="email" class="form-control" placeholder="이메일">
-	
+<div class="col-sm-3"></div>
+<div class="col-sm-6 box-searchId">
+	<h2 class="text-center"><strong>아이디찾기</strong></h2>
+	<input type="text" id="name" class="form-control" placeholder="이름">
+	<input type="email" id="email" class="form-control" placeholder="이메일">
+	<input type="button" id="btn_searchId" class="btn btn-primary" value="아이디찾기">
 </div>
-<div class="col-sm-3 border border-info">셋</div>
+<div class="col-sm-3"></div>
 
 </div>
 </div>

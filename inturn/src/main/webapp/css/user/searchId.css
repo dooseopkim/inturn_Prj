@@ -5,3 +5,16 @@
 	padding: 30px 90px 0px 90px;
 	text-align: center;
 }
+
+.box-searchId{
+	padding: 0 70px 0 70px;
+}
+
+#name{
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+#email{
+	margin-bottom: 35px;
+}
