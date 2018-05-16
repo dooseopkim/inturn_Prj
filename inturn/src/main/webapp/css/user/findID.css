@@ -1,18 +1,18 @@
 @charset "UTF-8";
 
-.page-searchId{
+.page-findID{
 	overflow:hidden;
 	padding: 30px 90px 0px 90px;
 	text-align: center;
 }
 
-.box-searchId{
+.box-findID{
 	padding: 0 70px 0 70px;
 }
 
 #name{
 	margin-top: 50px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 #email{

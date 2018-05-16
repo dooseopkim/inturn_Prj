@@ -2,7 +2,7 @@
  * 
  */
 $(function(){
-	$("#btn_searchId").click(function(){
+	$("#btn_findID").click(function(){
 		if($("#name").val()==""){
 			alert("이름을 입력하세요.");
 			$("#name").focus();
@@ -13,7 +13,7 @@ $(function(){
 			return false;
 		}
 		$.ajax({
-			url: "searchId.do",
+			url: "findID.do",
 			method: "POST",
 			type: "JSON",
 			data: {

@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserVO login(String id, String pw) {
-		return dao.login(id, pw);
+	public UserVO login(UserVO vo) {
+		return dao.login(vo);
 	}
 
 	@Override

@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/user/user.css">
-<link rel="stylesheet" href="/css/user/searchId.css">
-<script type="text/javascript" src="/js/user/searchId.js"></script>
+<link rel="stylesheet" href="/css/user/findPW.css">
+<script type="text/javascript" src="/js/user/findPW.js"></script>
 </head>
 <body>
 	<jsp:include page="../userMenu.jsp" />
@@ -43,14 +43,15 @@
 	</div>
 	</nav>
 
-<div class="page-searchId">
+<div class="page-findPW">
 <div class="row">
 <div class="col-sm-3"></div>
-<div class="col-sm-6 box-searchId">
-	<h2 class="text-center"><strong>아이디찾기</strong></h2>
+<div class="col-sm-6 box-findPW">
+	<h2 class="text-center"><strong>비밀번호찾기</strong></h2>
+	<input type="text" id="id" class="form-control" placeholder="아이디">
 	<input type="text" id="name" class="form-control" placeholder="이름">
 	<input type="email" id="email" class="form-control" placeholder="이메일">
-	<input type="button" id="btn_searchId" class="btn btn-primary" value="아이디찾기">
+	<input type="button" id="btn_sendNewPW" class="btn btn-primary" value="비밀번호찾기">
 </div>
 <div class="col-sm-3"></div>
 

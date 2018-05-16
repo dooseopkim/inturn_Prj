@@ -66,6 +66,7 @@
 				<li><a href="#"><i class="icon-facebook"></i></a></li>
 				<li><a href="#"><i class="icon-linkedin"></i></a></li>
 				<li><a href="#"><i class="icon-dribbble"></i></a></li>
+				<li><a href="https://github.com/dooseopkim/inturn_Prj" target="_blank"><i class="icon-github"></i></a></li>
 			</ul>
 			</p>
 		</div>

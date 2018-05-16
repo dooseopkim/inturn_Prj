@@ -27,4 +27,10 @@
 		INSERT INTO users(id, pw, name, phone, birthday, type)
 		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{type})
 	</insert>
+	
+	<select id="login" parameterType="UserVO" resultType="UserVO">
+		SELECT id, name, phone, birthday, type
+		FROM USERS
+		WHERE id = #{id}
+	</select>
 </mapper>
