@@ -36,6 +36,7 @@ public class LogInOutController {
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
 	public ModelAndView loginDo(UserVO vo, HttpSession session) {
 		System.out.println("loginDo() 진입");
+		System.out.println(vo.getPw());
 		ModelAndView mav = new ModelAndView();
 		UserVO user = service.login(vo);
 		if(user != null) {
