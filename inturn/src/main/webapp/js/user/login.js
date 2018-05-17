@@ -174,8 +174,8 @@ $(function(){
 			method: "POST",
 			type: "JSON",
 			data: {
-				"id" : $("#loginId").val(), 
-				"pw" : SHA256($("#password").val()) 
+				"id" : $("#loginId").val(),
+				"pw" : SHA256($("#password").val())
 			},
 			success: function(data){
 				if(data.result == "success"){
