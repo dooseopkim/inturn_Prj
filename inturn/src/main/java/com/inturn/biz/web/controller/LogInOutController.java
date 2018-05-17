@@ -1,5 +1,8 @@
 package com.inturn.biz.web.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -108,5 +111,38 @@ public class LogInOutController {
 		session.removeAttribute("login");
 		return "index.jsp?content=main";
 	}
+	
+	/**
+	 *  이 부분은 그냥 네이버로그인 API를 통해 로그인 됐을 때
+	 *  @return loginFrom으로 다시 가서 naver Api의 callback메소드를 수행 -> ajax부분을 수행
+	 */
+	@RequestMapping(value="naverLogin.do", method=RequestMethod.GET)
+	public String naverLogin(){
+		System.out.println("naverLogin.do GET");
+		return "redirect:loginForm.do";
+	}
+
+	/**
+	 * 
+	 * @param email 네이버 로그인을 통해 받은 email 주소
+	 * @param name 네이버 회원가입 시 등록해 놓은 아이디
+	 * @param birthday 네이버 회원가입 시 등록해 놓은 생일 월 / 일만 받아와서 곤란함
+	 * 현재 이 부분에서 기존 가입이 있을 경우 그 정보와 비교해서 session에 loginVO를 박아줘야함
+	 * 만약 가입이 없다면, 가입하라고 해야함!
+	 * @return
+	 */
+	@RequestMapping(value="naverLogin.do", method=RequestMethod.POST)
+	public ModelAndView naverLogin(String email, String name, String birthday){
+		System.out.println("naverLogin.do POST");
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("email", email);
+		map.put("name", name);
+		map.put("birthday", birthday);
+		System.out.println("email : "+email);
+		System.out.println("name : "+name);
+		System.out.println("birthday : "+birthday);
+		return new ModelAndView("jsonView",map);
+	}
+	
 	
 }

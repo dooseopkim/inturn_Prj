@@ -115,9 +115,10 @@
 
 	/* 네이버아디디로로그인 초기화 Script */
 	var naverLogin = new naver.LoginWithNaverId({
-		clientId : "{clientId}",
-		callbackUrl : "{callbackUrl}",
-		isPopup : true, /* 팝업을 통한 연동처리 여부 */
+		clientId : "QmvYUAYvK3me4MirilEo",
+		callbackUrl : "http://127.0.0.1:9000/naverLogin.do",
+		isPopup : false, /* 팝업을 통한 연동처리 여부 */
+		callbackHandle: true,
 		loginButton : {
 			color : "green",
 			type : 4,
@@ -128,7 +129,28 @@
 
 	/* 설정정보를 초기화하고 연동을 준비 */
 	naverLogin.init();
+	
+	window.addEventListener('load', function () {
+		naverLogin.getLoginStatus(function (status) {
+			if (status) {
+				$.ajax({
+					url: "naverLogin.do",
+					type: "POST",
+					data: {
+						"email" : naverLogin.user.getEmail(),
+						"name" : naverLogin.user.getName(),
+						"birthday" : naverLogin.user.getBirthday()
+					},
+					success: function(data) {
+						location.href="/main.do"
+					}
+				})
+			} else {
+				console.log("AccessToken이 올바르지 않습니다.");
+			}
+		});
+	});
 	</script>
-
+	
 </body>
 </html>
