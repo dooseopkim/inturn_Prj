@@ -9,7 +9,7 @@ public interface UserService {
 	public int insertUser(UserVO vo);
 	public int modifyUser(UserVO vo);
 	public int deleteUser(UserVO vo);
-	public UserVO login(String id, String pw);
+	public UserVO login(UserVO vo);
 	public String findID(UserVO vo);
 	public Boolean findPw(UserVO vo);
 }

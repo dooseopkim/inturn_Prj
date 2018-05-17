@@ -20,14 +20,24 @@ public class MyBatisTest {
 	@Resource(name="UserDAO")
 	UserDAO dao;
 	
+	
 	@After
 	public void tearDown() throws Exception {
 		dao = null;
 	}
 
-	@Test
+//	@Test
 	public void test() {
 		List<UserVO> list = dao.getUsers();
 		System.out.println(list);
+	}
+	
+	@Test
+	public void login() {
+		UserVO vo = new UserVO();
+		vo.setId("test");
+		vo.setPw("1234");
+		UserVO user = dao.login(vo);
+		System.out.println(user);
 	}
 }

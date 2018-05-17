@@ -17,6 +17,7 @@
     <mvc:resources mapping="/js/**" location="/js/" />
     <mvc:resources mapping="/fonts/**" location="/fonts/" />
     <mvc:resources mapping="/sass/**" location="/sass/" />
+    <mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	<mvc:annotation-driven>
 		<mvc:message-converters>
@@ -30,10 +31,13 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="-1" />
-	</bean>
+	<!-- file Upload -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- max upload size in bytes -->
+        <property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
+        <!-- max size of file in memory (in bytes) -->
+        <property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+    </bean>
 
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></bean>
 
