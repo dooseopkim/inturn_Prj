@@ -47,23 +47,26 @@
 
 		<div class="page-login">
 			<!-- 로그인 창 -->
-			<div class="row">
+			<div class="row box-login">
 				<h2 class="login-h2">회원 로그인</h2>
-				<div class="col-sm-6 box-login">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-4 box-login-default">
 					<form action="" method="post">
 						<fieldset>
 							<!-- <legend>로그인</legend> -->
 							<label for="loginId" class="invisible">아이디</label>
-							<input type="text" name="loginId" id="loginId" placeholder="아이디" title="아이디 입력">
+							<input type="text" name="loginId" id="loginId" placeholder="아이디" title="아이디 입력" value="">
 							<label for="password" class="invisible">비밀번호</label>
 							<input type="password" name="password" id="password" placeholder="비밀번호" title="비밀번호 입력">
+							<label id="label_saveId" class="form-check-label"><input type="checkbox" id="saveId" class="form-check-input">아이디 저장</label>
 							<input type="button" id="btn_login" class="btn btn-outline-success" value="로그인">
+							
 						</fieldset>
 					</form>
 				</div>
-
+				<div class="col-sm-2"></div>
 				<!-- 카카오/네이버 로그인 -->
-				<div class="col-sm-6 box-snsLogin">
+				<div class="col-sm-4 box-login-sns">
 					<form name="SnsLoginForm" id="SnsLoginForm" action="snsLogin.do" method="post">
 						<ul class="snsLoginList">
 							<li><a id="kakaoIdLogin" href="javascript:loginWithKakao()">
@@ -78,6 +81,7 @@
 					<input type="hidden" name="snsTypeCode" id="snsTypeCode">
 					</form>
 				</div>
+				<div class="col-sm-1"></div>
 			</div>
 
 			<!-- 회원가입, ID 및 비밀번호 찾기 -->
@@ -92,6 +96,7 @@
 				</ul>
 			</div>
 		</div>
+
 	<script type='text/javascript'>
 	/* 카카오아이디로로그인 */
 	//<![CDATA[
