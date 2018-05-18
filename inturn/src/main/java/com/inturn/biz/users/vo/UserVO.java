@@ -12,11 +12,10 @@ public class UserVO {
 	private String type;
 	private int idx;
 	private int icon_num;
-	
+
 	public UserVO() {
 	}
-<<<<<<< HEAD
-	
+
 	/**
 	 * 아이콘을 추가하지 않은 회원가입
 	 * @param id
@@ -29,11 +28,6 @@ public class UserVO {
 	 * @param idx
 	 */
 	public UserVO(String id, String pw, String name, String phone, String email, Date birthday, String type, int idx) {
-=======
-
-	public UserVO(String id, String pw, String name, String phone, String email, Date birthday, String type, int idx,
-			int icon_num) {
->>>>>>> branch 'master' of https://github.com/dooseopkim/inturn_Prj.git
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -43,7 +37,6 @@ public class UserVO {
 		this.birthday = birthday;
 		this.type = type;
 		this.idx = idx;
-<<<<<<< HEAD
 	}
 
 	/**
@@ -69,8 +62,6 @@ public class UserVO {
 		this.birthday = birthday;
 		this.type = type;
 		this.idx = idx;
-=======
->>>>>>> branch 'master' of https://github.com/dooseopkim/inturn_Prj.git
 		this.icon_num = icon_num;
 	}
 
@@ -135,17 +126,6 @@ public class UserVO {
 		this.type = type;
 	}
 
-<<<<<<< HEAD
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-=======
->>>>>>> branch 'master' of https://github.com/dooseopkim/inturn_Prj.git
 	public int getIdx() {
 		return idx;
 	}
