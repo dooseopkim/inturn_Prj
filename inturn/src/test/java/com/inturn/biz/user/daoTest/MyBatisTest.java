@@ -32,12 +32,30 @@ public class MyBatisTest {
 		System.out.println(list);
 	}
 	
-	@Test
+//	@Test
 	public void login() {
 		UserVO vo = new UserVO();
 		vo.setId("test");
 		vo.setPw("1234");
 		UserVO user = dao.login(vo);
 		System.out.println(user);
+	}
+
+	@Test
+	public void findID() {
+		UserVO vo = new UserVO();
+		vo.setName("tname1");
+		vo.setEmail("test@gmail.com");
+		System.out.println(dao.findID(vo));
+	}
+	
+	
+//	@Test
+	public void findPw() {
+		UserVO vo = new UserVO();
+		vo.setId("test1");
+		vo.setName("tname");
+		vo.setEmail("test@gmail.com");
+		System.out.println(dao.findPw(vo));
 	}
 }

@@ -27,11 +27,26 @@
 		INSERT INTO users(id, pw, name, phone, birthday, email, type, idx, icon_num)
 		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{email} ,#{type}, (select nvl(max(idx),0)+1 from users), #{icon_num})
 	</insert>
-	
+
 	<select id="login" parameterType="UserVO" resultType="UserVO">
-		SELECT id, name, phone, birthday, type
+		SELECT id, name, phone, email, birthday, type, idx, icon_num
 		FROM USERS
 		WHERE id = #{id}
 			AND pw = #{pw}
+	</select>
+	
+	<select id="findID" parameterType="UserVO" resultType="String">
+		SELECT id
+		FROM USERS
+		WHERE name = #{name}
+			AND email = #{email}
+	</select>
+	
+	<select id="findPw" parameterType="UserVO" resultType="boolean">
+		SELECT count(*)
+		FROM USERS
+		WHERE id = #{id}
+			AND name = #{name}
+			AND email = #{email}
 	</select>
 </mapper>

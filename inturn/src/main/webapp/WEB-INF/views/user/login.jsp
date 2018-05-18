@@ -55,10 +55,10 @@
 						<fieldset>
 							<!-- <legend>로그인</legend> -->
 							<label for="loginId" class="invisible">아이디</label>
-							<input type="text" name="loginId" id="loginId" placeholder="아이디" title="아이디 입력" value="">
+							<input type="text" id="loginId" placeholder="아이디" title="아이디 입력" value="">
 							<label for="password" class="invisible">비밀번호</label>
-							<input type="password" name="password" id="password" placeholder="비밀번호" title="비밀번호 입력">
-							<label id="label_saveId" class="form-check-label"><input type="checkbox" id="saveId" class="form-check-input">아이디 저장</label>
+							<input type="password" id="password" placeholder="비밀번호" title="비밀번호 입력">
+							<label id="label_checkSaveId" class="form-check-label"><input type="checkbox" id="checkSaveId" class="form-check-input">아이디 저장</label>
 							<input type="button" id="btn_login" class="btn btn-outline-success" value="로그인">
 							
 						</fieldset>

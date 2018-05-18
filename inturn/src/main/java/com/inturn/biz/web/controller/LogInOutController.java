@@ -1,6 +1,5 @@
 package com.inturn.biz.web.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
@@ -74,10 +73,16 @@ public class LogInOutController {
 	
 	
 	@RequestMapping(value="findID.do", method=RequestMethod.POST)
-	public ModelAndView findIDDo() {
+	public ModelAndView findIDDo(UserVO vo) {
+		System.out.println(vo);
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("result", "success");
-		mav.addObject("id", "test");
+		String userId = service.findID(vo);
+		if(userId != null) {
+			mav.addObject("result", "success");
+			mav.addObject("id", userId);
+		} else {
+			mav.addObject("result", "일치하는 정보가 없습니다.");
+		}
 		mav.setViewName("jsonView");
 		return mav;
 	}
@@ -92,10 +97,16 @@ public class LogInOutController {
 	}
 	
 	@RequestMapping(value="sendNewPW.do", method=RequestMethod.POST)
-	public ModelAndView sendNewPWDo() {
+	public ModelAndView sendNewPWDo(UserVO vo) {
+		System.out.println(vo);
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("result", "success");
-		mav.addObject("email", "test@gmail.com");
+		if(service.findPw(vo)) {
+//			비밀번호 이메일로 보내기
+			mav.addObject("result", "success");
+			mav.addObject("email", vo.getEmail());
+		} else {
+			mav.addObject("result", "일치하는 정보가 없습니다.");
+		}
 		mav.setViewName("jsonView");
 		return mav;
 	}
