@@ -2,8 +2,8 @@ $(function() {
 	$("#signUpBtn").click(function() {
 		var birth = $("#yy").val() + "-" + $("#mm") + "-" + $("#dd");
 		$.ajax({
-			url : "dsfdfsd",
-			method : POST,
+			url : "mentee_signup.do",
+			method : "POST",
 			type : "JSON",
 			data : {
 				"name" : $("#name").val(),
@@ -11,7 +11,8 @@ $(function() {
 				"pw" : $("#pw").val(),
 				"phone" : $("#phone").val(),
 				"birth" : birth,
-				"email" : $("#email").val()
+				"email" : $("#email").val(),
+				"type" : $("#type").val()
 			},
 			success : function(data) {
 				if(data.result == "success")

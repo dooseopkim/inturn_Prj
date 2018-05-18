@@ -13,11 +13,11 @@
 		<div class="col-md-3 col-md-push-9">
 			<c:if test="${empty login.id}">
 				<a class="btn" id="login" href="/loginForm.do">로그인</a>
-				<a class="btn" id="signUp" href="signUp.do">회원가입</a>
+				<a class="btn" id="signUp" href="signupForm.do">회원가입</a>
 			</c:if>
 			<c:if test="${!empty login.id}">
-				<a id="logout" href="/logout.do">로그아웃</a>&nbsp;|&nbsp;
-				<a id="mypage" href="/mypage.do">마이페이지</a>
+				<a class="btn" id="logout" href="/logout.do">로그아웃</a>
+				<a class="btn" id="mypage" href="/mypage.do">마이페이지</a>
 			</c:if>
 		</div>
 	</div>

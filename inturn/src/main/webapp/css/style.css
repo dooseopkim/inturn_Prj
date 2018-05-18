@@ -481,7 +481,7 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-blog,
 #fh5co-counter,
 #fh5co-footer {
-  padding: 6em 3em;
+  padding: 4em 3em;
   clear: both;
 }
 @media screen and (max-width: 768px) {

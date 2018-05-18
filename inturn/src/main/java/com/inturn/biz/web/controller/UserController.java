@@ -2,6 +2,7 @@ package com.inturn.biz.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
@@ -11,9 +12,14 @@ public class UserController {
 	 * userMenu에서 회원가입 클릭시 
 	 * @return
 	 */
-	@RequestMapping(value="/signUp.do")
+	@RequestMapping(value="/signupForm.do")
 	public String signupDo() {
-		return "index.jsp?content=signup";
+		return "index.jsp?content=chkCert";
+	}
+
+	@RequestMapping(value="/checkCert.do")
+	public String checkCertDo() {
+		return "index.jsp?content=checkCert";
 	}
 	
 	/**
@@ -22,7 +28,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/signupForm_tee.do")
 	public String signupForm_teeDo() {
-		return "index.jsp?content=signup1";
+		return "index.jsp?content=signup";
 	}
 	
 	/**
@@ -31,7 +37,12 @@ public class UserController {
 	 */
 	@RequestMapping(value="/signupForm_tor.do")
 	public String signupForm_torDo() {
-		return "index.jsp?content=signup1";
+		return "index.jsp?content=signup_mento";
+	}
+	
+	@RequestMapping(value="/mentee_signup.do")
+	public String mentee_signupDo(){
+		return "index.jsp?content=";
 	}
 	
 	/**

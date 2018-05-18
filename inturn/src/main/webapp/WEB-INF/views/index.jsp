@@ -8,6 +8,10 @@
 	type="text/javascript" charset="utf-8"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"
+	type="text/javascript" charset="utf-8"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <meta charset="utf-8"> -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
