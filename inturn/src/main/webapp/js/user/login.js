@@ -139,6 +139,36 @@ $(function(){
         return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
     }
 
+		
+	/** 
+	 * 아이디저장 체크시 7일간 저장 관련 JQuery
+	 * @author http://zero-gravity.tistory.com/245, 이슬기
+	 */
+	var inputUserId = getCookie("inputUserId");
+	$("#loginId").val(inputUserId);
+	
+    if($("#loginId").val() != ""){
+    	$("#checkSaveId").attr("checked", true);
+    }
+    
+    $("#checkSaveId").change(function(){
+        if($("#checkSaveId").is(":checked")){
+            var inputUserId = $("#loginId").val();
+            setCookie("inputUserId", inputUserId, 7);
+        }else{
+            deleteCookie("inputUserId");
+        }
+    });
+    
+    $("#loginId").keyup(function(){
+        if($("#checkSaveId").is(":checked")){
+            var inputUserId = $("#loginId").val();
+            setCookie("inputUserId", inputUserId, 7);
+        }
+    });
+
+
+    
 	/*아이디, 비밀번호 입력하지 않고 로그인 버튼 클릭 시*/
 	$("#btn_login").click(function(){
 		login();
@@ -195,3 +225,33 @@ $(function(){
 	}
 });
 
+/** 
+ * 아이디저장 체크시 7일간 저장 관련 function
+ * @author http://zero-gravity.tistory.com/245, 이슬기
+ */
+function setCookie(cookieName, value, exdays){
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+    document.cookie = cookieName + "=" + cookieValue;
+}
+ 
+function deleteCookie(cookieName){
+    var expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() - 1);
+    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+}
+ 
+function getCookie(cookieName) {
+    cookieName = cookieName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cookieValue = '';
+    if(start != -1){
+        start += cookieName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cookieValue = cookieData.substring(start, end);
+    }
+    return unescape(cookieValue);
+}
