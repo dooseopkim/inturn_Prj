@@ -1,9 +1,39 @@
 /**
- * 
+ * @author 이슬기
+ * @since 2018.05.18
+ * @see findPW과 관련된 JQuery 및 JavaScript
+ * @returns
  */
 
 $(function(){
+	
+	/*비밀번호 찾기 버튼 클릭 시*/
 	$("#btn_sendNewPW").click(function(){
+		findPw();
+	});
+	
+	/*아이디 입력란에서 엔터 시*/
+	$("#id").keydown(function(e) {
+		if (e.keyCode === 13) {
+			$("#name").focus();
+		} 
+	});
+	
+	/*이름 입력란에서 엔터 시*/
+	$("#name").keydown(function(e) {
+		if (e.keyCode === 13) {
+			$("#email").focus();
+		} 
+	});
+	
+	/*이메일 입력란에서 엔터 시*/
+	$("#email").keydown(function(e){
+		if(e.keyCode === 13){
+			findPw();
+		}
+	});
+	
+	function findPw(){
 		if($("#id").val()==""){
 			alert("아이디를 입력하세요.");
 			$("#id").focus();
@@ -17,6 +47,7 @@ $(function(){
 			$("#email").focus();
 			return false;
 		}
+
 		$.ajax({
 			url: "sendNewPW.do",
 			method: "POST",
@@ -24,12 +55,15 @@ $(function(){
 			data: {
 				"id" : $("#id").val(),
 				"name" : $("#name").val(),
-				"email" : $("email").val()
+				"email" : $("#email").val()
 			},
 			success: function(data){
-				alert(data.email+" 으로 임시 비밀번호를 발송했습니다.");
-			}
-			
+				if(data.result=='success'){
+					alert(data.email+" (으)로 임시 비밀번호를 발송했습니다.");
+				} else {
+					alert(data.result);
+				}
+			} 
 		});
-	});
+	}
 });

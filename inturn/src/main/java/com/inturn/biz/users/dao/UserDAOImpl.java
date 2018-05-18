@@ -40,11 +40,11 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public String findID(UserVO vo) {
-		return null;
+		return mybatis.selectOne("UserMapper.findID", vo);
 	}
 
 	@Override
 	public Boolean findPw(UserVO vo) {
-		return null;
+		return mybatis.selectOne("UserMapper.findPw", vo);
 	}
 }
