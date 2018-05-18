@@ -20,7 +20,8 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public int insertUser(UserVO vo) {
-		return 0;
+		int row = mybatis.insert("UserMapper.addUser", vo);
+		return row;
 	}
 
 	@Override

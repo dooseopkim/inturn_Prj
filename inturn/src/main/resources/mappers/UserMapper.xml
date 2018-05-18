@@ -23,9 +23,9 @@
 		WHERE id = #{id}
 	</update>
 	
-	<insert id="addUser">
-		INSERT INTO users(id, pw, name, phone, birthday, type)
-		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{type})
+	<insert id="addUser" parameterType="UserVO" >
+		INSERT INTO users(id, pw, name, phone, birthday, email, type, idx, icon_num)
+		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{email} ,#{type}, (select nvl(max(idx),0)+1 from users), #{icon_num})
 	</insert>
 	
 	<select id="login" parameterType="UserVO" resultType="UserVO">

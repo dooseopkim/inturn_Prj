@@ -125,6 +125,10 @@
 						value="mentee">
 					<div class="col-md-4 col-md-push-4 animate-box">
 						<div class="row">
+							<div id="iconDiv" class="form-group text-center">
+							<img alt="" src="images/profile.png" id="" width="200px" height="200px">
+							<input type="file" name="icon" accept="image/*">
+							</div>
 							<div id="typeDiv" class="form-group">
 								<select id="type" class="form-control" name="type" requierd="requierd">
 									<option value="mentee">멘티/멘토 선택</option>
@@ -164,7 +168,7 @@
 							</div>
 							<div id="birthDiv" class="form-group form-inline">
 								<input type="text" id="yy" name="yy" maxlength="4"
-									style="width: 37%" class="form-control" placeholder="출생년도 4자리"
+									style="width: 37%" class="form-control" placeholder="예) 1988"
 									onblur="fn_checkBirthday()"> <select id="mm"
 									class="input-lg input-group" name="mm" title="월 선택"
 									onfocus="fn_checkBirthday()" onblur="fn_checkBirthday()">

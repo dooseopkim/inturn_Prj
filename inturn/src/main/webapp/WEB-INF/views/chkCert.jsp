@@ -514,13 +514,16 @@ table, th, td {
 						</button>
 					</div>
 					<div class="modal-body">
-						<strong>이메일 입력</strong>
+						<h4>이메일 입력</h4>
 						<div>
-							<input type="text" id="emailInput1" class="form-control">
-							<span>@</span> <input type="text" id="emailInput2">
-						</div>
-						<div>
-							<select id="emailSelect">
+							<input type="text" id="emailInput1" class="form-control"
+								style="width: 200px; display: inline;"
+								onkeyup="chkKorean(this.value);this.value=this.value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'');this.value=this.value.replace(/\s/gi,'');">
+							<span>@</span> <input type="text" id="emailInput2"
+								class="form-control" style="width: 180px; display: inline;"
+								onkeyup="chkKorean(this.value);this.value=this.value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'');this.value=this.value.replace(/\s/gi,'');">
+							<select id="emailSelect" class="form-control"
+								style="width: 150px; display: inline;">
 								<option value="">직접입력</option>
 								<option value="naver.com">naver.com</option>
 								<option value="hanmail.net">hanmail.net</option>
@@ -535,6 +538,40 @@ table, th, td {
 								<option value="netian.com">netian.com</option>
 							</select>
 						</div>
+						<br>
+						<div align="center">
+							<a href="javascript:void(0);"
+								onclick="fn_sendIssuCrtfcInfo('emailIput01', 'emailIput02')"
+								class="bnt btn-lg btn-info">인증번호 받기</a>
+							<p class="txt-noti" id='noti-email' style="display: none;">
+								인증번호를 발송했습니다.<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.<br>받은메일함에서
+								인증번호가 확인이 안되시면, 스팸메일함을 확인하여 주세요.
+							</p>
+						</div>
+						<input type="hidden" name="encptEmailAdres" id="encptEmailAdres"
+							value="" /> <br>
+						<hr>
+						<br>
+						<h4>인증번호 입력</h4>
+						<input type="text" id="codeIput" placeholder="인증번호"
+							class="form-control" style="width: 400px; display: inline;">
+						<a href="javascript:void(0);"
+							onclick="fn_checkCrtfcNo('codeIput', event)"
+							class="bnt btn-lg btn-primary">인증번호 확인</a>
+						<p class="txt-error" id="empty_checkCrtfcNo"
+							style="display: none;">인증번호가 발송되지 않았습니다.</p>
+						<p class="txt-error" id="differ_checkCrtfcNo"
+							style="display: none;">인증번호가 올바르지 않습니다.</p>
+						<br>
+					</div>
+					<div class="modal-footer">
+						<ul style="list-style-type: none;">
+							<li>※ 자주 이용하시는 이메일을 입력해주세요.</li>
+							<li>※ 입력하신 이메일로 가입 승인 메일이 발송됩니다.</li>
+							<li>※ 24시간 안에 가입 승인 메일을 확인해주세요.</li>
+							<li>※ 받은메일함에서 인증번호가 확인이 안되면 스팸문자함 등을<br>확인하시기 바랍니다.
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>

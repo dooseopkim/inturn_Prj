@@ -5758,7 +5758,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover,
 
 .close {
 	float: right;
-	font-size: 21px;
+	font-size: 40px;
 	font-weight: bold;
 	line-height: 1;
 	color: #000;
@@ -5892,7 +5892,7 @@ button.close {
 
 .modal-footer {
 	padding: 15px;
-	text-align: right;
+	text-align: left;
 	border-top: 1px solid #e5e5e5;
 }
 
