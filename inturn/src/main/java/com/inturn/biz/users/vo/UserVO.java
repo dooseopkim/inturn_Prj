@@ -22,6 +22,11 @@ public class UserVO {
 		this.type = type;
 	}
 
+	public UserVO(String id, String pw) {
+		this.id = id;
+		this.pw = pw;
+	}
+
 	public String getId() {
 		return id;
 	}

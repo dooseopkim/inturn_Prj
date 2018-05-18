@@ -34,8 +34,8 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public UserVO login(String id, String pw) {
-		return null;
+	public UserVO login(UserVO vo) {
+		return mybatis.selectOne("UserMapper.login", vo);
 	}
 
 	@Override

@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.page-findID{
+	overflow:hidden;
+	padding: 30px 90px 0px 90px;
+	text-align: center;
+}
+
+.box-findID{
+	padding: 0 70px 0 70px;
+}
+
+#name{
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+
+#email{
+	margin-bottom: 35px;
+}

@@ -1,7 +1,12 @@
 package com.inturn.biz.web.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.RequestMethod;
+>>>>>>> branch 'master' of https://github.com/dooseopkim/inturn_Prj.git
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -45,14 +50,5 @@ public class UserController {
 		return "index.jsp?content=";
 	}
 	
-	/**
-	 * userMenu에서 로그인 클릭 시
-	 * @return
-	 */
-	@RequestMapping("loginForm.do")
-	public String loginFormDo() {
-		return "index.jsp?content=login";
-	}
-	
-	
+
 }
