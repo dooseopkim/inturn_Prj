@@ -1,62 +1,62 @@
--- user
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE` RESTRICT;
+-- users
+DROP TABLE IF EXISTS `users` RESTRICT;
 
 -- career
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE2` RESTRICT;
+DROP TABLE IF EXISTS `career` RESTRICT;
 
 -- job
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE3` RESTRICT;
+DROP TABLE IF EXISTS `job` RESTRICT;
 
 -- introduce
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE4` RESTRICT;
+DROP TABLE IF EXISTS `introduce` RESTRICT;
 
 -- icon
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE5` RESTRICT;
+DROP TABLE IF EXISTS `icon` RESTRICT;
 
 -- dictionary
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE6` RESTRICT;
+DROP TABLE IF EXISTS `dictionary` RESTRICT;
 
 -- review
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE7` RESTRICT;
+DROP TABLE IF EXISTS `review` RESTRICT;
 
 -- portfolio
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE8` RESTRICT;
+DROP TABLE IF EXISTS `portfolio` RESTRICT;
 
 -- reply
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE9` RESTRICT;
+DROP TABLE IF EXISTS `reply` RESTRICT;
 
 -- mentorboard
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE10` RESTRICT;
+DROP TABLE IF EXISTS `mentorboard` RESTRICT;
 
 -- counselBoard
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE11` RESTRICT;
+DROP TABLE IF EXISTS `counselBoard` RESTRICT;
 
 -- educational_level
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE12` RESTRICT;
+DROP TABLE IF EXISTS `educational_level` RESTRICT;
 
 -- certificate
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE13` RESTRICT;
+DROP TABLE IF EXISTS `certificate` RESTRICT;
 
 -- mentoring
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE14` RESTRICT;
+DROP TABLE IF EXISTS `mentoring` RESTRICT;
 
 -- freeBoard
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE15` RESTRICT;
+DROP TABLE IF EXISTS `freeBoard` RESTRICT;
 
 -- files
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE16` RESTRICT;
+DROP TABLE IF EXISTS `files` RESTRICT;
 
 -- fileGroup
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE17` RESTRICT;
+DROP TABLE IF EXISTS `fileGroup` RESTRICT;
 
 -- replyGroup
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE18` RESTRICT;
+DROP TABLE IF EXISTS `TABLE18` RESTRICT;
 
 -- dic_select
-DROP TABLE IF EXISTS `MY_SCHEMA`.`TABLE19` RESTRICT;
+DROP TABLE IF EXISTS `dic_select` RESTRICT;
 
--- user
-CREATE TABLE `MY_SCHEMA`.`TABLE` (
+-- users
+CREATE TABLE `users` (
 	`id`       VARCHAR(30)  NOT NULL COMMENT '아이디', -- id
 	`pw`       VARCHAR(100) NOT NULL COMMENT '비밀번호', -- pw
 	`name`     VARCHAR(20)  NOT NULL COMMENT '이름', -- name
@@ -67,17 +67,17 @@ CREATE TABLE `MY_SCHEMA`.`TABLE` (
 	`idx`      INT          NOT NULL COMMENT '인덱스', -- idx
 	`icon_num` INT          NULL     COMMENT 'icon_num' -- icon_num
 )
-COMMENT 'user';
+COMMENT 'users';
 
--- user
-ALTER TABLE `MY_SCHEMA`.`TABLE`
-	ADD CONSTRAINT `PK_TABLE` -- user 기본키
+-- users
+ALTER TABLE `users`
+	ADD CONSTRAINT `PK_users` -- users 기본키
 		PRIMARY KEY (
 			`id` -- id
 		);
 
 -- career
-CREATE TABLE `MY_SCHEMA`.`TABLE2` (
+CREATE TABLE `career` (
 	`num`         INT          NOT NULL COMMENT 'PK', -- num
 	`company_num` VARCHAR(100) NULL     COMMENT '회사명', -- company_name
 	`dept_name`   VARCHAR(50)  NULL     COMMENT '부서명', -- dept_name
@@ -88,14 +88,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE2` (
 COMMENT 'career';
 
 -- career
-ALTER TABLE `MY_SCHEMA`.`TABLE2`
-	ADD CONSTRAINT `PK_TABLE2` -- career 기본키
+ALTER TABLE `career`
+	ADD CONSTRAINT `PK_career` -- career 기본키
 		PRIMARY KEY (
 			`num` -- num
 		);
 
 -- job
-CREATE TABLE `MY_SCHEMA`.`TABLE3` (
+CREATE TABLE `job` (
 	`job_num`  INT          NOT NULL COMMENT 'job_num', -- job_num
 	`position` VARCHAR(100) NULL     COMMENT 'position', -- position
 	`kinds`    VARCHAR(100) NULL     COMMENT 'kinds', -- kinds
@@ -105,14 +105,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE3` (
 COMMENT 'job';
 
 -- job
-ALTER TABLE `MY_SCHEMA`.`TABLE3`
-	ADD CONSTRAINT `PK_TABLE3` -- job 기본키
+ALTER TABLE `job`
+	ADD CONSTRAINT `PK_job` -- job 기본키
 		PRIMARY KEY (
 			`job_num` -- job_num
 		);
 
 -- introduce
-CREATE TABLE `MY_SCHEMA`.`TABLE4` (
+CREATE TABLE `introduce` (
 	`introduce_num` INT           NOT NULL COMMENT 'introduce_num', -- introduce_num
 	`title`         VARCHAR(200)  NULL     COMMENT 'title', -- title
 	`content`       VARCHAR(1000) NULL     COMMENT 'content', -- content
@@ -121,42 +121,42 @@ CREATE TABLE `MY_SCHEMA`.`TABLE4` (
 COMMENT 'introduce';
 
 -- introduce
-ALTER TABLE `MY_SCHEMA`.`TABLE4`
-	ADD CONSTRAINT `PK_TABLE4` -- introduce 기본키
+ALTER TABLE `introduce`
+	ADD CONSTRAINT `PK_introduce` -- introduce 기본키
 		PRIMARY KEY (
 			`introduce_num` -- introduce_num
 		);
 
 -- icon
-CREATE TABLE `MY_SCHEMA`.`TABLE5` (
+CREATE TABLE `icon` (
 	`icon_num` INT          NOT NULL COMMENT 'icon_num', -- icon_num
 	`icon_src` VARCHAR(100) NULL     COMMENT 'icon_src' -- icon_src
 )
 COMMENT 'icon';
 
 -- icon
-ALTER TABLE `MY_SCHEMA`.`TABLE5`
-	ADD CONSTRAINT `PK_TABLE5` -- icon 기본키
+ALTER TABLE `icon`
+	ADD CONSTRAINT `PK_icon` -- icon 기본키
 		PRIMARY KEY (
 			`icon_num` -- icon_num
 		);
 
 -- dictionary
-CREATE TABLE `MY_SCHEMA`.`TABLE6` (
+CREATE TABLE `dictionary` (
 	`dic_num` INT          NOT NULL COMMENT 'dic_num', -- dic_num
 	`content` VARCHAR(100) NULL     COMMENT 'content' -- content
 )
 COMMENT 'dictionary';
 
 -- dictionary
-ALTER TABLE `MY_SCHEMA`.`TABLE6`
-	ADD CONSTRAINT `PK_TABLE6` -- dictionary 기본키
+ALTER TABLE `dictionary`
+	ADD CONSTRAINT `PK_dictionary` -- dictionary 기본키
 		PRIMARY KEY (
 			`dic_num` -- dic_num
 		);
 
 -- review
-CREATE TABLE `MY_SCHEMA`.`TABLE7` (
+CREATE TABLE `review` (
 	`review_num` INT           NOT NULL COMMENT 'review_num', -- review_num
 	`title`      VARCHAR(200)  NULL     COMMENT 'title', -- title
 	`content`    VARCHAR(1000) NULL     COMMENT 'content', -- content
@@ -167,14 +167,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE7` (
 COMMENT 'review';
 
 -- review
-ALTER TABLE `MY_SCHEMA`.`TABLE7`
-	ADD CONSTRAINT `PK_TABLE7` -- review 기본키
+ALTER TABLE `review`
+	ADD CONSTRAINT `PK_review` -- review 기본키
 		PRIMARY KEY (
 			`review_num` -- review_num
 		);
 
 -- portfolio
-CREATE TABLE `MY_SCHEMA`.`TABLE8` (
+CREATE TABLE `portfolio` (
 	`portfolio_num` INT          NOT NULL COMMENT 'PK', -- portfolio_num
 	`fileName`      VARCHAR(100) NULL     COMMENT 'fileName', -- fileName
 	`fileSize`      INT          NULL     COMMENT 'fileSize', -- fileSize
@@ -184,14 +184,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE8` (
 COMMENT 'portfolio';
 
 -- portfolio
-ALTER TABLE `MY_SCHEMA`.`TABLE8`
-	ADD CONSTRAINT `PK_TABLE8` -- portfolio 기본키
+ALTER TABLE `portfolio`
+	ADD CONSTRAINT `PK_portfolio` -- portfolio 기본키
 		PRIMARY KEY (
 			`portfolio_num` -- portfolio_num
 		);
 
 -- reply
-CREATE TABLE `MY_SCHEMA`.`TABLE9` (
+CREATE TABLE `reply` (
 	`rb_num`     INT           NOT NULL COMMENT 'rb_num', -- rb_num
 	`fb_num`     INT           NULL     COMMENT 'fb_num', -- fb_num
 	`cb_num`     INT           NULL     COMMENT 'cb_num', -- cb_num
@@ -206,14 +206,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE9` (
 COMMENT 'reply';
 
 -- reply
-ALTER TABLE `MY_SCHEMA`.`TABLE9`
-	ADD CONSTRAINT `PK_TABLE9` -- reply 기본키
+ALTER TABLE `reply`
+	ADD CONSTRAINT `PK_reply` -- reply 기본키
 		PRIMARY KEY (
 			`rb_num` -- rb_num
 		);
 
 -- mentorboard
-CREATE TABLE `MY_SCHEMA`.`TABLE10` (
+CREATE TABLE `mentorboard` (
 	`mb_num`  INT           NOT NULL COMMENT 'PK', -- mb_num
 	`title`   VARCHAR(200)  NULL     COMMENT '제목', -- title
 	`content` VARCHAR(1000) NULL     COMMENT '내용', -- content
@@ -223,14 +223,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE10` (
 COMMENT 'mentorboard';
 
 -- mentorboard
-ALTER TABLE `MY_SCHEMA`.`TABLE10`
-	ADD CONSTRAINT `PK_TABLE10` -- mentorboard 기본키
+ALTER TABLE `mentorboard`
+	ADD CONSTRAINT `PK_mentorboard` -- mentorboard 기본키
 		PRIMARY KEY (
 			`mb_num` -- mb_num
 		);
 
 -- counselBoard
-CREATE TABLE `MY_SCHEMA`.`TABLE11` (
+CREATE TABLE `counselBoard` (
 	`cb_num`       INT           NOT NULL COMMENT 'cb_num', -- cb_num
 	`title`        VARCHAR(200)  NULL     COMMENT 'title', -- title
 	`content`      VARCHAR(1000) NULL     COMMENT 'content', -- content
@@ -243,14 +243,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE11` (
 COMMENT 'counselBoard';
 
 -- counselBoard
-ALTER TABLE `MY_SCHEMA`.`TABLE11`
-	ADD CONSTRAINT `PK_TABLE11` -- counselBoard 기본키
+ALTER TABLE `counselBoard`
+	ADD CONSTRAINT `PK_counselBoard` -- counselBoard 기본키
 		PRIMARY KEY (
 			`cb_num` -- cb_num
 		);
 
 -- educational_level
-CREATE TABLE `MY_SCHEMA`.`TABLE12` (
+CREATE TABLE `educational_level` (
 	`eduLevel_num`    INT          NOT NULL COMMENT 'PK', -- eduLevel_num
 	`degree_level`    VARCHAR(10)  NULL     COMMENT '학업수준', -- degree_level
 	`school_name`     VARCHAR(50)  NULL     COMMENT '학교명', -- school_name
@@ -265,14 +265,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE12` (
 COMMENT 'educational_level';
 
 -- educational_level
-ALTER TABLE `MY_SCHEMA`.`TABLE12`
-	ADD CONSTRAINT `PK_TABLE12` -- educational_level 기본키
+ALTER TABLE `educational_level`
+	ADD CONSTRAINT `PK_educational_level` -- educational_level 기본키
 		PRIMARY KEY (
 			`eduLevel_num` -- eduLevel_num
 		);
 
 -- certificate
-CREATE TABLE `MY_SCHEMA`.`TABLE13` (
+CREATE TABLE `certificate` (
 	`certificate_num`      INT          NOT NULL COMMENT 'certificate_num', -- certificate_num
 	`certificate_name`     VARCHAR(50)  NULL     COMMENT 'certificate_name', -- certificate_name
 	`published_by_license` VARCHAR(100) NULL     COMMENT 'published_by_license', -- published_by_license
@@ -282,14 +282,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE13` (
 COMMENT 'certificate';
 
 -- certificate
-ALTER TABLE `MY_SCHEMA`.`TABLE13`
-	ADD CONSTRAINT `PK_TABLE13` -- certificate 기본키
+ALTER TABLE `certificate`
+	ADD CONSTRAINT `PK_certificate` -- certificate 기본키
 		PRIMARY KEY (
 			`certificate_num` -- certificate_num
 		);
 
 -- mentoring
-CREATE TABLE `MY_SCHEMA`.`TABLE14` (
+CREATE TABLE `mentoring` (
 	`mentoring_num` INT           NOT NULL COMMENT 'mentoring_num', -- mentoring_num
 	`cb_num`        INT           NULL     COMMENT 'cb_num', -- cb_num
 	`mb_num`        INT           NULL     COMMENT 'mb_num', -- mb_num
@@ -299,14 +299,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE14` (
 COMMENT 'mentoring';
 
 -- mentoring
-ALTER TABLE `MY_SCHEMA`.`TABLE14`
-	ADD CONSTRAINT `PK_TABLE14` -- mentoring 기본키
+ALTER TABLE `mentoring`
+	ADD CONSTRAINT `PK_mentoring` -- mentoring 기본키
 		PRIMARY KEY (
 			`mentoring_num` -- mentoring_num
 		);
 
 -- freeBoard
-CREATE TABLE `MY_SCHEMA`.`TABLE15` (
+CREATE TABLE `freeBoard` (
 	`fb_num`       INT           NOT NULL COMMENT 'fb_num', -- fb_num
 	`title`        VARCHAR(200)  NULL     COMMENT 'title', -- title
 	`content`      VARCHAR(1000) NULL     COMMENT 'content', -- content
@@ -318,14 +318,14 @@ CREATE TABLE `MY_SCHEMA`.`TABLE15` (
 COMMENT 'freeBoard';
 
 -- freeBoard
-ALTER TABLE `MY_SCHEMA`.`TABLE15`
-	ADD CONSTRAINT `PK_TABLE15` -- freeBoard 기본키
+ALTER TABLE `freeBoard`
+	ADD CONSTRAINT `PK_freeBoard` -- freeBoard 기본키
 		PRIMARY KEY (
 			`fb_num` -- fb_num
 		);
 
 -- files
-CREATE TABLE `MY_SCHEMA`.`TABLE16` (
+CREATE TABLE `files` (
 	`fileGroupNum`  INT          NOT NULL COMMENT 'fileGroupNum', -- fileGroupNum
 	`file_num`      INT          NOT NULL COMMENT 'file_num', -- file_num
 	`original_name` VARCHAR(50)  NULL     COMMENT 'original_name', -- original_name
@@ -338,254 +338,254 @@ CREATE TABLE `MY_SCHEMA`.`TABLE16` (
 COMMENT 'files';
 
 -- files
-ALTER TABLE `MY_SCHEMA`.`TABLE16`
-	ADD CONSTRAINT `PK_TABLE16` -- files 기본키
+ALTER TABLE `files`
+	ADD CONSTRAINT `PK_files` -- files 기본키
 		PRIMARY KEY (
 			`fileGroupNum`, -- fileGroupNum
 			`file_num`      -- file_num
 		);
 
 -- fileGroup
-CREATE TABLE `MY_SCHEMA`.`TABLE17` (
+CREATE TABLE `fileGroup` (
 	`fileGroupNum`  INT          NOT NULL COMMENT 'fileGroupNum', -- fileGroupNum
 	`fileGroupPath` VARCHAR(200) NULL     COMMENT 'fileGroupPath' -- fileGroupPath
 )
 COMMENT 'fileGroup';
 
 -- fileGroup
-ALTER TABLE `MY_SCHEMA`.`TABLE17`
-	ADD CONSTRAINT `PK_TABLE17` -- fileGroup 기본키
+ALTER TABLE `fileGroup`
+	ADD CONSTRAINT `PK_fileGroup` -- fileGroup 기본키
 		PRIMARY KEY (
 			`fileGroupNum` -- fileGroupNum
 		);
 
 -- replyGroup
-CREATE TABLE `MY_SCHEMA`.`TABLE18` (
+CREATE TABLE `TABLE18` (
 	`COL`  <데이터 타입 없음> NOT NULL COMMENT 'rg_num', -- rg_num
 	`COL2` <데이터 타입 없음> NULL     COMMENT 'name' -- name
 )
 COMMENT 'replyGroup';
 
 -- replyGroup
-ALTER TABLE `MY_SCHEMA`.`TABLE18`
+ALTER TABLE `TABLE18`
 	ADD CONSTRAINT `PK_TABLE18` -- replyGroup 기본키
 		PRIMARY KEY (
 			`COL` -- rg_num
 		);
 
 -- dic_select
-CREATE TABLE `MY_SCHEMA`.`TABLE19` (
+CREATE TABLE `dic_select` (
 	`dic_num` INT         NULL COMMENT 'dic_num', -- dic_num
 	`id`      VARCHAR(30) NULL COMMENT 'id' -- id
 )
 COMMENT 'dic_select';
 
--- user
-ALTER TABLE `MY_SCHEMA`.`TABLE`
-	ADD CONSTRAINT `FK_TABLE5_TO_TABLE` -- icon -> user
+-- users
+ALTER TABLE `users`
+	ADD CONSTRAINT `FK_icon_TO_users` -- icon -> users
 		FOREIGN KEY (
 			`icon_num` -- icon_num
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE5` ( -- icon
+		REFERENCES `icon` ( -- icon
 			`icon_num` -- icon_num
 		);
 
 -- career
-ALTER TABLE `MY_SCHEMA`.`TABLE2`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE2` -- user -> career
+ALTER TABLE `career`
+	ADD CONSTRAINT `FK_users_TO_career` -- users -> career
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- job
-ALTER TABLE `MY_SCHEMA`.`TABLE3`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE3` -- user -> job
+ALTER TABLE `job`
+	ADD CONSTRAINT `FK_users_TO_job` -- users -> job
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- introduce
-ALTER TABLE `MY_SCHEMA`.`TABLE4`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE4` -- user -> introduce
+ALTER TABLE `introduce`
+	ADD CONSTRAINT `FK_users_TO_introduce` -- users -> introduce
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- review
-ALTER TABLE `MY_SCHEMA`.`TABLE7`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE7` -- user -> review
+ALTER TABLE `review`
+	ADD CONSTRAINT `FK_users_TO_review` -- users -> review
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- portfolio
-ALTER TABLE `MY_SCHEMA`.`TABLE8`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE8` -- user -> portfolio
+ALTER TABLE `portfolio`
+	ADD CONSTRAINT `FK_users_TO_portfolio` -- users -> portfolio
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- reply
-ALTER TABLE `MY_SCHEMA`.`TABLE9`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE9` -- user -> reply
+ALTER TABLE `reply`
+	ADD CONSTRAINT `FK_users_TO_reply` -- users -> reply
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- reply
-ALTER TABLE `MY_SCHEMA`.`TABLE9`
-	ADD CONSTRAINT `FK_TABLE15_TO_TABLE9` -- freeBoard -> reply
+ALTER TABLE `reply`
+	ADD CONSTRAINT `FK_freeBoard_TO_reply` -- freeBoard -> reply
 		FOREIGN KEY (
 			`fb_num` -- fb_num
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE15` ( -- freeBoard
+		REFERENCES `freeBoard` ( -- freeBoard
 			`fb_num` -- fb_num
 		);
 
 -- reply
-ALTER TABLE `MY_SCHEMA`.`TABLE9`
-	ADD CONSTRAINT `FK_TABLE11_TO_TABLE9` -- counselBoard -> reply
+ALTER TABLE `reply`
+	ADD CONSTRAINT `FK_counselBoard_TO_reply` -- counselBoard -> reply
 		FOREIGN KEY (
 			`cb_num` -- cb_num
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE11` ( -- counselBoard
+		REFERENCES `counselBoard` ( -- counselBoard
 			`cb_num` -- cb_num
 		);
 
 -- mentorboard
-ALTER TABLE `MY_SCHEMA`.`TABLE10`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE10` -- user -> mentorboard
+ALTER TABLE `mentorboard`
+	ADD CONSTRAINT `FK_users_TO_mentorboard` -- users -> mentorboard
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- counselBoard
-ALTER TABLE `MY_SCHEMA`.`TABLE11`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE11` -- user -> counselBoard
+ALTER TABLE `counselBoard`
+	ADD CONSTRAINT `FK_users_TO_counselBoard` -- users -> counselBoard
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- counselBoard
-ALTER TABLE `MY_SCHEMA`.`TABLE11`
-	ADD CONSTRAINT `FK_TABLE17_TO_TABLE11` -- fileGroup -> counselBoard
+ALTER TABLE `counselBoard`
+	ADD CONSTRAINT `FK_fileGroup_TO_counselBoard` -- fileGroup -> counselBoard
 		FOREIGN KEY (
 			`fileGroupNum` -- fileGroupNum
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE17` ( -- fileGroup
+		REFERENCES `fileGroup` ( -- fileGroup
 			`fileGroupNum` -- fileGroupNum
 		);
 
 -- educational_level
-ALTER TABLE `MY_SCHEMA`.`TABLE12`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE12` -- user -> educational_level
+ALTER TABLE `educational_level`
+	ADD CONSTRAINT `FK_users_TO_educational_level` -- users -> educational_level
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- certificate
-ALTER TABLE `MY_SCHEMA`.`TABLE13`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE13` -- user -> certificate
+ALTER TABLE `certificate`
+	ADD CONSTRAINT `FK_users_TO_certificate` -- users -> certificate
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- mentoring
-ALTER TABLE `MY_SCHEMA`.`TABLE14`
-	ADD CONSTRAINT `FK_TABLE11_TO_TABLE14` -- counselBoard -> mentoring
+ALTER TABLE `mentoring`
+	ADD CONSTRAINT `FK_counselBoard_TO_mentoring` -- counselBoard -> mentoring
 		FOREIGN KEY (
 			`cb_num` -- cb_num
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE11` ( -- counselBoard
+		REFERENCES `counselBoard` ( -- counselBoard
 			`cb_num` -- cb_num
 		);
 
 -- mentoring
-ALTER TABLE `MY_SCHEMA`.`TABLE14`
-	ADD CONSTRAINT `FK_TABLE10_TO_TABLE14` -- mentorboard -> mentoring
+ALTER TABLE `mentoring`
+	ADD CONSTRAINT `FK_mentorboard_TO_mentoring` -- mentorboard -> mentoring
 		FOREIGN KEY (
 			`mb_num` -- mb_num
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE10` ( -- mentorboard
+		REFERENCES `mentorboard` ( -- mentorboard
 			`mb_num` -- mb_num
 		);
 
 -- freeBoard
-ALTER TABLE `MY_SCHEMA`.`TABLE15`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE15` -- user -> freeBoard
+ALTER TABLE `freeBoard`
+	ADD CONSTRAINT `FK_users_TO_freeBoard` -- users -> freeBoard
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
 
 -- freeBoard
-ALTER TABLE `MY_SCHEMA`.`TABLE15`
-	ADD CONSTRAINT `FK_TABLE17_TO_TABLE15` -- fileGroup -> freeBoard
+ALTER TABLE `freeBoard`
+	ADD CONSTRAINT `FK_fileGroup_TO_freeBoard` -- fileGroup -> freeBoard
 		FOREIGN KEY (
 			`fileGroupNum` -- fileGroupNum
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE17` ( -- fileGroup
+		REFERENCES `fileGroup` ( -- fileGroup
 			`fileGroupNum` -- fileGroupNum
 		);
 
 -- files
-ALTER TABLE `MY_SCHEMA`.`TABLE16`
-	ADD CONSTRAINT `FK_TABLE17_TO_TABLE16` -- fileGroup -> files
+ALTER TABLE `files`
+	ADD CONSTRAINT `FK_fileGroup_TO_files` -- fileGroup -> files
 		FOREIGN KEY (
 			`fileGroupNum` -- fileGroupNum
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE17` ( -- fileGroup
+		REFERENCES `fileGroup` ( -- fileGroup
 			`fileGroupNum` -- fileGroupNum
 		);
 
 -- dic_select
-ALTER TABLE `MY_SCHEMA`.`TABLE19`
-	ADD CONSTRAINT `FK_TABLE6_TO_TABLE19` -- dictionary -> dic_select
+ALTER TABLE `dic_select`
+	ADD CONSTRAINT `FK_dictionary_TO_dic_select` -- dictionary -> dic_select
 		FOREIGN KEY (
 			`dic_num` -- dic_num
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE6` ( -- dictionary
+		REFERENCES `dictionary` ( -- dictionary
 			`dic_num` -- dic_num
 		);
 
 -- dic_select
-ALTER TABLE `MY_SCHEMA`.`TABLE19`
-	ADD CONSTRAINT `FK_TABLE_TO_TABLE19` -- user -> dic_select
+ALTER TABLE `dic_select`
+	ADD CONSTRAINT `FK_users_TO_dic_select` -- users -> dic_select
 		FOREIGN KEY (
 			`id` -- id
 		)
-		REFERENCES `MY_SCHEMA`.`TABLE` ( -- user
+		REFERENCES `users` ( -- users
 			`id` -- id
 		);
