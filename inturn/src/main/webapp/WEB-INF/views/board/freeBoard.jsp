@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script type="text/javascript" src="js/freeBoard.js"></script>
+	<script type="text/javascript" src="js/board/freeBoard.js"></script>
 	<title>Free Board</title>
 </head>
 <body>

@@ -48,15 +48,17 @@ public class BoardController {
     }
  
     // 다중파일업로드
-    @RequestMapping(value = "/file_uploader_html5.do",
-                  method = RequestMethod.POST)
+    @RequestMapping(value = "/fileUploader.do", method = RequestMethod.POST)
     @ResponseBody
     public String multiplePhotoUpload(HttpServletRequest request) {
         // 파일정보
         StringBuffer sb = new StringBuffer();
         try {
+        	String hashValue = request.getHeader("file-hash");
+        	System.out.println(hashValue);
             // 파일명을 받는다 - 일반 원본파일명
             String oldName = request.getHeader("file-name");
+            System.out.println(oldName);
             // 파일 기본경로 _ 상세경로
             String filePath = "C:/Users/User/git/inturn_Prj/inturn/src/main/webapp/resources/photoUpload/";
             String saveName = sb.append(new SimpleDateFormat("yyyyMMddHHmmss")
