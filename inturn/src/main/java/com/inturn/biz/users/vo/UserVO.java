@@ -28,7 +28,6 @@ public class UserVO {
 	 * @param idx
 	 */
 	public UserVO(String id, String pw, String name, String phone, String email, Date birthday, String type, int idx) {
-		super();
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -53,7 +52,6 @@ public class UserVO {
 	 */
 	public UserVO(String id, String pw, String name, String phone, String email, Date birthday, String type, int idx,
 			int icon_num) {
-		super();
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
