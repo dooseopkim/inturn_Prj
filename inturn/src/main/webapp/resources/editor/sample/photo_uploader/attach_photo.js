@@ -336,7 +336,7 @@ function html5Upload() {
 		sUploadURL;
 
 	//    	sUploadURL= '../../../../file_uploader_html5.do'; 	//upload URL
-	sUploadURL = '/fileUploader.do'; //upload URL
+	sUploadURL = '/multiFileUploader.do'; //upload URL
 
 	//파일을 하나씩 보내고, 결과를 받음.
 	for (var j = 0, k = 0; j < nImageInfoCnt; j++) {
@@ -344,24 +344,21 @@ function html5Upload() {
 		try {
 			if (!!tempFile) {
 				/**
-				 * 파일 해시를 위해 sendFile 객체 생성, 자바스크립트의 기본 file객체는 name, type, size밖에 없으므로
-				 * hash값을 추가시킨 객체를 생성해서 ajax header에 등록해서 한 번에 객체로 전송하기 위해 사용
+				 * 순수 File 객체만이 인식하므로 File name에 해시값을 붙여 넘기자.
 				 */
-				var sendFile = {
-					name : encodeURIComponent(tempFile.name),
-					size : tempFile.size,
-					type : tempFile.type,
-					hash : ""
-				};
+				var result = "";
 				var reader = new FileReader();
-				reader.onload = function(event) {
-					var result = event.target.result;
-					sendFile.hash = SHA256(result);
+				reader.onload = function() {
+					result = reader.result;
+					result = SHA256(result);
+				};
+				reader.readAsDataURL(tempFile);
+				setTimeout(function(tempFile) {
+					const sendFile = new File([tempFile], tempFile.name + "###" + result, {type : tempFile.type});
 					//Ajax통신하는 부분. 파일과 업로더할 url을 전달한다.
 					callAjaxForHTML5(sendFile, sUploadURL);
 					k += 1;
-				};
-				reader.readAsText(tempFile);
+				}, 10, tempFile);
 			}
 		} catch (e) {}
 		tempFile = null;
@@ -388,10 +385,9 @@ function callAjaxForHTML5(sendFile, sUploadURL) {
 		onerror : jindo.$Fn(onAjaxError, this).bind()
 	});
 	oAjax.header("contentType", "multipart/form-data");
-	oAjax.header("file-name", sendFile.name);
+	oAjax.header("file-name", encodeURIComponent(sendFile.name));
 	oAjax.header("file-size", sendFile.size);
 	oAjax.header("file-type", sendFile.type);
-	oAjax.header("file-hash", sendFile.hash);
 	oAjax.request(sendFile);
 }
 
@@ -501,8 +497,11 @@ function uploadImage(e) {
  */
 function callFileUploader() {
 	oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"), {
-		sUrl : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.php', //샘플 URL입니다.
-		sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html', //업로드 이후에 iframe이 redirect될 콜백페이지의 주소
+		/*		sUrl : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.php', //샘플 URL입니다.
+				sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html', //업로드 이후에 iframe이 redirect될 콜백페이지의 주소
+		*/
+		sUrl : '/fileUploader.do', //샘플 URL입니다.
+		sCallback : '/resources/editor/sample/photo_uploader/popup/callback.html', //업로드 이후에 iframe이 redirect될 콜백페이지의 주소
 		sFiletype : "*.jpg;*.png;*.bmp;*.gif", //허용할 파일의 형식. ex) "*", "*.*", "*.jpg", 구분자(;)	
 		sMsgNotAllowedExt : 'JPG, GIF, PNG, BMP 확장자만 가능합니다', //허용할 파일의 형식이 아닌경우에 띄워주는 경고창의 문구
 		bAutoUpload : false, //파일이 선택됨과 동시에 자동으로 업로드를 수행할지 여부 (upload 메소드 수행)
