@@ -39,6 +39,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 	margin-top: 35px;
 }
 
+.txt-info {
+	padding-top : 1em;
+	padding : 1em;
+	margin-bottom : 0px;
+	color: #337ab7;
+	font-weight : bold;
+	text-align: left;
+}
+
 .btn-cancel {
 	display: inline-block;
 	min-width: 160px;
@@ -84,7 +93,9 @@ input[type="checkbox"].common-check {
 
 .contentBox {
 	position: relative;
-	overflow: scroll; height : 300px; background : #fff;
+	overflow: scroll;
+	height: 300px;
+	background: #fff;
 	border: thin solid #ccc;
 	padding: 0.5em;
 	margin-bottom: 2em;
@@ -133,6 +144,14 @@ input:checked {
 	padding: 60px 0 10px 0;
 }
 
+.emailCert {
+	font-size: large;
+}
+
+.selectBar {
+	height: 42px;
+}
+
 #container .container-inner {
 	max-width: 1000px;
 	margin: 0 auto;
@@ -144,7 +163,8 @@ input:checked {
 }
 
 .step-bar {
-	width: 200px; text-align : center;
+	width: 200px;
+	text-align: center;
 	vertical-align: middle;
 	text-align: center;
 }
@@ -155,25 +175,39 @@ audio, canvas, progress, video {
 }
 
 audio
+
+
 :not
+
  
+
 (
 [
 controls
 ]
+
  
+
 )
 {
 display
-:
- 
-none
-;
 
-	
-height
+
 :
+
  
+
+none
+
+
+;
+height
+
+
+:
+
+ 
+
 0;
 }
 [hidden], template {
@@ -234,20 +268,30 @@ img {
 }
 
 svg
+
+
 :not
+
  
+
 (
 :root
+
  
+
 )
 {
 overflow
+
+
 :
+
  
+
 hidden
+
+
 ;
-
-
 }
 figure {
 	margin: 1em 40px;
@@ -1973,7 +2017,7 @@ output {
 .form-control {
 	display: block;
 	width: 100%;
-	height: 42px;
+	height: 50px;
 	padding: 10px 20px;
 	font-size: 14px;
 	line-height: 1.42857;
@@ -3190,29 +3234,47 @@ tbody.collapse.in {
 .btn-group
 >
 .btn
+
+
 :not
+
  
+
 (
 :first-child
+
  
+
 )
 :not
+
  
+
 (
 :last-child
+
  
+
 )
 :not
+
  
+
 (
 .dropdown-toggle
 
+
 	
+
 )
 {
 border-radius
+
+
 :
+
  
+
 0;
 }
 .btn-group>.btn:first-child {
@@ -3222,57 +3284,99 @@ border-radius
 .btn-group
 >
 .btn
+
+
 :first-child
+
+
 :not
+
  
+
 (
 :last-child
+
  
+
 )
 :not
+
  
+
 (
 .dropdown-toggle
+
  
+
 )
 {
 border-bottom-right-radius
+
+
 :
+
  
+
 0;
 border-top-right-radius
+
+
 :
+
  
+
 0;
 }
 .btn-group
 >
 .btn
+
+
 :last-child
+
+
 :not
+
  
+
 (
 :first-child
+
  
+
 ),
 .btn-group
 >
 .dropdown-toggle
+
+
 :not
 
+
 	
+
 (
 :first-child
+
  
+
 )
 {
 border-bottom-left-radius
+
+
 :
+
  
+
 0;
 border-top-left-radius
+
+
 :
+
  
+
 0;
 }
 .btn-group>.btn-group {
@@ -3365,78 +3469,132 @@ border-top-left-radius
 .btn-group-vertical
 >
 .btn
+
+
 :not
+
  
+
 (
 :first-child
+
  
+
 )
 :not
+
  
+
 (
 :last-child
+
  
+
 )
 {
 border-radius
+
+
 :
+
  
+
 0;
 }
 .btn-group-vertical
 >
 .btn
+
+
 :first-child
+
+
 :not
+
  
+
 (
 :last-child
+
  
+
 )
 {
 border-top-right-radius
+
+
 :
+
  
+
 4
 px
-;
 
-	
+
+;
 border-bottom-right-radius
+
+
 :
+
  
+
 0;
 border-bottom-left-radius
+
+
 :
+
  
+
 0;
 }
 .btn-group-vertical
 >
 .btn
+
+
 :last-child
+
+
 :not
+
  
+
 (
 :first-child
+
  
+
 )
 {
 border-bottom-left-radius
+
+
 :
+
  
+
 4
 px
-;
 
-	
+
+;
 border-top-right-radius
+
+
 :
+
  
+
 0;
 border-top-left-radius
+
+
 :
+
  
+
 0;
 }
 .btn-group-vertical>.btn-group:not (:first-child ):not (:last-child ) >.btn
@@ -3511,51 +3669,87 @@ border-top-left-radius
 }
 
 .input-group-addon
-:not
- 
-(
-:first-child
- 
-)
-:not
- 
-(
-:last-child
- 
-),
-.input-group-btn
-:not
- 
-(
-:first-child
- 
-)
-:not
- 
-(
-:last-child
- 
-),
-.input-group
- 
-.form-control
+
+
 :not
 
-	
+ 
+
 (
 :first-child
+
  
+
 )
 :not
+
  
+
 (
 :last-child
+
  
+
+),
+.input-group-btn
+
+
+:not
+
+ 
+
+(
+:first-child
+
+ 
+
+)
+:not
+
+ 
+
+(
+:last-child
+
+ 
+
+),
+.input-group
+
+ 
+
+.form-control
+
+
+:not
+
+
+	
+
+(
+:first-child
+
+ 
+
+)
+:not
+
+ 
+
+(
+:last-child
+
+ 
+
 )
 {
 border-radius
+
+
 :
+
  
+
 0;
 }
 .input-group-addon, .input-group-btn {
