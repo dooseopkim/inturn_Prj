@@ -474,10 +474,9 @@ table, th, td {
 							<p class="txt-error" style="display: none;">제3자 정보제공동의에
 								동의해주세요.</p>
 						</div>
-						<br>
 						<div class="btn-c">
 							<a href="javascript:void(0);" onclick="fn_cancel(event)"
-								class="btn-cancel">미동의</a>
+								class="btn-info btn">미동의</a>
 						</div>
 						<br>
 					</div>
@@ -515,14 +514,15 @@ table, th, td {
 					</div>
 					<div class="modal-body">
 						<h4>이메일 입력</h4>
-						<div>
-							<input type="text" id="emailInput1" class="form-control"
-								style="width: 200px; display: inline;"
+						<div align="center">
+							<input type="text" id="emailInput1"
+								class="form-control emailCert"
+								style="width: 180px; display: inline;"
 								onkeyup="chkKorean(this.value);this.value=this.value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'');this.value=this.value.replace(/\s/gi,'');">
 							<span>@</span> <input type="text" id="emailInput2"
 								class="form-control" style="width: 180px; display: inline;"
 								onkeyup="chkKorean(this.value);this.value=this.value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'');this.value=this.value.replace(/\s/gi,'');">
-							<select id="emailSelect" class="form-control"
+							<select id="emailSelect" class="form-control selectBar"
 								style="width: 150px; display: inline;">
 								<option value="">직접입력</option>
 								<option value="naver.com">naver.com</option>
@@ -542,8 +542,8 @@ table, th, td {
 						<div align="center">
 							<a href="javascript:void(0);"
 								onclick="fn_sendIssuCrtfcInfo('emailIput01', 'emailIput02')"
-								class="bnt btn-lg btn-info">인증번호 받기</a>
-							<p class="txt-noti" id='noti-email' style="display: none;">
+								class="bnt btn-lg btn-info">인증번호 받기</a> <br>
+							<p class="txt-info" id='noti-email' style="display: none;">
 								인증번호를 발송했습니다.<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.<br>받은메일함에서
 								인증번호가 확인이 안되시면, 스팸메일함을 확인하여 주세요.
 							</p>
@@ -555,9 +555,8 @@ table, th, td {
 						<h4>인증번호 입력</h4>
 						<input type="text" id="codeIput" placeholder="인증번호"
 							class="form-control" style="width: 400px; display: inline;">
-						<a href="javascript:void(0);"
-							onclick="fn_checkCrtfcNo('codeIput', event)"
-							class="bnt btn-lg btn-primary">인증번호 확인</a>
+						<a href="javascript:void(0);" onclick="check('codeIput', event)"
+							class="bnt btn-lg btn-primary" id="checkCode">인증번호 확인</a>
 						<p class="txt-error" id="empty_checkCrtfcNo"
 							style="display: none;">인증번호가 발송되지 않았습니다.</p>
 						<p class="txt-error" id="differ_checkCrtfcNo"
@@ -573,93 +572,22 @@ table, th, td {
 							</li>
 						</ul>
 					</div>
+					<input type="hidden" id="joinCode" value="">
 				</div>
 			</div>
 		</div>
-		<!-- <div class="modal modal-fade" id="modal_email" style="display: none;">
-			<strong>이메일 인증하기</strong>
-			<div class="layer-content layer-type">
-				<div class="email-verification">
-					<strong class="stit">이메일 입력</strong>
-					<div class="email-input">
-
-						<label for="emailIput01" class="invisible">이메일 입력</label> <input
-							type="text" id="emailIput01" title="이메일 입력"
-							onkeyup="chkKorean(this.value);this.value=this.value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'');this.value=this.value.replace(/\s/gi,'');">
-						<span>@</span> <label for="emailIput02" class="invisible">이메일
-							입력</label> <input type="text" id="emailIput02" title="이메일 입력"
-							onkeyup="chkKorean(this.value);this.value=this.value.replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'');this.value=this.value.replace(/\s/gi,'');">
-					</div>
-					<div>
-						<label for="emailSelect" class="invisible">이메일 선택</label> <select
-							id="emailSelect" title="이메일 선택"
-							onchange="readonlyMailDomain();_NtelsUtil.setInputEmailDomain(this, 'emailIput02', event)">
-							<option value="">직접입력</option>
-
-
-							<option value="naver.com">naver.com</option>
-
-							<option value="hanmail.net">hanmail.net</option>
-
-							<option value="daum.net">daum.net</option>
-
-							<option value="nate.com">nate.com</option>
-
-							<option value="gmail.com">gmail.com</option>
-
-							<option value="hotmail.com">hotmail.com</option>
-
-							<option value="chol.com">chol.com</option>
-
-							<option value="dreamwiz.com">dreamwiz.com</option>
-
-							<option value="empal.com">empal.com</option>
-
-							<option value="lycos.co.kr">lycos.co.kr</option>
-
-							<option value="netian.com">netian.com</option>
-
-
-						</select>
-					</div>
-					<a href="javascript:void(0);"
-						onclick="fn_sendIssuCrtfcInfo('emailIput01', 'emailIput02', event)"
-						class="btn-cancel">인증번호 받기</a>
-					<p class="txt-noti" id='noti-email' style="display: none;">
-						인증번호를 발송했습니다.<br>인증번호가 오지 않으면 입력하신 정보가 정확한지 확인하여 주세요.<br>받은메일함에서
-						인증번호가 확인이 안되시면, 스팸메일함을 확인하여 주세요.
-					</p>
-					<p class="txt-error" id="error-email" style="display: none;">이메일
-						주소를 입력해주세요.</p>
-				</div>
-				<div class="email-verification">
-					<h2 class="stit">인증번호 입력</h2>
-					<div>
-						<label for="codeIput" class="invisible">인증번호 입력</label><input
-							type="text" id="codeIput" title="인증번호 입력" placeholder="인증번호">
-					</div>
-					<a href="javascript:void(0);"
-						onclick="fn_checkCrtfcNo('codeIput', event)" class="btn-ok">확인</a>
-					<p class="txt-error" id="empty_checkCrtfcNo" style="display: none;">인증번호가
-						발송되지 않았습니다.</p>
-					<p class="txt-error" id="differ_checkCrtfcNo"
-						style="display: none;">인증번호가 올바르지 않습니다.</p>
-				</div>
-			</div>
-			<div class="layer-noti">
-				<ul>
-					<li>※ 자주 이용하시는 이메일을 입력해주세요.</li>
-					<li>※ 입력하신 이메일로 가입 승인 메일이 발송됩니다.</li>
-					<li>※ 24시간 안에 가입 승인 메일을 확인해주세요.</li>
-					<li>※ 받은메일함에서 인증번호가 확인이 안되면 스팸문자함 등을<br>확인하시기 바랍니다.
-					</li>
-				</ul>
-			</div>
-			<a href="javascript:void(0);"
-				onclick="_NtelsUtil.layerClose('layer_email', event)"
-				class="layer-close">팝업 닫기</a>
-		</div> -->
 	</div>
 	<!-- END container-wrap -->
+	<script type="text/javascript">
+		function check(codeIput) {
+			var codeInput = codeIput;
+			var realCode = ${code};
+			if(codeInput!=realCode){
+				alert("틀린 인증번호 입니다. 다시 한번 확인해주세요.");
+			}else if{
+				alert("인증에 성공했습니다.");
+			}
+		}
+	</script>
 </body>
 </html>
