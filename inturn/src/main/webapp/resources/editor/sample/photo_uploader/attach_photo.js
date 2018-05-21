@@ -344,7 +344,7 @@ function html5Upload() {
 		try {
 			if (!!tempFile) {
 				/**
-				 * 순수 File 객체만이 인식하므로 File name에 해시값을 붙여 넘기자.
+				 * 순수 File 객체만 인식하므로 File name에 해시값을 붙여 넘기자.
 				 */
 				var result = "";
 				var reader = new FileReader();

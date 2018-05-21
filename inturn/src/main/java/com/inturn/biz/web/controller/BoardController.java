@@ -138,22 +138,22 @@ public class BoardController {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
 			String today = formatter.format(new java.util.Date());
 			realFileNm = today + UUID.randomUUID().toString() + filename.substring(filename.lastIndexOf("."));
-			String rlFileNm = filePath + realFileNm;
+		//	String rlFileNm = filePath + realFileNm;
 			///////////////// 서버에 파일쓰기 /////////////////
 			InputStream is = request.getInputStream();
-			OutputStream os = new FileOutputStream(rlFileNm);
+		//	OutputStream os = new FileOutputStream(rlFileNm);
 			OutputStream os1 = new FileOutputStream(filePath+filename);
 			int numRead;
 			byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
 			while ((numRead = is.read(b, 0, b.length)) != -1) {
-				os.write(b, 0, numRead);
+		//		os.write(b, 0, numRead);
 				os1.write(b, 0, numRead);
 			}
 			if (is != null) {
 				is.close();
 			}
-			os.flush();
-			os.close();
+		//	os.flush();
+		//	os.close();
 			os1.flush();
 			os1.close();
 			///////////////// 서버에 파일쓰기 /////////////////
