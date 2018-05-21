@@ -345,13 +345,16 @@ function html5Upload() {
 			if (!!tempFile) {
 				/**
 				 * 순수 File 객체만 인식하므로 File name에 해시값을 붙여 넘기자.
+				 * 인코딩을 Latin1로 해주어야 제대로 된 값으로 읽어들여진다.
 				 */
 				var result = "";
 				var reader = new FileReader();
 				reader.onload = function(event) {
-					result = CryptoJS.SHA256(event.target.result).toString();
+					result = CryptoJS.SHA256(CryptoJS.enc.Latin1.parse(event.target.result));
+					alert(result);
 				};
-				reader.readAsBinaryString(tempFile);
+			    reader.readAsBinaryString(tempFile);
+			    
 				setTimeout(function(tempFile) {
 					const sendFile = new File([tempFile], tempFile.name + "###" + result, {type : tempFile.type});
 					//Ajax통신하는 부분. 파일과 업로더할 url을 전달한다.
