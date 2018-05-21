@@ -125,10 +125,10 @@
 						value="mentee">
 					<div class="col-md-4 col-md-push-4 animate-box">
 						<div class="row">
-							<div id="iconDiv" class="form-group text-center">
+							<!-- <div id="iconDiv" class="form-group text-center">
 							<img alt="" src="images/profile.png" id="" width="200px" height="200px">
 							<input type="file" name="icon" accept="image/*">
-							</div>
+							</div> -->
 							<div id="typeDiv" class="form-group">
 								<select id="type" class="form-control" name="type" requierd="requierd">
 									<option value="mentee">멘티/멘토 선택</option>
@@ -268,13 +268,13 @@
 							</div>
 							<div id="emailDiv" class="input-email">
 								<input type="email" id="email" name="email" class="form-control"
-									placeholder="이메일 주소">
+									value="${email }" readonly="readonly">
 							</div>
 							<br>
 
 							<div class="col-md-12 col-md-push-3">
 								<div class="form-group">
-									<a href="" class="btn btn-primary">뒤로</a>
+									<a href="signup.do" class="btn btn-primary">뒤로</a>
 									<button id="signUpBtn" type="button" class="btn btn-primary">완료</button>
 								</div>
 							</div>

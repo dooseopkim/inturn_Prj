@@ -1,6 +1,6 @@
 $(function() {
 	$("#emailSelect").change(function() {
-		
+
 	});
 })
 
@@ -152,10 +152,12 @@ function fn_sendIssuCrtfcInfo(emailId, emailDomainId) {
 
 /**
  * 이메일로 인증번호 전송하기
+ * 
  * @param emailAddress
  * @returns
  */
 function sendEmail(emailAddress) {
+	$('#noti-email').show();
 	$.ajax({
 		url : "sendEmail.do",
 		method : "POST",
@@ -164,18 +166,22 @@ function sendEmail(emailAddress) {
 			"to" : emailAddress
 		},
 		success : function(data) {
-			$('#noti-email').show();
 			$("#joinCode").val(data);
 		}
 	})
 }
 
-function check(codeIput) {
-	var codeInput = codeIput;
-	var realCode = document.getElementById('joinCode');
-	if(codeInput!=realCode){
+function check() {
+	var codeInput = document.getElementById('codeIput').value;
+	var realCode = document.getElementById('joinCode').value;
+	var email_id = $('#emailInput1').val();
+	var email_domain = $('#emailInput2').val();
+	if (codeInput == realCode) {
+		alert("인증에 성공하였습니다.");
+		$('#chkEmail').attr('action', 'signupForm.do');
+		$('#chkEmail').attr('target', '_self');
+		$('#chkEmail')[0].submit();
+	} else {
 		alert("틀린 인증번호 입니다. 다시 한번 확인해주세요.");
-	}else{
-		alert("인증에 성공했습니다.")
 	}
 }
