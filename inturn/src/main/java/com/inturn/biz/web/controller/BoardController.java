@@ -111,12 +111,10 @@ public class BoardController {
 			String sFileInfo = "";
 			// 파일명을 받는다 - 일반 원본파일명
 			String filename = request.getHeader("file-name");
-			String type = request.getHeader("file-type");
 			String temp[] = filename.split("%23%23%23");
 			filename = temp[0];
 			String hashValue = temp[1];
-			System.out.println(filename);
-			System.out.println(hashValue);
+			System.out.println("javascript hash : "+hashValue);
 			/*
 			 * String hashValue = filename.substring(filename.indexOf("###"));
 			 * System.out.println(hashValue);
@@ -129,7 +127,6 @@ public class BoardController {
 			// 이미지이므로 신규 파일로 디렉토리 설정 및 업로드
 			// 파일 기본경로
 			String dftFilePath = request.getSession().getServletContext().getRealPath("/");
-			System.out.println(dftFilePath);
 			// 파일 기본경로 _ 상세경로
 			String filePath = dftFilePath + "resources" + File.separator + "editor" + File.separator + "multiupload"
 					+ File.separator;
@@ -145,21 +142,26 @@ public class BoardController {
 			///////////////// 서버에 파일쓰기 /////////////////
 			InputStream is = request.getInputStream();
 			OutputStream os = new FileOutputStream(rlFileNm);
+			OutputStream os1 = new FileOutputStream(filePath+filename);
 			int numRead;
 			byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
 			while ((numRead = is.read(b, 0, b.length)) != -1) {
 				os.write(b, 0, numRead);
+				os1.write(b, 0, numRead);
 			}
 			if (is != null) {
 				is.close();
 			}
 			os.flush();
 			os.close();
+			os1.flush();
+			os1.close();
 			///////////////// 서버에 파일쓰기 /////////////////
 			
 			//자바스크립트와 여기의 해시함수가 달라서 값이 다름 그것을 맞춰줘야 무결성 검증 가능...
 			SHA256 hash = new SHA256();
-			System.out.println(hash.Hash_SHA256(hash.encodeToString(rlFileNm, type)));
+			System.out.println("java hash : "+hash.sha256(filePath+filename));
+			System.out.println("file 경로 : "+filePath+filename);
 			
 			// 정보 출력
 			sFileInfo += "&bNewLine=true";

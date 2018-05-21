@@ -348,11 +348,10 @@ function html5Upload() {
 				 */
 				var result = "";
 				var reader = new FileReader();
-				reader.onload = function() {
-					result = reader.result;
-					result = SHA256(result);
+				reader.onload = function(event) {
+					result = CryptoJS.SHA256(event.target.result).toString();
 				};
-				reader.readAsDataURL(tempFile);
+				reader.readAsBinaryString(tempFile);
 				setTimeout(function(tempFile) {
 					const sendFile = new File([tempFile], tempFile.name + "###" + result, {type : tempFile.type});
 					//Ajax통신하는 부분. 파일과 업로더할 url을 전달한다.
