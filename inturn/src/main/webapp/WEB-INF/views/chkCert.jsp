@@ -555,7 +555,7 @@ table, th, td {
 						<h4>인증번호 입력</h4>
 						<input type="text" id="codeIput" placeholder="인증번호"
 							class="form-control" style="width: 400px; display: inline;">
-						<a href="javascript:void(0);" onclick="check('codeIput', event)"
+						<a href="javascript:void(0);" onclick="check()"
 							class="bnt btn-lg btn-primary" id="checkCode">인증번호 확인</a>
 						<p class="txt-error" id="empty_checkCrtfcNo"
 							style="display: none;">인증번호가 발송되지 않았습니다.</p>
@@ -573,21 +573,13 @@ table, th, td {
 						</ul>
 					</div>
 					<input type="hidden" id="joinCode" value="">
+					<form action="" target="" id="chkEmail">
+						<input type="hidden" value="${email }" name="email" id="email">
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- END container-wrap -->
-	<script type="text/javascript">
-		function check(codeIput) {
-			var codeInput = codeIput;
-			var realCode = ${code};
-			if(codeInput!=realCode){
-				alert("틀린 인증번호 입니다. 다시 한번 확인해주세요.");
-			}else if{
-				alert("인증에 성공했습니다.");
-			}
-		}
-	</script>
 </body>
 </html>
