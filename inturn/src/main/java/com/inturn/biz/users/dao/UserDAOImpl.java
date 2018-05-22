@@ -48,4 +48,9 @@ public class UserDAOImpl implements UserDAO{
 	public Boolean findPw(UserVO vo) {
 		return mybatis.selectOne("UserMapper.findPw", vo);
 	}
+
+	@Override
+	public int getId(UserVO vo) {
+		return mybatis.selectOne("UserMapper.getId", vo);
+	}
 }

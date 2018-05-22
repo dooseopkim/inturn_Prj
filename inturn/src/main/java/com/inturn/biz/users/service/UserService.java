@@ -11,5 +11,6 @@ public interface UserService {
 	public int deleteUser(UserVO vo);
 	public UserVO login(UserVO vo);
 	public String findID(UserVO vo);
+	public int getId(UserVO vo);
 	public Boolean findPw(UserVO vo);
 }

@@ -18,24 +18,22 @@ public class UserVO {
 
 	/**
 	 * 아이콘을 추가하지 않은 회원가입
+	 * @param type
+	 * @param name
 	 * @param id
 	 * @param pw
-	 * @param name
 	 * @param phone
 	 * @param email
 	 * @param birthday
-	 * @param type
-	 * @param idx
 	 */
-	public UserVO(String id, String pw, String name, String phone, String email, Date birthday, String type, int idx) {
+	public UserVO(String id, String pw, String name, String phone, String email, Date birthday, String type) {
+		this.type = type;
+		this.name = name;
 		this.id = id;
 		this.pw = pw;
-		this.name = name;
 		this.phone = phone;
 		this.email = email;
 		this.birthday = birthday;
-		this.type = type;
-		this.idx = idx;
 	}
 
 	/**
@@ -47,11 +45,9 @@ public class UserVO {
 	 * @param email
 	 * @param birthday
 	 * @param type
-	 * @param idx
 	 * @param icon_num
 	 */
-	public UserVO(String id, String pw, String name, String phone, String email, Date birthday, String type, int idx,
-			int icon_num) {
+	public UserVO(String id, String pw, String name, String phone, String email, Date birthday, String type, int icon_num) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -59,8 +55,12 @@ public class UserVO {
 		this.email = email;
 		this.birthday = birthday;
 		this.type = type;
-		this.idx = idx;
 		this.icon_num = icon_num;
+	}
+	
+	public UserVO(String id) {
+		super();
+		this.id = id;
 	}
 
 	public UserVO(String id, String pw) {

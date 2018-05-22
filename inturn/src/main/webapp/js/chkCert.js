@@ -1,6 +1,6 @@
 $(function() {
 	$("#emailSelect").change(function() {
-
+		$("#emailInput2").val($("#emailSelect").val());
 	});
 })
 
@@ -171,6 +171,11 @@ function sendEmail(emailAddress) {
 	})
 }
 
+/**
+ * 인증번호 확인 후 맞으면 signupForm.do로 이동
+ * 
+ * @returns
+ */
 function check() {
 	var codeInput = document.getElementById('codeIput').value;
 	var realCode = document.getElementById('joinCode').value;
@@ -178,6 +183,7 @@ function check() {
 	var email_domain = $('#emailInput2').val();
 	if (codeInput == realCode) {
 		alert("인증에 성공하였습니다.");
+		$('#email').val(email_id + '@' + email_domain);
 		$('#chkEmail').attr('action', 'signupForm.do');
 		$('#chkEmail').attr('target', '_self');
 		$('#chkEmail')[0].submit();
