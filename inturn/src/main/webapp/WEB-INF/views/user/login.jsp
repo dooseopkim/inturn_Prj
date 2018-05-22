@@ -8,9 +8,9 @@
 	<link rel="stylesheet" href="/css/user/user.css">
 	<link rel="stylesheet" href="/css/user/login.css">
 	<script src="/js/user/login.js"></script>
-	<script src="/js/sha256/sha256.js"></script>
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
 </head>
 <body>
 	<jsp:include page="../userMenu.jsp" />
