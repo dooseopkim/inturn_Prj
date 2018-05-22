@@ -24,12 +24,17 @@
 	</update>
 	
 	<insert id="addUser" parameterType="UserVO">
+<<<<<<< HEAD
 		INSERT INTO users(id, pw, name, phone, birthday, email, type, idx)
 		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{email} ,#{type}, (select nvl(max(idx),0)+1 from users))
+=======
+		INSERT INTO users(id, pw, name, phone, birthday, email, type, idx, icon_num)
+		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{email} ,#{type}, (select nvl(max(idx),0)+1 from users), #{icon_num})
+>>>>>>> branch 'master' of https://github.com/dooseopkim/inturn_Prj.git
 	</insert>
 
 	<select id="login" parameterType="UserVO" resultType="UserVO">
-		SELECT id, name, phone, email, birthday, type, idx, icon_num
+		SELECT *
 		FROM USERS
 		WHERE id = #{id}
 			AND pw = #{pw}
