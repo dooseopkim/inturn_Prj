@@ -341,8 +341,10 @@ COMMENT 'files';
 ALTER TABLE files
 	ADD CONSTRAINT PK_files -- files 기본키
 		PRIMARY KEY (
-			fileGroupNum, -- fileGroupNum
 			file_num      -- file_num
+		);
+		REFERENCES fileGroup ( -- fileGroup
+			fileGroupNum, -- fileGroupNum
 		);
 
 -- fileGroup

@@ -25,7 +25,7 @@
 	
 	<insert id="addUser" parameterType="UserVO">
 		INSERT INTO users(id, pw, name, phone, birthday, email, type, idx)
-		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{email} ,#{type}, (select nvl(max(idx),0)+1 from users))
+		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{email} ,#{type}, (select ifnull(max(u.idx),0)+1 from users u))
 	</insert>
 
 	<select id="login" parameterType="UserVO" resultType="UserVO">
