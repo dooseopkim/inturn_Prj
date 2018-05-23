@@ -1,60 +1,63 @@
+SET foreign_key_checks = 0;
+
 -- users
-DROP TABLE IF EXISTS users RESTRICT;
+DROP TABLE IF EXISTS users;
 
 -- career
-DROP TABLE IF EXISTS career RESTRICT;
+DROP TABLE IF EXISTS career;
 
 -- job
-DROP TABLE IF EXISTS job RESTRICT;
+DROP TABLE IF EXISTS job;
 
 -- introduce
-DROP TABLE IF EXISTS introduce RESTRICT;
+DROP TABLE IF EXISTS introduce;
 
 -- icon
-DROP TABLE IF EXISTS icon RESTRICT;
+DROP TABLE IF EXISTS icon;
 
 -- dictionary
-DROP TABLE IF EXISTS dictionary RESTRICT;
+DROP TABLE IF EXISTS dictionary;
 
 -- review
-DROP TABLE IF EXISTS review RESTRICT;
+DROP TABLE IF EXISTS review;
 
 -- portfolio
-DROP TABLE IF EXISTS portfolio RESTRICT;
+DROP TABLE IF EXISTS portfolio;
 
 -- reply
-DROP TABLE IF EXISTS reply RESTRICT;
+DROP TABLE IF EXISTS reply;
 
 -- mentorboard
-DROP TABLE IF EXISTS mentorboard RESTRICT;
+DROP TABLE IF EXISTS mentorboard;
 
 -- counselBoard
-DROP TABLE IF EXISTS counselBoard RESTRICT;
+DROP TABLE IF EXISTS counselBoard;
 
 -- educational_level
-DROP TABLE IF EXISTS educational_level RESTRICT;
+DROP TABLE IF EXISTS educational_level;
 
 -- certificate
-DROP TABLE IF EXISTS certificate RESTRICT;
+DROP TABLE IF EXISTS certificate;
 
 -- mentoring
-DROP TABLE IF EXISTS mentoring RESTRICT;
+DROP TABLE IF EXISTS mentoring;
 
 -- freeBoard
-DROP TABLE IF EXISTS freeBoard RESTRICT;
+DROP TABLE IF EXISTS freeBoard;
 
 -- files
-DROP TABLE IF EXISTS files RESTRICT;
+DROP TABLE IF EXISTS files;
 
 -- fileGroup
-DROP TABLE IF EXISTS fileGroup RESTRICT;
+DROP TABLE IF EXISTS fileGroup;
 
 -- replyGroup
-DROP TABLE IF EXISTS TABLE18 RESTRICT;
+DROP TABLE IF EXISTS TABLE18;
 
 -- dic_select
-DROP TABLE IF EXISTS dic_select RESTRICT;
+DROP TABLE IF EXISTS dic_select;
 
+SET foreign_key_checks = 1;
 -- users
 CREATE TABLE users (
 	id       VARCHAR(30)  NOT NULL COMMENT '아이디', -- id
@@ -324,6 +327,7 @@ ALTER TABLE freeBoard
 			fb_num -- fb_num
 		);
 
+<<<<<<< HEAD
 -- files
 CREATE TABLE files (
 	fileGroupNum  INT          NOT NULL COMMENT 'fileGroupNum', -- fileGroupNum
@@ -344,6 +348,8 @@ ALTER TABLE files
 			file_num      -- file_num
 		);
 
+=======
+>>>>>>> branch 'master' of https://github.com/dooseopkim/inturn_Prj.git
 -- fileGroup
 CREATE TABLE fileGroup (
 	fileGroupNum  INT          NOT NULL COMMENT 'fileGroupNum', -- fileGroupNum
@@ -358,7 +364,24 @@ ALTER TABLE fileGroup
 			fileGroupNum -- fileGroupNum
 		);
 
+-- files
+CREATE TABLE files (
+	file_num      INT          NOT NULL COMMENT 'file_num', -- file_num
+	original_name VARCHAR(50)  NULL     COMMENT 'original_name', -- original_name
+	fileName      VARCHAR(100) NULL     COMMENT 'fileName', -- fileName
+	fileSize      INT          NULL     COMMENT 'fileSize', -- fileSize
+	fileHash      VARCHAR(200) NULL     COMMENT 'fileHash', -- fileHash
+	fileExtension VARCHAR(20)  NULL     COMMENT 'fileExtension', -- fileExtension
+	fileGroupNum  INT          NULL COMMENT 'fileGroupNum', -- fileGroupNum
+	regDate       DATE         NULL     COMMENT 'regDate' -- regDate
+)
+COMMENT 'files';
 
+ALTER TABLE files
+	ADD CONSTRAINT PK_files -- files 기본키
+		PRIMARY KEY (
+			file_num      -- file_num
+		);
 
 -- dic_select
 CREATE TABLE dic_select (
@@ -550,9 +573,6 @@ ALTER TABLE freeBoard
 -- files
 ALTER TABLE files
 	ADD CONSTRAINT FK_fileGroup_TO_files -- fileGroup -> files
-		FOREIGN KEY (
-			fileGroupNum -- fileGroupNum
-		)
 		REFERENCES fileGroup ( -- fileGroup
 			fileGroupNum -- fileGroupNum
 		);
