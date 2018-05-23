@@ -1,69 +1,3 @@
-/*$(function() {
-	$("#signUpBtn")
-			.click(
-					function() {
-						var flag = false;
-						var type = $('#type').val();
-						var yyyy = $('#yy').val();
-						var mm = $('#mm').val();
-						var dd = $('#dd').val();
-						if (type == '') {
-							alert('멘토 멘티를 선택해주세요.');
-							$('#type').focus();
-						} else if (mm == '') {
-							alert('태어난 달을 선택해주세요.');
-							$('#mm').focus();
-						} else if (dd == '') {
-							alert('태어난 일을 선택해주세요.');
-							$('#dd').focus();
-						} else {
-							flag = true;
-							var birthday = yyyy + "-" + mm + "-" + dd;
-						}
-						if (flag) {
-							$
-									.ajax({
-										url : "insertUser.do",
-										method : "POST",
-										type : "JSON",
-										data : {
-											"type" : $("#type").val(),
-											"name" : $("#name").val(),
-											"id" : $("#id").val(),
-											"pw" : $("#pw").val(),
-											"phone" : $("#phone").val(),
-											"birthday" : birthday,
-											"email" : $("#email").val(),
-										},
-										success : function(data) {
-											if (data.result == "success") {
-												alert('회원가입에 성공했습니다.');
-												window.open("index.jsp?content=WEB-INF/views/successSignup.jsp");
-												
- * $('#signup').attr('action',
- * 'successSignup.do');
- * $('#signup').attr('target',
- * '_self');
- * $('#signup')[0].submit();
-												 
-											} else {
-												alert('죄송합니다. 회원가입에 실패했습니다. 다시 진행해주세요.');
-												$('#signup').attr('action',
-														'signup.do');
-												$('#signup').attr('target',
-														'_self');
-												$('#signup')[0].submit();
-											}
-										},
-										error : function(request, status, error) {
-											alert("error:" + error)
-										}
-									});
-						}
-					});
-
-});*/
-
 /**
  * 아이디 중복체크 함수
  * 
@@ -141,8 +75,12 @@ function removeChar(event) {
 		event.target.value = event.target.value.replace(/[^0-9]/g, "");
 }
 
+/**
+ * 회원가입
+ * @param event
+ * @returns
+ */
 function signup(event) {
-
 	var flag = false;
 	var type = $('#type').val();
 	var name = $('#name').val();

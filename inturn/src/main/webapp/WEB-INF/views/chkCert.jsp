@@ -5,14 +5,6 @@
 <html>
 <head>
 
-<!--// naver -->
-<script src="/_web/js/naverLogin_implicit-1.0.3.js"></script>
-<!--// kakao -->
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<!-- google -->
-<script src="https://apis.google.com/js/api:client.js"></script>
-<script src="/_web/js/cmm/cmmOAuth.js"></script>
-
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <meta charset="utf-8"> -->
