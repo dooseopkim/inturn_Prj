@@ -1,6 +1,9 @@
 package com.inturn.biz.web.controller;
 
 
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.annotation.Resource;
@@ -10,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.inturn.biz.users.service.MailService;
 import com.inturn.biz.users.service.UserService;
+import com.inturn.biz.users.vo.UserVO;
 
 @Controller
 public class UserController {
@@ -62,24 +67,62 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/signupForm.do", method={RequestMethod.GET,RequestMethod.POST})
-	public String signupFormDo(HttpSession session, String email) {
+	public String signupFormDo(HttpSession session) {
+		String email = (String) session.getAttribute("email");
 		session.setAttribute("email", email);
 		return "/index.jsp?content=signup";
 	}
 	
 	/**
-	 * 신중년 회원가입 페이지
+	 * 아이디 중복체크
+	 * @param session
+	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/signupForm_tor.do")
-	public String signupForm_torDo() {
-		return "index.jsp?content=signup_mento";
+	@RequestMapping(value="/chkId.do", method=RequestMethod.POST)
+	public ModelAndView chkIdDo(HttpSession session, String id){
+		UserVO uvo = new UserVO(id);
+		System.out.println(id);
+		Map<String, String> map = new HashMap<String, String>();
+		int result = UserService.getId(uvo);
+		System.out.println(result);
+		if(result==0){
+			map.put("result", "success");
+		}else{
+			map.put("result", "fail");
+		}
+		session.setAttribute("chkId", id);
+		return new ModelAndView("jsonView",map);
 	}
 	
-	@RequestMapping(value="/mentee_signup.do")
-	public String mentee_signupDo(){
-		return "index.jsp?content=";
+	/**
+	 * 유저 생성(회원가입)
+	 * @param type
+	 * @param name
+	 * @param id
+	 * @param pw
+	 * @param phone
+	 * @param birthday
+	 * @param email
+	 * @return
+	 */
+	@RequestMapping(value="/insertUser.do", method=RequestMethod.POST)
+	public ModelAndView insertUserDo(String type, String name, String id, String pw, String phone, String birthday, String email){
+		Map<String, String> map = new HashMap<String, String>();
+		System.out.println(birthday);
+		UserVO uvo = new UserVO(id, pw, name, phone, email, Date.valueOf(birthday), type);
+		int num = UserService.insertUser(uvo);
+		if(num==1){
+			map.put("result", "success");
+		}else{
+			map.put("result", "fail");
+		}
+		return new ModelAndView("jsonView", map);
 	}
 	
+	@RequestMapping(value="/successSignup.do", method={RequestMethod.POST, RequestMethod.GET})
+	public String successSignupDo(){
+		return "/index.jsp?content=successSignUp";
+	}
 
 }

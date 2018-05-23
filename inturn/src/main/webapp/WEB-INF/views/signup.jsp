@@ -41,7 +41,7 @@
 <script src="js/modernizr-2.6.2.min.js"></script>
 
 <!-- signup.js -->
-<script type="text/javascript" src="js/signup1.js"></script>
+<script type="text/javascript" src="js/signup.js"></script>
 
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
@@ -111,8 +111,8 @@
 			</ul>
 		</div>
 		<!-- END container -->
-		
-		
+
+
 		<div id="fh5co-contact">
 			<div class="row animate-box">
 				<div class="col-md-6 col-md-offset-3 text-center">
@@ -120,9 +120,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<form action="">
-					<input id="type" type="hidden" class="form-control" name="type"
-						value="mentee">
+				<form id="signup" action="" target="_self">
 					<div class="col-md-4 col-md-push-4 animate-box">
 						<div class="row">
 							<!-- <div id="iconDiv" class="form-group text-center">
@@ -130,8 +128,9 @@
 							<input type="file" name="icon" accept="image/*">
 							</div> -->
 							<div id="typeDiv" class="form-group">
-								<select id="type" class="form-control" name="type" requierd="requierd">
-									<option value="mentee">멘티/멘토 선택</option>
+								<select id="type" class="form-control" name="type"
+									requierd="requierd">
+									<option value="">멘티/멘토 선택</option>
 									<option value="mentee">멘티-청년</option>
 									<option value="mentor">멘토-신중년</option>
 								</select>
@@ -141,35 +140,39 @@
 									placeholder="이름" requierd="requierd">
 							</div>
 							<div id="idDiv" class="form-group form-inline">
-								<input id="id" type="text" class="form-control" name="id"
-									placeholder="아이디" requierd="requierd" style="width: 65%">
-								<a href="javascript:void(0);"
-									onclick="fn_checkDplctByLoginId(event)" class="btn btn-primary">중복확인</a>
+								<input id="availId" type="text" class="form-control"
+									placeholder="아이디" requierd="requierd" style="width: 64%;">
+								<a href="javascript:void(0);" onclick="chkId()"
+									style="vertical-align: sub;" class="bnt btn-lg btn-primary">중복확인</a>
+								<input type="hidden" id="id" name="id" value="">
 							</div>
 							<div id="pwDiv" class="form-group">
 								<input id="pw" type="password" class="form-control"
 									requierd="requierd" placeholder="비밀번호">
+								<p class="txt-msg msg-help" id="msg-hashcdLoginPassword">
+									영문, 숫자, 특수문자를 포함하여 <span class="m-br">8자 이상</span>
+								</p>
 							</div>
 							<div id="pwCheckDiv" class="form-group">
 								<input type="password" id="pwCheck" name="pwCheck"
 									class="form-control is-invalid" placeholder="비밀번호 확인"
-									required="required" id="pw" onblur="fn_checkPassword()">
-								<p class="txt-msg msg-help" id="msg-hashcdLoginPassword">
-									영문, 숫자, 특수문자를 포함하여 <span class="m-br">8자 이상</span>
-									<!-- <a href="javascript:void(0);"
-										onclick="_NtelsUtil.layerOpen('layer_pwIndo', event);"
-										class="btn-question">사용 불가능한 비밀번호 보기</a> -->
-								</p>
+									required="required" id="pw" onblur="chkPw()">
+								<p id="msg-pwError" style="display: none; color: red;">비밀번호가
+									일치하지 않습니다!</p>
 							</div>
 							<div id="nameDiv" class="form-group">
 								<input id="phone" type="text" maxlength="11"
-									class="form-control" name="phone" placeholder="휴대전화 번호"
-									requierd="requierd">
+									class="form-control" name="phone" style="ime-mode: disabled;"
+									placeholder="휴대전화 번호" requierd="requierd"
+									onkeydown="return onlyNum(event)" onkeyup="removeChar(event)">
+								<p class="txt-msg msg-help" id="msg-hashcdLoginPassword">
+									'-' 없이 숫자만 입력해주세요.</p>
 							</div>
 							<div id="birthDiv" class="form-group form-inline">
 								<input type="text" id="yy" name="yy" maxlength="4"
-									style="width: 37%" class="form-control" placeholder="예) 1988"
-									onblur="fn_checkBirthday()"> <select id="mm"
+									required="required" style="width: 37%" class="form-control"
+									placeholder="예) 1988" onkeydown="return onlyNum(event)"
+									onkeyup="removeChar(event)"> <select id="mm"
 									class="input-lg input-group" name="mm" title="월 선택"
 									onfocus="fn_checkBirthday()" onblur="fn_checkBirthday()">
 									<option value="">월</option>
@@ -274,13 +277,14 @@
 
 							<div class="col-md-12 col-md-push-3">
 								<div class="form-group">
-									<a href="signup.do" class="btn btn-primary">뒤로</a>
-									<button id="signUpBtn" type="button" class="btn btn-primary">완료</button>
+									<a href="signup.do" class="bnt btn-lg btn-primary">뒤로</a>
+									<a href="javascript:void(0);" onclick="signup(event)" id="signUpBtn" class="bnt btn-lg btn-primary">완료</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</form>
+				<form id="goSignup" action=""></form>
 			</div>
 		</div>
 		<!-- END fh5co-contact -->

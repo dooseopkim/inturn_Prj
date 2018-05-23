@@ -351,7 +351,6 @@ function html5Upload() {
 				var reader = new FileReader();
 				reader.onload = function(event) {
 					result = CryptoJS.SHA256(CryptoJS.enc.Latin1.parse(event.target.result));
-					alert(result);
 				};
 			    reader.readAsBinaryString(tempFile);
 			    
@@ -496,7 +495,7 @@ function uploadImage(e) {
 
 /**
  * jindo에 파일 업로드 사용.(iframe에 Form을 Submit하여 리프레시없이 파일을 업로드하는 컴포넌트)
- */
+*/
 function callFileUploader() {
 	oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"), {
 		/*		sUrl : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.php', //샘플 URL입니다.

@@ -62,14 +62,14 @@ $(function(){
 			$("#password").focus();
 			return false;
 		} 
-		
+		var pw = CryptoJS.SHA256($("#password").val()).toString();
 		$.ajax({
 			url: "login.do",
 			method: "POST",
 			type: "JSON",
 			data: {
 				"id" : $("#loginId").val(),
-				"pw" : SHA256($("#password").val())
+				"pw" : pw
 			},
 			success: function(data){
 				if(data.result == "success"){

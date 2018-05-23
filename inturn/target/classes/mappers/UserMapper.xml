@@ -23,13 +23,13 @@
 		WHERE id = #{id}
 	</update>
 	
-	<insert id="addUser" parameterType="UserVO" >
-		INSERT INTO users(id, pw, name, phone, birthday, email, type, idx, icon_num)
-		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{email} ,#{type}, (select nvl(max(idx),0)+1 from users), #{icon_num})
+	<insert id="addUser" parameterType="UserVO">
+		INSERT INTO users(id, pw, name, phone, birthday, email, type, idx)
+		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{email} ,#{type}, (select nvl(max(idx),0)+1 from users))
 	</insert>
 
 	<select id="login" parameterType="UserVO" resultType="UserVO">
-		SELECT id, name, phone, email, birthday, type, idx, icon_num
+		SELECT *
 		FROM USERS
 		WHERE id = #{id}
 			AND pw = #{pw}
@@ -48,5 +48,11 @@
 		WHERE id = #{id}
 			AND name = #{name}
 			AND email = #{email}
+	</select>
+	
+	<select id="getId" parameterType="UserVO" resultType="int">
+		SELECT count(*)
+		FROM USERS
+		WHERE id = #{id}
 	</select>
 </mapper>
