@@ -43,6 +43,9 @@
 <!-- signup.js -->
 <script type="text/javascript" src="js/signup.js"></script>
 
+<!-- 암호화 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
+
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -284,7 +287,6 @@
 						</div>
 					</div>
 				</form>
-				<form id="goSignup" action=""></form>
 			</div>
 		</div>
 		<!-- END fh5co-contact -->

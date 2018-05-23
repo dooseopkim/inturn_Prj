@@ -30,21 +30,21 @@
 
 	<select id="login" parameterType="UserVO" resultType="UserVO">
 		SELECT *
-		FROM USERS
+		FROM users
 		WHERE id = #{id}
 			AND pw = #{pw}
 	</select>
 	
 	<select id="findID" parameterType="UserVO" resultType="String">
 		SELECT id
-		FROM USERS
+		FROM users
 		WHERE name = #{name}
 			AND email = #{email}
 	</select>
 	
 	<select id="findPw" parameterType="UserVO" resultType="boolean">
 		SELECT count(*)
-		FROM USERS
+		FROM users
 		WHERE id = #{id}
 			AND name = #{name}
 			AND email = #{email}
@@ -52,7 +52,7 @@
 	
 	<select id="getId" parameterType="UserVO" resultType="int">
 		SELECT count(*)
-		FROM USERS
+		FROM users
 		WHERE id = #{id}
 	</select>
 </mapper>

@@ -343,9 +343,6 @@ ALTER TABLE files
 		PRIMARY KEY (
 			file_num      -- file_num
 		);
-		REFERENCES fileGroup ( -- fileGroup
-			fileGroupNum, -- fileGroupNum
-		);
 
 -- fileGroup
 CREATE TABLE fileGroup (
