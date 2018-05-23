@@ -92,8 +92,8 @@
 										계속해서 이력서를 작성하시려면 프로필작성 버튼을<br> 로그인을 하시려면 로그인 버튼을 클릭해주세요.
 									</h2>
 									<p>
-										<a class="btn btn-primary btn-demo" href="signupForm_tee.do">프로필작성</a> <a
-											class="btn btn-primary btn-learn" href="signupForm_tor.do">로그인</a>
+										<a class="btn btn-primary btn-demo" href="">프로필작성</a>
+										<a class="btn btn-primary btn-learn" href="loginForm.do">로그인</a>
 									</p>
 								</div>
 							</div>
