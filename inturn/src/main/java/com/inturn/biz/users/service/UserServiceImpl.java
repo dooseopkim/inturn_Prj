@@ -49,4 +49,10 @@ public class UserServiceImpl implements UserService{
 	public Boolean findPw(UserVO vo) {
 		return dao.findPw(vo);
 	}
+
+	@Override
+	public int getId(UserVO vo) {
+		System.out.println("여긴 서비스임플입니다.");
+		return dao.getId(vo);
+	}
 }

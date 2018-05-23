@@ -574,7 +574,7 @@ table, th, td {
 					</div>
 					<input type="hidden" id="joinCode" value="">
 					<form action="" target="" id="chkEmail">
-						<input type="hidden" value="${email }" name="email" id="email">
+						<input type="hidden" value="" name="email" id="email">
 					</form>
 				</div>
 			</div>

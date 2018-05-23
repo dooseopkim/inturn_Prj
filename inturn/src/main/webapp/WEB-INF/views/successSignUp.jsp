@@ -87,13 +87,13 @@
 						<div class="row">
 							<div class="col-md-6 col-md-offset-3 slider-text">
 								<div class="slider-text-inner text-center">
-									<h1>환영합니다!</h1>
+									<h1>회원가입에 성공했습니다!</h1>
 									<h2>
-										저희 서비스를 이용하시려면 아래 버튼을 클릭하셔서 회원가입을 진행해주세요.
+										계속해서 이력서를 작성하시려면 프로필작성 버튼을<br> 로그인을 하시려면 로그인 버튼을 클릭해주세요.
 									</h2>
 									<p>
-										<a class="btn btn-primary btn-demo" href="signupForm_tee.do">청년</a> <a
-											class="btn btn-primary btn-learn" href="signupForm_tor.do">신중년</a>
+										<a class="btn btn-primary btn-demo" href="signupForm_tee.do">프로필작성</a> <a
+											class="btn btn-primary btn-learn" href="signupForm_tor.do">로그인</a>
 									</p>
 								</div>
 							</div>
