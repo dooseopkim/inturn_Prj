@@ -65,12 +65,22 @@
 		<property name="javaMailSender" ref="javaMailSender"></property>
 	</bean> -->
 
-	<!-- <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
-		<property name="dataSource" ref="dataSource" /> </bean> <tx:advice id="txAdvice" 
-		transaction-manager="txManager"> <tx:attributes> <tx:method name="select*" 
-		read-only="true" /> <tx:method name="insert*" propagation="REQUIRED" /> <tx:method 
-		name="modify*" propagation="REQUIRED" /> <tx:method name="delete*" propagation="REQUIRED" 
-		/> <tx:method name="*" rollback-for="Exception" /> </tx:attributes> </tx:advice> 
-		<aop:config> <aop:pointcut id="requiredTx" expression="execution(* com.wdist.biz.board.service.*Impl.*(..))" 
-		/> <aop:advisor advice-ref="txAdvice" pointcut-ref="requiredTx" /> </aop:config> -->
+<!-- 	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="*" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="requiredTx"
+			expression="execution(* com.wdist.biz.board.service.*Impl.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="requiredTx" />
+	</aop:config> -->
 </beans>
