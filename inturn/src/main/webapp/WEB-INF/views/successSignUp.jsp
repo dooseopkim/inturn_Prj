@@ -77,7 +77,37 @@
 		</div>
 	</div>
 	</nav>
+
 	<div class="container-wrap">
+		<div class="container">
+			<ul class="list-inline">
+				<li class="selected">
+					<div class="step-bar">
+						<strong><em>01</em> 약관동의 및 <span class="m-br">본인인증</span></strong>
+						<p>
+							약관동의와 본인인증이<br>필요합니다.
+						</p>
+					</div>
+				</li>
+				<li class="selected">
+					<div class="step-bar">
+						<strong><em>02</em> 개인정보<span class="m-br">입력</span></strong>
+						<p>
+							입력하신 정보는 안전하게<br>보호됩니다.
+						</p>
+					</div>
+				</li>
+				<li class="selected">
+					<div class="step-bar">
+						<strong><em>04</em> 가입완료</strong>
+						<p>
+							진로교육정보망 통합회원이<br>되신 것을 환영합니다.
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- END container -->
 		<aside id="fh5co-hero">
 		<div class="flexslider">
 			<ul class="slides">
@@ -92,8 +122,8 @@
 										계속해서 이력서를 작성하시려면 프로필작성 버튼을<br> 로그인을 하시려면 로그인 버튼을 클릭해주세요.
 									</h2>
 									<p>
-										<a class="btn btn-primary btn-demo" href="signupForm_tee.do">프로필작성</a> <a
-											class="btn btn-primary btn-learn" href="signupForm_tor.do">로그인</a>
+										<a class="btn btn-primary btn-demo" href="">프로필작성</a> <a
+											class="btn btn-primary btn-learn" href="loginForm.do">로그인</a>
 									</p>
 								</div>
 							</div>

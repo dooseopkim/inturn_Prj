@@ -72,31 +72,21 @@ public class BoardController {
 			if (!file.exists()) {
 				file.mkdirs();
 			}
-			/*String realFileNm = "";
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-			String today = formatter.format(new java.util.Date());
-			realFileNm = today + UUID.randomUUID().toString() + filename.substring(filename.lastIndexOf("."));
-			String rlFileNm = filePath + realFileNm;*/
 			///////////////// 서버에 파일쓰기 /////////////////
 			InputStream is = request.getInputStream();
-		//	OutputStream os = new FileOutputStream(rlFileNm);
-			OutputStream os1 = new FileOutputStream(filePath+filename);
+			OutputStream os = new FileOutputStream(filePath+filename);
 			int numRead;
 			byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
 			while ((numRead = is.read(b, 0, b.length)) != -1) {
-		//		os.write(b, 0, numRead);
-				os1.write(b, 0, numRead);
+				os.write(b, 0, numRead);
 			}
 			if (is != null) {
 				is.close();
 			}
-		//	os.flush();
-		//	os.close();
-			os1.flush();
-			os1.close();
-			///////////////// 서버에 파일쓰기 /////////////////
+			os.flush();
+			os.close();
 			
-			//자바스크립트와 여기의 해시함수가 달라서 값이 다름 그것을 맞춰줘야 무결성 검증 가능...
+			//무결성 검증
 			SHA256 hash = new SHA256();
 			System.out.println("java hash : "+hash.sha256(filePath+filename));
 			System.out.println("file 경로 : "+filePath+filename);
@@ -105,8 +95,6 @@ public class BoardController {
 			sFileInfo += "&bNewLine=true";
 			// img 태그의 title 속성을 원본파일명으로 적용시켜주기 위함
 			sFileInfo += "&sFileName=" + filename;
-			;
-		//	sFileInfo += "&sFileURL=" + "/resources/editor/multiupload/" + realFileNm;
 			sFileInfo += "&sFileURL=" + "/resources/editor/multiupload/" + filename;
 			PrintWriter print = response.getWriter();
 			print.print(sFileInfo);
