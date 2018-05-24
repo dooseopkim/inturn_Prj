@@ -62,7 +62,13 @@ $(function(){
 			$("#password").focus();
 			return false;
 		} 
-		var pw = CryptoJS.SHA256($("#password").val()).toString();
+		alert($("#chkModPw").val());
+		if($("#chkModPw").val()=="true"){
+			var pw = $("#password").val();
+		} else {
+			var pw = CryptoJS.SHA256($("#password").val()).toString();
+		}
+		alert(pw);
 		$.ajax({
 			url: "login.do",
 			method: "POST",
@@ -70,13 +76,17 @@ $(function(){
 			data: {
 				"id" : $("#loginId").val(),
 				"pw" : pw
+//				"pw" : $("#password").val()
 			},
 			success: function(data){
 				if(data.result == "success"){
-					var test = $(data.login);
-					var userName = test[3];
-					alert("로그인 성공! 반갑습니다!");
-					location.href="/";
+					if(data.chkTempPw == "true"){
+						alert("로그인 성공! 비밀번호를 변경하세요.")
+						location.href="modifyUserPwForm.do";
+					} else {
+						alert("로그인 성공! 반갑습니다!");
+						location.href="/";
+					}
 				}
 				else
 					alert("로그인 정보를 확인하고 다시 입력해주세요.");
