@@ -62,13 +62,11 @@ $(function(){
 			$("#password").focus();
 			return false;
 		} 
-		alert($("#chkModPw").val());
 		if($("#chkModPw").val()=="true"){
 			var pw = $("#password").val();
 		} else {
 			var pw = CryptoJS.SHA256($("#password").val()).toString();
 		}
-		alert(pw);
 		$.ajax({
 			url: "login.do",
 			method: "POST",
