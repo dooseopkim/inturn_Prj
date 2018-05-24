@@ -5,9 +5,14 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.inturn.biz.users.vo.UserVO" alias="UserVO"></typeAlias>
+		<typeAlias type="com.inturn.biz.board.vo.FreeBoardVO" alias="FreeBoardVO"></typeAlias>
+		<typeAlias type="com.inturn.biz.board.vo.FileGroupVO" alias="FileGroupVO"></typeAlias>
+		<typeAlias type="com.inturn.biz.board.vo.FilesVO" alias="FilesVO"></typeAlias>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="./mappers/UserMapper.xml" />
+		<mapper resource="./mappers/FreeBoardMapper.xml" />
+		<mapper resource="./mappers/FileMapper.xml" />
 	</mappers>
 </configuration>

@@ -328,13 +328,32 @@ function addImage(ofile) {
 }
 
 /**
+ * fileHash값을 구한 후 비동기 처리인 Ajax를 그 다음 수행하기위해
+ * callback함수를 이용하여 비동기 동기함수의 순서를 맞춰 수행하게끔 함
+ * 순수 File 객체만 인식하므로 File name에 해시값을 붙여 넘기자.
+ * 인코딩을 Latin1로 해주어야 제대로 된 값으로 읽어들여진다.
+ * @author 박현호
+ * @since 2018-05-24
+ */
+function readFile(tempFile, sUploadURL, callback) {
+	var hash = "";
+	var reader = new FileReader();
+	reader.readAsBinaryString(tempFile);
+	reader.onload = function(event) {
+		hash = CryptoJS.SHA256(CryptoJS.enc.Latin1.parse(event.target.result));
+		const sendFile = new File([tempFile], tempFile.name + "###" + hash, {type : tempFile.type});
+		setTimeout(callback, 10, sendFile, sUploadURL);
+	};
+}
+
+/**
  * HTML5 DragAndDrop으로 사진을 추가하고, 확인버튼을 누른 경우에 동작한다.
  * @return
  */
 function html5Upload() {
 	var tempFile,
 		sUploadURL;
-
+	var flag = true;
 	//    	sUploadURL= '../../../../file_uploader_html5.do'; 	//upload URL
 	sUploadURL = '/multiFileUploader.do'; //upload URL
 
@@ -343,23 +362,11 @@ function html5Upload() {
 		tempFile = htImageInfo['img' + j];
 		try {
 			if (!!tempFile) {
-				/**
-				 * 순수 File 객체만 인식하므로 File name에 해시값을 붙여 넘기자.
-				 * 인코딩을 Latin1로 해주어야 제대로 된 값으로 읽어들여진다.
-				 */
-				var result = "";
-				var reader = new FileReader();
-				reader.onload = function(event) {
-					result = CryptoJS.SHA256(CryptoJS.enc.Latin1.parse(event.target.result));
-				};
-			    reader.readAsBinaryString(tempFile);
-			    
-				setTimeout(function(tempFile) {
-					const sendFile = new File([tempFile], tempFile.name + "###" + result, {type : tempFile.type});
+				readFile(tempFile, sUploadURL, function(sendFile, sUploadURL){
 					//Ajax통신하는 부분. 파일과 업로더할 url을 전달한다.
 					callAjaxForHTML5(sendFile, sUploadURL);
 					k += 1;
-				}, 10, tempFile);
+				});
 			}
 		} catch (e) {}
 		tempFile = null;
