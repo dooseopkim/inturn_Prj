@@ -120,9 +120,19 @@ public class UserController {
 		return new ModelAndView("jsonView", map);
 	}
 	
+	/**
+	 * 회원가입 성공 시 띄워줄 화면
+	 * @return
+	 */
 	@RequestMapping(value="/successSignup.do", method={RequestMethod.POST, RequestMethod.GET})
 	public String successSignupDo(){
 		return "/index.jsp?content=successSignUp";
+	}
+	
+	
+	@RequestMapping(value="/profileForm.do")
+	public String profileFormDo(){
+		return "/index.jsp?content=profile";
 	}
 
 }
