@@ -68,12 +68,12 @@
 			</c:otherwise>
 		</c:choose>
 		
+		
 		<div class="container-wrap">
 		<jsp:include page="footer.jsp" />
 		</div>
 	</div>
 	<!-- END page -->
-
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>

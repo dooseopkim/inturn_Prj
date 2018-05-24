@@ -51,14 +51,22 @@ $(function(){
 			return false;
 		}
 		
+		if($("#chkModPw").val()=="true"){
+			var pw = $("#pw").val();
+		} else {
+			var pw = CryptoJS.SHA256($("#pw").val()).toString();
+		}
+		
+		var newPw = CryptoJS.SHA256($("#newPw").val()).toString();
+		
 		$.ajax({
 			url: "modifyUserPw.do",
 			method: "POST",
 			type: "JSON",
 			data: {
 				"id" : $("#id").val(),
-				"pw" : $("#pw").val(),
-				"newPw" : $("#newPw").val()
+				"pw" : pw,
+				"newPw" : newPw
 			},
 			success: function(data){
 				if(data.result == "success"){
