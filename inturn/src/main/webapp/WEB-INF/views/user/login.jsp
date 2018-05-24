@@ -56,6 +56,7 @@
 						<fieldset>
 							<!-- <legend>로그인</legend> -->
 							<label for="loginId" class="invisible">아이디</label>
+							<input type="hidden" id="chkModPw" value="${chkModPw}">
 							<input type="text" id="loginId" placeholder="아이디" title="아이디 입력" value="">
 							<label for="password" class="invisible">비밀번호</label>
 							<input type="password" id="password" placeholder="비밀번호" title="비밀번호 입력">

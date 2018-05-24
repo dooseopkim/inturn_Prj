@@ -24,12 +24,17 @@ public class UserServiceImpl implements UserService{
 	public int insertUser(UserVO vo) {
 		return dao.insertUser(vo);
 	}
-
+	
 	@Override
 	public int modifyUser(UserVO vo) {
 		return dao.modifyUser(vo);
 	}
 
+	@Override
+	public int modifyUserPw(UserVO vo) {
+		return dao.modifyUserPw(vo);
+	}
+	
 	@Override
 	public int deleteUser(UserVO vo) {
 		return dao.deleteUser(vo);
@@ -55,4 +60,5 @@ public class UserServiceImpl implements UserService{
 		System.out.println("여긴 서비스임플입니다.");
 		return dao.getId(vo);
 	}
+
 }

@@ -59,7 +59,9 @@ $(function(){
 			},
 			success: function(data){
 				if(data.result=='success'){
-					alert(data.email+" (으)로 임시 비밀번호를 발송했습니다.");
+					if(confirm(data.userEmail+" (으)로 임시 비밀번호를 발송했습니다.")){
+						location.href="loginForm.do";
+					};
 				} else {
 					alert(data.result);
 				}

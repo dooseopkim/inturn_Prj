@@ -1,6 +1,7 @@
 package com.inturn.biz.web.controller;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.inturn.biz.users.service.MailService;
 import com.inturn.biz.users.service.UserService;
 import com.inturn.biz.users.vo.UserVO;
 
@@ -18,6 +20,9 @@ public class LogInOutController {
 	
 	@Resource(name="UserService")
 	UserService service;
+	
+	@Resource(name="mailService")
+	MailService mailService;
 	
 	/**
 	 * userMenu에서 로그인 클릭 시
@@ -38,29 +43,30 @@ public class LogInOutController {
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
 	public ModelAndView loginDo(UserVO vo, HttpSession session) {
 		System.out.println("loginDo() 진입");
-		System.out.println(vo.getPw());
+		System.out.println("vo : " + vo);
 		ModelAndView mav = new ModelAndView();
 		UserVO user = service.login(vo);
-		if(user != null) {
+		
+		if(session.getAttribute("chkModPw") != null) {
+			System.out.println("임시 비밀번호 발급한 계정");
+			if(tempLogin(vo, session, mav)){
+				session.setAttribute("login", vo);
+//				session.setAttribute("chkModPw", null);
+			} 
+		} else if(user != null ) {
 			System.out.println("user : "+user);
 			mav.addObject("result", "success");
 			session.setAttribute("login", user);
-
+			
 		} else {
 			System.out.println("user == null");
 			mav.addObject("result", "fail");
 		}
+		
 		mav.setViewName("jsonView");
 		System.out.println("loginDo() 끝");
 		return mav;
 	}
-
-	
-//	kakaologin.do
-
-	
-	
-//	naverlogin.do
 	
 	/**
 	 * 로그인 페이지에서 아이디 찾기 버튼 클릭 시
@@ -92,20 +98,81 @@ public class LogInOutController {
 	 * @return
 	 */
 	@RequestMapping("findPW.do")
-	public String sendNewPWFormDo() {
+	public String findPwDo() {
 		return "index.jsp?content=user/findPW";
 	}
 	
+	/**
+	 * 비밀번호찾기 버튼 클릭 시 임시 비밀번호를 사용자의 이메일로 발송한다.
+	 * @param vo
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="sendNewPW.do", method=RequestMethod.POST)
-	public ModelAndView sendNewPWDo(UserVO vo) {
+	public ModelAndView sendNewPWDo(UserVO vo, HttpSession session) {
+		System.out.println("sendNewPWDo() 진입");
 		System.out.println(vo);
 		ModelAndView mav = new ModelAndView();
 		if(service.findPw(vo)) {
+			System.out.println("service.findPw() 진행");
 //			비밀번호 이메일로 보내기
-			mav.addObject("result", "success");
-			mav.addObject("email", vo.getEmail());
+			int ran = new Random().nextInt(100000)+10000; //10000~99999
+			String tempPw = String.valueOf(ran);
+			System.out.println("tempPw : " +tempPw);
+			String userEmail = vo.getEmail();
+			
+			System.out.println("여기까진 성공");
+			String subject = "[人Turn] 임시 비밀번호 발급 안내";
+			StringBuffer sb = new StringBuffer();
+			sb.append("<h2>[人Turn] 임시 비밀번호 발급 안내</h2><br><br><hr><br>귀하의 임시 비밀번호는 <strong style='color: green; font-weight: bold; font-size: large;'>" + tempPw + "</strong> 입니다. <br>임시 비밀번호를 입력해서 로그인을 진행해 주세요.");
+			boolean flag = mailService.sendEmail(subject, sb.toString(), "inturn303@gmail.com", userEmail);
+			if(flag) {
+				session.setAttribute("chkModPw", "true");
+				session.setAttribute("tempPw", tempPw);
+				mav.addObject("result", "success");
+				mav.addObject("userEmail", userEmail);
+			} else {
+				mav.addObject("result", "임시 비밀번호 발급에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+			}
+			
 		} else {
 			mav.addObject("result", "일치하는 정보가 없습니다.");
+		}
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	/**
+	 * 비밀번호 바꾸기 페이지로 이동
+	 * @return
+	 */
+	@RequestMapping("modifyUserPwForm.do")
+	public String modifyUserPwFormDo() {
+		return "index.jsp?content=user/modifyUserPw";
+	}
+	
+	@RequestMapping(value="modifyUserPw.do", method=RequestMethod.POST)
+	public ModelAndView modifyUserPwDo(String id, String pw, String newPw, HttpSession session) {
+		System.out.println("modifyUserPwDo() 진입");
+		System.out.println("id : " + id);
+		System.out.println("pw : " + pw);
+		System.out.println("newPw : " + newPw);
+		ModelAndView mav = new ModelAndView();
+		UserVO vo = new UserVO();
+		vo.setId(id);
+		vo.setPw(pw);
+		
+		if(session.getAttribute("chkModPw") != null) {
+			System.out.println("임시 비밀번호 사용 중");
+			if(tempLogin(vo, session, mav)) {
+				modifyUserPw(vo, newPw, mav);
+				session.setAttribute("chkModPw", null);
+			} 
+		} else if(service.login(vo) != null) {
+			System.out.println("현재 비밀번호 일치!");
+			modifyUserPw(vo, newPw, mav);
+		} else {
+			mav.addObject("result", "정보가 일치하지 않습니다. 정보 확인 후 다시 시도해 주세요.");
 		}
 		mav.setViewName("jsonView");
 		return mav;
@@ -156,4 +223,30 @@ public class LogInOutController {
 	}
 	
 	
+	public Boolean tempLogin(UserVO vo, HttpSession session, ModelAndView mav) {
+		System.out.println("tempLogin() 진입");
+		String tempPw = (String)session.getAttribute("tempPw");
+		if(vo.getPw().equals(tempPw)) {
+			System.out.println("tempPw 일치");
+			mav.addObject("result", "success");
+//			session.setAttribute("chkModPw", null);
+			return true;
+		} else {
+			System.out.println("tempPw 불일치");
+			mav.addObject("result", "정보가 일치하지 않습니다. 정보 확인 후 다시 시도해 주세요.");
+			return false;
+		}
+	}
+	
+	public void modifyUserPw(UserVO vo, String newPw, ModelAndView mav) {
+		vo.setPw(newPw);
+		if(service.modifyUserPw(vo) == 1) {
+				System.out.println("비밀번호 변경 성공");
+				mav.addObject("result", "success");
+//				session.setAttribute("chkModPw", "null");
+		} else {
+			System.out.println("비밀번호 변경 실패");
+			mav.addObject("result", "비밀번호 변경에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+		}
+	}
 }

@@ -28,6 +28,11 @@ public class UserDAOImpl implements UserDAO{
 	public int modifyUser(UserVO vo) {
 		return 0;
 	}
+	
+	@Override
+	public int modifyUserPw(UserVO vo) {
+		return mybatis.update("UserMapper.modifyUserPw", vo);
+	}
 
 	@Override
 	public int deleteUser(UserVO vo) {

@@ -57,7 +57,7 @@
 				</div>
 				<div class="col-xs-10 text-right menu-1">
 					<ul>
-						<li class="active"><a href="main.do">홈</a></li>
+						<li><a href="main.do">홈</a></li>
 						<li class="has-dropdown"><a href="intro1.do">소개</a>
 							<ul class="dropdown">
 								<li><a href="intro1.do">사업소개</a></li>
@@ -79,60 +79,53 @@
 	</nav>
 
 	<div class="container-wrap">
-		<div class="container">
-			<ul class="list-inline">
-				<li class="selected">
-					<div class="step-bar">
-						<strong><em>01</em> 약관동의 및 <span class="m-br">본인인증</span></strong>
-						<p>
-							약관동의와 본인인증이<br>필요합니다.
-						</p>
-					</div>
-				</li>
-				<li class="selected">
-					<div class="step-bar">
-						<strong><em>02</em> 개인정보<span class="m-br">입력</span></strong>
-						<p>
-							입력하신 정보는 안전하게<br>보호됩니다.
-						</p>
-					</div>
-				</li>
-				<li class="selected">
-					<div class="step-bar">
-						<strong><em>04</em> 가입완료</strong>
-						<p>
-							진로교육정보망 통합회원이<br>되신 것을 환영합니다.
-						</p>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<!-- END container -->
-		<aside id="fh5co-hero">
-		<div class="flexslider">
-			<ul class="slides">
-				<li style="background-image: url(images/img_bg_3.jpg);">
-					<div class="overlay-gradient"></div>
-					<div class="container-fluids">
-						<div class="row">
-							<div class="col-md-6 col-md-offset-3 slider-text">
-								<div class="slider-text-inner text-center">
-									<h1>회원가입에 성공했습니다!</h1>
-									<h2>
-										계속해서 이력서를 작성하시려면 프로필작성 버튼을<br> 로그인을 하시려면 로그인 버튼을 클릭해주세요.
-									</h2>
-									<p>
-										<a class="btn btn-primary btn-demo" href="profileForm.do">프로필작성</a> <a
-											class="btn btn-primary btn-learn" href="loginForm.do">로그인</a>
-									</p>
-								</div>
+		<div id="fh5co-contact">
+			<div class="row animate-box">
+				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+					<h2>Contact us</h2>
+					<p>Far far away, behind the word mountains, far from the
+						countries Vokalia and Consonantia.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-md-push-1 animate-box">
+					<h3>Our Address</h3>
+					<ul class="contact-info">
+						<li><i class="icon-location4"></i>198 West 21th Street, Suite
+							721 New York NY 10016</li>
+						<li><i class="icon-phone3"></i>+ 1235 2355 98</li>
+						<li><i class="icon-location3"></i><a href="#">info@yoursite.com</a></li>
+						<li><i class="icon-globe2"></i><a href="#">www.yoursite.com</a></li>
+					</ul>
+				</div>
+				<div class="col-md-7 col-md-push-1 animate-box">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Name">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Email">
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<textarea name="" class="form-control" id="" cols="30" rows="7"
+									placeholder="Message"></textarea>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="submit" value="Send Message"
+									class="btn btn-primary btn-modify">
 							</div>
 						</div>
 					</div>
-				</li>
-			</ul>
+				</div>
+			</div>
 		</div>
-		</aside>
 	</div>
 </body>
 </html>

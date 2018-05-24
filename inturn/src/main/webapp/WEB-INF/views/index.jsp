@@ -54,7 +54,7 @@
 
 </head>
 <body>
-	<div class="container-wrap">
+	<div class="fh5co-loader"></div>
 	<div id="page">
 		<c:choose>
 			<c:when test="${!empty content }">
@@ -67,10 +67,10 @@
 				<jsp:include page="main.jsp" />
 			</c:otherwise>
 		</c:choose>
-
-			<jsp:include page="footer.jsp" />
+		
+		<div class="container-wrap">
+		<jsp:include page="footer.jsp" />
 		</div>
-		<!-- END footer container-wrap -->
 	</div>
 	<!-- END page -->
 
