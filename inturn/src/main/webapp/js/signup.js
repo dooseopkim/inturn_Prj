@@ -128,14 +128,10 @@ function signup(event) {
 			success : function(data) {
 				if (data.result == "success") {
 					alert('회원가입에 성공했습니다.');
-					$('#goSignup').attr('action', 'successSignup.do');
-					$('#goSignup').attr('target', '_self');
 					location.href="/successSignup.do"
 
 				} else {
 					alert('죄송합니다. 회원가입에 실패했습니다. 다시 진행해주세요.');
-					$('#signup').attr('action', 'signup.do');
-					$('#signup').attr('target', '_self');
 					location.href="/signup.do"
 				}
 			},

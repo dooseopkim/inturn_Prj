@@ -55,7 +55,7 @@ public class UserController {
 		String subject = "[人Turn] 회원가입 인증 코드 발급 안내";
 		StringBuffer sb = new StringBuffer();
 		sb.append("<h2>[人Turn] 회원가입 인증 코드 발급 안내</h2><br><br><hr><br>귀하의 인증 코드는 <strong style='color: green; font-weight: bold; font-size: large;'>"+code+"</strong> 입니다. <br>인증번호를 입력해서 회원가입을 진행해 주세요.");
-		boolean flag = mailService.sendEmail(subject, sb.toString(), "youngseo9478@gmail.com", to);
+		boolean flag = mailService.sendEmail(subject, sb.toString(), "inturn303@gmail.com", to);
 		if(flag){
 			return code;
 		}
