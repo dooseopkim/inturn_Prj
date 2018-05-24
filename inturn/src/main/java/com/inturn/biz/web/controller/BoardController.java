@@ -53,8 +53,8 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/insertBoard.do", method = RequestMethod.POST)
-	public String insertBoard(String editor) {
-		System.out.println("저장할 내용" + editor);
+	public String insertBoard(String content) {
+		System.out.println("저장할 내용" + content);
 		return "redirect:freeBoard.do";
 	}
 
@@ -128,30 +128,36 @@ public class BoardController {
 			SHA256 hash = new SHA256();
 			String checkHashValue = hash.sha256(realFilePath);
 			System.out.println("java hash : " + checkHashValue);
+			// 무결성 검증이 정상적이라면
 			if (checkHashValue.equals(hashValue)) {
 				UserVO login = (UserVO) session.getAttribute("login");
 				String flag = login.getId();
 				FilesVO insertFile = new FilesVO(filePath, fileName, fileSize, hashValue);
+				// 데이터베이스에 파일저장
 				int row = file_service.insertFiles(flag, insertFile);
 				if (row == 0)
 					fileError(realFilePath, sFileInfo, fileName);
 				else {
+					// DB에 저장에 문제없이 잘 처리 됐을경우
 					insertFile.setFileGroupNum(file_service.findFileGroup(flag));
 					int saveFileNum = file_service.findFile(insertFile);
+					// 파일이름 중복이나 똑같은 파일저장 시 모두 저장해 주기위해 해당 파일num을 가져옴
 					if (saveFileNum == 0)
 						fileError(realFilePath, sFileInfo, fileName);
 					else {
-						// 파일 확장자
+						// 문제없이 잘 가져왔을 경우
+						// 파일 확장자를 구함
 						String filename_ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 						// 확장자를소문자로 변경
 						filename_ext = filename_ext.toLowerCase();
+						// DB에 있는 파일넘버로 이름을 바꿔주는 작업
 						String saveFileName = Integer.toString(saveFileNum) + "." + filename_ext;
 						File tempFile = new File(realFilePath);
 						File saveFile = new File(filePath + saveFileName);
 						if(tempFile.exists()) {
 							tempFile.renameTo(saveFile);
 							tempFile.delete();
-							// 정보 출력
+							// 작성중인 게시판으로 정보출력해주는 과정
 							sFileInfo += "&bNewLine=true";
 							// img 태그의 title 속성을 원본파일명으로 적용시켜주기 위함
 							sFileInfo += "&sFileName=" + fileName;
