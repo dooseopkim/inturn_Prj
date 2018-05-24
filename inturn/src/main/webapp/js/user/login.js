@@ -62,7 +62,6 @@ $(function(){
 			$("#password").focus();
 			return false;
 		} 
-//		alert($("#chkModPw").val());
 		if($("#chkModPw").val()=="true"){
 			var pw = $("#password").val();
 		} else {

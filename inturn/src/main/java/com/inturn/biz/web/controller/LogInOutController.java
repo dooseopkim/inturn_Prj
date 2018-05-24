@@ -113,6 +113,7 @@ public class LogInOutController {
 		System.out.println("sendNewPWDo() 진입");
 		System.out.println(vo);
 		ModelAndView mav = new ModelAndView();
+		System.out.println(service.findPw(vo));
 		if(service.findPw(vo)) {
 			System.out.println("service.findPw() 진행");
 //			비밀번호 이메일로 보내기
@@ -229,6 +230,7 @@ public class LogInOutController {
 		if(vo.getPw().equals(tempPw)) {
 			System.out.println("tempPw 일치");
 			mav.addObject("result", "success");
+			mav.addObject("chkTempPw", "true");
 //			session.setAttribute("chkModPw", null);
 			return true;
 		} else {

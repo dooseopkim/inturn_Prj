@@ -45,7 +45,7 @@
 		</div>
 	</div>
 	</nav>
-
+		<div class="container-wrap">
 		<div class="page-login">
 			<!-- 로그인 창 -->
 			<div class="row box-login">
@@ -97,6 +97,7 @@
 						onclick="javascript: window.location='findPW.do' ; return false ;"><strong>비밀번호 찾기</strong> 비밀번호를 분실하셨나요?</a></li>
 				</ul>
 			</div>
+		</div>
 		</div>
 
 	<script type='text/javascript'>
