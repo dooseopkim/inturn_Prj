@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Main</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Main</title>
 </head>
 <body>
 	<jsp:include page="userMenu.jsp" />
@@ -39,100 +39,102 @@
 		</div>
 	</div>
 	</nav>
-
-	<div id="fh5co-work" class="fh5co-light-grey">
-		<div class="row animate-box">
-			<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-				<h2>Work</h2>
-				<p>Dignissimos asperiores vitae velit veniam totam fuga
-					molestias accusamus alias autem provident. Odit ab aliquam dolor
-					eius.</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 text-center animate-box">
-				<a href="work-single.html" class="work"
-					style="background-image: url(images/portfolio-1.jpg);">
-					<div class="desc">
-						<h3>Project Name</h3>
-						<span>Illustration</span>
-					</div>
-				</a>
-			</div>
-			<div class="col-md-4 text-center animate-box">
-				<a href="work-single.html" class="work"
-					style="background-image: url(images/portfolio-2.jpg);">
-					<div class="desc">
-						<h3>Project Name</h3>
-						<span>Brading</span>
-					</div>
-				</a>
-			</div>
-			<div class="col-md-4 text-center animate-box">
-				<a href="work-single.html" class="work"
-					style="background-image: url(images/portfolio-3.jpg);">
-					<div class="desc">
-						<h3>Project Name</h3>
-						<span>Illustration</span>
-					</div>
-				</a>
-			</div>
-		</div>
-	</div>
-
-
-	<div id="fh5co-blog" class="blog-flex">
-		<div class="featured-blog"
-			style="background-image: url(images/blog-1.jpg);">
-			<div class="desc-t">
-				<div class="desc-tc">
-					<span class="featured-head">Featured Posts</span>
-					<h3>
-						<a href="#">Top 20 Best WordPress Themes 2017 Multi Purpose
-							and Creative Websites</a>
-					</h3>
-					<span><a href="#" class="read-button">Learn More</a></span>
-				</div>
-			</div>
-		</div>
-		<div class="blog-entry fh5co-light-grey">
+	<div class="container-wrap">
+		<div id="fh5co-work" class="fh5co-light-grey">
 			<div class="row animate-box">
-				<div class="col-md-12">
-					<h2>Latest Posts</h2>
+				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+					<h2>Work</h2>
+					<p>Dignissimos asperiores vitae velit veniam totam fuga
+						molestias accusamus alias autem provident. Odit ab aliquam dolor
+						eius.</p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12 animate-box">
-					<a href="#" class="blog-post"> <span class="img"
-						style="background-image: url(images/blog-2.jpg);"></span>
+				<div class="col-md-4 text-center animate-box">
+					<a href="work-single.html" class="work"
+						style="background-image: url(images/portfolio-1.jpg);">
 						<div class="desc">
-							<h3>26 Best Education WordPress Themes 2017 You Need To See</h3>
-							<span class="cat">Collection</span>
+							<h3>Project Name</h3>
+							<span>Illustration</span>
 						</div>
 					</a>
 				</div>
-				<div class="col-md-12 animate-box">
-					<a href="#" class="blog-post"> <span class="img"
-						style="background-image: url(images/blog-1.jpg);"></span>
+				<div class="col-md-4 text-center animate-box">
+					<a href="work-single.html" class="work"
+						style="background-image: url(images/portfolio-2.jpg);">
 						<div class="desc">
-							<h3>16 Outstanding Photography WordPress Themes You Must See</h3>
-							<span class="cat">Collection</span>
+							<h3>Project Name</h3>
+							<span>Brading</span>
 						</div>
 					</a>
 				</div>
-				<div class="col-md-12 animate-box">
-					<a href="#" class="blog-post"> <span class="img"
-						style="background-image: url(images/blog-3.jpg);"></span>
+				<div class="col-md-4 text-center animate-box">
+					<a href="work-single.html" class="work"
+						style="background-image: url(images/portfolio-3.jpg);">
 						<div class="desc">
-							<h3>16 Outstanding Photography WordPress Themes You Must See</h3>
-							<span class="cat">Collection</span>
+							<h3>Project Name</h3>
+							<span>Illustration</span>
 						</div>
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- END container-wrap -->
+
+	<div class="container-wrap">
+		<div id="fh5co-blog" class="blog-flex">
+			<div class="featured-blog"
+				style="background-image: url(images/blog-1.jpg);">
+				<div class="desc-t">
+					<div class="desc-tc">
+						<span class="featured-head">Featured Posts</span>
+						<h3>
+							<a href="#">Top 20 Best WordPress Themes 2017 Multi Purpose
+								and Creative Websites</a>
+						</h3>
+						<span><a href="#" class="read-button">Learn More</a></span>
+					</div>
+				</div>
+			</div>
+			<div class="blog-entry fh5co-light-grey">
+				<div class="row animate-box">
+					<div class="col-md-12">
+						<h2>Latest Posts</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 animate-box">
+						<a href="#" class="blog-post"> <span class="img"
+							style="background-image: url(images/blog-2.jpg);"></span>
+							<div class="desc">
+								<h3>26 Best Education WordPress Themes 2017 You Need To See</h3>
+								<span class="cat">Collection</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-12 animate-box">
+						<a href="#" class="blog-post"> <span class="img"
+							style="background-image: url(images/blog-1.jpg);"></span>
+							<div class="desc">
+								<h3>16 Outstanding Photography WordPress Themes You Must
+									See</h3>
+								<span class="cat">Collection</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-12 animate-box">
+						<a href="#" class="blog-post"> <span class="img"
+							style="background-image: url(images/blog-3.jpg);"></span>
+							<div class="desc">
+								<h3>16 Outstanding Photography WordPress Themes You Must
+									See</h3>
+								<span class="cat">Collection</span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<!-- END container-wrap -->
 </body>

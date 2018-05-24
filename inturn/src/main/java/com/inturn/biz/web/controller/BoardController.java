@@ -68,13 +68,14 @@ public class BoardController {
 			// 파일 기본경로 _ 상세경로
 			String filePath = dftFilePath + "resources" + File.separator + "editor" + File.separator + "multiupload"
 					+ File.separator;
+			String realFilePath = filePath + filename;
 			File file = new File(filePath);
 			if (!file.exists()) {
 				file.mkdirs();
 			}
 			///////////////// 서버에 파일쓰기 /////////////////
 			InputStream is = request.getInputStream();
-			OutputStream os = new FileOutputStream(filePath+filename);
+			OutputStream os = new FileOutputStream(realFilePath);
 			int numRead;
 			byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
 			while ((numRead = is.read(b, 0, b.length)) != -1) {
@@ -88,8 +89,15 @@ public class BoardController {
 			
 			//무결성 검증
 			SHA256 hash = new SHA256();
-			System.out.println("java hash : "+hash.sha256(filePath+filename));
-			System.out.println("file 경로 : "+filePath+filename);
+			String checkHashValue = hash.sha256(realFilePath);
+			System.out.println("java hash : "+checkHashValue);
+			if(checkHashValue.equals(hashValue)) {
+				
+			} else {
+				File deleteFile = new File(realFilePath);
+				deleteFile.delete();
+			}
+			System.out.println("file 경로 : "+realFilePath);
 			
 			// 정보 출력
 			sFileInfo += "&bNewLine=true";

@@ -126,7 +126,6 @@ function signup(event) {
 	} else {
 		flag = true;
 		var birthday = yyyy + "-" + mm + "-" + dd;
-		var pw = CryptoJS.SHA256($("#pw").val()).toString();
 	}
 	if (flag) {
 		$.ajax({
@@ -137,7 +136,7 @@ function signup(event) {
 				"type" : $("#type").val(),
 				"name" : $("#name").val(),
 				"id" : $("#id").val(),
-				"pw" : $("#pw").val(),
+				"pw" : CryptoJS.SHA256($("#pw").val()).toString(),
 				"phone" : $("#phone").val(),
 				"birthday" : birthday,
 				"email" : $("#email").val(),
