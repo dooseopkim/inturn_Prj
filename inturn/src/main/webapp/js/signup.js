@@ -77,6 +77,7 @@ function removeChar(event) {
 
 /**
  * 회원가입
+ * 
  * @param event
  * @returns
  */
@@ -84,32 +85,48 @@ function signup(event) {
 	var flag = false;
 	var type = $('#type').val();
 	var name = $('#name').val();
-	var id = $('#name').val();
-	var pw = $('#pw').val();
+	var id = $('#id').val();
+	var pw = $("#pw").val();
+	var pwCheck = $('#pwCheck').val();
+	var phone = $('#phone').val();
 	var yyyy = $('#yy').val();
 	var mm = $('#mm').val();
 	var dd = $('#dd').val();
+	var email = $('#email').val();
+
 	if (type == '') {
 		alert('멘토 멘티를 선택해주세요.');
 		$('#type').focus();
 	} else if (name == '') {
 		$('#name').focus();
-
 	} else if (id == '') {
-		$('#id').focus();
-
+		alert('중복확인을 해주세요.')
+		$('#availId').focus();
 	} else if (pw == '') {
+		alert('비밀번호를 입력해주세요.')
 		$('#pw').focus();
-
+	} else if (pwCheck == '') {
+		alert('비밀번호 확인란을 입력해주세요.');
+		$('#pwCheck').focus();
+	} else if (phone == '' || phone.length<=10) {
+		alert('휴대전화 번호를 확인해주세요.');
+		$('#phone').focus();
+	} else if (yyyy == '' || yyyy.length<=3) {
+		alert('출생년도를 정확히 입력해주세요.');
+		$('#yy').focus();
 	} else if (mm == '') {
 		alert('태어난 달을 선택해주세요.');
 		$('#mm').focus();
 	} else if (dd == '') {
 		alert('태어난 일을 선택해주세요.');
 		$('#dd').focus();
+	} else if (email == '') {
+		alert('본인인증이 필요합니다.')
+		location.href = "/signup.do"
 	} else {
 		flag = true;
 		var birthday = yyyy + "-" + mm + "-" + dd;
+		var pw = CryptoJS.SHA256($("#pw").val()).toString();
 	}
 	if (flag) {
 		$.ajax({
@@ -128,11 +145,11 @@ function signup(event) {
 			success : function(data) {
 				if (data.result == "success") {
 					alert('회원가입에 성공했습니다.');
-					location.href="/successSignup.do"
+					location.href = "successSignup.do"
 
 				} else {
 					alert('죄송합니다. 회원가입에 실패했습니다. 다시 진행해주세요.');
-					location.href="/signup.do"
+					location.href = "signup.do"
 				}
 			},
 			error : function(request, status, error) {

@@ -26,7 +26,7 @@
 	</bean> -->
 	
 	<!-- Mysql DBCP설정 -->
-	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property> <!-- mariadb로 바꾸면 여기만 mysql에서 maridb로만 바꾸면 됨 -->
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/inturnDB?allowMultiQueries=true"></property>
         <property name="username" value="inturn"></property>
