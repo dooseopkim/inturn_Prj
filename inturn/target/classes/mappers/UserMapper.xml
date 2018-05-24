@@ -14,7 +14,7 @@
 	</delete>
 	
 	<update id="">
-		UPDATE FROM users
+		UPDATE users
 		SET pw = #{pw},
 			name = #{name},
 			phone = #{phone},
@@ -28,6 +28,24 @@
 		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{email} ,#{type}, (select nvl(max(idx),0)+1 from users))
 	</insert>
 
+	<update id="modifyUser" parameterType="UserVO">
+		UPDATE USERS
+		SET pw = #{pw},
+			name = #{name},
+			phone = #{phone},
+			email = #{email},
+			birthday = #{birthday},
+			type = #{type},
+			icon_num = #{icon_num}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="modifyUserPw" parameterType="UserVO">
+		UPDATE USERS
+		SET pw = #{pw}
+		WHERE id = #{id}
+	</update>
+		
 	<select id="login" parameterType="UserVO" resultType="UserVO">
 		SELECT *
 		FROM USERS

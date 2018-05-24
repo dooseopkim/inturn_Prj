@@ -41,7 +41,7 @@ public class MyBatisTest {
 		System.out.println(user);
 	}
 
-	@Test
+//	@Test
 	public void findID() {
 		UserVO vo = new UserVO();
 		vo.setName("tname1");
@@ -57,5 +57,13 @@ public class MyBatisTest {
 		vo.setName("tname");
 		vo.setEmail("test@gmail.com");
 		System.out.println(dao.findPw(vo));
+	}
+	
+	@Test
+	public void modifyUserPw() {
+		UserVO vo = new UserVO();
+		vo.setId("test");
+		vo.setPw("0ffe1abd1a08215353c233d6e009613e95eec4253832a761af28ff37ac5a150c");
+		dao.modifyUserPw(vo);
 	}
 }

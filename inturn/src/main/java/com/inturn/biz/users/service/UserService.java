@@ -8,6 +8,7 @@ public interface UserService {
 	public List<UserVO> getUsers();
 	public int insertUser(UserVO vo);
 	public int modifyUser(UserVO vo);
+	public int modifyUserPw(UserVO vo);
 	public int deleteUser(UserVO vo);
 	public UserVO login(UserVO vo);
 	public String findID(UserVO vo);
