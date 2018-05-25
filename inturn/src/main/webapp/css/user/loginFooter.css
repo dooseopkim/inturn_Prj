@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.utill-login {
+	overflow:hidden;
+	margin-top:60px; 
+	padding-left: 0;
+	border-top:1px solid #e7e7e7;
+	border-bottom:1px solid #e7e7e7;
+	list-style: none;
+}
+.utill-login li {float:left; width:33.33333%; border-left:1px solid #e7e7e7; }
+.utill-login li:first-child {border:none;}
+.utill-login li a {position:relative; display:block; width:100%; height:127px; padding:35px 0 0 100px; font-size:16px; line-height:27px; color: gray;}
+.utill-login li a:before {content:''; position:absolute; left:20px; top:50%; width:66px; height:66px; margin-top:-33px; background-repeat:no-repeat;}
+.utill-login li.btn-join a:before {background-image:url('/images/btn/signup.png');}
+.utill-login li.find-id a:before {background-image:url('/images/btn/findID.png');}
+.utill-login li.find-pw a:before {background-image:url('/images/btn/sendNewPW.png');}
+.utill-login li a strong {display:block; color:#000; font-size:18px;}
+
+@media (max-width:768px){
+	 .utill-login {
+    	margin:30px -3px 0;
+    	border:none;
+    }
+    .utill-login li {padding:0 3px; border:none;}
+    .utill-login li a {height:90px; padding:0; border:1px solid #dcdcdc; font-size:0; line-height:0; text-align:center; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
+    .utill-login li a:before {content:''; position:static; display:block; width:36px; height:36px; margin:15px auto 8px; background-size:36px auto;}
+    .utill-login li.btn-join a:before {background-image:url('/images/btn/signup.png');}
+    .utill-login li.find-id a:before {background-image:url('/images/btn/findID.png');}
+    .utill-login li.find-pw a:before {background-image:url('/images/btn/sendNewPW.png');}
+    .utill-login li a strong {display:block; font-size:14px; line-height:20px;}
+}
+

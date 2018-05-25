@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+#insertBoard {
+	margin-right:5px;
+	float:right;
+}
+
+#cancelBtn {
+	float:right;
+}

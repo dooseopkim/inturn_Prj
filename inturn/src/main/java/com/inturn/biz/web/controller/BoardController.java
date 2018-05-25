@@ -2,17 +2,26 @@ package com.inturn.biz.web.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.inturn.biz.board.service.FileService;
+import com.inturn.biz.board.service.FreeBoardService;
+import com.inturn.biz.board.vo.FilesVO;
+import com.inturn.biz.board.vo.FreeBoardVO;
+import com.inturn.biz.users.vo.UserVO;
 import com.inturn.biz.web.common.SHA256;
 
 /**
@@ -24,6 +33,10 @@ import com.inturn.biz.web.common.SHA256;
  */
 @Controller
 public class BoardController {
+	@Resource(name = "FreeBoardService")
+	FreeBoardService fb_service;
+	@Resource(name = "FileService")
+	FileService file_service;
 
 	/**
 	 * @return 자유게시판 페이지 이동 설정
@@ -42,60 +55,125 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/insertBoard.do", method = RequestMethod.POST)
-	public String insertBoard(String editor) {
-		System.out.println("저장할 내용" + editor);
+	public String insertBoard(String title, String id, String editor) {
+		System.out.println("저장할 내용" + title +", " + id + ", " + editor);
+		java.util.Date udate = new java.util.Date();
+		Date regDate = new Date(udate.getTime());
+		fb_service.insertFreeBoard(new FreeBoardVO(title, editor, regDate, 0, id));
 		return "redirect:freeBoard.do";
 	}
 
+	// 서버에 파일저장
+	public int saveFile(InputStream is, OutputStream os, HttpServletRequest request, String filePath, String fileName) {
+		int fileSize = 0;
+		try {
+			File file = new File(filePath);
+			if (!file.exists()) {
+				file.mkdirs();
+			}
+			is = request.getInputStream();
+			os = new FileOutputStream(filePath + fileName);
+			int numRead;
+			byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
+			while ((numRead = is.read(b, 0, b.length)) != -1) {
+				fileSize += numRead;
+				os.write(b, 0, numRead);
+			}
+			os.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (is != null)
+					is.close();
+				if (os != null)
+					os.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return fileSize;
+	}
+
+	// Error났을 시, 이미지 url
+	public void fileError(String realFilePath, String sFileInfo, String filename) {
+		File deleteFile = new File(realFilePath);
+		deleteFile.delete();
+		// 정보 출력
+		sFileInfo += "&bNewLine=true";
+		// img 태그의 title 속성을 원본파일명으로 적용시켜주기 위함
+		sFileInfo += "&sFileName=" + filename;
+		sFileInfo += "&sFileURL=" + "/resources/editor/multiupload/" + "error.jpg";
+	}
+
 	@RequestMapping("/multiFileUploader.do")
-	public void file_uploader_html5(HttpServletRequest request, HttpServletResponse response) {
+	public void file_uploader(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		InputStream is = null;
+		OutputStream os = null;
 		try {
 			// 파일정보
 			String sFileInfo = "";
 			// 파일명을 받는다 - 일반 원본파일명
-			String filename = request.getHeader("file-name");
-			String temp[] = filename.split("%23%23%23");
-			filename = temp[0];
+			String fileName = request.getHeader("file-name");
+			System.out.println(fileName);
+			String temp[] = fileName.split("%23%23%23");
+			fileName = temp[0];
 			String hashValue = temp[1];
-			System.out.println("javascript hash : "+hashValue);
-			// 파일 확장자
-			String filename_ext = filename.substring(filename.lastIndexOf(".") + 1);
-			// 확장자를소문자로 변경
-			filename_ext = filename_ext.toLowerCase();
+			System.out.println("javascript hash : " + hashValue);
 
 			// 파일 기본경로
 			String dftFilePath = request.getSession().getServletContext().getRealPath("/");
 			// 파일 기본경로 _ 상세경로
 			String filePath = dftFilePath + "resources" + File.separator + "editor" + File.separator + "multiupload"
 					+ File.separator;
-			File file = new File(filePath);
-			if (!file.exists()) {
-				file.mkdirs();
-			}
-			///////////////// 서버에 파일쓰기 /////////////////
-			InputStream is = request.getInputStream();
-			OutputStream os = new FileOutputStream(filePath+filename);
-			int numRead;
-			byte b[] = new byte[Integer.parseInt(request.getHeader("file-size"))];
-			while ((numRead = is.read(b, 0, b.length)) != -1) {
-				os.write(b, 0, numRead);
-			}
-			if (is != null) {
-				is.close();
-			}
-			os.flush();
-			os.close();
-			
-			//무결성 검증
+			String realFilePath = filePath + fileName;
+			// 서버에 파일 저장
+			int fileSize = saveFile(is, os, request, filePath, fileName);
+			// 무결성 검증
 			SHA256 hash = new SHA256();
-			System.out.println("java hash : "+hash.sha256(filePath+filename));
-			System.out.println("file 경로 : "+filePath+filename);
-			
-			// 정보 출력
-			sFileInfo += "&bNewLine=true";
-			// img 태그의 title 속성을 원본파일명으로 적용시켜주기 위함
-			sFileInfo += "&sFileName=" + filename;
-			sFileInfo += "&sFileURL=" + "/resources/editor/multiupload/" + filename;
+			String checkHashValue = hash.sha256(realFilePath);
+			System.out.println("java hash : " + checkHashValue);
+			// 무결성 검증이 정상적이라면
+			if (checkHashValue.equals(hashValue)) {
+				UserVO login = (UserVO) session.getAttribute("login");
+				String flag = login.getId();
+				FilesVO insertFile = new FilesVO(filePath, fileName, fileSize, hashValue);
+				// 데이터베이스에 파일저장
+				int row = file_service.insertFiles(flag, insertFile);
+				if (row == 0)
+					fileError(realFilePath, sFileInfo, fileName);
+				else {
+					// DB에 저장에 문제없이 잘 처리 됐을경우
+					insertFile.setFileGroupNum(file_service.findFileGroup(flag));
+					int saveFileNum = file_service.findFile(insertFile);
+					// 파일이름 중복이나 똑같은 파일저장 시 모두 저장해 주기위해 해당 파일num을 가져옴
+					if (saveFileNum == 0)
+						fileError(realFilePath, sFileInfo, fileName);
+					else {
+						// 문제없이 잘 가져왔을 경우
+						// 파일 확장자를 구함
+						String filename_ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+						// 확장자를소문자로 변경
+						filename_ext = filename_ext.toLowerCase();
+						// DB에 있는 파일넘버로 이름을 바꿔주는 작업
+						String saveFileName = Integer.toString(saveFileNum) + "." + filename_ext;
+						File tempFile = new File(realFilePath);
+						File saveFile = new File(filePath + saveFileName);
+						if(tempFile.exists()) {
+							tempFile.renameTo(saveFile);
+							tempFile.delete();
+							// 작성중인 게시판으로 정보출력해주는 과정
+							sFileInfo += "&bNewLine=true";
+							// img 태그의 title 속성을 원본파일명으로 적용시켜주기 위함
+							sFileInfo += "&sFileName=" + fileName;
+							sFileInfo += "&sFileURL=" + "/resources/editor/multiupload/" + saveFileName;
+						} else
+							fileError(realFilePath, sFileInfo, fileName);
+					}
+				}
+			} else
+				fileError(realFilePath, sFileInfo, fileName);
+			System.out.println("file 경로 : " + realFilePath);
 			PrintWriter print = response.getWriter();
 			print.print(sFileInfo);
 			print.flush();

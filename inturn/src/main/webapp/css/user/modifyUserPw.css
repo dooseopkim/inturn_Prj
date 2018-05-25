@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+.page-modifyUserPw{
+	overflow:hidden;
+	padding: 50px 90px 50px 90px;
+	text-align: center;
+}
+
+.box-modifyUserPw{
+	padding: 0 70px 0 70px;
+	text-align: center;
+}
+
+#pw{
+	margin-top: 50px;
+}
+
+#newPw{
+	margin-top: 20px;
+}
+
+#rePw{
+	margin-top: 20px;
+}
+
+#btn_modifyUserPW{
+	margin-top: 25px;	
+}
+
+.feedback{
+	width: 100%;
+	margin-top: 10px;
+	margin-left: 10px;
+	color: gray;
+	text-align: left;
+}
+
+.valid-feedback {
+	display: none;
+	width: 100%;
+	margin-top: 10px;
+	margin-left: 10px;
+	color: #28a745;
+	text-align: left;
+}
+
+.invalid-feedback {
+	display: none;
+	width: 100%;
+	margin-top: 10px;
+	margin-left: 10px;
+	color: #dc3545;
+	text-align: left;
+}
+
+.is-invalid{
+	border-color: #dc3545;
+}
