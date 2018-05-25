@@ -12,20 +12,20 @@ $(function(){
 		}
 	});
 	
-	$("#newPw").keydown(function(e){
+	$("#newPw").keyup(function(e){
+		
 		if(e.keyCode === 13){
 			$("#rePw").focus();
+		} else {
+			checkNewPw();
 		}
-		
 	});
 	
-	$("#rePw").keydown(function(e){
-		if($("#newPw").val() != $("#rePw").val()){
-			console.log("다르다");
-		}
-		
+	$("#rePw").keyup(function(e){
 		if(e.keyCode === 13){
 			modifyUserPw();
+		} else {
+			checkRePw();
 		}
 	});
 	
@@ -47,6 +47,15 @@ $(function(){
 		} else if($("#rePw").val()==""){
 			alert("새 비밀번호 확인을 입력하세요.")
 			$("#rePw").focus();
+			return false;
+		} else if($("#newPw").val().length <8 || $("#newPw").val().length >16){
+			alert("새 비밀번호는 영문(대소문자구분), 숫자, 특수문자(~!@#$%^&*()-_+= 만 허용)를 혼용하여 8~16자를 입력해 주세요.");
+			return false;
+		} else if(checkNewPw() != true){
+			alert("새 비밀번호는 영문(대소문자구분), 숫자, 특수문자(~!@#$%^&*()-_+= 만 허용)를 혼용하여 8~16자를 입력해 주세요.");
+			$("#newPw").val("");
+			$("#rePw").val("");
+			$("#newPw").focus();
 			return false;
 		} else if($("#newPw").val() != $("#rePw").val()){
 			alert("새 비밀번호가 일치하지 않습니다. 다시 시도해 주세요.");
@@ -75,15 +84,68 @@ $(function(){
 			success: function(data){
 				if(data.result == "success"){
 					alert("비밀번호가 변경되었습니다.");
+					feedReset();
+					
 				} else {
 					alert(data.result);
-					$("#pw").val("");
-					$("#newPw").val("");
-					$("#rePw").val("");
-					$("#pw").focus();
+					feedReset();
 				}
 			}
 		});
+	}
+	
+	function checkNewPw(){
+		var newPw = $("#newPw").val();
+		
+		if(newPw != "" && $("#rePw").val() != ""){
+			checkRePw();
+		} 
+		
+		if(newPw == ""){
+			$("#feedbackNewPw").html("");
+			$("#feedbackNewPw").removeClass("valid-feedback invalid-feedback").addClass( "feedback" );
+		} else if(newPw.length<8 || newPw.length>16){
+			$("#feedbackNewPw").html("영문(대소문자구분), 숫자, 특수문자(~!@#$%^&*()-_+= 만 허용)를 혼용하여 8~16자를 입력해 주세요.");
+			$("#feedbackNewPw").removeClass("feedback valid-feedback").addClass( "invalid-feedback" );
+			$("#newPw").removeClass("is-valid").addClass( "is-invalid" );
+			return false;
+		} else if(!newPw.match(/([a-zA-Z0-9].*[~,!,@,#,$,%,^,&,*,(,),-,_,+,=])|([~,!,@,#,$,%,^,&,*,(,),-,_,+,=].*[a-zA-Z0-9])/)) {
+			$("#feedbackNewPw").html("영문(대소문자구분), 숫자, 특수문자(~!@#$%^&*()-_+= 만 허용)를 혼용하여 8~16자를 입력해 주세요.");
+			$("#feedbackNewPw").removeClass("feedback valid-feedback").addClass( "invalid-feedback" );
+			$("#newPw").removeClass("is-valid").addClass( "is-invalid" );
+		      return false;
+		} else {
+			$("#feedbackNewPw").html("");
+			$("#feedbackNewPw").removeClass("feedback invalid-feedback").addClass( "valid-feedback" );
+			$("#newPw").removeClass("is-invalid").addClass( "is-valid" );
+			return true;
+		}
+	}
+	
+	function checkRePw(){
+		if($("#rePw").val()=="" || $("#newPw").val() == ""){
+			$("#feedbackRePw").removeClass("valid-feedback invalid-feedback").addClass( "feedback" );
+			$("#feedbackRePw").html("");
+		} else if($("#newPw").val() != $("#rePw").val()){
+			$("#feedbackRePw").html("새 비밀번호가 일치하지 않습니다.");
+			$("#feedbackRePw").removeClass("feedback valid-feedback").addClass( "invalid-feedback" );
+			$("#rePw").removeClass("is-valid").addClass( "is-invalid" );
+			
+		} else {
+			$("#feedbackRePw").html("새 비밀번호 확인 완료");
+			$("#feedbackRePw").removeClass("feedback invalid-feedback").addClass( "valid-feedback" );
+			$("#rePw").removeClass("is-invalid").addClass( "is-valid" );
+		}
+	}
+	
+	function feedReset(){
+		$("#pw").val("");
+		$("#newPw").val("");
+		$("#rePw").val("");
+		$("#feedbackNewPw").html("");
+		$("#feedbackNewPw").removeClass("valid-feedback invalid-feedback").addClass( "feedback" );
+		$("#feedbackRePw").html("");
+		$("#feedbackRePw").removeClass("valid-feedback invalid-feedback").addClass( "feedback" );
 	}
 	
 });

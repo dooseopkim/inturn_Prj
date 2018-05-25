@@ -133,7 +133,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
+    .sidenav { padding: 0 0 0 0; }
     .sidenav a {font-size: 18px;}
 }
 
