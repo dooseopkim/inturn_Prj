@@ -41,7 +41,7 @@ public class APIController {
 			URL url = new URL("http://www.career.go.kr/cnet/openapi/getOpenApi?"
 					+ "apiKey=7380fd93410c2a5571f013bbd976d24a"
 					+ "&svcType=api&svcCode=SCHOOL&contentType=json"
-					+ "&gubun="+gubun+"&region="+region+"&sch1="+sch1);
+					+ "&gubun="+gubun+"&region="+region+"&sch1="+sch1+"&perPage=10000");
 			InputStreamReader isr = new InputStreamReader(url.openConnection().getInputStream(), "UTF-8");
 			JSONObject object = (JSONObject) JSONValue.parse(isr);
 			JSONObject object2 = (JSONObject) object.get("dataSearch");

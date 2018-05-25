@@ -61,8 +61,8 @@
 			    	</div>
 			    	<div class="row">&nbsp;</div>
 			        <div class="row" id="btns">
-				        <input type="button" id="insertBoard" class="bnt btn-lg btn-info" value="등록" />
-				       	<input type="button" id="cancelBtn" class="bnt btn-lg btn-danger" value="취소" />
+				        <input type="button" id="insertBoard" class="btn btn-info" value="등록" />
+				       	<input type="button" id="cancelBtn" class="btn btn-danger" value="취소" />
 	 				</div>
 			    </form>
  			</div>

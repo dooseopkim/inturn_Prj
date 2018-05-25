@@ -44,35 +44,42 @@
 	</nav>
 
 	<!-- 테스트용도 -->
-	<div class="row blogLayout animate-box">
-		<div class="leftcolumn" id="leftcolumn">
-			<div class="card">
-				<h3>인적사항</h3>
+	<div class="container-wrap" style="background-color: #e8e8e8;">
+
+		<div class="row blogLayout animate-box">
+			<div class="leftcolumn" id="leftcolumn">
+				<div class="card">
+					<h3>인적사항</h3>
+				</div>
+				<div class="card">
+					<h3>인적사항</h3>
+				</div>
+				<div class="card">
+					<h3>인적사항</h3>
+				</div>
 			</div>
-			<div class="card">
-				<h3>인적사항</h3>
-			</div>
-			<div class="card">
-				<h3>인적사항</h3>
-			</div>
-		</div>
-		<div class="rightcolumn">
-			<div class="card sidenav" id="sidenav">
-				<h4>이력서 항목</h4>
-				<ul class="fh5co-social-icons" style="display: inline-block;">
-					<li><a class="btn icon-pencil" href="javascript:void(0);" id="formEducation" onclick="formEducationClick()"
-						data-sync_id="InputStat_SchoolInputStat"> <span>학력&nbsp;&nbsp;&nbsp;</span>
-					</a></li>
-					<li><a class="btn icon-briefcase" href="javascript:void(0);" id="formCareer" onclick="formCareerClick()"
-						data-sync_id="InputStat_CareerInputStat"> <span>경력</span>
-					</a></li>
-					<li><a class="btn icon-newspaper" href="javascript:void(0);" id="formLicense" onclick="formLicenseClick()"
-						data-sync_id="InputStat_LicenseInputStat"> <span>자격증</span>
-					</a></li>
-					<li><a class="btn icon-file-text2" href="javascript:void(0);" id="formIntroduction" onclick="formIntroductionClick()"
-						data-sync_id="InputStat_UserIntroduceInputStat"> <span>자기소개서</span>
-					</a></li>
-				</ul>
+			<div class="rightcolumn">
+				<div class="card sidenav" id="sidenav">
+					<h4>이력서 항목</h4>
+					<ul class="fh5co-social-icons" style="display: inline-block;">
+						<li><a class="btn icon-pencil" href="javascript:void(0);"
+							id="formEducation" onclick="formEducationClick()"
+							data-sync_id="InputStat_SchoolInputStat"> <span>학력&nbsp;&nbsp;&nbsp;</span>
+						</a></li>
+						<li><a class="btn icon-briefcase" href="javascript:void(0);"
+							id="formCareer" onclick="formCareerClick()"
+							data-sync_id="InputStat_CareerInputStat"> <span>경력</span>
+						</a></li>
+						<li><a class="btn icon-newspaper" href="javascript:void(0);"
+							id="formLicense" onclick="formLicenseClick()"
+							data-sync_id="InputStat_LicenseInputStat"> <span>자격증</span>
+						</a></li>
+						<li><a class="btn icon-file-text2" href="javascript:void(0);"
+							id="formIntroduction" onclick="formIntroductionClick()"
+							data-sync_id="InputStat_UserIntroduceInputStat"> <span>자기소개서</span>
+						</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
