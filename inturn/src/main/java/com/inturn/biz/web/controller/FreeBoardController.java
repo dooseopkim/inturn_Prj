@@ -42,7 +42,8 @@ public class FreeBoardController {
 	 * @return 자유게시판 페이지 이동 설정
 	 */
 	@RequestMapping(value = "/freeBoard.do", method = RequestMethod.GET)
-	public String freeBoardDo() {
+	public String freeBoardDo(int page_num) {
+		
 		return "index.jsp?content=board/freeBoard";
 	}
 

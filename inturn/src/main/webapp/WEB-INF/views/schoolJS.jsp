@@ -13,6 +13,10 @@
 		 * @version 1.0
 		 * @since 2018.05.11
 		 */
+		 
+		function regionChange() {
+			getSchoolList();
+		}
 		/**
 		* @see
 		* 학교가 고등학교인지 대학교인지 select로 받아온 후 고등학교일 경우 high_list부분의
@@ -65,7 +69,7 @@
 				var tag = '';
 				tag += '<div id="school" class="row">';
 				tag += '지역 : ';
-				tag += '<select id="region">';
+				tag += '<select id="region" onchange="regionChange()">';
 				tag += '<option value="100260">서울특별시</option>';
 				tag += '<option value="100267">부산광역시</option>';
 				tag += '<option value="100269">인천광역시</option>';
