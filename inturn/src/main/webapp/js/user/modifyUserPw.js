@@ -13,7 +13,6 @@ $(function(){
 	});
 	
 	$("#newPw").keyup(function(e){
-		
 		if(e.keyCode === 13){
 			$("#rePw").focus();
 		} else {

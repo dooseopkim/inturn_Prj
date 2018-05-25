@@ -12,7 +12,7 @@
 	<div>
 		<ul class="utill-login">
 			<li class="btn-join"><a href="javascript:void(0);"
-				onclick="javascript: window.location='signUp.do' ; return false ;"><strong>회원가입</strong>
+				onclick="javascript: window.location='signup.do' ; return false ;"><strong>회원가입</strong>
 					아직 회원이 아니신가요?</a></li>
 			<li class="find-id"><a href="javascript:void(0);"
 				onclick="javascript: window.location='findIDForm.do' ; return false ;"><strong>아이디
