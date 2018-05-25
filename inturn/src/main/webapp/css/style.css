@@ -96,6 +96,47 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn { 
+  float: left;
+  width: 80%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 20%;
+  padding-left: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 1em;
+}
+
+/* The sidebar menu */
+.rightcolumn .sidenav {
+    height: "auto"; /* Full-height: remove this if you want "auto" height */
+    width: 17%; /* Set the width of the sidebar */
+    position: absolute; /* Fixed Sidebar (stay in place on scroll) */
+    /* z-index: 1; */ /* Stay on top */
+    top: 239px; /* Stay at the top */
+    /* bottom : 294px; */
+    right: 3.2em;
+    background-color: #fff; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
 .fh5co-nav {
   margin: 5em 0 0 0;
 }

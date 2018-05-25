@@ -27,6 +27,16 @@ function chkId() {
 }
 
 /**
+ * 이름에는 한글만 입력가능하도록!
+ * @returns
+ */
+function hangul() {
+	if ((event.keyCode < 12592) || (event.keyCode > 12687))
+		event.returnValue = false;
+}
+
+
+/**
  * 비밀번호 확인
  * 
  * @returns
@@ -108,10 +118,10 @@ function signup(event) {
 	} else if (pwCheck == '') {
 		alert('비밀번호 확인란을 입력해주세요.');
 		$('#pwCheck').focus();
-	} else if (phone == '' || phone.length<=10) {
+	} else if (phone == '' || phone.length <= 10) {
 		alert('휴대전화 번호를 확인해주세요.');
 		$('#phone').focus();
-	} else if (yyyy == '' || yyyy.length<=3) {
+	} else if (yyyy == '' || yyyy.length <= 3) {
 		alert('출생년도를 정확히 입력해주세요.');
 		$('#yy').focus();
 	} else if (mm == '') {
