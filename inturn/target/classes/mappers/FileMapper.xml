@@ -32,6 +32,10 @@
 		DELETE FROM fileGroup where fb_num = #{fb_num}
 	</delete>
 	
+	<delete id="deleteFileGroup">
+		DELETE FROM fileGroup where fileGroupNum = #{fileGroupNum}
+	</delete> 
+	
 	<select id="findFile" parameterType="FilesVO" resultType="int">
 		select ifnull(max(file_num),0) from files where fileName = #{fileName} and fileHash = #{fileHash} and fileGroupNum = #{fileGroupNum}
 	</select>

@@ -95,6 +95,7 @@
 	<script src="js/jquery.countTo.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+	<script src="js/index.js"></script>
 
 </body>
 </html>

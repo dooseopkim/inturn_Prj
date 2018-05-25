@@ -7,6 +7,6 @@
  */
 $(function(){
 	$("#insertBoardBtn").click(function(){
-		location.href="/insertBoard.do";
+		location.href="/insertFreeBoard.do";
 	})
 })

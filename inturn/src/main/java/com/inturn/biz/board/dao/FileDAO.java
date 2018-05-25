@@ -11,6 +11,7 @@ public interface FileDAO {
 	public int insertBoard(String flag);
 	public int delete_CB_Files(int cb_num);
 	public int delete_FB_Files(int fb_num);
+	public int deleteFileGroup(int fileGroupNum);
 	public int findFile(FilesVO vo);
 	public int insertFile(FilesVO vo);
 	public int deleteFile(int fileGroupNum);
