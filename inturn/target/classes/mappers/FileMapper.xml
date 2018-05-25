@@ -21,7 +21,7 @@
 	</update>
 	
 	<update id="insertBoard" parameterType="String">
-		update fileGroup set flag = '-1' where id = #{flag}
+		update fileGroup set flag = '-1' where flag = #{flag}
 	</update>
 	
 	<delete id="delete_CB_Files">

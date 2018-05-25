@@ -6,6 +6,7 @@ import com.inturn.biz.board.vo.FreeBoardVO;
 
 public interface FreeBoardDAO {
 	public List<FreeBoardVO> showFreeBoard();
+	public int findBoard(FreeBoardVO vo);
 	public int insertFreeBoard(FreeBoardVO vo);
 	public int modifyFreeBoard(FreeBoardVO vo);
 	public int deleteFreeBoard(int fb_num);

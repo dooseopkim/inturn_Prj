@@ -32,4 +32,9 @@ public class FreeBoardDAOImpl implements FreeBoardDAO{
 	public int deleteFreeBoard(int fb_num) {
 		return mybatis.delete("FreeBoardMapper.deleteFreeBoard", fb_num);
 	}
+
+	@Override
+	public int findBoard(FreeBoardVO vo) {
+		return mybatis.selectOne("FreeBoardMapper.findBoard", vo);
+	}
 }

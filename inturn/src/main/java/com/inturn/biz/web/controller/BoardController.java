@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.inturn.biz.board.service.FileService;
 import com.inturn.biz.board.service.FreeBoardService;
 import com.inturn.biz.board.vo.FilesVO;
+import com.inturn.biz.board.vo.FreeBoardVO;
 import com.inturn.biz.users.vo.UserVO;
 import com.inturn.biz.web.common.SHA256;
 
@@ -53,8 +55,11 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/insertBoard.do", method = RequestMethod.POST)
-	public String insertBoard(String content) {
-		System.out.println("저장할 내용" + content);
+	public String insertBoard(String title, String id, String editor) {
+		System.out.println("저장할 내용" + title +", " + id + ", " + editor);
+		java.util.Date udate = new java.util.Date();
+		Date regDate = new Date(udate.getTime());
+		fb_service.insertFreeBoard(new FreeBoardVO(title, editor, regDate, 0, id));
 		return "redirect:freeBoard.do";
 	}
 

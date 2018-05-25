@@ -44,11 +44,32 @@
 		</div>
 	</div>
 	</nav>
- 	
-    <form action="./insertBoard.do" method="post" id="insertBoardFrm" enctype="multipart/form-data">
-        <textarea name="editor" id="editor" style="width: 700px; height: 400px;"></textarea>
-        <input type="button" id="insertBoard" value="등록" />
-        <input type="button" id="cancelBtn" value="취소" />
-    </form>
+ 	<div class="container-wrap">
+ 		<div class="row">
+ 			<div class="col-sm-2"></div>
+ 			<div class="col-sm-10">
+			    <form action="/insertBoard.do" method="post" id="insertBoardFrm" enctype="multipart/form-data">
+			    	<div class="row">
+			    		<div class="col-sm-9 form-group">
+				    		제목 : <input type="text" name="title" class="form-control" placeholder="글 제목">
+			    		</div>
+			    		<div class="col-sm-3"></div>
+			    		<input type="hidden" name="id" value="${login.id}">
+			    	</div>
+			    	<div class="row">
+				        <textarea name="editor" id="editor" style="width: 700px; height: 400px;"></textarea>
+			    	</div>
+			        <div class="row">
+				        <div class="col-sm-9 form-group">
+				       		<input type="button" id="cancelBtn" value="취소" />
+				        	<input type="button" id="insertBoard" value="등록" />
+				        </div>
+	 					<div class="col-sm-3"></div>
+	 				</div>
+			    </form>
+ 				
+ 			</div>
+ 		</div>
+ 	</div>
 </body>
 </html>
