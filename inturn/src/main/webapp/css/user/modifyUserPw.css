@@ -2,7 +2,7 @@
 
 .page-modifyUserPw{
 	overflow:hidden;
-	padding: 30px 90px 0px 90px;
+	padding: 50px 90px 50px 90px;
 	text-align: center;
 }
 
@@ -21,14 +21,17 @@
 
 #rePw{
 	margin-top: 20px;
-	margin-bottom: 35px;
+}
+
+#btn_modifyUserPW{
+	margin-top: 25px;	
 }
 
 .feedback{
 	width: 100%;
 	margin-top: 10px;
 	margin-left: 10px;
-	color: #495057;
+	color: gray;
 	text-align: left;
 }
 
