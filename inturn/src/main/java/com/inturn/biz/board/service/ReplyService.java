@@ -1,5 +1,5 @@
 package com.inturn.biz.board.service;
 
-public interface FileBoardService {
+public interface ReplyService {
 
 }

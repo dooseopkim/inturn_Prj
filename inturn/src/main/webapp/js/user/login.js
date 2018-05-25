@@ -74,7 +74,6 @@ $(function(){
 			data: {
 				"id" : $("#loginId").val(),
 				"pw" : pw
-//				"pw" : $("#password").val()
 			},
 			success: function(data){
 				if(data.result == "success"){

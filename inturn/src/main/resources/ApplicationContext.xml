@@ -65,7 +65,7 @@
 		<property name="javaMailSender" ref="javaMailSender"></property>
 	</bean> -->
 
-<!-- 	<bean id="txManager"
+	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
@@ -80,7 +80,7 @@
 	</tx:advice>
 	<aop:config>
 		<aop:pointcut id="requiredTx"
-			expression="execution(* com.wdist.biz.board.service.*Impl.*(..))" />
+			expression="execution(* com.inturn.biz.board.service.*Impl.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="requiredTx" />
-	</aop:config> -->
+	</aop:config>
 </beans>

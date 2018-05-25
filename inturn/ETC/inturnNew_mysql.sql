@@ -1,4 +1,4 @@
---이거 한 3번 실행시키면 테이블만 다 날아감--
+--테이블 전부 날리기--
 SET @tables = NULL;
 SELECT GROUP_CONCAT(table_schema, '.', table_name) INTO @tables
     FROM information_schema.tables 
@@ -107,6 +107,7 @@ ALTER TABLE `freeBoard`
 -- fileGroup
 CREATE TABLE `fileGroup` (
 	`fileGroupNum` INT NOT NULL COMMENT 'fileGroupNum', -- fileGroupNum
+	`flag` 		   VARCHAR(30) NULL     COMMENT 'flag', -- flag
 	`fb_num`       INT NULL     COMMENT 'fb_num', -- fb_num
 	`cb_num`       INT NULL     COMMENT 'cb_num' -- cb_num
 )
@@ -122,11 +123,10 @@ ALTER TABLE `fileGroup`
 -- files
 CREATE TABLE `files` (
 	`file_num`      INT          NOT NULL COMMENT 'file_num', -- file_num
-	`original_name` VARCHAR(100) NULL     COMMENT 'filePath', -- filePath
+	`filePath` 		VARCHAR(1000) NULL     COMMENT 'filePath', -- filePath
 	`fileName`      VARCHAR(100) NULL     COMMENT 'fileName', -- fileName
 	`fileSize`      INT          NULL     COMMENT 'fileSize', -- fileSize
 	`fileHash`      VARCHAR(200) NULL     COMMENT 'fileHash', -- fileHash
-	`fileExtension` VARCHAR(20)  NULL     COMMENT 'fileExtension', -- fileExtension
 	`regDate`       DATE         NULL     COMMENT 'regDate', -- regDate
 	`fileGroupNum`  INT          NULL     COMMENT 'fileGroupNum' -- fileGroupNum
 )
