@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.inturn.biz.board.service.FileService;
 import com.inturn.biz.board.service.FreeBoardService;
 import com.inturn.biz.board.vo.FilesVO;
+import com.inturn.biz.board.vo.FreeBoardVO;
 import com.inturn.biz.users.vo.UserVO;
 import com.inturn.biz.web.common.SHA256;
 
@@ -30,7 +32,7 @@ import com.inturn.biz.web.common.SHA256;
  * @see 게시판 관련 메소드 Controller
  */
 @Controller
-public class BoardController {
+public class FreeBoardController {
 	@Resource(name = "FreeBoardService")
 	FreeBoardService fb_service;
 	@Resource(name = "FileService")
@@ -47,14 +49,16 @@ public class BoardController {
 	/**
 	 * @return 게시판 입력 페이지 이동 설정
 	 */
-	@RequestMapping(value = "/insertBoard.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertFreeBoard.do", method = RequestMethod.GET)
 	public String insertBoard() {
-		return "index.jsp?content=board/insertBoard";
+		return "index.jsp?content=board/insertFreeBoard";
 	}
 
-	@RequestMapping(value = "/insertBoard.do", method = RequestMethod.POST)
-	public String insertBoard(String content) {
-		System.out.println("저장할 내용" + content);
+	@RequestMapping(value = "/insertFreeBoard.do", method = RequestMethod.POST)
+	public String insertBoard(String title, String id, String editor) {
+		java.util.Date udate = new java.util.Date();
+		Date regDate = new Date(udate.getTime());
+		fb_service.insertFreeBoard(new FreeBoardVO(title, editor, regDate, 0, id));
 		return "redirect:freeBoard.do";
 	}
 
@@ -176,5 +180,14 @@ public class BoardController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping(value="/deleteFiles.do")
+	public String deleteFiles(HttpSession session, HttpServletRequest request) {
+		UserVO login = (UserVO) session.getAttribute("login");
+		file_service.cancel_insertBoard(login.getId());
+		String referer = (String)request.getHeader("Referer"); 
+		System.out.println(referer);
+		return "redirect:"+referer;
 	}
 }

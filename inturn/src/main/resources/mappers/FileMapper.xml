@@ -21,7 +21,7 @@
 	</update>
 	
 	<update id="insertBoard" parameterType="String">
-		update fileGroup set flag = '-1' where id = #{flag}
+		update fileGroup set flag = '-1' where flag = #{flag}
 	</update>
 	
 	<delete id="delete_CB_Files">
@@ -31,6 +31,10 @@
 	<delete id="delete_FB_Files">
 		DELETE FROM fileGroup where fb_num = #{fb_num}
 	</delete>
+	
+	<delete id="deleteFileGroup">
+		DELETE FROM fileGroup where fileGroupNum = #{fileGroupNum}
+	</delete> 
 	
 	<select id="findFile" parameterType="FilesVO" resultType="int">
 		select ifnull(max(file_num),0) from files where fileName = #{fileName} and fileHash = #{fileHash} and fileGroupNum = #{fileGroupNum}

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+#btns {
+	width: 700px;
+	text-align:right;
+}
+
+#title {
+	width: 666px; 
+	display: inline;
+}
+
+#editor {
+	width: 700px;
+	height: 400px;
+}

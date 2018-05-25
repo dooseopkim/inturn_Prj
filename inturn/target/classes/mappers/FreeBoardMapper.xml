@@ -6,10 +6,14 @@
 	<select id="showFreeBoard" resultType="FreeBoardVO">
 		SELECT * FROM freeBoard
 	</select>
+	
+	<select id="findBoard" parameterType="FreeBoardVO" resultType="int">
+		SELECT ifnull(max(fb_num),0) FROM freeBoard WHERE title = #{title} and content = #{content} and id = #{id}
+	</select>
 
 	<insert id="insertFreeBoard" parameterType="FreeBoardVO">
 		INSERT INTO freeBoard (fb_num, title, content, regDate, hit, id)
-		VALUES((select ifnull(max(f.fb_num)) from freeBoard f), #{title}, #{content}, #{regDate}, #{hit}, #{id})
+		VALUES((select ifnull(max(f.fb_num),0)+1 from freeBoard f), #{title}, #{content}, #{regDate}, #{hit}, #{id})
 	</insert>
 	
 	<update id="modifyFreeBoard" parameterType="FreeBoardVO">

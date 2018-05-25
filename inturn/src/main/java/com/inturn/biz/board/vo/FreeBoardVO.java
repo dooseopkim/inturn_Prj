@@ -24,6 +24,15 @@ public class FreeBoardVO {
 		this.id = id;
 	}
 
+	public FreeBoardVO(String title, String content, Date regDate, int hit, String id) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.regDate = regDate;
+		this.hit = hit;
+		this.id = id;
+	}
+
 	public int getFb_num() {
 		return fb_num;
 	}

@@ -18,6 +18,13 @@ public class FileGroupVO {
 		this.cb_num = cb_num;
 	}
 
+	
+	public FileGroupVO(int fileGroupNum, int fb_num) {
+		super();
+		this.fileGroupNum = fileGroupNum;
+		this.fb_num = fb_num;
+	}
+
 	public int getFileGroupNum() {
 		return fileGroupNum;
 	}

@@ -66,4 +66,23 @@ public class FileServiceImpl implements FileService{
 	public int deleteFile(int fileGroupNum) {
 		return dao.deleteFile(fileGroupNum);
 	}
+
+	@Override
+	public int insertBoard(String flag) {
+		return dao.insertBoard(flag);
+	}
+
+	@Override
+	public int deleteFileGroup(int fileGroupNum) {
+		return dao.deleteFileGroup(fileGroupNum);
+	}
+	
+	@Override
+	public int cancel_insertBoard(String flag) {
+		int row = 0;
+		int fileGroupNum = dao.findFileGroup(flag);
+		row += dao.deleteFile(fileGroupNum);
+		row += dao.deleteFileGroup(fileGroupNum);
+		return row;
+	}
 }
