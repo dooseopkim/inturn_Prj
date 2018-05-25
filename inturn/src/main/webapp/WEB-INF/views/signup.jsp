@@ -4,52 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- <meta charset="utf-8"> -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>人Turn &mdash; 다시 인생을 시작하다.</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description"
-	content="Free HTML5 Website Template by freehtml5.co" />
-<meta name="keywords"
-	content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-<!-- <meta name="author" content="freehtml5.co" /> -->
-
-<link href="https://fonts.googleapis.com/css?family=Oxygen:300,400"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700"
-	rel="stylesheet">
-
-<!-- Animate.css -->
-<link rel="stylesheet" href="css/animate.css">
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="css/icomoon.css">
-<!-- Bootstrap  -->
-<link rel="stylesheet" href="css/bootstrap.css">
-
-<!-- Magnific Popup -->
-<link rel="stylesheet" href="css/magnific-popup.css">
-
-<!-- Flexslider  -->
-<link rel="stylesheet" href="css/flexslider.css">
-
-<!-- Theme style  -->
-<link rel="stylesheet" href="css/style.css">
-
-<!-- Modernizr JS -->
-<script src="js/modernizr-2.6.2.min.js"></script>
-
-<!-- signup.js -->
 <script type="text/javascript" src="js/signup.js"></script>
-
-<!-- 암호화 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
-
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>人Turn &mdash; 다시 인생을 시작하다.</title>
 </head>
 <body>
 	<jsp:include page="userMenu.jsp" />
@@ -140,11 +97,12 @@
 							</div>
 							<div id="nameDiv" class="form-group">
 								<input id="name" type="text" class="form-control" name="name"
-									placeholder="이름" requierd="requierd">
+									placeholder="이름" requierd="requierd" onkeypress="hangul();">
+								<p class="txt-msg msg-help">이름은 한글만 입력가능합니다.</p>
 							</div>
 							<div id="idDiv" class="form-group form-inline">
 								<input id="availId" type="text" class="form-control"
-									placeholder="아이디" requierd="requierd" style="width: 64%;">
+									placeholder="아이디" requierd="requierd" style="width: 59%;">
 								<a href="javascript:void(0);" onclick="chkId()"
 									style="vertical-align: sub;" class="bnt btn-lg btn-primary">중복확인</a>
 								<input type="hidden" id="id" name="id" value="">
@@ -280,8 +238,9 @@
 
 							<div class="col-md-12 col-md-push-3">
 								<div class="form-group">
-									<a href="signup.do" class="bnt btn-lg btn-primary">뒤로</a>
-									<a href="javascript:void(0);" onclick="signup(event)" id="signUpBtn" class="bnt btn-lg btn-primary">완료</a>
+									<a href="signup.do" class="bnt btn-lg btn-primary">뒤로</a> <a
+										href="javascript:void(0);" onclick="signup(event)"
+										id="signUpBtn" class="bnt btn-lg btn-primary">완료</a>
 								</div>
 							</div>
 						</div>

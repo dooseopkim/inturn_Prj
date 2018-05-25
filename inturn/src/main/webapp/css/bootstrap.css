@@ -21,6 +21,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 }
 
 /* 영서가 추가한  css style */
+.blogLayout {
+	max-width: 1060px;
+	margin-left : 3.2em;
+	margin-right : 3em;
+	margin-top: 1em;
+}
+
 .layer-popup {
 	position: relative;
 	width: 460px;
@@ -40,11 +47,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 }
 
 .txt-info {
-	padding-top : 1em;
-	padding : 1em;
-	margin-bottom : 0px;
+	padding-top: 1em;
+	padding: 1em;
+	margin-bottom: 0px;
 	color: #337ab7;
-	font-weight : bold;
+	font-weight: bold;
 	text-align: left;
 }
 
@@ -177,36 +184,52 @@ audio, canvas, progress, video {
 audio
 
 
+
+
 :not
 
+
  
+
 
 (
 [
 controls
 ]
 
+
  
+
 
 )
 {
 display
 
 
+
+
 :
+
 
  
 
+
 none
+
+
 
 
 ;
 height
 
 
+
+
 :
 
+
  
+
 
 0;
 }
@@ -270,25 +293,37 @@ img {
 svg
 
 
+
+
 :not
 
+
  
+
 
 (
 :root
 
+
  
+
 
 )
 {
 overflow
 
 
+
+
 :
+
 
  
 
+
 hidden
+
+
 
 
 ;
@@ -1023,8 +1058,8 @@ pre code {
 }
 
 .row {
-	margin-left: -15px;
-	margin-right: -15px;
+	/* margin-left: -15px;
+	margin-right: -15px; */
 }
 
 .row:before, .row:after {
@@ -2250,7 +2285,7 @@ textarea.input-sm, .input-group-sm>textarea.form-control,
 .input-lg, .input-group-lg>.form-control, .input-group-lg>.input-group-addon,
 	.input-group-lg>.input-group-btn>.btn {
 	height: 46px;
-	padding: 10px 20px;
+	padding: 10px 14px;
 	font-size: 18px;
 	line-height: 1.33333;
 	border-radius: 6px;
@@ -3236,44 +3271,62 @@ tbody.collapse.in {
 .btn
 
 
+
+
 :not
 
+
  
+
 
 (
 :first-child
 
+
  
+
 
 )
 :not
 
+
  
+
 
 (
 :last-child
 
+
  
+
 
 )
 :not
 
+
  
+
 
 (
 .dropdown-toggle
 
 
+
 	
+
 
 )
 {
 border-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 }
@@ -3286,44 +3339,64 @@ border-radius
 .btn
 
 
+
+
 :first-child
+
+
 
 
 :not
 
+
  
+
 
 (
 :last-child
 
+
  
+
 
 )
 :not
 
+
  
+
 
 (
 .dropdown-toggle
 
+
  
+
 
 )
 {
 border-bottom-right-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 border-top-right-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 }
@@ -3332,17 +3405,25 @@ border-top-right-radius
 .btn
 
 
+
+
 :last-child
+
+
 
 
 :not
 
+
  
+
 
 (
 :first-child
 
+
  
+
 
 ),
 .btn-group
@@ -3350,32 +3431,46 @@ border-top-right-radius
 .dropdown-toggle
 
 
+
+
 :not
+
 
 
 	
 
+
 (
 :first-child
 
+
  
+
 
 )
 {
 border-bottom-left-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 border-top-left-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 }
@@ -3471,33 +3566,47 @@ border-top-left-radius
 .btn
 
 
+
+
 :not
 
+
  
+
 
 (
 :first-child
 
+
  
+
 
 )
 :not
 
+
  
+
 
 (
 :last-child
 
+
  
+
 
 )
 {
 border-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 }
@@ -3506,46 +3615,68 @@ border-radius
 .btn
 
 
+
+
 :first-child
+
+
 
 
 :not
 
+
  
+
 
 (
 :last-child
 
+
  
+
 
 )
 {
 border-top-right-radius
 
 
+
+
 :
+
 
  
 
+
 4
 px
+
+
 
 
 ;
 border-bottom-right-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 border-bottom-left-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 }
@@ -3554,46 +3685,68 @@ border-bottom-left-radius
 .btn
 
 
+
+
 :last-child
+
+
 
 
 :not
 
+
  
+
 
 (
 :first-child
 
+
  
+
 
 )
 {
 border-bottom-left-radius
 
 
+
+
 :
+
 
  
 
+
 4
 px
+
+
 
 
 ;
 border-top-right-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 border-top-left-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 }
@@ -3671,84 +3824,120 @@ border-top-left-radius
 .input-group-addon
 
 
+
+
 :not
 
+
  
+
 
 (
 :first-child
 
+
  
+
 
 )
 :not
 
+
  
+
 
 (
 :last-child
 
+
  
+
 
 ),
 .input-group-btn
 
 
+
+
 :not
 
+
  
+
 
 (
 :first-child
 
+
  
+
 
 )
 :not
 
+
  
+
 
 (
 :last-child
 
+
  
+
 
 ),
 .input-group
 
+
  
+
 
 .form-control
 
 
+
+
 :not
+
 
 
 	
 
+
 (
 :first-child
 
+
  
+
 
 )
 :not
 
+
  
+
 
 (
 :last-child
 
+
  
+
 
 )
 {
 border-radius
 
 
+
+
 :
 
+
  
+
 
 0;
 }

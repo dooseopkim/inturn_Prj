@@ -4,51 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- <meta charset="utf-8"> -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>人Turn &mdash; 다시 인생을 시작하다.</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description"
-	content="Free HTML5 Website Template by freehtml5.co" />
-<meta name="keywords"
-	content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-<!-- <meta name="author" content="freehtml5.co" /> -->
-
-<link href="https://fonts.googleapis.com/css?family=Oxygen:300,400"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700"
-	rel="stylesheet">
-
-<!-- Animate.css -->
-<link rel="stylesheet" href="css/animate.css">
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="css/icomoon.css">
-<!-- Bootstrap  -->
-<link rel="stylesheet" href="css/bootstrap.css">
-
-<!-- Magnific Popup -->
-<link rel="stylesheet" href="css/magnific-popup.css">
-
-<!-- Flexslider  -->
-<link rel="stylesheet" href="css/flexslider.css">
-
-<!-- Theme style  -->
-<link rel="stylesheet" href="css/style.css">
-
-<!-- Modernizr JS -->
-<script src="js/modernizr-2.6.2.min.js"></script>
-
-<!-- signup.js -->
 <script type="text/javascript" src="js/chkCert.js"></script>
-
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>人Turn &mdash; 다시 인생을 시작하다.</title>
 </head>
 <body>
 	<jsp:include page="userMenu.jsp" />
