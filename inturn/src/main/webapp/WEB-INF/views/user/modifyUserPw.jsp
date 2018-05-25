@@ -46,7 +46,7 @@
 	</nav>
 
 <div class="container-wrap">
-<div class="page-modifyUserPW">
+<div class="page-modifyUserPw">
 <div class="row">
 <div class="col-sm-3"></div>
 <div class="col-sm-6 box-modifyUserPw">
