@@ -162,6 +162,7 @@ public class LogInOutController {
 		UserVO vo = new UserVO();
 		vo.setId(id);
 		vo.setPw(pw);
+		mav.setViewName("jsonView");
 		
 		if(session.getAttribute("chkModPw") != null) {
 			System.out.println("임시 비밀번호 사용 중");
@@ -171,11 +172,14 @@ public class LogInOutController {
 			} 
 		} else if(service.login(vo) != null) {
 			System.out.println("현재 비밀번호 일치!");
-			modifyUserPw(vo, newPw, mav);
+			if(pw.equals(newPw)) {
+				mav.addObject("result", "새 비밀번호가 현재 비밀번호와 일치합니다. 변경 후 다시 시도해 주세요.");
+			} else {
+				modifyUserPw(vo, newPw, mav);
+			}
 		} else {
 			mav.addObject("result", "정보가 일치하지 않습니다. 정보 확인 후 다시 시도해 주세요.");
 		}
-		mav.setViewName("jsonView");
 		return mav;
 	}
 	
