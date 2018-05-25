@@ -22,10 +22,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 
 /* 영서가 추가한  css style */
 .blogLayout {
-	max-width: 1060px;
+	/* max-width: 1060px;
 	margin-left : 3.2em;
 	margin-right : 3em;
-	margin-top: 1em;
+ */	margin-top: 1em;
 }
 
 .layer-popup {
