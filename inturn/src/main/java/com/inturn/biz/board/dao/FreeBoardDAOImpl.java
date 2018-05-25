@@ -1,5 +1,6 @@
 package com.inturn.biz.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -12,11 +13,6 @@ import com.inturn.biz.board.vo.FreeBoardVO;
 public class FreeBoardDAOImpl implements FreeBoardDAO{
 	@Autowired
 	SqlSessionTemplate mybatis;
-
-	@Override
-	public List<FreeBoardVO> showFreeBoard() {
-		return mybatis.selectList("FreeBoardMapper.showFreeBoard");
-	}
 
 	@Override
 	public int insertFreeBoard(FreeBoardVO vo) {
@@ -36,5 +32,15 @@ public class FreeBoardDAOImpl implements FreeBoardDAO{
 	@Override
 	public int findBoard(FreeBoardVO vo) {
 		return mybatis.selectOne("FreeBoardMapper.findBoard", vo);
+	}
+
+	@Override
+	public List<FreeBoardVO> boardList(HashMap<String, Integer> map) {
+		return mybatis.selectList("FreeBoardMapper.boardList", map);
+	}
+
+	@Override
+	public int countBoards() {
+		return mybatis.selectOne("FreeBoardMapper.countBoards");
 	}
 }

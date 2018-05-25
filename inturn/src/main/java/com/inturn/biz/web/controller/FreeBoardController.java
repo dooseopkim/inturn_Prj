@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -42,8 +44,13 @@ public class FreeBoardController {
 	 * @return 자유게시판 페이지 이동 설정
 	 */
 	@RequestMapping(value = "/freeBoard.do", method = RequestMethod.GET)
-	public String freeBoardDo(int page_num) {
-		
+	public String freeBoardDo(int page_num, HttpServletRequest request) {
+		HashMap<String, Object> boardInfo = fb_service.boardList(page_num);
+		List<FreeBoardVO> list = (List<FreeBoardVO>) boardInfo.get("list");
+		int page = (int) boardInfo.get("count_page");
+		request.setAttribute("list", list);
+		request.setAttribute("page", page);
+		request.setAttribute("thisPage", page_num);
 		return "index.jsp?content=board/freeBoard";
 	}
 
@@ -60,7 +67,7 @@ public class FreeBoardController {
 		java.util.Date udate = new java.util.Date();
 		Date regDate = new Date(udate.getTime());
 		fb_service.insertFreeBoard(new FreeBoardVO(title, editor, regDate, 0, id));
-		return "redirect:freeBoard.do";
+		return "redirect:freeBoard.do?page_num=1";
 	}
 
 	// 서버에 파일저장

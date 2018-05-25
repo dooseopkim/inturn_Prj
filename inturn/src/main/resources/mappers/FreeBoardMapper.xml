@@ -3,8 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="FreeBoardMapper">
-	<select id="showFreeBoard" resultType="FreeBoardVO">
-		SELECT * FROM freeBoard
+	<select id="boardList" parameterType="HashMap" resultType="FreeBoardVO">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM freeBoard
+			LIMIT #{offset}, #{limit}
+		) A ORDER BY fb_num DESC
+	</select>
+	
+	<select id="countBoards" resultType="int">
+		SELECT COUNT(*) FROM freeBoard
 	</select>
 	
 	<select id="findBoard" parameterType="FreeBoardVO" resultType="int">
