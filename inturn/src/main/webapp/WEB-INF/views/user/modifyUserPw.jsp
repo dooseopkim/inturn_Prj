@@ -54,11 +54,12 @@
 	<input type="hidden" id="id" class="form-control" value="${login.id}">
 	<input type="hidden" id="chkModPw" value="${chkModPw}">
 	<input type="password" id="pw" class="form-control" placeholder="현재 비밀번호">
-	<div id="feedbackPw" class="feedback"></div>
+	<div id="feedbackPw" class="feedback">현재 비밀번호</div>
 	<input type="password" id="newPw" class="form-control" placeholder="새 비밀번호">
-	<div id="feedbackNewPw" class="feedback"></div>
+	<div id="feedbackNewPw" class="feedback">새 비밀번호</div>
 	<input type="password" id="rePw" class="form-control" placeholder="새 비밀번호 확인">
-	<div id="feedbackRePw" class="feedback"></div>
+	<div id="feedbackRePw" class="feedback">새 비밀번호 확인</div>
+	<div class="feedback"></div>
 	<input type="button" id="btn_modifyUserPW" class="btn btn-primary" value="비밀번호변경">
 </div>
 <div class="col-sm-3"></div>

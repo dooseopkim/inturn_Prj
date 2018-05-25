@@ -21,14 +21,13 @@
 
 #rePw{
 	margin-top: 20px;
-	margin-bottom: 35px;
 }
 
 .feedback{
 	width: 100%;
 	margin-top: 10px;
 	margin-left: 10px;
-	color: #495057;
+	color: gray;
 	text-align: left;
 }
 

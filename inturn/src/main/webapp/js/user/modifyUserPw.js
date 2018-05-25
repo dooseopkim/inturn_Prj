@@ -20,6 +20,10 @@ $(function(){
 	});
 	
 	$("#rePw").keydown(function(e){
+		if($("#newPw").val() != $("#rePw").val()){
+			console.log("다르다");
+		}
+		
 		if(e.keyCode === 13){
 			modifyUserPw();
 		}
