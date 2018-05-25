@@ -5,9 +5,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="/css/board/insertBoard.css">
+	<link rel="stylesheet" href="/css/board/insertFreeBoard.css">
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
-	<script type="text/javascript" src="js/board/insertBoard.js"></script>
+	<script type="text/javascript" src="js/board/insertFreeBoard.js"></script>
 	<script type="text/javascript" src="./resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
@@ -48,26 +48,23 @@
  		<div class="row">
  			<div class="col-sm-2"></div>
  			<div class="col-sm-10">
-			    <form action="/insertBoard.do" method="post" id="insertBoardFrm" enctype="multipart/form-data">
+			    <form action="/insertFreeBoard.do" method="post" id="insertBoardFrm" enctype="multipart/form-data">
+			    	<div class="row">&nbsp;</div>
 			    	<div class="row">
-			    		<div class="col-sm-9 form-group">
-				    		제목 : <input type="text" name="title" class="form-control" placeholder="글 제목">
+			    		<div class="form-group">
+				    		제목 : <input id="title" type="text" name="title" class="form-control" placeholder="글 제목">
 			    		</div>
-			    		<div class="col-sm-3"></div>
 			    		<input type="hidden" name="id" value="${login.id}">
 			    	</div>
 			    	<div class="row">
-				        <textarea name="editor" id="editor" style="width: 700px; height: 400px;"></textarea>
+				        <textarea name="editor" id="editor"></textarea>
 			    	</div>
-			        <div class="row">
-				        <div class="col-sm-9 form-group">
-				       		<input type="button" id="cancelBtn" value="취소" />
-				        	<input type="button" id="insertBoard" value="등록" />
-				        </div>
-	 					<div class="col-sm-3"></div>
+			    	<div class="row">&nbsp;</div>
+			        <div class="row" id="btns">
+				        <input type="button" id="insertBoard" class="bnt btn-lg btn-info" value="등록" />
+				       	<input type="button" id="cancelBtn" class="bnt btn-lg btn-danger" value="취소" />
 	 				</div>
 			    </form>
- 				
  			</div>
  		</div>
  	</div>

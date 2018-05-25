@@ -41,7 +41,8 @@
 		</div>
 	</div>
 	</nav>
-
-	<button id="insertBoardBtn">글쓰기</button>
+	<div class="container-wrap">
+		<button id="insertBoardBtn">글쓰기</button>
+	</div>
 </body>
 </html>

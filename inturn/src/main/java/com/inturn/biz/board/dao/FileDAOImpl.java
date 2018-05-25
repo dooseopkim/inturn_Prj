@@ -58,4 +58,8 @@ public class FileDAOImpl implements FileDAO{
 	public int insertBoard(String flag) {
 		return mybatis.update("FileMapper.insertBoard",flag);
 	}
+	@Override
+	public int deleteFileGroup(int fileGroupNum) {
+		return mybatis.delete("FileMapper.deleteFileGroup", fileGroupNum);
+	}
 }
