@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script type="text/javascript" src="js/board/freeBoard.js"></script>
-	<title>Free Board</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/board/freeBoard.css">
+<script type="text/javascript" src="js/board/freeBoard.js"></script>
+<title>Free Board</title>
 </head>
 <body>
 	<jsp:include page="../userMenu.jsp" />
@@ -33,8 +35,7 @@
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>
 								<li><a href="csBoard.do">고객서비스</a></li>
-							</ul>
-						</li>
+							</ul></li>
 					</ul>
 				</div>
 			</div>
@@ -42,7 +43,47 @@
 	</div>
 	</nav>
 	<div class="container-wrap">
-		<button id="insertBoardBtn">글쓰기</button>
+		<div class="row">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th id="table">번호</th>
+						<th id="table">제목</th>
+						<th id="table">작성일</th>
+						<th id="table">조회수</th>
+						<th id="table">작성자</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="freeBoard" items="${list}">
+						<tr>
+							<td id="table">${freeBoard.fb_num}</td>
+							<td id="table">${freeBoard.title}</td>
+							<td id="table">${freeBoard.regDate}</td>
+							<td id="table">${freeBoard.hit}</td>
+							<td id="table">${freeBoard.id}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="row">
+			<div id="searchSelect" class="form-group col-sm-4">
+				<select name="condition" class="custom-select">
+					<option value="title">글 제목</option>
+					<option value="id">작성자</option>
+				</select>
+			</div>
+			<div id="search" class="form-group col-sm-4">
+				<input type="text" name="search" class="form-control"
+					placeholder="검색">
+			</div>
+			<div class="form-group col-sm-4">
+				<button id="searchBoardBtn" class="btn btn-success">검색</button>
+				<button id="insertBoardBtn" class="btn btn-info">글쓰기</button>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
