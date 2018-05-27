@@ -55,10 +55,14 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:set var="index" value="${limit}"></c:set>
 					<c:forEach var="freeBoard" items="${list}">
+						<c:set var="index" value="${index - 1}" />
 						<tr>
-							<td id="table">${freeBoard.fb_num}</td>
-							<td id="table">${freeBoard.title}</td>
+							<td id="table">${index}</td>
+							<td id="table">
+								<a href="viewFreeBoard.do?fb_num=${freeBoard.fb_num}">${freeBoard.title}</a>
+							</td>
 							<td id="table">${freeBoard.regDate}</td>
 							<td id="table">${freeBoard.hit}</td>
 							<td id="table">${freeBoard.id}</td>

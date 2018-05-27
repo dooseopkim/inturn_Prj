@@ -39,7 +39,19 @@ public class FreeBoardController {
 	FreeBoardService fb_service;
 	@Resource(name = "FileService")
 	FileService file_service;
-
+	
+	/**
+	 * @return 자유게시판 보기
+	 */
+	@RequestMapping(value="/viewFreeBoard.do")
+	public String viewFreeBoard(int fb_num, HttpServletRequest request) {
+		HashMap<String, Object> boardInfo = fb_service.viewBoard(fb_num);
+		FreeBoardVO board = (FreeBoardVO) boardInfo.get("board");
+		//댓글도 가져와서 request에 넣어 보내줘야한다.
+		request.setAttribute("board", board);
+		return "index.jsp?content=board/viewFreeBoard";
+	}
+	
 	/**
 	 * @return 자유게시판 페이지 이동 설정
 	 */
@@ -48,8 +60,10 @@ public class FreeBoardController {
 		HashMap<String, Object> boardInfo = fb_service.boardList(page_num);
 		List<FreeBoardVO> list = (List<FreeBoardVO>) boardInfo.get("list");
 		int page = (int) boardInfo.get("count_page");
+		int limit = (int) boardInfo.get("limit");
 		request.setAttribute("list", list);
 		request.setAttribute("page", page);
+		request.setAttribute("limit", limit);
 		request.setAttribute("thisPage", page_num);
 		return "index.jsp?content=board/freeBoard";
 	}

@@ -16,13 +16,17 @@
 		SELECT COUNT(*) FROM freeBoard
 	</select>
 	
+	<select id="viewBoard" parameterType="int" resultType="FreeBoardVO">
+		SELECT * FROM freeBoard WHERE fb_num = #{fb_num}
+	</select>
+	
 	<select id="findBoard" parameterType="FreeBoardVO" resultType="int">
-		SELECT ifnull(max(fb_num),0) FROM freeBoard WHERE title = #{title} and content = #{content} and id = #{id}
+		SELECT IFNULL(max(fb_num),0) FROM freeBoard WHERE title = #{title} AND content = #{content} AND id = #{id}
 	</select>
 
 	<insert id="insertFreeBoard" parameterType="FreeBoardVO">
 		INSERT INTO freeBoard (fb_num, title, content, regDate, hit, id)
-		VALUES((select ifnull(max(f.fb_num),0)+1 from freeBoard f), #{title}, #{content}, #{regDate}, #{hit}, #{id})
+		VALUES((SELECT IFNULL(max(f.fb_num),0)+1 FROM freeBoard f), #{title}, #{content}, #{regDate}, #{hit}, #{id})
 	</insert>
 	
 	<update id="modifyFreeBoard" parameterType="FreeBoardVO">
@@ -30,6 +34,6 @@
 	</update>
 
 	<delete id="deleteFreeBoard">
-		DELETE FROM freeBoard where fb_num = #{fb_num}
+		DELETE FROM freeBoard WHERE fb_num = #{fb_num}
 	</delete>
 </mapper>
