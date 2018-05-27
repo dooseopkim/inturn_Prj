@@ -40,15 +40,26 @@ public class FreeBoardController {
 	@Resource(name = "FileService")
 	FileService file_service;
 	
+	@RequestMapping(value="/deleteFreeBoard.do")
+	public String deleteFreeBoard(int fb_num, int thisPage, HttpServletRequest request) {
+		fb_service.deleteFreeBoard(fb_num);
+		return "redirect:freeBoard.do?page_num="+thisPage;
+	}
+	
 	/**
 	 * @return 자유게시판 보기
 	 */
 	@RequestMapping(value="/viewFreeBoard.do")
-	public String viewFreeBoard(int fb_num, HttpServletRequest request) {
+	public String viewFreeBoard(int fb_num, int thisPage, HttpServletRequest request) {
 		HashMap<String, Object> boardInfo = fb_service.viewBoard(fb_num);
 		FreeBoardVO board = (FreeBoardVO) boardInfo.get("board");
+		int prevfb_num = (int) boardInfo.get("prevfb_num");
+		int nextfb_num = (int) boardInfo.get("nextfb_num");
 		//댓글도 가져와서 request에 넣어 보내줘야한다.
 		request.setAttribute("board", board);
+		request.setAttribute("prevfb_num", prevfb_num);
+		request.setAttribute("nextfb_num", nextfb_num);
+		request.setAttribute("thisPage", thisPage);
 		return "index.jsp?content=board/viewFreeBoard";
 	}
 	
@@ -61,10 +72,11 @@ public class FreeBoardController {
 		List<FreeBoardVO> list = (List<FreeBoardVO>) boardInfo.get("list");
 		int page = (int) boardInfo.get("count_page");
 		int limit = (int) boardInfo.get("limit");
+		int thisPage = (int) boardInfo.get("thisPage");
 		request.setAttribute("list", list);
 		request.setAttribute("page", page);
 		request.setAttribute("limit", limit);
-		request.setAttribute("thisPage", page_num);
+		request.setAttribute("thisPage", thisPage);
 		return "index.jsp?content=board/freeBoard";
 	}
 

@@ -48,4 +48,19 @@ public class FreeBoardDAOImpl implements FreeBoardDAO{
 	public FreeBoardVO viewBoard(int fb_num) {
 		return mybatis.selectOne("FreeBoardMapper.viewBoard", fb_num);
 	}
+
+	@Override
+	public int countUp(int fb_num) {
+		return mybatis.update("FreeBoardMapper.countUp", fb_num);
+	}
+
+	@Override
+	public int prevfb_num(int fb_num) {
+		return mybatis.selectOne("FreeBoardMapper.prevfb_num", fb_num);
+	}
+
+	@Override
+	public int nextfb_num(int fb_num) {
+		return mybatis.selectOne("FreeBoardMapper.nextfb_num", fb_num);
+	}
 }

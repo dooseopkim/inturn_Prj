@@ -38,8 +38,16 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public int deleteFreeBoard(int fb_num) {
-		return fb_dao.deleteFreeBoard(fb_num);
+		int row = 0;
+		int fileGroupNum = file_dao.findFileGroupNum(fb_num);
+		if(fileGroupNum != 0) {
+			row += file_dao.deleteFile(fileGroupNum);
+			row += file_dao.delete_FB_Files(fb_num);
+		}
+		row += fb_dao.deleteFreeBoard(fb_num);
+		return row;
 	}
 
 	@Override
@@ -54,8 +62,13 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		int total_boards = fb_dao.countBoards();
 		// 게시판을 10개씩 페이징 처리했을 때, 총 몇개의 목록이 나오는지 계산
 		int count_page = (total_boards + 9) / 10;
+		// 만약 마지막 페이지의 게시글이 1개 인데 삭제된 경우
+		if(count_page < page_num)
+			page_num--;
 		// 마지막 페이지의 개수를 계산
 		int reminder = total_boards % 10;
+		if(reminder == 0)
+			reminder = 10;
 		// 클릭한 해당 페이지의 처음 번호와, 마지막번호를 계산
 		int limit = (count_page - page_num)*10 + reminder;	// 마지막번호
 		int offset = (count_page - (page_num + 1))*10 + reminder;	// 첫 번호
@@ -73,6 +86,7 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		// 총 페이지수가 몇개인지도 보내줘야 하므로 Map구조로 put해서 result를 return
 		result.put("list", list);
 		result.put("count_page",count_page);
+		result.put("thisPage",page_num);
 		return result;
 	}
 
@@ -82,11 +96,15 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public HashMap<String, Object> viewBoard(int fb_num) {
+		fb_dao.countUp(fb_num);
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		FreeBoardVO vo = fb_dao.viewBoard(fb_num);
 		//여기에 이제, 댓글도 result에 put해서 보내주어야함.
 		result.put("board", vo);
+		result.put("prevfb_num", fb_dao.prevfb_num(fb_num));
+		result.put("nextfb_num", fb_dao.nextfb_num(fb_num));
 		return result;
 	}
 }

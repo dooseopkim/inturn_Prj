@@ -61,7 +61,7 @@
 						<tr>
 							<td id="table">${index}</td>
 							<td id="table">
-								<a href="viewFreeBoard.do?fb_num=${freeBoard.fb_num}">${freeBoard.title}</a>
+								<a href="viewFreeBoard.do?fb_num=${freeBoard.fb_num}&thisPage=${thisPage}">${freeBoard.title}</a>
 							</td>
 							<td id="table">${freeBoard.regDate}</td>
 							<td id="table">${freeBoard.hit}</td>

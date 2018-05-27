@@ -13,4 +13,7 @@ public interface FreeBoardDAO {
 	public int insertFreeBoard(FreeBoardVO vo);
 	public int modifyFreeBoard(FreeBoardVO vo);
 	public int deleteFreeBoard(int fb_num);
+	public int countUp(int fb_num);
+	public int prevfb_num(int fb_num);
+	public int nextfb_num(int fb_num);
 }

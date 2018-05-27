@@ -6,7 +6,11 @@
 	<select id="findFileGroup" parameterType="String" resultType="int">
 		SELECT IFNULL(max(fileGroupNum), 0) FROM fileGroup WHERE flag = #{flag}
 	</select>
-
+	
+	<select id="findFileGroupNum" parameterType="int" resultType="int">
+		SELECT IFNULL(max(fileGroupNum), 0) FROM fileGroup WHERE fb_num = #{fb_num}
+	</select>
+	
 	<insert id="insertFileGroup">
 		INSERT INTO fileGroup (fileGroupNum, flag)
 		VALUES((SELECT IFNULL(max(f.fileGroupNum),0)+1 FROM files f), #{flag})
