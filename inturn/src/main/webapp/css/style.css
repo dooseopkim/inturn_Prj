@@ -123,9 +123,9 @@ h1, h2, h3, h4, h5, h6, figure {
     width: 17%; /* Set the width of the sidebar */
     position: absolute; /* Fixed Sidebar (stay in place on scroll) */
     /* z-index: 1; */ /* Stay on top */
-    top: 239px; /* Stay at the top */
+    /* top: 239px; */ /* Stay at the top */
     /* bottom : 294px; */
-    right: 3.2em;
+    /* right: 3.2em; */
     background-color: #fff; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;

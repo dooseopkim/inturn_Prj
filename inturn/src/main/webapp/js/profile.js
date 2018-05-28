@@ -39,11 +39,23 @@ $(function(){
  * @returns
  */
 function formEducationClick() {
-	var tag = '';
+	/*var tag = '';
 	tag += '<div id="education" class="card">';
+	tag += '<div class="row">';
+	tag += '<div class="col-sm-6">';
 	tag += '<h3>학력</h3>';
 	tag += '</div>';
-	$("#leftcolumn").append(tag);
+	tag += '<div class="col-sm-6">';
+	tag += '<input type="button" id="addSchool" value="추가">';
+	tag += '<input type="button" id="deleteSchool" value="삭제">';
+	tag += '</div>';
+	tag += '</div>';
+	tag += '<div id="schoolArea" class="row border border-info">';
+	tag += '테스트';
+	tag += '</div>';
+	tag += '</div>';
+	$("#leftcolumn").append(tag);*/
+	$("#education").show();
 }
 
 /**
