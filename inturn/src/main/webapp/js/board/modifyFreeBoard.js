@@ -25,6 +25,6 @@ $(function() {
 	$("#cancelBtn").click(function() {
 		var execute = confirm("게시글 작성을 취소하시겠습니까?");
 		if(execute)
-			location.href = "/viewFreeBoard.do?page_num="+$("#thisPage").val();
+			location.href = "/viewFreeBoard.do?fb_num="+$("#fb_num").val()+"&thisPage="+$("#thisPage").val();
 	});
 });

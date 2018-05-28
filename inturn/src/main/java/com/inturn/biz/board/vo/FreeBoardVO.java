@@ -32,6 +32,14 @@ public class FreeBoardVO {
 		this.hit = hit;
 		this.id = id;
 	}
+	
+	public FreeBoardVO(int fb_num, String title, String content, String id) {
+		super();
+		this.fb_num = fb_num;
+		this.title = title;
+		this.content = content;
+		this.id = id;
+	}
 
 	public int getFb_num() {
 		return fb_num;

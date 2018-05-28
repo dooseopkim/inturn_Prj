@@ -56,6 +56,23 @@ public class FreeBoardController {
 	}
 	
 	/**
+	 * 게시글 수정 DB에 저장하기
+	 * Service단에서 transaction을 걸어 기존 파일을 지우고 저장했을 경우등
+	 * 파일을 수정했을때의 모든 경우 수정
+	 * @param fb_num 게시판 번호
+	 * @param title 게시판 제목
+	 * @param id 글쓴이
+	 * @param thisPage 게시판을 보고있던 사람이 게시글을 들어오기 전 리스트 번호
+	 * @param editor 게시글 내용
+	 * @return viewFreeBoard.jsp
+	 */
+	@RequestMapping(value="/modifyFreeBoard.do", method=RequestMethod.POST)
+	public String modfiyFreeBoard(int fb_num, String title, String id, int thisPage, String editor) {
+		fb_service.modifyFreeBoard(new FreeBoardVO(fb_num, title, editor, id));
+		return "redirect:viewFreeBoard.do?fb_num="+fb_num+"&thisPage="+thisPage;
+	}
+	
+	/**
 	 * 게시글을 삭제하는 함수, service단에서 transaction 설정으로 파일삭제, 댓글삭제도 같이 한다.
 	 * @param fb_num 게시판 번호
 	 * @param thisPage 페이징 처리된 현재 페이지 번호
