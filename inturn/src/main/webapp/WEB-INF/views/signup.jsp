@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript" src="js/signup.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>人Turn &mdash; 다시 인생을 시작하다.</title>
+	<script type="text/javascript" src="js/signup.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha256.js"></script>
+	<title>人Turn &mdash; 다시 인생을 시작하다.</title>
 </head>
 <body>
 	<jsp:include page="userMenu.jsp" />
@@ -29,7 +30,7 @@
 							</ul></li>
 						<li><a href="mentor.do">멘토찾기</a></li>
 						<li><a href="mentee.do">멘티찾기</a></li>
-						<li><a href="freeBoard.do">자유게시판</a></li>
+						<li><a href="freeBoard.do?page_num=1">자유게시판</a></li>
 						<li class="has-dropdown"><a href="#">이용안내</a>
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>

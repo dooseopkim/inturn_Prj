@@ -62,4 +62,8 @@ public class FileDAOImpl implements FileDAO{
 	public int deleteFileGroup(int fileGroupNum) {
 		return mybatis.delete("FileMapper.deleteFileGroup", fileGroupNum);
 	}
+	@Override
+	public int findFileGroupNum(int fb_num) {
+		return mybatis.selectOne("FileMapper.findFileGroupNum", fb_num);
+	}
 }

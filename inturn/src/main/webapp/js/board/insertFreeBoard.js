@@ -23,6 +23,6 @@ $(function() {
 		$("#insertBoardFrm").submit();
 	});
 	$("#cancelBtn").click(function() {
-		location.href = "/freeBoard.do";
+		location.href = "/freeBoard.do?page_num=1";
 	});
 });

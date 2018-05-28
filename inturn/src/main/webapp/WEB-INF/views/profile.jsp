@@ -31,7 +31,7 @@
 							</ul></li>
 						<li><a href="mentor.do">멘토찾기</a></li>
 						<li><a href="mentee.do">멘티찾기</a></li>
-						<li><a href="freeBoard.do">자유게시판</a></li>
+						<li><a href="freeBoard.do?page_num=1">자유게시판</a></li>
 						<li class="has-dropdown"><a href="#">이용안내</a>
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>

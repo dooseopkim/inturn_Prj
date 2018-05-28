@@ -3,24 +3,52 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="FreeBoardMapper">
-	<select id="showFreeBoard" resultType="FreeBoardVO">
-		SELECT * FROM freeBoard
+	<select id="prevfb_num" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT IFNULL(MAX(fb_num), -1) FROM freeBoard WHERE fb_num < #{fb_num};
+		]]>
+	</select>
+	<select id="nextfb_num" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT IFNULL(MIN(fb_num), -1) FROM freeBoard WHERE fb_num > #{fb_num};
+		]]>
+	</select>
+
+	<select id="boardList" parameterType="HashMap" resultType="FreeBoardVO">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM freeBoard
+			LIMIT #{offset}, #{limit}
+		) A ORDER BY fb_num DESC
+	</select>
+	
+	<select id="countBoards" resultType="int">
+		SELECT COUNT(*) FROM freeBoard
+	</select>
+	
+	<select id="viewBoard" parameterType="int" resultType="FreeBoardVO">
+		SELECT * FROM freeBoard WHERE fb_num = #{fb_num}
 	</select>
 	
 	<select id="findBoard" parameterType="FreeBoardVO" resultType="int">
-		SELECT ifnull(max(fb_num),0) FROM freeBoard WHERE title = #{title} and content = #{content} and id = #{id}
+		SELECT IFNULL(max(fb_num),0) FROM freeBoard WHERE title = #{title} AND content = #{content} AND id = #{id}
 	</select>
 
 	<insert id="insertFreeBoard" parameterType="FreeBoardVO">
 		INSERT INTO freeBoard (fb_num, title, content, regDate, hit, id)
-		VALUES((select ifnull(max(f.fb_num),0)+1 from freeBoard f), #{title}, #{content}, #{regDate}, #{hit}, #{id})
+		VALUES((SELECT IFNULL(max(f.fb_num),0)+1 FROM freeBoard f), #{title}, #{content}, #{regDate}, #{hit}, #{id})
 	</insert>
 	
 	<update id="modifyFreeBoard" parameterType="FreeBoardVO">
 		UPDATE freeBoard SET content = #{content} WHERE fb_num = {fb_num}
 	</update>
+	
+	<update id="countUp" parameterType="int">
+		UPDATE freeBoard SET hit = hit + 1 WHERE fb_num = #{fb_num}
+	</update>
 
 	<delete id="deleteFreeBoard">
-		DELETE FROM freeBoard where fb_num = #{fb_num}
+		DELETE FROM freeBoard WHERE fb_num = #{fb_num}
 	</delete>
 </mapper>
