@@ -14,6 +14,13 @@ import com.inturn.biz.board.dao.FreeBoardDAO;
 import com.inturn.biz.board.vo.FileGroupVO;
 import com.inturn.biz.board.vo.FreeBoardVO;
 
+/**
+ * 
+ * @author 박현호
+ * @version 1.0
+ * @since 2018.05.28
+ * @see 자유게시판 관련 서비스 함수
+ */
 @Service("FreeBoardService")
 public class FreeBoardServiceImpl implements FreeBoardService{
 	@Resource(name="FreeBoardDAO")
@@ -21,6 +28,9 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 	@Resource(name="FileDAO")
 	FileDAO file_dao;
 	
+	/**
+	 * @param FreeBoardVO로 받아서 관련된 임시저장파일과 게시글 정보를 통해 DB에 저장
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public int insertFreeBoard(FreeBoardVO vo) {
@@ -32,11 +42,19 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		return row;
 	}
 
+	/**
+	 * @param 임시저장된 상태의 파일정보를 가져오고, 새로입력 된 파일들의 정보를 가져온다.
+	 * 
+	 */
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public int modifyFreeBoard(FreeBoardVO vo) {
 		return fb_dao.modifyFreeBoard(vo);
 	}
-
+	
+	/**
+	 * @param fb_num을 통해 해당 게시글에 저장된 파일을 모두 삭제 후 게시글 삭제
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public int deleteFreeBoard(int fb_num) {
@@ -50,11 +68,19 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		return row;
 	}
 
+	/**
+	 * @param id, content, title을 통해 찾고자 하는 게시글을 찾는 함수
+	 * insertBoard에서 FilGroup을 설정할 때, 막 입력한 게시글의 번호를 가져오기 위해 사용한다.
+	 */
 	@Override
 	public int findBoard(FreeBoardVO vo) {
 		return fb_dao.findBoard(vo);
 	}
-
+	
+	/**
+	 * @param page_num 게시판 목록에서 현재 보고있는 페이지
+	 * 게시판 목록을 반환하는 함수
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public HashMap<String,Object> boardList(int page_num) {
@@ -90,11 +116,18 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		return result;
 	}
 
+	/**
+	 * 현재 게시글이 몇개가 있는지 파악하기 위해 쓰는 함수
+	 * 페이징 처리를 위해 사용한다.
+	 */
 	@Override
 	public int countBoards() {
 		return fb_dao.countBoards();
 	}
 
+	/**
+	 * @param 현재 게시판 번호를 통해 게시판의 정보를 담아 반환하는 함수
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public HashMap<String, Object> viewBoard(int fb_num) {

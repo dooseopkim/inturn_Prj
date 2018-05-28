@@ -16,15 +16,15 @@ $(function() {
 		}
 	});
 	//전송버튼
-	$("#insertBoard").click(function() {
+	$("#modifyBoard").click(function() {
 		//id가 smarteditor인 textarea에 에디터에서 대입
 		obj.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
 		//폼 submit
-		$("#insertBoardFrm").submit();
+		$("#modifyBoardFrm").submit();
 	});
 	$("#cancelBtn").click(function() {
 		var execute = confirm("게시글 작성을 취소하시겠습니까?");
 		if(execute)
-			location.href = "/freeBoard.do?page_num=1";
+			location.href = "/viewFreeBoard.do?page_num="+$("#thisPage").val();
 	});
 });
