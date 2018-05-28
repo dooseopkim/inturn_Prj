@@ -4,9 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script type="text/javascript" src="js/profile.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>人Turn &mdash; 다시 인생을 시작하다.</title>
+<link rel="stylesheet" href="/css/user/profile.css">
+<script type="text/javascript" src="js/profile.js"></script>
 </head>
 <body>
 	<jsp:include page="userMenu.jsp" />
@@ -57,6 +58,21 @@
 				<div class="card">
 					<h3>인적사항</h3>
 				</div>
+				
+				<div id="education" class="card">
+				<div class="row">
+				<div class="col-sm-6">
+				<h3>학력사항</h3>
+				</div>
+				<div class="col-sm-6">
+				<input type="button" id="addSchool" value="추가">
+				<input type="button" id="deleteSchool" value="삭제">
+				</div>
+				</div>
+				<div id="schoolArea" class="row border border-info">
+				</div>
+				</div>
+
 			</div>
 			<div class="rightcolumn">
 				<div class="card sidenav" id="sidenav">
@@ -133,5 +149,6 @@
 			</div>
 		</div>
 	</div> -->
+	<jsp:include page="schoolJS.jsp"></jsp:include>
 </body>
 </html>
