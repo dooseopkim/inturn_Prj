@@ -57,7 +57,13 @@ $(function(){
 				"name" : $("#name").val(),
 				"email" : $("#email").val()
 			},
-			success: function(data){
+			beforeSend: function() {
+		        $('html').css("cursor", "wait");
+		    },
+		    complete: function() {
+		        $('html').css("cursor", "auto");
+		    },
+		    success: function(data){
 				if(data.result=='success'){
 					if(confirm(data.userEmail+" (으)로 임시 비밀번호를 발송했습니다.")){
 						location.href="loginForm.do";

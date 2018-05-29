@@ -30,7 +30,7 @@
 							</ul></li>
 						<li><a href="mentor.do">멘토찾기</a></li>
 						<li><a href="mentee.do">멘티찾기</a></li>
-						<li class="active"><a href="freeBoard.do">자유게시판</a></li>
+						<li class="active"><a href="freeBoard.do?page_num=1">자유게시판</a></li>
 						<li class="has-dropdown"><a href="#">이용안내</a>
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>
@@ -55,10 +55,14 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:set var="index" value="${limit}"></c:set>
 					<c:forEach var="freeBoard" items="${list}">
+						<c:set var="index" value="${index - 1}" />
 						<tr>
-							<td id="table">${freeBoard.fb_num}</td>
-							<td id="table">${freeBoard.title}</td>
+							<td id="table">${index}</td>
+							<td id="table">
+								<a href="viewFreeBoard.do?fb_num=${freeBoard.fb_num}&thisPage=${thisPage}">${freeBoard.title}</a>
+							</td>
 							<td id="table">${freeBoard.regDate}</td>
 							<td id="table">${freeBoard.hit}</td>
 							<td id="table">${freeBoard.id}</td>
@@ -67,7 +71,20 @@
 				</tbody>
 			</table>
 		</div>
-
+		<div class="row" style="text-align: center;">
+			<ul class="pagination">
+				<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+					<c:forEach var="i" begin="1" end="${page}" step="1">
+					<c:if test="${thisPage eq i}">
+						<li class="page-item active"><a class="page-link" href="freeBoard.do?page_num=${i}">${i}</a></li>
+					</c:if>
+					<c:if test="${thisPage ne i}">
+						<li class="page-item"><a class="page-link" href="freeBoard.do?page_num=${i}">${i}</a></li>
+					</c:if>
+					</c:forEach>
+				<li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+			</ul>
+		</div>
 		<div class="row">
 			<div id="searchSelect" class="form-group col-sm-4">
 				<select name="condition" class="custom-select">

@@ -4,48 +4,68 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="FileMapper">
 	<select id="findFileGroup" parameterType="String" resultType="int">
-		select ifnull(max(fileGroupNum), 0) from fileGroup where flag = #{flag}
+		SELECT IFNULL(max(fileGroupNum), 0) FROM fileGroup WHERE flag = #{flag}
+	</select>
+	
+	<select id="findFileGroupNumMax" parameterType="int" resultType="int">
+		SELECT IFNULL(max(fileGroupNum), 0) FROM fileGroup WHERE fb_num = #{fb_num}
 	</select>
 
+	<select id="findFileGroupNumMin" parameterType="int" resultType="int">
+		SELECT IFNULL(min(fileGroupNum), 0) FROM fileGroup WHERE fb_num = #{fb_num}
+	</select>
+	
 	<insert id="insertFileGroup">
-		insert into fileGroup (fileGroupNum, flag)
-		values((select ifnull(max(f.fileGroupNum),0)+1 from files f), #{flag})
+		INSERT INTO fileGroup (fileGroupNum, flag)
+		VALUES((SELECT IFNULL(max(f.fileGroupNum),0)+1 FROM files f), #{flag})
 	</insert>
 	
-	<update id="insert_CB_files" parameterType="FileGroupVO">
-		update fileGroup set cb_num = #{cb_num} where fileGroupNum = #{fileGroupNum}
+	<update id="update_CB_FileGroup" parameterType="FileGroupVO">
+		UPDATE fileGroup SET cb_num = #{cb_num} WHERE fileGroupNum = #{fileGroupNum}
 	</update>
 
-	<update id="insert_FB_files" parameterType="FileGroupVO">
-		update fileGroup set fb_num = #{fb_num} where fileGroupNum = #{fileGroupNum}
+	<update id="update_FB_FileGroup" parameterType="FileGroupVO">
+		UPDATE fileGroup SET fb_num = #{fb_num} WHERE fileGroupNum = #{fileGroupNum}
+	</update>
+	
+	<update id="modify_FB_files" parameterType="HashMap">
+		UPDATE files SET fileGroupNum = #{min} WHERE fileGroupNum = #{max}
 	</update>
 	
 	<update id="insertBoard" parameterType="String">
-		update fileGroup set flag = '-1' where flag = #{flag}
+		UPDATE fileGroup SET flag = '-1' WHERE flag = #{flag}
 	</update>
 	
-	<delete id="delete_CB_Files">
-		DELETE FROM fileGroup where cb_num = #{cb_num}
+	<delete id="delete_CB_FileGroup">
+		DELETE FROM fileGroup WHERE cb_num = #{cb_num}
+	</delete>
+
+	<delete id="delete_FB_FileGroup">
+		DELETE FROM fileGroup WHERE fb_num = #{fb_num}
 	</delete>
 
 	<delete id="delete_FB_Files">
-		DELETE FROM fileGroup where fb_num = #{fb_num}
+		DELETE FROM files WHERE file_num = #{fb_num}
 	</delete>
 	
 	<delete id="deleteFileGroup">
-		DELETE FROM fileGroup where fileGroupNum = #{fileGroupNum}
+		DELETE FROM fileGroup WHERE fileGroupNum = #{fileGroupNum}
 	</delete> 
 	
+	<select id="findFiles" parameterType="int" resultType="FilesVO">
+		SELECT * FROM files WHERE fileGroupNum = #{fileGroupNum}
+	</select>
+	
 	<select id="findFile" parameterType="FilesVO" resultType="int">
-		select ifnull(max(file_num),0) from files where fileName = #{fileName} and fileHash = #{fileHash} and fileGroupNum = #{fileGroupNum}
+		SELECT IFNULL(max(file_num),0) from files WHERE fileName = #{fileName} and fileHash = #{fileHash} and fileGroupNum = #{fileGroupNum}
 	</select>
 	
 	<insert id="insertFile" parameterType="FilesVO">
-		insert into files (fileGroupNum, file_num, filePath, fileName, fileSize, fileHash, regDate) 
-		values(#{fileGroupNum}, (select ifnull(max(f.file_num),0)+1 from files f), #{filePath}, #{fileName}, #{fileSize}, #{fileHash}, #{regDate})
+		INSERT INTO files (fileGroupNum, file_num, filePath, fileName, fileSize, fileHash, regDate) 
+		VALUES(#{fileGroupNum}, (SELECT IFNULL(max(f.file_num),0)+1 FROM files f), #{filePath}, #{fileName}, #{fileSize}, #{fileHash}, #{regDate})
 	</insert>
 	
 	<delete id="deleteFile">
-		DELETE FROM files where fileGroupNum = #{fileGroupNum}
+		DELETE FROM files WHERE fileGroupNum = #{fileGroupNum}
 	</delete>
 </mapper>

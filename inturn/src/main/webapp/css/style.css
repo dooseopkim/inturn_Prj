@@ -127,6 +127,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 /* The sidebar menu */
 .rightcolumn .sidenav {
+<<<<<<< HEAD
 	height: "auto"; /* Full-height: remove this if you want "auto" height */
 	width: 15%; /* Set the width of the sidebar */
 	position: absolute; /* Fixed Sidebar (stay in place on scroll) */
@@ -137,7 +138,6 @@ h1, h2, h3, h4, h5, h6, figure {
 	background-color : #fff; /* Black */
 	overflow-x: hidden; /* Disable horizontal scroll */
 	/* padding-top: 20px; */
-	background-color: #fff;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */

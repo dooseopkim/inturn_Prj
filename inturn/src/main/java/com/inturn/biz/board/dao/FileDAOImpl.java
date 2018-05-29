@@ -1,5 +1,8 @@
 package com.inturn.biz.board.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,22 +25,22 @@ public class FileDAOImpl implements FileDAO{
 	}
 
 	@Override
-	public int insert_CB_files(FileGroupVO vo) {
-		return mybatis.update("FileMapper.insert_CB_files", vo);
+	public int update_CB_FileGroup(FileGroupVO vo) {
+		return mybatis.update("FileMapper.update_CB_FileGroup", vo);
 	}
 
 	@Override
-	public int insert_FB_files(FileGroupVO vo) {
-		return mybatis.update("FileMapper.insert_FB_files", vo);
+	public int update_FB_FileGroup(FileGroupVO vo) {
+		return mybatis.update("FileMapper.update_FB_FileGroup", vo);
 	}
 	@Override
-	public int delete_CB_Files(int cb_num) {
-		return mybatis.delete("FileMapper.delete_CB_Files", cb_num);
+	public int delete_CB_FileGroup(int cb_num) {
+		return mybatis.delete("FileMapper.delete_CB_FileGroup", cb_num);
 	}
 
 	@Override
-	public int delete_FB_Files(int fb_num) {
-		return mybatis.delete("FileMapper.delete_FB_Files", fb_num);
+	public int delete_FB_FileGroup(int fb_num) {
+		return mybatis.delete("FileMapper.delete_FB_FileGroup", fb_num);
 	}
 
 	@Override
@@ -61,5 +64,25 @@ public class FileDAOImpl implements FileDAO{
 	@Override
 	public int deleteFileGroup(int fileGroupNum) {
 		return mybatis.delete("FileMapper.deleteFileGroup", fileGroupNum);
+	}
+	@Override
+	public int findFileGroupNumMax(int fb_num) {
+		return mybatis.selectOne("FileMapper.findFileGroupNumMax", fb_num);
+	}
+	@Override
+	public int findFileGroupNumMin(int fb_num) {
+		return mybatis.selectOne("FileMapper.findFileGroupNumMin", fb_num);
+	}
+	@Override
+	public int modify_FB_files(HashMap<String, Integer> map) {
+		return mybatis.update("FileMapper.modify_FB_files", map);
+	}
+	@Override
+	public int delete_FB_Files(int fb_num) {
+		return mybatis.delete("FileMapper.delete_FB_Files", fb_num);
+	}
+	@Override
+	public List<FilesVO> findFiles(int fileGroupNum) {
+		return mybatis.selectList("FileMapper.findFiles", fileGroupNum);
 	}
 }

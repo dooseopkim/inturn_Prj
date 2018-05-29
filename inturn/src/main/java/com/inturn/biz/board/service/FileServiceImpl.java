@@ -38,23 +38,23 @@ public class FileServiceImpl implements FileService{
 	}
 
 	@Override
-	public int insert_CB_files(FileGroupVO vo) {
-		return dao.insert_CB_files(vo);
+	public int update_CB_FileGroup(FileGroupVO vo) {
+		return dao.update_CB_FileGroup(vo);
 	}
 
 	@Override
-	public int insert_FB_files(FileGroupVO vo) {
-		return dao.insert_FB_files(vo);
+	public int update_FB_FileGroup(FileGroupVO vo) {
+		return dao.update_FB_FileGroup(vo);
 	}
 	
 	@Override
-	public int delete_CB_Files(int cb_num) {
-		return dao.delete_CB_Files(cb_num);
+	public int delete_CB_FileGroup(int cb_num) {
+		return dao.delete_CB_FileGroup(cb_num);
 	}
 
 	@Override
-	public int delete_FB_Files(int fb_num) {
-		return dao.delete_FB_Files(fb_num);
+	public int delete_FB_FileGroup(int fb_num) {
+		return dao.delete_FB_FileGroup(fb_num);
 	}
 
 	@Override

@@ -4,14 +4,14 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" href="/css/board/insertFreeBoard.css">
+	<title>Modify Board</title>
+	<link rel="stylesheet" href="/css/board/modifyFreeBoard.css">
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
-	<script type="text/javascript" src="js/board/insertFreeBoard.js"></script>
+	<script type="text/javascript" src="js/board/modifyFreeBoard.js"></script>
 	<script type="text/javascript" src="./resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
- 	<jsp:include page="../userMenu.jsp" />
+	<jsp:include page="../userMenu.jsp" />
 	<nav class="fh5co-nav" role="navigation">
 	<div class="container-wrap">
 		<div class="top-menu">
@@ -48,20 +48,22 @@
  		<div class="row">
  			<div class="col-sm-2"></div>
  			<div class="col-sm-10">
-			    <form action="/insertFreeBoard.do" method="post" id="insertBoardFrm" enctype="multipart/form-data">
+			    <form action="/modifyFreeBoard.do" method="post" id="modifyBoardFrm" enctype="multipart/form-data">
 			    	<div class="row">&nbsp;</div>
 			    	<div class="row">
+			    		<input type="hidden" id="fb_num" name="fb_num" value="${board.fb_num}">
 			    		<div class="form-group">
-				    		제목 : <input id="title" type="text" name="title" class="form-control" placeholder="글 제목">
+				    		제목 : <input id="title" type="text" name="title" class="form-control" readonly="readonly" value="${board.title}">
 			    		</div>
-			    		<input type="hidden" name="id" value="${login.id}">
+			    		<input type="hidden" id="id" name="id" value="${login.id}">
+			    		<input type="hidden" id="thisPage" name="thisPage" value="${thisPage}">
 			    	</div>
 			    	<div class="row">
-				        <textarea name="editor" id="editor"></textarea>
+				        <textarea name="editor" id="editor">${board.content}</textarea>
 			    	</div>
 			    	<div class="row">&nbsp;</div>
 			        <div class="row" id="btns">
-				        <input type="button" id="insertBoard" class="btn btn-info" value="등록" />
+				        <input type="button" id="modifyBoard" class="btn btn-info" value="수정" />
 				       	<input type="button" id="cancelBtn" class="btn btn-danger" value="취소" />
 	 				</div>
 			    </form>
