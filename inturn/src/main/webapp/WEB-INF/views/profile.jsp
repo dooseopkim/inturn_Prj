@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>人Turn &mdash; 다시 인생을 시작하다.</title>
-<link rel="stylesheet" href="/css/user/profile.css">
 <script type="text/javascript" src="js/profile.js"></script>
 </head>
 <body>
@@ -189,6 +188,16 @@
 						</div>
 					</div>
 				</div>
+				<div class="card">
+					<h3>인적사항</h3>
+				</div>
+				<div class="card">
+					<h3>인적사항</h3>
+				</div>
+				
+				<!-- 학력사항 -->
+				<jsp:include page="user/profileEdu.jsp" />
+				
 			</div>
 
 			<div class="rightcolumn">
@@ -283,5 +292,8 @@
 		</div>
 	</div>
 	<jsp:include page="schoolJS.jsp"></jsp:include>
+	</div> -->
+	<!-- 학력사항 모달 -->
+	<jsp:include page="user/profileEduModal.jsp" />
 </body>
 </html>

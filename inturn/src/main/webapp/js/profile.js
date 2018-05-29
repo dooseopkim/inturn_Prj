@@ -58,6 +58,7 @@ $(function() {
 		$("#schoolModal").modal("hide");
 	});
 
+	
 });
 /**
  * 학력 항목을 클릭할 때

@@ -1,6 +1,5 @@
 package com.inturn.biz.board.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -31,7 +30,9 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	FreeBoardDAO fb_dao;
 	@Resource(name = "FileDAO")
 	FileDAO file_dao;
-
+	
+	
+	
 	/**
 	 * @param FreeBoardVO로
 	 *            받아서 관련된 임시저장파일과 게시글 정보를 통해 DB에 저장
@@ -50,12 +51,11 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	}
 
 	/**
-	 * @param 수정된 게시판 VO
-	 * 먼저 게시판 수정 시 새로운 파일을 추가적으로 저장한다면 그 부분에 대해 저장시킨다.
-	 * 이 후 지우고 저장했다면, FileGroup이 하나 더 생성되었으므로, 기존의 FileGroupNum으로 맞춰준다.
-	 * 마지막으로 삭제된 파일이 있을 수 있으므로, content에서 img태그의 src를 가져온다
-	 * 파일의 file_num으로 저장되어있으므로 해당 게시물이 DB에 저장되어있는 파일번호랑 비교한 후
-	 * DB에서 현재 Content에 없는 파일을 모두 지운다.
+	 * @param 수정된
+	 *            게시판 VO 먼저 게시판 수정 시 새로운 파일을 추가적으로 저장한다면 그 부분에 대해 저장시킨다. 이 후 지우고
+	 *            저장했다면, FileGroup이 하나 더 생성되었으므로, 기존의 FileGroupNum으로 맞춰준다. 마지막으로 삭제된
+	 *            파일이 있을 수 있으므로, content에서 img태그의 src를 가져온다 파일의 file_num으로 저장되어있으므로
+	 *            해당 게시물이 DB에 저장되어있는 파일번호랑 비교한 후 DB에서 현재 Content에 없는 파일을 모두 지운다.
 	 */
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -85,7 +85,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		Matcher matcher = nonValidPattern.matcher(vo.getContent());
 		while (matcher.find()) {
 			int fileNum = Integer.parseInt(matcher.group(1).substring(30, matcher.group(1).indexOf(".")));
-			for (int i=0; i<list.size(); i++) {
+			for (int i = 0; i < list.size(); i++) {
 				if (list.get(i).getFile_num() == fileNum)
 					continue;
 				else if (i == list.size() - 1)

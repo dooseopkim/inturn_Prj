@@ -86,20 +86,23 @@
 			</ul>
 		</div>
 		<div class="row">
-			<div id="searchSelect" class="form-group col-sm-4">
-				<select name="condition" class="custom-select">
-					<option value="title">글 제목</option>
-					<option value="id">작성자</option>
-				</select>
-			</div>
-			<div id="search" class="form-group col-sm-4">
-				<input type="text" name="search" class="form-control"
-					placeholder="검색">
-			</div>
-			<div class="form-group col-sm-4">
-				<button id="searchBoardBtn" class="btn btn-success">검색</button>
-				<button id="insertBoardBtn" class="btn btn-info">글쓰기</button>
-			</div>
+			<form action="searchBoard.do" method="post">
+				<div id="searchSelect" class="form-group col-sm-4">
+					<select name="condition" class="custom-select">
+						<option value="title">글 제목</option>
+						<option value="id">작성자</option>
+					</select>
+				</div>
+				<div id="search" class="form-group col-sm-4">
+					<input id="searchContent" type="text" name="search" class="form-control"
+						placeholder="검색">
+					<input type="hidden" name="page_num" value="1">
+				</div>
+				<div class="form-group col-sm-4">
+					<button id="searchBoardBtn" type="submit" class="btn btn-success">검색</button>
+					<button id="insertBoardBtn" class="btn btn-info">글쓰기</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </body>
