@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>人Turn &mdash; 다시 인생을 시작하다.</title>
+<link rel="stylesheet" href="/css/user/profileEdu.css">
 <script type="text/javascript" src="js/profile.js"></script>
 </head>
 <body>
@@ -138,7 +139,9 @@
 			</div>
 		</div>
 	</div> -->
+	
 	<!-- 학력사항 모달 -->
 	<jsp:include page="user/profileEduModal.jsp" />
+	
 </body>
 </html>
