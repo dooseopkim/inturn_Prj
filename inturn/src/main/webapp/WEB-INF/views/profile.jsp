@@ -7,7 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>人Turn &mdash; 다시 인생을 시작하다.</title>
 <link rel="stylesheet" href="/css/user/profileEdu.css">
+<link rel="stylesheet" href="css/user/certificate.css">
 <script type="text/javascript" src="js/profile.js"></script>
+<script type="text/javascript" src="js/user/certificate.js"></script>
 </head>
 <body>
 	<jsp:include page="userMenu.jsp" />
@@ -56,27 +58,30 @@
 					<div id="box_personal">
 						<div class="row">
 							<div class="col-sm-4">
-								<label class="">이름</label>
-								<input type="text" class="form-control" id="name" readonly="readonly" value="${login.name })">
+								<label class="">이름</label> <input type="text"
+									class="form-control" id="name" readonly="readonly"
+									value="${login.name })">
 							</div>
 							<div class="col-sm-4">
-								<label class="">생년월일</label>
-								<input type="text" class="form-control" id="birthday" readonly="readonly" value="${login.birthday }">
+								<label class="">생년월일</label> <input type="text"
+									class="form-control" id="birthday" readonly="readonly"
+									value="${login.birthday }">
 							</div>
 							<div class="col-sm-4">
-								<label class="">타입</label>
-								<input type="text" class="form-control" id="type" readonly="readonly" value="${login.type }">
+								<label class="">타입</label> <input type="text"
+									class="form-control" id="type" readonly="readonly"
+									value="${login.type }">
 							</div>
 						</div>
 						<div class="row" style="margin-top: 1em;">
 							<div class="col-sm-6">
-								<label>휴대전화</label>
-								<input type="text" class="form-control" id="phone" value="${login.phone }">
-							</div> 
+								<label>휴대전화</label> <input type="text" class="form-control"
+									id="phone" value="${login.phone }">
+							</div>
 							<div class="col-sm-6">
-								<label>이메일</label>
-								<input type="text" class="form-control" id="email" value="${login.email }">
-							</div> 
+								<label>이메일</label> <input type="text" class="form-control"
+									id="email" value="${login.email }">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -87,10 +92,10 @@
 				<div class="card">
 					<h3>인적사항</h3>
 				</div>
-				
+
 				<!-- 학력사항 -->
 				<jsp:include page="user/profileEdu.jsp" />
-				
+
 			</div>
 
 			<div class="rightcolumn">
@@ -105,9 +110,9 @@
 							id="formCareer" onclick="formCareerClick()"
 							data-sync_id="InputStat_CareerInputStat"> <span>경력</span>
 						</a></li>
+						<input type="hidden" id="certificateCount" value="0">
 						<li><a class="btn icon-newspaper" href="javascript:void(0);"
-							id="formLicense" onclick="formLicenseClick()"
-							data-sync_id="InputStat_LicenseInputStat"> <span>자격증</span>
+							id="formLicense" data-sync_id="InputStat_LicenseInputStat"> <span>자격증</span>
 						</a></li>
 						<li><a class="btn icon-file-text2" href="javascript:void(0);"
 							id="formIntroduction" onclick="formIntroductionClick()"
@@ -119,9 +124,9 @@
 		</div>
 	</div>
 
-	
+
 	<!-- 학력사항 모달 -->
 	<jsp:include page="user/profileEduModal.jsp" />
-	
+
 </body>
 </html>

@@ -94,19 +94,6 @@ function formCareerClick() {
 }
 
 /**
- * 자격증 항목을 클릭할 때
- * 
- * @returns
- */
-function formLicenseClick() {
-	var tag = '';
-	tag += '<div id="license" class="card">';
-	tag += '<h3>자격증</h3>';
-	tag += '</div>';
-	$("#leftcolumn").append(tag);
-}
-
-/**
  * 자기소개 항목을 클릭할 때
  * 
  * @returns

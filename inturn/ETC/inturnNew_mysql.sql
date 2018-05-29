@@ -298,7 +298,7 @@ ALTER TABLE `educational_level`
 
 -- certificate
 CREATE TABLE `certificate` (
-	`certificate_num`      INT          NOT NULL COMMENT 'certificate_num', -- certificate_num
+	`certificate_num`      VARCHAR(50)  NOT NULL COMMENT 'certificate_num', -- certificate_num
 	`certificate_name`     VARCHAR(50)  NULL     COMMENT 'certificate_name', -- certificate_name
 	`published_by_license` VARCHAR(100) NULL     COMMENT 'published_by_license', -- published_by_license
 	`acquisition_date`     DATE         NULL     COMMENT 'acquisition_date', -- acquisition_date
