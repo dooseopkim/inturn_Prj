@@ -57,7 +57,7 @@
 						<div class="row">
 							<div class="col-sm-4">
 								<label class="">이름</label>
-								<input type="text" class="form-control" id="name" readonly="readonly" value="${login.name })">
+								<input type="text" class="form-control" id="name" readonly="readonly" value="${login.name }">
 							</div>
 							<div class="col-sm-4">
 								<label class="">생년월일</label>

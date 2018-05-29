@@ -5,6 +5,21 @@
 <mapper namespace="EducationalLevelMapper">
 	<select id=""></select>
 	<insert id="" parameterType="EducationalLevelVO">
+		<![CDATA[
+		INSERT INTO educational_level
+		VALUES(
+			(SELECT IFNULL(MAX(e.eduLevel_num),0)+1 FROM educational_level e), 
+			#{degree_level}, 
+			#{school_name}, 
+			#{admission_date}, 
+			#{graduation_date}, 
+			#{current_status}, 
+			#{major}, 
+			#{avg_score}, 
+			#{total_score},
+			#{id}
+			)
+		]]>	
 	</insert>
 
 </mapper>
