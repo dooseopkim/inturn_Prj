@@ -10,7 +10,17 @@ $(function(){
 		var scrollTop = $(window).scrollTop();
 		var scrollBottom = $(document).height() - $(window).height();
 		var newPosition = scrollTop + floatPosition + "px";
-		if (scrollTop > scrollBottom-292) {
+		$("#sidenav").stop().animate({
+			"top" : newPosition
+		}, {
+			'duration' : 500,
+			'easing' : 'easeInOutCubic',
+			'complete' : function() {
+				console.log('이동 완료하였습니다.');
+				console.log(scrollTop);
+			}
+		});
+		/*if (scrollTop > scrollBottom-292) {
 			$("#sidenav").stop().animate({
 				"top" : scrollBottom-18+"px"
 			}, {
@@ -18,9 +28,9 @@ $(function(){
 				'easing' : 'easeInOutCubic',
 			});
 		} else {
-			/* $("#sidenav").stop().animate({
+			 $("#sidenav").stop().animate({
 				"top" : newPosition
-			}, 500); */
+			}, 500); 
 			$("#sidenav").stop().animate({
 				"top" : newPosition
 			}, {
@@ -31,7 +41,7 @@ $(function(){
 					console.log(scrollTop);
 				}
 			});
-		}
+		}*/
 	}).scroll();
 });
 /**
