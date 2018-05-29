@@ -138,6 +138,7 @@
 			</div>
 		</div>
 	</div> -->
-
+	<!-- 학력사항 모달 -->
+	<jsp:include page="user/profileEduModal.jsp" />
 </body>
 </html>
