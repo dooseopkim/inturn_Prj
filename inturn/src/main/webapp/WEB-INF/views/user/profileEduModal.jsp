@@ -43,8 +43,8 @@
 			<div class="col-sm-4">
 				<label class="col-form-label label-edu" for="gubun" >분류</label>
 				<select id="gubun" class="form-control" onchange="gubunChange()">
-				<option value="high_list">고등학교</option>
-				<option value="univ_list">대학교</option>
+					<option value="high_list">고등학교</option>
+					<option value="univ_list">대학교</option>
 				</select>
 			</div>
 			<div class="col-sm-4">

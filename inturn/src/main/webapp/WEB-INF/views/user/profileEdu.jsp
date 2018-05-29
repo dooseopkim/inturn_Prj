@@ -25,7 +25,7 @@
 			<input type="hidden" id="eduLevel_num" value="">
 			<div class="row">
 				<div class="col-sm-6">
-					<label class="col-form-label label-edu" for="data_degree_level">학업수준</label>
+					<label class="col-form-label label-edu" for="data_degree_level">구분</label>
 					<input type="text" id="data_degree_level" class="form-control"
 						readonly="">
 				</div>
@@ -83,17 +83,12 @@
 					<strong>학력사항 추가</strong>
 				</h4>
 				<div class="col-sm-6">
-					<label class="col-form-label label-edu" for="degree_level">학업수준<span
-						class="point">*</span></label> <select id="degree_level"
-						class="form-control">
-						<option value="high_list">고등학교</option>
-						<option value="univ_list">대학교 이상</option>
-					</select>
+					<label class="col-form-label label-edu" for="school_name">학교명<span class="point">*</span></label>
+					<input type="text" id="school_name" class="form-control" readonly="">
 				</div>
 				<div class="col-sm-6">
-					<label class="col-form-label label-edu" for="">학교명<span
-						class="point">*</span></label> <input type="text" id="school_name"
-						class="form-control" readonly="">
+					<label class="col-form-label label-edu" for="degree_level">구분<span class="point">*</span></label>
+					<input type="text" id="degree_level" class="form-control" readonly="">
 				</div>
 			</div>
 			<div class="row">
@@ -141,9 +136,8 @@
 				</div>
 			</div>
 			<div id="box_addEduBtn">
-				<input type="button" id="btn_addEducation" class="btn btn-primary"
-					value="저장"> <input type="button"
-					id="btn_cancelAddEducation" class="btn btn-default" value="취소">
+				<input type="button" id="btn_addEducation" class="btn btn-primary" value="저장">
+				<input type="button" id="btn_cancelAddEducation" class="btn btn-default" value="취소">
 			</div>
 		</div>
 	</div>
