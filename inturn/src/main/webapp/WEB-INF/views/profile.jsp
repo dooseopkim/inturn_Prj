@@ -111,9 +111,9 @@
 								id="formCareer" onclick="formCareerClick()"
 								data-sync_id="InputStat_CareerInputStat"> <span>경력</span>
 							</a></li>
+							<input type="hidden" id="certificateCount" value="0">
 							<li><a class="btn icon-newspaper" href="javascript:void(0);"
-								id="formLicense" onclick="formLicenseClick()"
-								data-sync_id="InputStat_LicenseInputStat"> <span>자격증</span>
+								id="formLicense" data-sync_id="InputStat_LicenseInputStat"> <span>자격증</span>
 							</a></li>
 							<li><a class="btn icon-file-text2"
 								href="javascript:void(0);" id="formIntroduction"
