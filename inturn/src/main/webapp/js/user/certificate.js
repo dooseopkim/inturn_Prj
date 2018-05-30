@@ -38,7 +38,7 @@ $(function(){
 		tag += '<div class="row">';
 		tag += '<div id="cerName" class="col-sm-6">';
 		tag += '<label>자격증</label> ';
-		tag += '<input type="search" class="form-control" id="certificate_name'+certificateCount+'" name="certificate_name" placeholder="입력하시려면 검색됩니다." onkeydown="certificateName('+certificateCount+')">';
+		tag += '<input type="search" class="form-control" id="certificate_name'+certificateCount+'" name="certificate_name[]" placeholder="입력하시려면 검색됩니다." onkeydown="certificateName('+certificateCount+')">';
 		tag += '</div>';
 		tag += '<div class="col-sm-6">';
 		tag += '<label>취득일</label> ';
