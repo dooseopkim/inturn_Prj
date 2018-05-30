@@ -3,6 +3,7 @@ package com.inturn.biz.web.controller;
 
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.inturn.biz.users.service.EducationalLevelService;
 import com.inturn.biz.users.service.MailService;
 import com.inturn.biz.users.service.UserService;
 import com.inturn.biz.users.vo.EducationalLevelVO;
@@ -29,6 +31,8 @@ public class UserController {
 	@Resource(name="mailService")
 	MailService mailService;
 	
+	@Resource(name="EducationalLevelService")
+	EducationalLevelService eduLvlService;
 	/**
 	 * userMenu에서 회원가입 클릭시 약관동의 및 이메일 인증 페이지로 이동
 	 * @return
@@ -135,18 +139,70 @@ public class UserController {
 	public String profileFormDo(){
 		return "/index.jsp?content=profile";
 	}
-
+			
+	/**
+	 * 프로필 페이지의 우측 배너(이력서 항목)에서 학력 클릭 시 학력사항 카드에 기존 데이터 불러오기
+	 * @param id
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="getUserEduLvl.do")
+	public ModelAndView getUserEduLvlDo(String name, HttpSession session) {
+		System.out.println("getUserEduLvlDo() 진입");
+		ModelAndView mav = new ModelAndView();
+		UserVO user = (UserVO)session.getAttribute("login");
+		System.out.println(user);
+		if(user != null) {
+			String id = user.getId();
+			System.out.println("id : "+id);
+			List<EducationalLevelVO> eduLvlList = eduLvlService.getUserEduLvl(id);
+			System.out.println(eduLvlList);
+			if(eduLvlList.size()!=0) {
+				System.out.println("eduLvlList 불러오기 성공");
+				session.setAttribute("eduLvlList", eduLvlList);
+				mav.addObject("result", "success");
+			} else {
+				System.out.println("eduLvlList.size()==0");
+				session.setAttribute("eduLvlList", null);
+			}
+		} else {
+			System.out.println("로그인 정보 없음");
+			mav.addObject("result", "로그인 후 이용해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
+	/**
+	 * 프로필 페이지에서 학력사항 추가 시
+	 * @param vo
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="addProfileEdu.do", method=RequestMethod.POST)
 	public ModelAndView addProfileEduDo(EducationalLevelVO vo, HttpSession session) {
 		System.out.println("addProfileEduDo() 진입");
 		ModelAndView mav = new ModelAndView();
 		System.out.println(vo);
 		UserVO user = (UserVO)session.getAttribute("login");
-		System.out.println("id : " + user.getId());
-		vo.setId(user.getId());
+		String id = user.getId();
+		System.out.println("id : " + id);
+		vo.setId(id);
 		System.out.println(vo);
-		
-		
+		int result = eduLvlService.insertEduLvl(vo);
+		if(result==1) {
+			System.out.println("insert 성공");
+			List<EducationalLevelVO> eduLvlList = eduLvlService.getUserEduLvl(id);
+			System.out.println(eduLvlList);
+//			session.setAttribute("eduLvlList", eduLvlList);
+			mav.addObject("eduLvlList", eduLvlList);
+			mav.addObject("result", "success");
+		} else {
+			System.out.println("insert 실패");
+			mav.addObject("result", "학력사항 저장에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		System.out.println("addProfileEduDo() 끝");
 		return mav;
 	}
 }

@@ -12,6 +12,7 @@ $(function(){
 	
 	$("#btn_cancelAddEducation").click(function(){
 		if(confirm("현재 페이지에서 나가시겠습니까? 변경사항이 저장되지 않을 수 있습니다.")){
+			resetboxAddEdu();
 			$("#box_addEducation").hide();
 		}
 	});
@@ -71,39 +72,82 @@ $(function(){
 			success: function(data){
 				if(data.result=="success"){
 					alert("학력사항을 추가했습니다.");
+					resetboxAddEdu();
+					$("#box_addEducation").hide();
 				} else {
 					alert(data.result);
 				}
 			}
-				
-			
 		});
-		
 	});
+	
+	function resetboxAddEdu(){
+		$("#school_name").val("");
+		$("#degree_level").val("");
+		$("#admission_date").val("");
+		$("#graduation_date").val("");
+		$("#current_status").val("졸업");
+		$("#major").val("");
+		$("#avg_score").val("");
+		$("#total_score").val("4.5");
+		
+	}
 });
 
 /**
  * 학력 항목을 클릭할 때
+ * 
  * @returns
  */
+//function formEducationClick() {
+//	if ($("#education").is(':visible')) {
+//		$("#education").hide();
+//	} else {
+//		$.ajax({
+//			url : "getUserEduLvl.do",
+//			method : "POST",
+//			type : "JSON",
+//			data : {},
+//			success : function(data){
+//				if(data.result == "success"){
+//					console.log("성공");
+//					$("#getUserEdu").load("jsp/profileGetUserEdu.jsp");
+//					$("#education").show();
+//				} else {
+//					alert(data.result);
+//				}
+//			}
+//		});
+//	}
+//}
+
 function formEducationClick() {
-	/*var tag = '';
-	tag += '<div id="education" class="card">';
-	tag += '<div class="row">';
-	tag += '<div class="col-sm-6">';
-	tag += '<h3>학력</h3>';
-	tag += '</div>';
-	tag += '<div class="col-sm-6">';
-	tag += '<input type="button" id="addSchool" value="추가">';
-	tag += '<input type="button" id="deleteSchool" value="삭제">';
-	tag += '</div>';
-	tag += '</div>';
-	tag += '<div id="schoolArea" class="row border border-info">';
-	tag += '테스트';
-	tag += '</div>';
-	tag += '</div>';
-	$("#leftcolumn").append(tag);*/
-	$("#education").toggle(function(){
-		$("#box_addEducation").hide();
-	});
+	var a = '';
+	if ($("#education").is(':visible')) {
+		$("#education").hide();
+	} else {
+		$.ajax({
+			url : "getUserEduLvl.do",
+			method : "POST",
+			type : "JSON",
+			data : {},
+			success : function(data){
+				if(data.result == "success"){
+					console.log("성공");
+					$("#getUserEdu").load("jsp/profileGetUserEdu.jsp");
+					$("#education").show();
+				} else {
+					alert(data.result);
+				}
+			}
+		});
+	}
+}
+
+function chkDelete(){
+	if(confirm("삭제 후 복구할 수 없습니다. 삭제하시겠습니까?")){
+		return true;
+	}else {
+		return false;
+	}
 }

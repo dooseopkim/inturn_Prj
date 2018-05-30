@@ -3,8 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="EducationalLevelMapper">
-	<select id=""></select>
-	<insert id="" parameterType="EducationalLevelVO">
+
+	<select id="getUserEduLvl" parameterType="String" resultType="EducationalLevelVO">
+		<![CDATA[
+		SELECT *
+		FROM educational_level
+		WHERE id = #{id}		
+		]]>
+	</select>
+	
+	<insert id="insertEduLvl" parameterType="EducationalLevelVO">
 		<![CDATA[
 		INSERT INTO educational_level
 		VALUES(
@@ -21,5 +29,36 @@
 			)
 		]]>	
 	</insert>
-
+	
+	<update id="modifyEduLvl" parameterType="EducationalLevelVO">
+		<![CDATA[
+		UPDATE educational_level
+		SET degree_level = #{degree_level}, 
+			school_name = #{school_name}, 
+			admission_date = #{admission_date}, 
+			graduation_date = #{graduation_date}, 
+			current_status = #{current_status}, 
+			major = #{major}, 
+			avg_score = #{avg_score}, 
+			total_score = #{total_score}
+		WHERE eduLevel_num = #{eduLevel_num}
+		]]>	
+	</update>
+	
+	<delete id="deleteEduLvl" parameterType="int">
+		<![CDATA[
+		DELETE FROM educational_level
+		WHERE eduLevel_num = #{eduLevel_num}
+		]]>
+	</delete>
+	
+	<select id="getEduLvl" parameterType="int" resultType="EducationalLevelVO">
+		<![CDATA[
+		SELECT *
+		FROM educational_level
+		WHERE eduLevel_num = #{eduLevel_num}
+		]]>
+	</select>
+	
 </mapper>
+
