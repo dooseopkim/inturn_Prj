@@ -129,24 +129,6 @@
 					<div class="row" style="text-align: center;">
 						<a class="btn btn-primary btn-learn">작성완료</a>
 					</div>
-					<ul class="fh5co-social-icons" style="display: inline-block;">
-						<li><a class="btn icon-pencil" href="javascript:void(0);"
-							id="formEducation" onclick="formEducationClick()"
-							data-sync_id="InputStat_SchoolInputStat"> <span>학력&nbsp;&nbsp;&nbsp;</span>
-						</a></li>
-						<li><a class="btn icon-briefcase" href="javascript:void(0);"
-							id="formCareer" onclick="formCareerClick()"
-							data-sync_id="InputStat_CareerInputStat"> <span>경력</span>
-						</a></li>
-						<input type="hidden" id="certificateCount" value="0">
-						<li><a class="btn icon-newspaper" href="javascript:void(0);"
-							id="formLicense" data-sync_id="InputStat_LicenseInputStat"> <span>자격증</span>
-						</a></li>
-						<li><a class="btn icon-file-text2" href="javascript:void(0);"
-							id="formIntroduction" onclick="formIntroductionClick()"
-							data-sync_id="InputStat_UserIntroduceInputStat"> <span>자기소개서</span>
-						</a></li>
-					</ul>
 				</div>
 			</div>
 		</div>
