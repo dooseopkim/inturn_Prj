@@ -4,13 +4,13 @@
 	display: none;
 }
 
-#box_education{
+.box_education{
 	border: 1px solid #a29f9f !important;
 	margin: 30px 20px 30px 20px;
 	padding: 30px;
 }
 
-#box_education .form-control{
+.box_education .form-control{
 	margin-bottom: 20px !important;
 	background-color: transparent !important;
 }
@@ -22,7 +22,7 @@
 	color: red;
 }
 
-#box_eduBtn{
+.box_eduBtn{
 	text-align: right;
 	margin-top: 20px;
 	margin-right: 25px;
@@ -64,13 +64,13 @@
 	text-align: center;
 }
 
-#data_avg_score{
+.avg_score{
 	display: inline !important;
 	width: 40% !important;
 	margin-right: 20px;
 }
 
-#data_total_score{
+.total_score{
 	display: inline !important; 
 	width: 40% !important;
 	margin-left: 20px;

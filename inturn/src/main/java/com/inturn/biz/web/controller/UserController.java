@@ -159,11 +159,12 @@ public class UserController {
 			System.out.println(eduLvlList);
 			if(eduLvlList.size()!=0) {
 				System.out.println("eduLvlList 불러오기 성공");
-				session.setAttribute("eduLvlList", eduLvlList);
+				mav.addObject("eduLvlList", eduLvlList);
 				mav.addObject("result", "success");
 			} else {
 				System.out.println("eduLvlList.size()==0");
-				session.setAttribute("eduLvlList", null);
+				mav.addObject("eduLvlList", null);
+				mav.addObject("result", "null");
 			}
 		} else {
 			System.out.println("로그인 정보 없음");
@@ -194,7 +195,6 @@ public class UserController {
 			System.out.println("insert 성공");
 			List<EducationalLevelVO> eduLvlList = eduLvlService.getUserEduLvl(id);
 			System.out.println(eduLvlList);
-//			session.setAttribute("eduLvlList", eduLvlList);
 			mav.addObject("eduLvlList", eduLvlList);
 			mav.addObject("result", "success");
 		} else {
@@ -203,6 +203,40 @@ public class UserController {
 		}
 		mav.setViewName("jsonView");
 		System.out.println("addProfileEduDo() 끝");
+		return mav;
+	}
+	
+	@RequestMapping(value="deleteProfileEdu.do", method=RequestMethod.POST)
+	public ModelAndView deleteProfileEduDo(int eduLevel_num, HttpSession session) {
+		System.out.println("deleteProfileEduDo() 진입");
+		ModelAndView mav = new ModelAndView();
+		UserVO user = (UserVO)session.getAttribute("login");
+		if(user!=null) {
+			int result = eduLvlService.deleteEduLvl(eduLevel_num);
+			if(result == 1) {
+				System.out.println("삭제 성공");
+				mav.addObject("result", "success");
+				List<EducationalLevelVO> eduLvlList = eduLvlService.getUserEduLvl(user.getId());
+				System.out.println(eduLvlList);
+				if(eduLvlList.size()!=0) {
+					System.out.println("eduLvlList.size()!=0");
+					mav.addObject("eduLvlList", eduLvlList);
+				} else {
+					System.out.println("eduLvlList.size()==0");
+					mav.addObject("result", "null");
+					mav.addObject("eduLvlList", null);
+				}
+			} else {
+				System.out.println("삭제 실패");
+				mav.addObject("result", "삭제 실패. 잠시 후 다시 시도해 주세요.");
+				
+			}
+		} else {
+			System.out.println("로그인 정보 없음");
+			mav.addObject("result", "로그인 후 이용해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		System.out.println("deleteProfileEduDo() 끝");
 		return mav;
 	}
 }
