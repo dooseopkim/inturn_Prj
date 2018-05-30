@@ -113,8 +113,9 @@
 							<li><a class="btn icon-briefcase" href="javascript:void(0);"
 								id="formCareer" onclick="formCareerClick()"> <span>경력</span>
 							</a></li>
+							<input type="hidden" id="certificateCount" value="0">
 							<li><a class="btn icon-newspaper" href="javascript:void(0);"
-								id="formLicense" onclick="formLicenseClick()"> <span>자격증</span>
+								id="formLicense" > <span>자격증</span>
 							</a></li>
 							<li><a class="btn icon-book" href="javascript:void(0);"
 								id="formPortfolio" onclick="formPortfolioClick()"> <span>포트폴리오</span>
