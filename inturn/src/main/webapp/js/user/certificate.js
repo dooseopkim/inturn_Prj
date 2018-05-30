@@ -1,11 +1,22 @@
+/**
+ * 추가한 자격증 창 삭제
+ */
 function deleteCertificate(certificateCount) {
 	$("#license"+certificateCount).remove();
 }
+
 /**
- * 자격증 항목을 클릭할 때
- * @returns
+ * 자격증 검색
  */
+function certificateName(certificateCount){
+	
+}
+
 $(function(){
+	/**
+	 * 자격증 항목을 클릭할 때
+	 * @returns 자격증에 대한 태그들 추가
+	 */
 	$("#formLicense").click(function() {
 		var certificateCount = parseInt($("#certificateCount").val());
 		certificateCount = certificateCount + 1;
@@ -25,23 +36,23 @@ $(function(){
 		tag += '</div>';
 		tag += '<div class="card-body">';
 		tag += '<div class="row">';
-		tag += '<div class="col-sm-6">';
+		tag += '<div id="cerName" class="col-sm-6">';
 		tag += '<label>자격증</label> ';
-		tag += '<input type="text" class="form-control"	id="certificate_name" name="certificate_name[]" readonly="readonly">';
+		tag += '<input type="search" class="form-control" id="certificate_name'+certificateCount+'" name="certificate_name" placeholder="입력하시려면 검색됩니다." onkeydown="certificateName('+certificateCount+')">';
 		tag += '</div>';
 		tag += '<div class="col-sm-6">';
 		tag += '<label>취득일</label> ';
-		tag += '<input type="date" class="form-control"	id="acquisition_date" name="acquisition_date[]" readonly="readonly">';
+		tag += '<input type="date" class="form-control"	id="acquisition_date'+certificateCount+'" name="acquisition_date[]">';
 		tag += '</div>';
 		tag += '</div>';
 		tag += '<div class="row">';
 		tag += '<div class="col-sm-6">';
 		tag += '<label>발급기관</label> ';
-		tag += '<input type="text" class="form-control"	id="published_by_license" name="published_by_license[]" readonly="readonly">';
+		tag += '<input type="text" class="form-control"	id="published_by_license'+certificateCount+'" name="published_by_license[]" readonly="readonly">';
 		tag += '</div>';
 		tag += '<div class="col-sm-6">';
 		tag += '<label>등록번호</label> ';
-		tag += '<input type="text" class="form-control"	id="certificate_num" name="certificate_num[]" readonly="readonly">';
+		tag += '<input type="text" class="form-control"	id="certificate_num'+certificateCount+'" name="certificate_num[]">';
 		tag += '</div>';
 		tag += '</div>';
 		tag += '</div>';

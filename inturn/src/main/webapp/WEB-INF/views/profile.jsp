@@ -92,10 +92,9 @@
 				<div class="card">
 					<h3>인적사항</h3>
 				</div>
-
+				
 				<!-- 학력사항 -->
 				<jsp:include page="user/profileEdu.jsp" />
-
 			</div>
 
 			<div class="rightcolumn">
@@ -203,6 +202,5 @@
 
 	<!-- 학력사항 모달 -->
 	<jsp:include page="user/profileEduModal.jsp" />
-
 </body>
 </html>
