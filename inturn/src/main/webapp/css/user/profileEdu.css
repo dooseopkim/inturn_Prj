@@ -24,7 +24,7 @@
 #box_addEducation{
 	display: none;
 	margin: 30px 10px 10px 10px;
-	padding: 10px;
+	padding: 30px;
 	border: 1px solid #a29f9f !important;
 }
 
@@ -45,6 +45,10 @@
 	background-color: transparent;	
 }
 
+#degree_level{
+	background-color: transparent;	
+}
+
 #box_addEduBtn{
 	text-align: right;
 	margin-top: 20px;
@@ -52,4 +56,27 @@
 }
 .modal-footer{
 	text-align: center;
+}
+
+#data_avg_score{
+	display: inline !important;
+	width: 40% !important;
+	margin-right: 20px;
+}
+
+#data_total_score{
+	display: inline !important; 
+	width: 40% !important;
+	margin-left: 20px;
+}
+
+#avg_score{
+	display: inline !important;
+	width: 40% !important;
+	margin-right: 20px;
+}
+#total_score{
+	display: inline !important; 
+	width: 40% !important;
+	margin-left: 20px;
 }

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.inturn.biz.users.service.MailService;
 import com.inturn.biz.users.service.UserService;
+import com.inturn.biz.users.vo.EducationalLevelVO;
 import com.inturn.biz.users.vo.UserVO;
 
 @Controller
@@ -135,4 +136,17 @@ public class UserController {
 		return "/index.jsp?content=profile";
 	}
 
+	@RequestMapping(value="addProfileEdu.do", method=RequestMethod.POST)
+	public ModelAndView addProfileEduDo(EducationalLevelVO vo, HttpSession session) {
+		System.out.println("addProfileEduDo() 진입");
+		ModelAndView mav = new ModelAndView();
+		System.out.println(vo);
+		UserVO user = (UserVO)session.getAttribute("login");
+		System.out.println("id : " + user.getId());
+		vo.setId(user.getId());
+		System.out.println(vo);
+		
+		
+		return mav;
+	}
 }
