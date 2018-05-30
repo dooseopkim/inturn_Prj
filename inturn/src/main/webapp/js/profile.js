@@ -81,19 +81,6 @@ function formEducationClick() {
 }
 
 /**
- * 경력 항목을 클릭할 때
- * 
- * @returns
- */
-function formCareerClick() {
-	var tag = '';
-	tag += '<div id="career" class="card">';
-	tag += '<h3>경력</h3>';
-	tag += '</div>';
-	$("#leftcolumn").append(tag);
-}
-
-/**
  * 자기소개 항목을 클릭할 때
  * 
  * @returns

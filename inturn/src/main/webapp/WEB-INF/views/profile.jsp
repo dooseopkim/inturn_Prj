@@ -7,13 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>人Turn &mdash; 다시 인생을 시작하다.</title>
 <link rel="stylesheet" href="/css/user/profileEdu.css">
+<link rel="stylesheet" href="/css/user/profileCareer.css">
 <link rel="stylesheet" href="css/user/certificate.css">
 <script type="text/javascript" src="js/profile.js"></script>
 <script type="text/javascript" src="js/user/certificate.js"></script>
 </head>
 <body>
+	<!-- 우측 최상단 메뉴 -->
 	<jsp:include page="userMenu.jsp" />
 
+	<!-- 상단 내비게이션 -->
 	<nav class="fh5co-nav" role="navigation">
 	<div class="container-wrap">
 		<div class="top-menu">
@@ -45,12 +48,15 @@
 		</div>
 	</div>
 	</nav>
+	<!-- 상단 내비 div END -->
 
-	<!-- 테스트용도 -->
+	<!-- 프로필 -->
 	<div class="container-wrap" style="background-color: #e8e8e8;">
-
+		<!-- 블로그레이아웃 -->
 		<div class="row blogLayout animate-box">
+			<!-- 좌측 (프로필작성란) -->
 			<div class="leftcolumn" id="leftcolumn">
+				<!-- 인적사항 -->
 				<div id="personal" class="card">
 					<div class="row">
 						<h3>인적사항</h3>
@@ -85,55 +91,56 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="card">
-					<h3>인적사항</h3>
-				</div>
-				<div class="card">
-					<h3>인적사항</h3>
-				</div>
+				<!-- 인적사항 div END -->
 
 				<!-- 학력사항 -->
 				<jsp:include page="user/profileEdu.jsp" />
 
+				<!-- 경력사항 -->
+				<jsp:include page="user/profileCareer.jsp" />
+
 			</div>
 
+			<!-- 우측(사이드 네비게이션) -->
 			<div class="rightcolumn">
 				<div class="card sidenav" id="sidenav">
 					<h4>이력서 항목</h4>
 					<div>
 						<ul class="fh5co-social-icons" style="display: inline-block;">
 							<li><a class="btn icon-pencil" href="javascript:void(0);"
-								id="formEducation" onclick="formEducationClick()"
-								data-sync_id="InputStat_SchoolInputStat"> <span>학력&nbsp;&nbsp;&nbsp;</span>
+								id="formEducation" onclick="formEducationClick()"> <span>학력&nbsp;&nbsp;&nbsp;</span>
 							</a></li>
 							<li><a class="btn icon-briefcase" href="javascript:void(0);"
-								id="formCareer" onclick="formCareerClick()"
-								data-sync_id="InputStat_CareerInputStat"> <span>경력</span>
+								id="formCareer" onclick="formCareerClick()"> <span>경력</span>
 							</a></li>
 							<li><a class="btn icon-newspaper" href="javascript:void(0);"
-								id="formLicense" onclick="formLicenseClick()"
-								data-sync_id="InputStat_LicenseInputStat"> <span>자격증</span>
+								id="formLicense" onclick="formLicenseClick()"> <span>자격증</span>
+							</a></li>
+							<li><a class="btn icon-book" href="javascript:void(0);"
+								id="formPortfolio" onclick="formPortfolioClick()"> <span>포트폴리오</span>
 							</a></li>
 							<li><a class="btn icon-file-text2"
 								href="javascript:void(0);" id="formIntroduction"
-								onclick="formIntroductionClick()"
-								data-sync_id="InputStat_UserIntroduceInputStat"> <span>자기소개서</span>
+								onclick="formIntroductionClick()"> <span>자기소개서</span>
 							</a></li>
 						</ul>
 					</div>
 					<br>
 					<div class="row" style="text-align: center;">
-						<a class="btn btn-tmp" >임시저장</a>
+						<a class="btn btn-tmp">임시저장</a>
 					</div>
 					<div class="row" style="text-align: center;">
 						<a class="btn btn-primary btn-learn">작성완료</a>
 					</div>
 				</div>
 			</div>
+			<!-- 사이드네비 div END -->
 		</div>
+		<!-- 블로그레이아웃 div END -->
 	</div>
+	<!-- 프로필(container-wrap) div END -->
 
+	<%-- 
 	<!-- 모달 : 학력사항 - 고등학교 선택 -->
 	<div class="modal" id="schoolModal">
 		<div class="modal-dialog" role="document">
@@ -202,7 +209,7 @@
 	<jsp:include page="schoolJS.jsp"></jsp:include>
 
 	<!-- 학력사항 모달 -->
-	<jsp:include page="user/profileEduModal.jsp" />
+	<jsp:include page="user/profileEduModal.jsp" /> --%>
 
 </body>
 </html>
