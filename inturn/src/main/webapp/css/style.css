@@ -1466,6 +1466,18 @@ input[type="text"] {
 	outline: none !important;
 }
 
+.btn-tmp{
+	color: #66D37E;
+	background-color: #fff;
+	border-color:#66D37E;
+}
+
+.btn-tmp:focus, .btn-tmp.focus, .btn-tmp:hover, .btn-tmp:active, .btn-tmp.active{
+	color: #fff;
+	background: #7ad98f !important;
+	border-color: #7ad98f !important;
+}
+
 .btn-primary {
 	background: #66D37E;
 	color: #fff;

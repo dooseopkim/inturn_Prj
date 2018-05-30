@@ -55,27 +55,30 @@
 					<div id="box_personal">
 						<div class="row">
 							<div class="col-sm-4">
-								<label class="">이름</label>
-								<input type="text" class="form-control" id="name" readonly="readonly" value="${login.name })">
+								<label class="">이름</label> <input type="text"
+									class="form-control" id="name" readonly="readonly"
+									value="${login.name }">
 							</div>
 							<div class="col-sm-4">
-								<label class="">생년월일</label>
-								<input type="text" class="form-control" id="birthday" readonly="readonly" value="${login.birthday }">
+								<label class="">생년월일</label> <input type="text"
+									class="form-control" id="birthday" readonly="readonly"
+									value="${login.birthday }">
 							</div>
 							<div class="col-sm-4">
-								<label class="">타입</label>
-								<input type="text" class="form-control" id="type" readonly="readonly" value="${login.type }">
+								<label class="">타입</label> <input type="text"
+									class="form-control" id="type" readonly="readonly"
+									value="${login.type }">
 							</div>
 						</div>
 						<div class="row" style="margin-top: 1em;">
 							<div class="col-sm-6">
-								<label>휴대전화</label>
-								<input type="text" class="form-control" id="phone" value="${login.phone }">
-							</div> 
+								<label>휴대전화</label> <input type="text" class="form-control"
+									id="phone" value="${login.phone }">
+							</div>
 							<div class="col-sm-6">
-								<label>이메일</label>
-								<input type="text" class="form-control" id="email" value="${login.email }">
-							</div> 
+								<label>이메일</label> <input type="text" class="form-control"
+									id="email" value="${login.email }">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -194,33 +197,43 @@
 				<div class="card">
 					<h3>인적사항</h3>
 				</div>
-				
+
 				<!-- 학력사항 -->
 				<jsp:include page="user/profileEdu.jsp" />
-				
+
 			</div>
 
 			<div class="rightcolumn">
 				<div class="card sidenav" id="sidenav">
 					<h4>이력서 항목</h4>
-					<ul class="fh5co-social-icons" style="display: inline-block;">
-						<li><a class="btn icon-pencil" href="javascript:void(0);"
-							id="formEducation" onclick="formEducationClick()"
-							data-sync_id="InputStat_SchoolInputStat"> <span>학력&nbsp;&nbsp;&nbsp;</span>
-						</a></li>
-						<li><a class="btn icon-briefcase" href="javascript:void(0);"
-							id="formCareer" onclick="formCareerClick()"
-							data-sync_id="InputStat_CareerInputStat"> <span>경력</span>
-						</a></li>
-						<li><a class="btn icon-newspaper" href="javascript:void(0);"
-							id="formLicense" onclick="formLicenseClick()"
-							data-sync_id="InputStat_LicenseInputStat"> <span>자격증</span>
-						</a></li>
-						<li><a class="btn icon-file-text2" href="javascript:void(0);"
-							id="formIntroduction" onclick="formIntroductionClick()"
-							data-sync_id="InputStat_UserIntroduceInputStat"> <span>자기소개서</span>
-						</a></li>
-					</ul>
+					<div>
+						<ul class="fh5co-social-icons" style="display: inline-block;">
+							<li><a class="btn icon-pencil" href="javascript:void(0);"
+								id="formEducation" onclick="formEducationClick()"
+								data-sync_id="InputStat_SchoolInputStat"> <span>학력&nbsp;&nbsp;&nbsp;</span>
+							</a></li>
+							<li><a class="btn icon-briefcase" href="javascript:void(0);"
+								id="formCareer" onclick="formCareerClick()"
+								data-sync_id="InputStat_CareerInputStat"> <span>경력</span>
+							</a></li>
+							<li><a class="btn icon-newspaper" href="javascript:void(0);"
+								id="formLicense" onclick="formLicenseClick()"
+								data-sync_id="InputStat_LicenseInputStat"> <span>자격증</span>
+							</a></li>
+							<li><a class="btn icon-file-text2"
+								href="javascript:void(0);" id="formIntroduction"
+								onclick="formIntroductionClick()"
+								data-sync_id="InputStat_UserIntroduceInputStat"> <span>자기소개서</span>
+							</a></li>
+						</ul>
+					</div>
+					<br>
+					<div class="row" style="text-align: center;">
+						<a class="btn btn-tmp" >임시저장</a>
+					</div>
+					<div class="row" style="text-align: center;">
+						<a class="btn btn-primary btn-learn">작성완료</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -292,7 +305,6 @@
 		</div>
 	</div>
 	<jsp:include page="schoolJS.jsp"></jsp:include>
-	</div> -->
 	<!-- 학력사항 모달 -->
 	<jsp:include page="user/profileEduModal.jsp" />
 </body>
