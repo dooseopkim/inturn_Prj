@@ -219,7 +219,5 @@
 	<jsp:include page="user/profileEduModal.jsp" />
 =======
 	<jsp:include page="user/profileEduModal.jsp" /> --%>
-
->>>>>>> branch 'master' of https://github.com/dooseopkim/inturn_Prj.git
 </body>
 </html>
