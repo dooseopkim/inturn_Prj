@@ -2,6 +2,7 @@
 
 #education{
 	display: none;
+	padding-top: 35px;
 }
 
 .box_education{
@@ -20,6 +21,9 @@
 }
 .point{
 	color: red;
+}
+.box_addCloseBtn{
+	text-align: right;
 }
 
 .box_eduBtn{
@@ -55,11 +59,6 @@
 	background-color: transparent;	
 }
 
-#box_addEduBtn{
-	text-align: right;
-	margin-top: 20px;
-	margin-right: 25px;
-}
 .modal-footer{
 	text-align: center;
 }

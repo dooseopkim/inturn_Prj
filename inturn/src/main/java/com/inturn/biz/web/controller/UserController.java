@@ -68,10 +68,12 @@ public class UserController {
 		session.setAttribute("code", code);
 		session.setAttribute("email", to);
 		System.out.println("여기까진 성공");
+		
+		
 		String subject = "[人Turn] 회원가입 인증 코드 발급 안내";
 		StringBuffer sb = new StringBuffer();
 		sb.append("<h2>[人Turn] 회원가입 인증 코드 발급 안내</h2><br><br><hr><br>귀하의 인증 코드는 <strong style='color: green; font-weight: bold; font-size: large;'>"+code+"</strong> 입니다. <br>인증번호를 입력해서 회원가입을 진행해 주세요.");
-		boolean flag = mailService.sendEmail(subject, sb.toString(), "inturn303@gmail.com", to);
+		boolean flag = mailService.sendEmail(subject, sb.toString(), to);
 		if(flag){
 			return code;
 		}
@@ -214,6 +216,62 @@ public class UserController {
 		}
 		mav.setViewName("jsonView");
 		System.out.println("addProfileEduDo() 끝");
+		return mav;
+	}
+	
+	@RequestMapping(value="modifyEduForm.do", method=RequestMethod.POST)
+	public ModelAndView modifyEduFormDo(int eduLevel_num, HttpSession session) {
+		System.out.println("modifyEduFormDo() 진입");
+		ModelAndView mav = new ModelAndView();
+		UserVO user = (UserVO)session.getAttribute("login");
+		if(user!=null) {
+			System.out.println("로그인 정보 확인 id : "+ user.getId());
+			EducationalLevelVO vo = eduLvlService.getEduLvl(eduLevel_num);
+			System.out.println(vo);
+			if(vo!=null) {
+				System.out.println("vo!=null");
+				mav.addObject("eduLvl", vo);
+				mav.addObject("result", "success");
+			} else {
+				System.out.println("vo!=null");
+				mav.addObject("result", "해당 학력 데이터를 찾을 수 없습니다.");
+			}
+		} else {
+			System.out.println("로그인 정보 없음");
+			mav.addObject("result", "로그인 후 이용해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		System.out.println("modifyEduFormDo() 끝");
+		return mav;
+	}
+	
+	@RequestMapping(value="modifyEdu.do", method=RequestMethod.POST)
+	public ModelAndView modifyEduDo(EducationalLevelVO vo, HttpSession session) {
+		System.out.println("modifyEduDo() 진입");
+		ModelAndView mav = new ModelAndView();
+		System.out.println(vo);
+		UserVO user = (UserVO)session.getAttribute("login");
+		if(user != null) {
+			String id = user.getId();
+			System.out.println("로그인 정보 확인 id : " + id);
+			vo.setId(id);;
+			int result = eduLvlService.modifyEduLvl(vo);
+			if(result == 1) {
+				System.out.println("수정 성공");
+				mav.addObject("result", "success");
+				List<EducationalLevelVO> eduLvlList = eduLvlService.getUserEduLvl(id);
+				mav.addObject("eduLvlList", eduLvlList);
+			} else {
+				System.out.println("수정 실패");
+				mav.addObject("result", "success");
+			}
+		} else {
+			System.out.println("로그인 정보 없음");
+			mav.addObject("result", "로그인 후 이용해 주세요.");
+		}
+		
+		mav.setViewName("jsonView");
+		System.out.println("modifyEduDo() 끝");
 		return mav;
 	}
 	

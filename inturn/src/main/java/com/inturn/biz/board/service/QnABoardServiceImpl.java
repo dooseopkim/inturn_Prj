@@ -4,10 +4,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.inturn.biz.board.dao.CsBoardDAO;
+import com.inturn.biz.board.dao.QnQBoardDAO;
 
 @Service("CsBoardService")
-public class CsBoardServiceImpl implements CsBoardService{
+public class QnABoardServiceImpl implements QnABoardService{
 	@Resource(name="CsBoardDAO")
-	CsBoardDAO dao;
+	QnQBoardDAO dao;
 }

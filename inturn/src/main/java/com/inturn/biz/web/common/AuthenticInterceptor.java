@@ -12,7 +12,10 @@ public class AuthenticInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		String requestUrl = request.getRequestURL().toString();
-		if (requestUrl.equals("http://localhost:9000/") || requestUrl.contains("/login.do")
+		if (requestUrl.equals("http://54.200.40.252:8080/") || requestUrl.equals("https://inturn.cf/")
+				|| requestUrl.equals("http://inturn.cf/") || requestUrl.equals("http://54.200.40.252:80/")
+				|| requestUrl.equals("http://54.200.40.252/") || requestUrl.equals("http://localhost:8080/")
+				||requestUrl.contains("/login.do")
 				|| requestUrl.contains("/logout.do") || requestUrl.contains("/loginForm.do")
 				|| requestUrl.contains("/loginForm.do") || requestUrl.contains("/findIDForm.do")
 				|| requestUrl.contains("/findID.do") || requestUrl.contains("/findPW.do")

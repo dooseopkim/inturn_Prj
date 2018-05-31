@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/board/freeBoard.css">
-<script type="text/javascript" src="js/board/freeBoard.js"></script>
-<title>Free Board</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="css/board/freeBoard.css">
+	<script type="text/javascript" src="js/board/freeBoard.js"></script>
+	<title>Searched Free Board</title>
 </head>
 <body>
 	<jsp:include page="../userMenu.jsp" />
@@ -35,7 +35,8 @@
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>
 								<li><a href="csBoard.do">고객서비스</a></li>
-							</ul></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -60,8 +61,8 @@
 						<c:set var="index" value="${index - 1}" />
 						<tr>
 							<td id="table">${index}</td>
-							<td id="table"><a
-								href="viewFreeBoard.do?fb_num=${freeBoard.fb_num}&thisPage=${thisPage}">${freeBoard.title}</a>
+							<td id="table">
+								<a href="viewSCFreeBoard.do?condition=${condition}&search=${search}&fb_num=${freeBoard.fb_num}&thisPage=${thisPage}">${freeBoard.title}</a>
 							</td>
 							<td id="table">${freeBoard.regDate}</td>
 							<td id="table">${freeBoard.hit}</td>
@@ -74,16 +75,14 @@
 		<div class="row" style="text-align: center;">
 			<ul class="pagination">
 				<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-				<c:forEach var="i" begin="1" end="${page}" step="1">
+					<c:forEach var="i" begin="1" end="${page}" step="1">
 					<c:if test="${thisPage eq i}">
-						<li class="page-item active"><a class="page-link"
-							href="freeBoard.do?page_num=${i}">${i}</a></li>
+						<li class="page-item active"><a class="page-link" href="searchFreeBoard.do?condition=${condition}&search=${search}&page_num=${i}">${i}</a></li>
 					</c:if>
 					<c:if test="${thisPage ne i}">
-						<li class="page-item"><a class="page-link"
-							href="freeBoard.do?page_num=${i}">${i}</a></li>
+						<li class="page-item"><a class="page-link" href="searchFreeBoard.do?condition=${condition}&search=${search}&page_num=${i}">${i}</a></li>
 					</c:if>
-				</c:forEach>
+					</c:forEach>
 				<li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
 			</ul>
 		</div>
