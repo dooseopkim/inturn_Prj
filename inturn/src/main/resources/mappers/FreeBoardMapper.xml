@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="FreeBoardMapper">
+	
 	<select id="prevfb_num" parameterType="int" resultType="int">
 		<![CDATA[
 			SELECT IFNULL(MAX(fb_num), -1) FROM freeBoard WHERE fb_num < #{fb_num};

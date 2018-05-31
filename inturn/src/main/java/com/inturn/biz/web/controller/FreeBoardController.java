@@ -40,6 +40,12 @@ public class FreeBoardController {
 	@Resource(name = "FileService")
 	FileService file_service;
 
+	@RequestMapping(value= "/viewSCFreeBoard.do")
+	public String viewSCFreeBoard(String condition, String search, int fb_num, int thisPage) {
+		
+		return "index.jsp?content=board/viewSCFreeBoard";
+	}
+	
 	/**
 	 * condition = search인 게시글들을 검색하는 함수
 	 * 

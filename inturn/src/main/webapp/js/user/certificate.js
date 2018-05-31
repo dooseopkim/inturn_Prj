@@ -1,4 +1,11 @@
 /**
+ * @author 박현호
+ * @version 1.0
+ * @since 2018.05.30
+ * @see 자격증과 관련된 자바스크립트, JQuery함수
+ */
+
+/**
  * 추가한 자격증 창 삭제
  */
 function deleteCertificate(certificateCount) {
@@ -7,6 +14,11 @@ function deleteCertificate(certificateCount) {
 
 /**
  * 자격증 이름을 통한 발급처 검색
+ * option에서 data-value로 넣어놓은 값이 각 밑의 배열의 발급처를 나타냄
+ * 먼저 선택된 자격증 이름과, datalist의 option 태그를 싹 다 가져온 후
+ * 하나씩 비교해서 같은 경우에 해당 datalist의 data-value값을 가져옴
+ * 그게 pbl의 index값인데 1부터 값을 적어놔서 -1 해줘서 index를 맞춤
+ * 이제 발급처 이름을 해당 input태그에 넣어줌
  */
 function publishedByLicense(certificateCount){
 	var pbl = ["한국산업인력공단","대한상공회의소","영화진흥위원회","한국광해관리공단","한국기술자격검정원","한국방송통신전파진흥원","한국원자력안전기술원","한국인터넷진흥원","한국콘텐츠진흥원"];
