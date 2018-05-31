@@ -1,8 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.ProfileMapper">
-	<insert id="addProfileCareer" parameterType="FreeBoardVO">
-		INSERT INTO  (fb_num, title, content, regDate, hit, id)
-		VALUES((SELECT IFNULL(max(f.fb_num),0)+1 FROM freeBoard f), #{title}, #{content}, #{regDate}, #{hit}, #{id})
+<mapper namespace="ProfileMapper">
+	<select id="getUserCareer" parameterType="String" resultType="CareerVO">
+		<![CDATA[
+		SELECT *
+		FROM career
+		WHERE id = #{id}		
+		]]>
+	</select>
+	
+	<select id="getUserJob" parameterType="String" resultType="JobVO">
+		<![CDATA[
+		SELECT *
+		FROM Job
+		WHERE id = #{id}		
+		]]>
+	</select>
+	
+	<insert id="insertCareer" parameterType="CareerVO">
+		<![CDATA[INSERT INTO career (num, company_num, dept_name, indate, outdate, id)
+		VALUES((SELECT IFNULL(max(c.num),0)+1 FROM career c), #{company_num}, #{dept_name}, #{indate}, #{outdate}, #{id})]]>
 	</insert>
+	
+	<insert id="insertJob" parameterType="JobVO">
+		<![CDATA[INSERT INTO job (job_num, position, kinds, duty, id)
+		VALUES((SELECT IFNULL(max(j.job_num),0)+1 FROM job j), #{position}, #{kinds}, #{duty}, #{id})]]>
+	</insert>
+	
+	<update id="modifyCareer" parameterType="CareerVO">
+		UPDATE career
+		SET company_num = #{company_num}, 
+			dept_name = #{dept_name}, 
+			indate = #{indate}, 
+			outdate = #{outdate}, 
+		WHERE num = #{num}
+	</update>
+	
+	<update id="modifyJob" parameterType="JobVO">
+		UPDATE job
+		SET position = #{position}, 
+			kinds = #{kinds}, 
+			duty = #{duty}, 
+		WHERE job_num = #{job_num}
+	</update>
+	
+	<delete id="deleteCareer" parameterType="int">
+		DELETE FROM career
+		WHERE num = #{num}
+	</delete>
+	
+	<delete id="deleteJob" parameterType="int">
+		DELETE FROM job
+		WHERE job_num = #{job_num}
+	</delete>
+	
+	<select id="getCareer" parameterType="int" resultType="CareerVO">
+		SELECT *
+		FROM career
+		WHERE num = #{num}
+	</select>
+	
+	<select id="getJob" parameterType="int" resultType="JobVO">
+		SELECT *
+		FROM job
+		WHERE job_num = #{job_num}
+	</select>
 </mapper>

@@ -126,7 +126,9 @@ public class LogInOutController {
 			String subject = "[人Turn] 임시 비밀번호 발급 안내";
 			StringBuffer sb = new StringBuffer();
 			sb.append("<h2>[人Turn] 임시 비밀번호 발급 안내</h2><br><br><hr><br>귀하의 임시 비밀번호는 <strong style='color: green; font-weight: bold; font-size: large;'>" + tempPw + "</strong> 입니다. <br>임시 비밀번호를 입력해서 로그인을 진행해 주세요.");
-			boolean flag = mailService.sendEmail(subject, sb.toString(), "inturn303@gmail.com", userEmail);
+			
+			
+			boolean flag = mailService.sendEmail(subject, sb.toString(), userEmail);
 			if(flag) {
 				session.setAttribute("chkModPw", "true");
 				session.setAttribute("tempPw", tempPw);

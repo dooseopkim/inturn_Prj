@@ -118,22 +118,9 @@
 							<li><a class="btn icon-newspaper" href="javascript:void(0);"
 								id="formLicense"> <span>자격증</span>
 							</a></li>
-							<li><a class="btn icon-book" href="javascript:void(0);"
-								id="formPortfolio" onclick="formPortfolioClick()"> <span>포트폴리오</span>
-							</a></li>
-							<li><a class="btn icon-file-text2"
-								href="javascript:void(0);" id="formIntroduction"
-								onclick="formIntroductionClick()"> <span>자기소개서</span>
-							</a></li>
 						</ul>
 					</div>
 					<br>
-					<div class="row" style="text-align: center;">
-						<a class="btn btn-tmp">임시저장</a>
-					</div>
-					<div class="row" style="text-align: center;">
-						<a class="btn btn-primary btn-learn">작성완료</a>
-					</div>
 				</div>
 			</div>
 			<!-- 사이드네비 div END -->
@@ -142,7 +129,6 @@
 	</div>
 	<!-- 프로필(container-wrap) div END -->
 
-	<jsp:include page="schoolJS.jsp"></jsp:include>
 
 	<!-- 학력사항 모달 -->
 	<jsp:include page="user/profileEduModal.jsp" />

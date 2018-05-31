@@ -1,28 +1,5 @@
---테이블 전부 날리기--
-SET @tables = NULL;
-SELECT GROUP_CONCAT(table_schema, '.', table_name) INTO @tables
-    FROM information_schema.tables 
-    WHERE table_schema = 'inturnDB';
 
-SET @tables = CONCAT('DROP TABLE ', @tables);
-PREPARE stmt FROM @tables;
-EXECUTE stmt;
-DEALLOCATE PREPARE stmt;
---요기 까지--
 
--- icon
-CREATE TABLE `icon` (
-	`icon_num` INT          NOT NULL COMMENT 'icon_num', -- icon_num
-	`icon_src` VARCHAR(100) NULL     COMMENT 'icon_src' -- icon_src
-)
-COMMENT 'icon';
-
--- icon
-ALTER TABLE `icon`
-	ADD CONSTRAINT `PK_icon` -- icon 기본키
-		PRIMARY KEY (
-			`icon_num` -- icon_num
-		);
 
 -- users
 CREATE TABLE `users` (
@@ -44,136 +21,7 @@ ALTER TABLE `users`
 		PRIMARY KEY (
 			`id` -- id
 		);
-		
--- reply
-CREATE TABLE `reply` (
-	`rb_num`     INT           NOT NULL COMMENT 'rb_num', -- rb_num
-	`fb_num`     INT           NULL     COMMENT 'fb_num', -- fb_num
-	`cb_num`     INT           NULL     COMMENT 'cb_num', -- cb_num
-	`title`      VARCHAR(200)  NULL     COMMENT 'title', -- title
-	`content`    VARCHAR(1000) NULL     COMMENT 'content', -- content
-	`regDate`    DATE          NULL     COMMENT 'regDate', -- regDate
-	`parentNum`  INT           NULL     COMMENT 'parentNum', -- parentNum
-	`childCount` INT           NULL     COMMENT 'childCount', -- childCount
-	`position`   VARCHAR(30)   NULL     COMMENT 'position', -- position
-	`id`         VARCHAR(30)   NULL     COMMENT 'id' -- id
-)
-COMMENT 'reply';
 
--- reply
-ALTER TABLE `reply`
-	ADD CONSTRAINT `PK_reply` -- reply 기본키
-		PRIMARY KEY (
-			`rb_num` -- rb_num
-		);
-
--- counselBoard
-CREATE TABLE `counselBoard` (
-	`cb_num`     INT           NOT NULL COMMENT 'cb_num', -- cb_num
-	`title`      VARCHAR(200)  NULL     COMMENT 'title', -- title
-	`content`    VARCHAR(1000) NULL     COMMENT 'content', -- content
-	`makePublic` VARCHAR(10)   NULL     COMMENT 'makePublic', -- makePublic
-	`regDate`    DATE          NULL     COMMENT 'regDate', -- regDate
-	`hit`        INT           NULL     COMMENT 'hit', -- hit
-	`id`         VARCHAR(30)   NULL     COMMENT 'id' -- id
-)
-COMMENT 'counselBoard';
-
--- counselBoard
-ALTER TABLE `counselBoard`
-	ADD CONSTRAINT `PK_counselBoard` -- counselBoard 기본키
-		PRIMARY KEY (
-			`cb_num` -- cb_num
-		);
-
--- freeBoard
-CREATE TABLE `freeBoard` (
-	`fb_num`  INT           NOT NULL COMMENT 'fb_num', -- fb_num
-	`title`   VARCHAR(200)  NULL     COMMENT 'title', -- title
-	`content` VARCHAR(1000) NULL     COMMENT 'content', -- content
-	`regDate` DATE          NULL     COMMENT 'regDate', -- regDate
-	`hit`     INT           NULL     COMMENT 'hit', -- hit
-	`id`      VARCHAR(30)   NULL     COMMENT 'id' -- id
-)
-COMMENT 'freeBoard';
-
--- freeBoard
-ALTER TABLE `freeBoard`
-	ADD CONSTRAINT `PK_freeBoard` -- freeBoard 기본키
-		PRIMARY KEY (
-			`fb_num` -- fb_num
-		);
-
--- fileGroup
-CREATE TABLE `fileGroup` (
-	`fileGroupNum` INT NOT NULL COMMENT 'fileGroupNum', -- fileGroupNum
-	`flag` 		   VARCHAR(30) NULL     COMMENT 'flag', -- flag
-	`fb_num`       INT NULL     COMMENT 'fb_num', -- fb_num
-	`cb_num`       INT NULL     COMMENT 'cb_num' -- cb_num
-)
-COMMENT 'fileGroup';
-
--- fileGroup
-ALTER TABLE `fileGroup`
-	ADD CONSTRAINT `PK_fileGroup` -- fileGroup 기본키
-		PRIMARY KEY (
-			`fileGroupNum` -- fileGroupNum
-		);
-
--- files
-CREATE TABLE `files` (
-	`file_num`      INT          NOT NULL COMMENT 'file_num', -- file_num
-	`filePath` 		VARCHAR(1000) NULL     COMMENT 'filePath', -- filePath
-	`fileName`      VARCHAR(100) NULL     COMMENT 'fileName', -- fileName
-	`fileSize`      INT          NULL     COMMENT 'fileSize', -- fileSize
-	`fileHash`      VARCHAR(200) NULL     COMMENT 'fileHash', -- fileHash
-	`regDate`       DATE         NULL     COMMENT 'regDate', -- regDate
-	`fileGroupNum`  INT          NULL     COMMENT 'fileGroupNum' -- fileGroupNum
-)
-COMMENT 'files';
-
--- files
-ALTER TABLE `files`
-	ADD CONSTRAINT `PK_files` -- files 기본키
-		PRIMARY KEY (
-			`file_num` -- file_num
-		);
-		
--- mentorboard
-CREATE TABLE `mentorboard` (
-	`mb_num`  INT           NOT NULL COMMENT 'PK', -- mb_num
-	`title`   VARCHAR(200)  NULL     COMMENT '제목', -- title
-	`content` VARCHAR(1000) NULL     COMMENT '내용', -- content
-	`regDate` DATE          NULL     COMMENT '등록일자', -- regDate
-	`id`      VARCHAR(30)   NULL     COMMENT '아이디' -- id
-)
-COMMENT 'mentorboard';
-
--- mentorboard
-ALTER TABLE `mentorboard`
-	ADD CONSTRAINT `PK_mentorboard` -- mentorboard 기본키
-		PRIMARY KEY (
-			`mb_num` -- mb_num
-		);
-
-
--- mentoring
-CREATE TABLE `mentoring` (
-	`mentoring_num` INT           NOT NULL COMMENT 'mentoring_num', -- mentoring_num
-	`cb_num`        INT           NULL     COMMENT 'cb_num', -- cb_num
-	`mb_num`        INT           NULL     COMMENT 'mb_num', -- mb_num
-	`status`        VARCHAR(20)   NULL     COMMENT 'status', -- status
-	`content`       VARCHAR(1000) NULL     COMMENT 'content' -- content
-)
-COMMENT 'mentoring';
-
--- mentoring
-ALTER TABLE `mentoring`
-	ADD CONSTRAINT `PK_mentoring` -- mentoring 기본키
-		PRIMARY KEY (
-			`mentoring_num` -- mentoring_num
-		);
-		
 -- career
 CREATE TABLE `career` (
 	`num`         INT          NOT NULL COMMENT 'PK', -- num
@@ -225,6 +73,20 @@ ALTER TABLE `introduce`
 			`introduce_num` -- introduce_num
 		);
 
+-- icon
+CREATE TABLE `icon` (
+	`icon_num` INT          NOT NULL COMMENT 'icon_num', -- icon_num
+	`icon_src` VARCHAR(100) NULL     COMMENT 'icon_src' -- icon_src
+)
+COMMENT 'icon';
+
+-- icon
+ALTER TABLE `icon`
+	ADD CONSTRAINT `PK_icon` -- icon 기본키
+		PRIMARY KEY (
+			`icon_num` -- icon_num
+		);
+
 -- dictionary
 CREATE TABLE `dictionary` (
 	`dic_num` INT          NOT NULL COMMENT 'dic_num', -- dic_num
@@ -274,6 +136,64 @@ ALTER TABLE `portfolio`
 			`portfolio_num` -- portfolio_num
 		);
 
+-- reply
+CREATE TABLE `reply` (
+	`rb_num`     INT           NOT NULL COMMENT 'rb_num', -- rb_num
+	`fb_num`     INT           NULL     COMMENT 'fb_num', -- fb_num
+	`cb_num`     INT           NULL     COMMENT 'cb_num', -- cb_num
+	`title`      VARCHAR(200)  NULL     COMMENT 'title', -- title
+	`content`    VARCHAR(1000) NULL     COMMENT 'content', -- content
+	`regDate`    DATE          NULL     COMMENT 'regDate', -- regDate
+	`parentNum`  INT           NULL     COMMENT 'parentNum', -- parentNum
+	`childCount` INT           NULL     COMMENT 'childCount', -- childCount
+	`position`   VARCHAR(30)   NULL     COMMENT 'position', -- position
+	`id`         VARCHAR(30)   NULL     COMMENT 'id' -- id
+)
+COMMENT 'reply';
+
+-- reply
+ALTER TABLE `reply`
+	ADD CONSTRAINT `PK_reply` -- reply 기본키
+		PRIMARY KEY (
+			`rb_num` -- rb_num
+		);
+
+-- mentorboard
+CREATE TABLE `mentorboard` (
+	`mb_num`  INT           NOT NULL COMMENT 'PK', -- mb_num
+	`title`   VARCHAR(200)  NULL     COMMENT '제목', -- title
+	`content` VARCHAR(1000) NULL     COMMENT '내용', -- content
+	`regDate` DATE          NULL     COMMENT '등록일자', -- regDate
+	`id`      VARCHAR(30)   NULL     COMMENT '아이디' -- id
+)
+COMMENT 'mentorboard';
+
+-- mentorboard
+ALTER TABLE `mentorboard`
+	ADD CONSTRAINT `PK_mentorboard` -- mentorboard 기본키
+		PRIMARY KEY (
+			`mb_num` -- mb_num
+		);
+
+-- counselBoard
+CREATE TABLE `counselBoard` (
+	`cb_num`     INT           NOT NULL COMMENT 'cb_num', -- cb_num
+	`title`      VARCHAR(200)  NULL     COMMENT 'title', -- title
+	`content`    VARCHAR(1000) NULL     COMMENT 'content', -- content
+	`makePublic` VARCHAR(10)   NULL     COMMENT 'makePublic', -- makePublic
+	`regDate`    DATE          NULL     COMMENT 'regDate', -- regDate
+	`hit`        INT           NULL     COMMENT 'hit', -- hit
+	`id`         VARCHAR(30)   NULL     COMMENT 'id' -- id
+)
+COMMENT 'counselBoard';
+
+-- counselBoard
+ALTER TABLE `counselBoard`
+	ADD CONSTRAINT `PK_counselBoard` -- counselBoard 기본키
+		PRIMARY KEY (
+			`cb_num` -- cb_num
+		);
+
 -- educational_level
 CREATE TABLE `educational_level` (
 	`eduLevel_num`    INT          NOT NULL COMMENT 'PK', -- eduLevel_num
@@ -283,8 +203,8 @@ CREATE TABLE `educational_level` (
 	`graduation_date` DATE         NULL     COMMENT '졸업일', -- graduation_date
 	`current_status`  VARCHAR(50)  NULL     COMMENT '현재상태', -- current_status
 	`major`           VARCHAR(100) NULL     COMMENT '전공', -- major
-	`avg_score`       DECIMAL(3,2) NULL     COMMENT '평점', -- avg_score
-	`total_score`     INT          NULL     COMMENT '총점', -- total_score
+	`avg_score`       DECIMAL(5,2) NULL     COMMENT '평점', -- avg_score
+	`total_score`     DECIMAL(5,2) NULL     COMMENT '총점', -- total_score
 	`id`              VARCHAR(30)  NULL     COMMENT '아이디' -- id
 )
 COMMENT 'educational_level';
@@ -313,12 +233,104 @@ ALTER TABLE `certificate`
 			`certificate_num` -- certificate_num
 		);
 
+-- mentoring
+CREATE TABLE `mentoring` (
+	`mentoring_num` INT           NOT NULL COMMENT 'mentoring_num', -- mentoring_num
+	`cb_num`        INT           NULL     COMMENT 'cb_num', -- cb_num
+	`mb_num`        INT           NULL     COMMENT 'mb_num', -- mb_num
+	`status`        VARCHAR(20)   NULL     COMMENT 'status', -- status
+	`content`       VARCHAR(1000) NULL     COMMENT 'content' -- content
+)
+COMMENT 'mentoring';
+
+-- mentoring
+ALTER TABLE `mentoring`
+	ADD CONSTRAINT `PK_mentoring` -- mentoring 기본키
+		PRIMARY KEY (
+			`mentoring_num` -- mentoring_num
+		);
+
+-- freeBoard
+CREATE TABLE `freeBoard` (
+	`fb_num`  INT           NOT NULL COMMENT 'fb_num', -- fb_num
+	`title`   VARCHAR(200)  NULL     COMMENT 'title', -- title
+	`content` VARCHAR(1000) NULL     COMMENT 'content', -- content
+	`regDate` DATE          NULL     COMMENT 'regDate', -- regDate
+	`hit`     INT           NULL     COMMENT 'hit', -- hit
+	`id`      VARCHAR(30)   NULL     COMMENT 'id' -- id
+)
+COMMENT 'freeBoard';
+
+-- freeBoard
+ALTER TABLE `freeBoard`
+	ADD CONSTRAINT `PK_freeBoard` -- freeBoard 기본키
+		PRIMARY KEY (
+			`fb_num` -- fb_num
+		);
+
+-- files
+CREATE TABLE `files` (
+	`file_num`     INT           NOT NULL COMMENT 'file_num', -- file_num
+	`filePath`     VARCHAR(1000) NULL     COMMENT 'filePath', -- filePath
+	`fileName`     VARCHAR(100)  NULL     COMMENT 'fileName', -- fileName
+	`fileSize`     INT           NULL     COMMENT 'fileSize', -- fileSize
+	`fileHash`     VARCHAR(200)  NULL     COMMENT 'fileHash', -- fileHash
+	`regDate`      DATE          NULL     COMMENT 'regDate', -- regDate
+	`fileGroupNum` INT           NULL     COMMENT 'fileGroupNum' -- fileGroupNum
+)
+COMMENT 'files';
+
+-- files
+ALTER TABLE `files`
+	ADD CONSTRAINT `PK_files` -- files 기본키
+		PRIMARY KEY (
+			`file_num` -- file_num
+		);
+
+-- fileGroup
+CREATE TABLE `fileGroup` (
+	`fileGroupNum` INT         NOT NULL COMMENT 'fileGroupNum', -- fileGroupNum
+	`flag`         VARCHAR(30) NULL     COMMENT 'flag', -- flag
+	`fb_num`       INT         NULL     COMMENT 'fb_num', -- fb_num
+	`qna_num`      INT         NULL     COMMENT 'qna_num' -- qna_num
+)
+COMMENT 'fileGroup';
+
+-- fileGroup
+ALTER TABLE `fileGroup`
+	ADD CONSTRAINT `PK_fileGroup` -- fileGroup 기본키
+		PRIMARY KEY (
+			`fileGroupNum` -- fileGroupNum
+		);
+
 -- dic_select
 CREATE TABLE `dic_select` (
 	`dic_num` INT         NULL COMMENT 'dic_num', -- dic_num
 	`id`      VARCHAR(30) NULL COMMENT 'id' -- id
 )
 COMMENT 'dic_select';
+
+-- qnaBoard
+CREATE TABLE `qnaBoard` (
+	`qna_num`    INT           NOT NULL COMMENT 'qna_num', -- qna_num
+	`grpno`      INT           NULL     COMMENT 'grpno', -- grpno
+	`grpord`     INT           NULL     COMMENT 'grpord', -- grpord
+	`dept`       INT           NULL     COMMENT 'dept', -- dept
+	`title`      VARCHAR(200)  NULL     COMMENT 'title', -- title
+	`content`    VARCHAR(1000) NULL     COMMENT 'content', -- content
+	`regDate`    DATE          NULL     COMMENT 'regDate', -- regDate
+	`makePublic` VARCHAR(10)   NULL     COMMENT 'makePublic', -- makePublic
+	`pw`         VARCHAR(50)   NULL     COMMENT 'pw', -- pw
+	`id`         VARCHAR(30)   NULL     COMMENT 'id' -- id
+)
+COMMENT 'qnaBoard';
+
+-- qnaBoard
+ALTER TABLE `qnaBoard`
+	ADD CONSTRAINT `PK_qnaBoard` -- qnaBoard 기본키
+		PRIMARY KEY (
+			`qna_num` -- qna_num
+		);
 
 -- users
 ALTER TABLE `users`
@@ -502,12 +514,12 @@ ALTER TABLE `fileGroup`
 
 -- fileGroup
 ALTER TABLE `fileGroup`
-	ADD CONSTRAINT `FK_counselBoard_TO_fileGroup` -- counselBoard -> fileGroup
+	ADD CONSTRAINT `FK_qnaBoard_TO_fileGroup` -- qnaBoard -> fileGroup
 		FOREIGN KEY (
-			`cb_num` -- cb_num
+			`qna_num` -- qna_num
 		)
-		REFERENCES `counselBoard` ( -- counselBoard
-			`cb_num` -- cb_num
+		REFERENCES `qnaBoard` ( -- qnaBoard
+			`qna_num` -- qna_num
 		);
 
 -- dic_select
@@ -523,6 +535,16 @@ ALTER TABLE `dic_select`
 -- dic_select
 ALTER TABLE `dic_select`
 	ADD CONSTRAINT `FK_users_TO_dic_select` -- users -> dic_select
+		FOREIGN KEY (
+			`id` -- id
+		)
+		REFERENCES `users` ( -- users
+			`id` -- id
+		);
+
+-- qnaBoard
+ALTER TABLE `qnaBoard`
+	ADD CONSTRAINT `FK_users_TO_qnaBoard` -- users -> qnaBoard
 		FOREIGN KEY (
 			`id` -- id
 		)

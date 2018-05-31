@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.inturn.biz.users.service.CareerService;
 import com.inturn.biz.users.service.EducationalLevelService;
+import com.inturn.biz.users.service.JobService;
 import com.inturn.biz.users.service.MailService;
 import com.inturn.biz.users.service.UserService;
+import com.inturn.biz.users.vo.CareerVO;
 import com.inturn.biz.users.vo.EducationalLevelVO;
+import com.inturn.biz.users.vo.JobVO;
 import com.inturn.biz.users.vo.UserVO;
 
 @Controller
@@ -33,6 +37,13 @@ public class UserController {
 	
 	@Resource(name="EducationalLevelService")
 	EducationalLevelService eduLvlService;
+	
+	@Resource(name="CareerService")
+	CareerService careerService;
+	
+	@Resource(name="JobService")
+	JobService jobService;
+	
 	/**
 	 * userMenu에서 회원가입 클릭시 약관동의 및 이메일 인증 페이지로 이동
 	 * @return
@@ -57,10 +68,12 @@ public class UserController {
 		session.setAttribute("code", code);
 		session.setAttribute("email", to);
 		System.out.println("여기까진 성공");
+		
+		
 		String subject = "[人Turn] 회원가입 인증 코드 발급 안내";
 		StringBuffer sb = new StringBuffer();
 		sb.append("<h2>[人Turn] 회원가입 인증 코드 발급 안내</h2><br><br><hr><br>귀하의 인증 코드는 <strong style='color: green; font-weight: bold; font-size: large;'>"+code+"</strong> 입니다. <br>인증번호를 입력해서 회원가입을 진행해 주세요.");
-		boolean flag = mailService.sendEmail(subject, sb.toString(), "inturn303@gmail.com", to);
+		boolean flag = mailService.sendEmail(subject, sb.toString(), to);
 		if(flag){
 			return code;
 		}
@@ -206,6 +219,62 @@ public class UserController {
 		return mav;
 	}
 	
+	@RequestMapping(value="modifyEduForm.do", method=RequestMethod.POST)
+	public ModelAndView modifyEduFormDo(int eduLevel_num, HttpSession session) {
+		System.out.println("modifyEduFormDo() 진입");
+		ModelAndView mav = new ModelAndView();
+		UserVO user = (UserVO)session.getAttribute("login");
+		if(user!=null) {
+			System.out.println("로그인 정보 확인 id : "+ user.getId());
+			EducationalLevelVO vo = eduLvlService.getEduLvl(eduLevel_num);
+			System.out.println(vo);
+			if(vo!=null) {
+				System.out.println("vo!=null");
+				mav.addObject("eduLvl", vo);
+				mav.addObject("result", "success");
+			} else {
+				System.out.println("vo!=null");
+				mav.addObject("result", "해당 학력 데이터를 찾을 수 없습니다.");
+			}
+		} else {
+			System.out.println("로그인 정보 없음");
+			mav.addObject("result", "로그인 후 이용해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		System.out.println("modifyEduFormDo() 끝");
+		return mav;
+	}
+	
+	@RequestMapping(value="modifyEdu.do", method=RequestMethod.POST)
+	public ModelAndView modifyEduDo(EducationalLevelVO vo, HttpSession session) {
+		System.out.println("modifyEduDo() 진입");
+		ModelAndView mav = new ModelAndView();
+		System.out.println(vo);
+		UserVO user = (UserVO)session.getAttribute("login");
+		if(user != null) {
+			String id = user.getId();
+			System.out.println("로그인 정보 확인 id : " + id);
+			vo.setId(id);;
+			int result = eduLvlService.modifyEduLvl(vo);
+			if(result == 1) {
+				System.out.println("수정 성공");
+				mav.addObject("result", "success");
+				List<EducationalLevelVO> eduLvlList = eduLvlService.getUserEduLvl(id);
+				mav.addObject("eduLvlList", eduLvlList);
+			} else {
+				System.out.println("수정 실패");
+				mav.addObject("result", "success");
+			}
+		} else {
+			System.out.println("로그인 정보 없음");
+			mav.addObject("result", "로그인 후 이용해 주세요.");
+		}
+		
+		mav.setViewName("jsonView");
+		System.out.println("modifyEduDo() 끝");
+		return mav;
+	}
+	
 	@RequestMapping(value="deleteProfileEdu.do", method=RequestMethod.POST)
 	public ModelAndView deleteProfileEduDo(int eduLevel_num, HttpSession session) {
 		System.out.println("deleteProfileEduDo() 진입");
@@ -237,6 +306,40 @@ public class UserController {
 		}
 		mav.setViewName("jsonView");
 		System.out.println("deleteProfileEduDo() 끝");
+		return mav;
+	}
+	
+	/**
+	 * 프로필 페이지에서 경력사항 추가 시
+	 * @param cvo career(회사명,부서명,입사일,퇴사일)
+	 * @param jvo job(직급/직책,직무,세부직무)
+	 * @param session 유저정보
+	 * @return
+	 */
+	@RequestMapping(value="/addProfileCareer.do", method=RequestMethod.POST)
+	public ModelAndView addProfileCareerDo(CareerVO cvo, JobVO jvo, HttpSession session){
+		ModelAndView mav = new ModelAndView();
+		UserVO uvo = (UserVO) session.getAttribute("login");
+		String id= uvo.getId();
+		cvo.setId(id);
+		int resultCvo = careerService.insertCareer(cvo);
+		jvo.setId(uvo.getId());
+		int resultJvo = jobService.insertJob(jvo);
+		if(resultCvo==1&&resultJvo==1) {
+			System.out.println("insert 성공");
+			List<CareerVO> careerList = careerService.getUserCareer(id);
+			System.out.println(careerList);
+			List<JobVO> jobList = jobService.getUserJob(id);
+			System.out.println(jobList);
+			mav.addObject("careerList", careerList);
+			mav.addObject("jobList", jobList);
+			mav.addObject("result", "success");
+		} else {
+			System.out.println("insert 실패");
+			mav.addObject("result", "경력사항 저장에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		System.out.println("addProfileCareerDo() 끝");
 		return mav;
 	}
 }
