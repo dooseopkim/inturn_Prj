@@ -17,6 +17,30 @@ $(window).load(function() {
 })
 
 function modify_cert(i) {
+	var name = $("#registered_certificate_name"+i).val();
+	var date = $("#registered_acquisition_date"+i).val();
+	var pbl = $("#registered_published_by_license"+i).val();
+	var certnum = $("#registered_certificate_num"+i).val();
+	if(name == '') {
+		$("#registered_certificate_name"+i).focus();
+		alert("빈칸을 채워주세요");
+		return false;
+	}
+	if(date == '') {
+		$("#registered_acquisition_date"+i).focus();
+		alert("빈칸을 채워주세요");
+		return false;
+	}
+	if(pbl == '') {
+		$("#registered_published_by_license"+i).focus();
+		alert("빈칸을 채워주세요");
+		return false;
+	}
+	if(certnum == '') {
+		$("#registered_certificate_num"+i).focus();
+		alert("빈칸을 채워주세요");
+		return false;
+	}
 	$.ajax({
 		url: "modifyCertificate.do",
 		method: "POST",
@@ -27,10 +51,10 @@ function modify_cert(i) {
 			"published_by_license" : $("#temp_pbl"+i).val(),
 			"certificate_num" : $("#temp_certnum"+i).val(),
 			"id" : $("#id").val(),
-			"certificate_name" : $("#registered_certificate_name"+i).val(),
-			"acquisition_date" : $("#registered_acquisition_date"+i).val(),
-			"published_by_license" : $("#registered_published_by_license"+i).val(),
-			"certificate_num" : $("#registered_certificate_num"+i).val(),
+			"certificate_name" : name,
+			"acquisition_date" : date,
+			"published_by_license" : pbl,
+			"certificate_num" : certnum,
 			"id" : $("#id").val()
 		},
 		success: function(data) {
@@ -745,9 +769,30 @@ function insertCertificate() {
 	var j=0;
 	for(i=0; i<certificate_num.length; i++) {
 		certificate_num_arr[j] = certificate_num[i].value;
+		if(certificate_num_arr[j] == '') {
+			alert("빈칸을 채워주세요");
+			$("#certificate_num"+i).focus();
+			return false;
+		}
 		certificate_name_arr[j] = certificate_name[i].value;
+		if(certificate_name_arr[j] == '') {
+			alert("빈칸을 채워주세요");
+			$("#certificate_name"+i).focus();
+			return false;
+		}
 		published_by_license_arr[j] = published_by_license[i].value;
-		acquisition_date_arr[j++] = acquisition_date[i].value;
+		if(published_by_license_arr[j] == '') {
+			alert("빈칸을 채워주세요");
+			$("#published_by_license"+i).focus();
+			return false;
+		}
+		acquisition_date_arr[j] = acquisition_date[i].value;
+		if(acquisition_date_arr[j] == '') {
+			alert("빈칸을 채워주세요");
+			$("#acquisition_date"+i).focus();
+			return false;
+		}
+		j++;
 	}
 	
 	$.ajaxSettings.traditional = true;
