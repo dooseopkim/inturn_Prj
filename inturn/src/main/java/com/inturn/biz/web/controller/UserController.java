@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.inturn.biz.users.service.CareerService;
 import com.inturn.biz.users.service.EducationalLevelService;
+import com.inturn.biz.users.service.JobService;
 import com.inturn.biz.users.service.MailService;
 import com.inturn.biz.users.service.UserService;
+import com.inturn.biz.users.vo.CareerVO;
 import com.inturn.biz.users.vo.EducationalLevelVO;
+import com.inturn.biz.users.vo.JobVO;
 import com.inturn.biz.users.vo.UserVO;
 
 @Controller
@@ -33,6 +37,13 @@ public class UserController {
 	
 	@Resource(name="EducationalLevelService")
 	EducationalLevelService eduLvlService;
+	
+	@Resource(name="CareerService")
+	CareerService careerService;
+	
+	@Resource(name="JobService")
+	JobService jobService;
+	
 	/**
 	 * userMenu에서 회원가입 클릭시 약관동의 및 이메일 인증 페이지로 이동
 	 * @return
@@ -237,6 +248,40 @@ public class UserController {
 		}
 		mav.setViewName("jsonView");
 		System.out.println("deleteProfileEduDo() 끝");
+		return mav;
+	}
+	
+	/**
+	 * 프로필 페이지에서 경력사항 추가 시
+	 * @param cvo career(회사명,부서명,입사일,퇴사일)
+	 * @param jvo job(직급/직책,직무,세부직무)
+	 * @param session 유저정보
+	 * @return
+	 */
+	@RequestMapping(value="/addProfileCareer.do", method=RequestMethod.POST)
+	public ModelAndView addProfileCareerDo(CareerVO cvo, JobVO jvo, HttpSession session){
+		ModelAndView mav = new ModelAndView();
+		UserVO uvo = (UserVO) session.getAttribute("login");
+		String id= uvo.getId();
+		cvo.setId(id);
+		int resultCvo = careerService.insertCareer(cvo);
+		jvo.setId(uvo.getId());
+		int resultJvo = jobService.insertJob(jvo);
+		if(resultCvo==1&&resultJvo==1) {
+			System.out.println("insert 성공");
+			List<CareerVO> careerList = careerService.getUserCareer(id);
+			System.out.println(careerList);
+			List<JobVO> jobList = jobService.getUserJob(id);
+			System.out.println(jobList);
+			mav.addObject("careerList", careerList);
+			mav.addObject("jobList", jobList);
+			mav.addObject("result", "success");
+		} else {
+			System.out.println("insert 실패");
+			mav.addObject("result", "경력사항 저장에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		System.out.println("addProfileCareerDo() 끝");
 		return mav;
 	}
 }

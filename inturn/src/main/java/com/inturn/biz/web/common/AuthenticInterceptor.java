@@ -22,7 +22,8 @@ public class AuthenticInterceptor extends HandlerInterceptorAdapter {
 				|| requestUrl.contains("/insertUser.do") || requestUrl.contains("/interceptor.do")
 				|| requestUrl.contains("/signup.do") || requestUrl.contains("/sendEmail.do")
 				|| requestUrl.contains("/signupForm.do") || requestUrl.contains("/intro1.do")
-				|| requestUrl.contains("/intro2.do") || session.getAttribute("login") != null) {
+				|| requestUrl.contains("/addProfileCareer.do") || requestUrl.contains("/intro2.do")
+				|| session.getAttribute("login") != null) {
 			System.out.println(request.getRequestURI() + "인터셉터 통과");
 			return true;
 		} else {
