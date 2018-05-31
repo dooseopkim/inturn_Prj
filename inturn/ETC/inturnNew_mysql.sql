@@ -1,19 +1,4 @@
---테이블 전부 날리기--
 
-
---SET @tables = NULL;
---SELECT GROUP_CONCAT(table_schema, '.', table_name) INTO @tables
---    FROM information_schema.tables 
---    WHERE table_schema = 'inturnDB';
-
---SET @tables = CONCAT('DROP TABLE ', @tables);
---PREPARE stmt FROM @tables;
---EXECUTE stmt;
---DEALLOCATE PREPARE stmt;
-
-
---요기 까지--
---초기화는 inturnDB_init
 
 
 -- users
