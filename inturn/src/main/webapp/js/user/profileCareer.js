@@ -16,11 +16,30 @@ $(function(){
 		}
 	});
 	
-	$("#school_name").click(function(){
-		$("#schoolModal").modal("show");
-		$("#gubun").val("high_list");
-		gubunChange();
-		getSchoolList();
+	$("input[name=position]").click(function(){
+		$("#positionModal").modal("show");
+	});
+	
+	/**
+	 * 직급/직책 모달에서 직접입력 선택 시
+	 */
+	$("#job_grade_etc021").click(function(){
+			$("#job_text_input").attr("readonly",false);
+	});
+
+	/**
+	 * 직급/직책 모달에서 프리랜서 선택 시
+	 */
+	$("#job_grade_etc020").click(function(){
+		$("#job_text_input").attr("readonly",true);
+	});
+	
+	/**
+	 * 직급/직책 모달에서 초기화 버튼 클릭 시
+	 */
+	$("#clearBtn").click(function(){
+		$("input:radio[name=job_grade]").removeAttr('checked');
+		$("input:radio[name=job_duties]").removeAttr('checked');
 	});
 	
 	$("#btn_schoolModal").click(function(){
@@ -31,42 +50,49 @@ $(function(){
 		$("#schoolModal").modal("hide");
 	});
 	
-	$("#btn_addEducation").click(function(){
-		if($("#school_name").val()==""){
-			alert("학교명을 입력하세요.");
-			$("#school_name").focus();
+	$("#addCareer").click(function(){
+		if($("#company_name2").val()==""){
+			alert("회사명을 입력하세요.");
+			$("#company_name2").focus();
 			return false;
-		} else if($("#admission_date").val()==""){
-			alert("입학일을 입력하세요.");
-			$("#admission_date").focus();
+		} else if($("#dept_name2").val()==""){
+			alert("부서명을 입력하세요.");
+			$("#dept_name2").focus();
 			return false;
-		} else if($("#graduation_date").val()==""){
-			alert("졸업일을 입력하세요.");
-			$("#graduation_date").focus();
+		} else if($("#indate2").val()==""){
+			alert("입사년월을 입력하세요.");
+			$("date2").focus();
 			return false;
-		} else if($("#major").val()==""){
-			alert("전공을 입력하세요.");
-			$("#major").focus();
+		} else if($("#outdate2").val()==""){
+			alert("퇴사년월을 입력하세요.");
+			$("#outdate2").focus();
 			return false;
-		} else if($("#avg_score").val()==""){
-			alert("학점을 입력하세요.");
-			$("#avg_score").focus();
+		} else if($("#position2").val()==""){
+			alert("직급/직책을 입력하세요.");
+			$("#position2").focus();
+			return false;
+		} else if($("#duty2").val()==""){
+			alert("직무를 입력하세요.");
+			$("#position2").focus();
+			return false;
+		} else if($("#kind2").val()==""){
+			alert("상세직무를 입력하세요.");
+			$("#position2").focus();
 			return false;
 		}
 		
 		$.ajax({
-			url: "addProfileEdu.do",
+			url: "addProfileCareer.do",
 			method: "POST",
 			type: "JSON",
 			data: {
-				"degree_level" : $("#degree_level").val(),
-				"school_name" : $("#school_name").val(),
-				"admission_date" : $("#admission_date").val(),
-				"graduation_date" : $("#graduation_date").val(),
-				"current_status" : $("#current_status").val(),
-				"major" : $("#major").val(),
-				"avg_score" : $("#avg_score").val(),
-				"total_score" : $("#total_score").val()
+				"company_name" : $("#company_name").val(),
+				"dept_name" : $("#dept_name").val(),
+				"indate" : $("#indate").val(),
+				"outdate" : $("#outdate").val(),
+				"position" : $("#position").val(),
+				"duty" : $("#duty").val(),
+				"kind" : $("#kind").val(),
 			},
 			success: function(data){
 				if(data.result=="success"){

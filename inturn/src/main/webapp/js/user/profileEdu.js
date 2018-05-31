@@ -75,10 +75,7 @@ $(function(){
 					alert(data.result);
 				}
 			}
-				
-			
 		});
-		
 	});
 });
 

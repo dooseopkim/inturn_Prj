@@ -141,7 +141,7 @@
 	</div>
 	<!-- 프로필(container-wrap) div END -->
 
-	<%-- 
+	
 	<!-- 모달 : 학력사항 - 고등학교 선택 -->
 	<div class="modal" id="schoolModal">
 		<div class="modal-dialog" role="document">
@@ -210,7 +210,9 @@
 	<jsp:include page="schoolJS.jsp"></jsp:include>
 
 	<!-- 학력사항 모달 -->
-	<jsp:include page="user/profileEduModal.jsp" /> --%>
+	<jsp:include page="user/profileEduModal.jsp" />
+	<!-- 직급/직책 모달 -->
+	<jsp:include page="user/positionModal.jsp" />
 
 </body>
 </html>

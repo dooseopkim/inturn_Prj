@@ -1800,7 +1800,7 @@ th {
 	.table>tfoot>tr>th, .table>tfoot>tr>td {
 	padding: 8px;
 	line-height: 1.42857;
-	vertical-align: top;
+	vertical-align: middle;
 	border-top: 1px solid #ddd;
 }
 
