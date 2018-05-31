@@ -18,8 +18,7 @@
 					value="추가">
 			</div>
 		</div>
-		<br />
-		<div id="box_career">
+		<!-- <div id="box_career">
 			<div class="row">
 				<div class="col-sm-4">
 					<label>회사명</label> <input type="text" id="company_name"
@@ -58,7 +57,7 @@
 					class="btn btn-tmp" value="삭제">
 			</div>
 		</div>
-
+ -->
 		<!-- 경력사항 추가 -->
 		<div id="box_addCareer">
 			<div class="row">

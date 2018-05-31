@@ -91,13 +91,6 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="card">
-					<h3>인적사항</h3>
-				</div>
-				<div class="card">
-					<h3>인적사항</h3>
-				</div>
 				
 				<!-- 학력사항 -->
 				<jsp:include page="user/profileEdu.jsp" />
