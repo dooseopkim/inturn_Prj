@@ -192,6 +192,7 @@ public class LogInOutController {
 	public String logoutDo(HttpSession session) {
 		session.setAttribute("login", null);
 		session.removeAttribute("login");
+		session.invalidate();
 		return "index.jsp?content=main";
 	}
 	

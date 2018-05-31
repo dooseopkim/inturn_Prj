@@ -19,62 +19,9 @@
 					value="추가">
 			</div>
 		</div>
-		<!-- 기등록 학력사항 -->
-		<div id="box_education">
-
-			<input type="hidden" id="eduLevel_num" value="">
-			<div class="row">
-				<div class="col-sm-6">
-					<label class="col-form-label label-edu" for="data_degree_level">구분</label>
-					<input type="text" id="data_degree_level" class="form-control"
-						readonly="">
-				</div>
-				<div class="col-sm-6">
-					<label class="col-form-label label-edu" for="data_school_name">학교명</label>
-					<input type="text" id="data_school_name" class="form-control"
-						readonly="">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4">
-					<label class="col-form-label label-edu" for="data_admission_date">입학일</label>
-					<input type="text" id="data_admission_date" class="form-control"
-						readonly=""> 
-				</div>
-				<div class="col-sm-4">
-					<label class="col-form-label label-edu" for="data_graduation_date">졸업일</label>
-					<input type="text" id="data_graduation_date" class="form-control"
-						readonly="">
-				</div>
-				<div class="col-sm-4">
-					<label class="col-form-label label-edu" for="data_current_status">현재상태</label>
-					<input type="text" id=data_degree_level " class="form-control"
-						readonly=""> 
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-6">
-					<label class="col-form-label label-edu" for="data_major">전공</label>
-					<input type="text" id="data_major" class="form-control" readonly="">
-				</div>
-				<div class="col-sm-1"></div>
-				<div class="col-sm-5">
-					<label class="col-form-label label-edu" for="data_avg_score">학점 / 총점</label>
-					<div>
-						<input type="text" id="data_avg_score" class="form-control" readonly="">
-						<span>/</span>
-						<input type="text" id="data_total_score" class="form-control" readonly="">
-					</div>
-					
-				</div>				
-			</div>
-			<div id="box_eduBtn">
-				<input type="button" id="btn_education" class="btn btn-primary"
-					value="수정"> <input type="button" id="btn_cancelEducation"
-					class="btn btn-default" value="삭제">
-			</div>
-
-		</div>
+		
+		<!-- 기등록 학력사항 불러오는 곳 -->
+		<div id="getUserEdu"></div>
 
 		<!-- 학력사항 추가 -->
 		<div id="box_addEducation">
