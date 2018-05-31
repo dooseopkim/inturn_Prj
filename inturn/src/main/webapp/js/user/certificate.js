@@ -1,12 +1,34 @@
 /**
+ * @author 박현호
+ * @version 1.0
+ * @since 2018.05.30
+ * @see 자격증과 관련된 자바스크립트, JQuery함수
+ */
+
+function insertCertificate() {
+	
+}
+
+function deleteCertificate() {
+	
+}
+
+/**
  * 추가한 자격증 창 삭제
  */
 function deleteCertificate(certificateCount) {
-	$("#license"+certificateCount).remove();
+	var executeDelete = confirm("정말 삭제하시겠습니까?")
+	if(executeDelete)
+		$("#certBody"+certificateCount).remove();
 }
 
 /**
  * 자격증 이름을 통한 발급처 검색
+ * option에서 data-value로 넣어놓은 값이 각 밑의 배열의 발급처를 나타냄
+ * 먼저 선택된 자격증 이름과, datalist의 option 태그를 싹 다 가져온 후
+ * 하나씩 비교해서 같은 경우에 해당 datalist의 data-value값을 가져옴
+ * 그게 pbl의 index값인데 1부터 값을 적어놔서 -1 해줘서 index를 맞춤
+ * 이제 발급처 이름을 해당 input태그에 넣어줌
  */
 function publishedByLicense(certificateCount){
 	var pbl = ["한국산업인력공단","대한상공회의소","영화진흥위원회","한국광해관리공단","한국기술자격검정원","한국방송통신전파진흥원","한국원자력안전기술원","한국인터넷진흥원","한국콘텐츠진흥원"];
@@ -27,23 +49,35 @@ $(function(){
 	 * @returns 자격증에 대한 태그들 추가
 	 */
 	$("#formLicense").click(function() {
+		$("#license").toggle(function(){	
+		});
+	})
+	
+	/**
+	 * 자격증 추가 버튼 클릭시 모두 저장 / 모두 삭제버튼 한 번만 생기게 하는 함수
+	 */
+	$("#addCertificate").one("click", function(){
+		var tag ='';
+		tag += '<div class="row text-right">';
+		tag += '<input type="button" class="btn btn-info" onclick="insertCertificate()" value="모두 저장">';
+		tag += '<input type="button" class="btn btn-danger" onclick="deleteCertificate()" value="모두 삭제">';
+		tag += '</div>';
+		$("#certificateFooter").append(tag);
+	});
+	
+	/**
+	 * 자격증 목록 추가 함수
+	 */
+	$("#addCertificate").click(function() {
 		var certificateCount = parseInt($("#certificateCount").val());
 		certificateCount = certificateCount + 1;
 		$("#certificateCount").val(certificateCount);
 		var tag = '';
-		tag += '<div id="license'+certificateCount+'" class="card">';
-		tag += '<div class="card-header">';
-		tag += '<div class="row">';
-		tag += '<div class="col-sm-6">';
-		tag += '<h3>자격증</h3>';
-		tag += '</div>';
-		tag += '<div class="col-sm-6" style="text-align: right;">';
+		tag += '<div id="certBody'+certificateCount+'" class="row">';
+		tag += '<div class="col-sm-12 text-right">';
 		tag += '<span id="explain">*어학자격증이 아닌 자격증만 입력해주세요 &nbsp;&nbsp;&nbsp;&nbsp;</span>';
 		tag += '<a onclick="deleteCertificate('+certificateCount+')"><span class="icon-cross"></span></a>';
-		tag += '</div>';
-		tag += '</div>';
-		tag += '</div>';
-		tag += '<div class="card-body">';
+		tag += '</div>'
 		tag += '<div class="row">';
 		tag += '<div id="cerName" class="col-sm-6">';
 		tag += '<label>자격증</label> ';
@@ -591,8 +625,8 @@ $(function(){
 		tag += '<input type="text" class="form-control"	id="certificate_num'+certificateCount+'" name="certificate_num[]">';
 		tag += '</div>';
 		tag += '</div>';
+		tag += '<br>';
 		tag += '</div>';
-		tag += '</div>';
-		$("#leftcolumn").append(tag);
+		$("#plusCertificate").append(tag);
 	});
 })

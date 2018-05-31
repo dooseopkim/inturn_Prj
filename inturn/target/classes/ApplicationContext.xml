@@ -43,28 +43,6 @@
 		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
 
-	<!-- 메일 보내기 -->
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="inturn303@gmail.com" />
-		<property name="password" value="inturn6244" />
-
-		<!-- email 요청시는 SMTP -->
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.transport.protocol">smtp</prop>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
-			</props>
-		</property>
-	</bean>
-	<!-- 
-	<bean id="mailService" class="com.inturn.biz.users.service.MailServiceImpl">
-		<property name="javaMailSender" ref="javaMailSender"></property>
-	</bean> -->
-
 	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />

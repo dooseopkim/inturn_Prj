@@ -63,4 +63,35 @@ public class FreeBoardDAOImpl implements FreeBoardDAO{
 	public int nextfb_num(int fb_num) {
 		return mybatis.selectOne("FreeBoardMapper.nextfb_num", fb_num);
 	}
+
+	@Override
+	public List<FreeBoardVO> scBoardList(HashMap<String, Object> map) {
+		return mybatis.selectList("FreeBoardMapper.scBoardList", map);
+	}
+
+	@Override
+	public int scCountBoards(String condition, String search) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("condition", condition);
+		map.put("search",search);
+		return mybatis.selectOne("FreeBoardMapper.scCountBoards", map);
+	}
+
+	@Override
+	public int scPrevfb_num(String condition, String search, int fb_num) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("condition", condition);
+		map.put("search",search);
+		map.put("fb_num",fb_num);
+		return mybatis.selectOne("FreeBoardMapper.scPrevfb_num", map);
+	}
+
+	@Override
+	public int scNextfb_num(String condition, String search, int fb_num) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("condition", condition);
+		map.put("search",search);
+		map.put("fb_num",fb_num);
+		return mybatis.selectOne("FreeBoardMapper.scNextfb_num", map);
+	}
 }
