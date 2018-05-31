@@ -6,11 +6,43 @@
  */
 
 function insertCertificate() {
+	var certificate_num = $("input[name='certificate_num[]']");
+	var certificate_name = $("input[name='certificate_name[]']");
+	var published_by_license = $("input[name='published_by_license[]']");
+	var acquisition_date = $("input[name='acquisition_date[]']");
+	var id = $("#id").val();
 	
+	var total_len = parseInt($("#certificateCount").val()) - 1;
+	var end = total_len - certificate_num.length() - 1;
+	var data = new Object();
+	var dataList = new Array();
+
+	for(i=0; i<end; i++) {
+		data["certificate_num"] = certificate_num[i];
+		data["certificate_name"] = certificate_name[i];
+		data["published_by_license"] = published_by_license[i];
+		data["acquisition_date"] = acquisition_date[i];
+		data["id"] = id;
+		dataList.push(data);
+	}
+
+	$.ajax({
+		url: "insertCertificate.do",
+		type: "POST",
+		datatype: "JSON",
+		data: {
+			"list" : datalist
+		},
+		success: function(){
+			
+		}
+	});
 }
 
-function deleteCertificate() {
-	
+function deleteAllCertificate() {
+	var executeDelete = confirm("정말 삭제하시겠습니까?")
+	if(executeDelete) 
+		$("#plusCertificate").children().remove();
 }
 
 /**
@@ -60,7 +92,7 @@ $(function(){
 		var tag ='';
 		tag += '<div class="row text-right">';
 		tag += '<input type="button" class="btn btn-info" onclick="insertCertificate()" value="모두 저장">';
-		tag += '<input type="button" class="btn btn-danger" onclick="deleteCertificate()" value="모두 삭제">';
+		tag += '<input type="button" class="btn btn-danger" onclick="deleteAllCertificate()" value="모두 삭제">';
 		tag += '</div>';
 		$("#certificateFooter").append(tag);
 	});

@@ -8,6 +8,7 @@
 </head>
 <body>
 	<div id="license" class="card">
+		<input type="hidden" id="id" value="${login.id}">
 		<div class="card-header">
 			<div class="row">
 				<div class="col-sm-6">
