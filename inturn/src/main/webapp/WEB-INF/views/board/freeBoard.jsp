@@ -60,8 +60,8 @@
 						<c:set var="index" value="${index - 1}" />
 						<tr>
 							<td id="table">${index}</td>
-							<td id="table">
-								<a href="viewFreeBoard.do?fb_num=${freeBoard.fb_num}&thisPage=${thisPage}">${freeBoard.title}</a>
+							<td id="table"><a
+								href="viewFreeBoard.do?fb_num=${freeBoard.fb_num}&thisPage=${thisPage}">${freeBoard.title}</a>
 							</td>
 							<td id="table">${freeBoard.regDate}</td>
 							<td id="table">${freeBoard.hit}</td>
@@ -74,19 +74,21 @@
 		<div class="row" style="text-align: center;">
 			<ul class="pagination">
 				<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-					<c:forEach var="i" begin="1" end="${page}" step="1">
+				<c:forEach var="i" begin="1" end="${page}" step="1">
 					<c:if test="${thisPage eq i}">
-						<li class="page-item active"><a class="page-link" href="freeBoard.do?page_num=${i}">${i}</a></li>
+						<li class="page-item active"><a class="page-link"
+							href="freeBoard.do?page_num=${i}">${i}</a></li>
 					</c:if>
 					<c:if test="${thisPage ne i}">
-						<li class="page-item"><a class="page-link" href="freeBoard.do?page_num=${i}">${i}</a></li>
+						<li class="page-item"><a class="page-link"
+							href="freeBoard.do?page_num=${i}">${i}</a></li>
 					</c:if>
-					</c:forEach>
+				</c:forEach>
 				<li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
 			</ul>
 		</div>
 		<div class="row">
-			<form action="searchBoard.do" method="post">
+			<form action="searchFreeBoard.do" method="post">
 				<div id="searchSelect" class="form-group col-sm-4">
 					<select name="condition" class="custom-select">
 						<option value="title">글 제목</option>
@@ -94,17 +96,17 @@
 					</select>
 				</div>
 				<div id="search" class="form-group col-sm-4">
-					<input id="searchContent" type="text" name="search" class="form-control"
-						placeholder="검색">
+					<input id="searchContent" type="text" name="search"
+						class="form-control" placeholder="검색">
 				</div>
 				<div class="form-group col-sm-1">
 					<button id="searchBoardBtn" type="submit" class="btn btn-success">검색</button>
 				</div>
-					<input type="hidden" name="page_num" value="1">
+				<input type="hidden" name="page_num" value="${thisPage}">
 			</form>
-				<div class="form-group col-sm-3" style="text-align: left;">
-					<button id="insertBoardBtn" class="btn btn-info">글쓰기</button>
-				</div>
+			<div class="form-group col-sm-3" style="text-align: left;">
+				<button id="insertBoardBtn" class="btn btn-info">글쓰기</button>
+			</div>
 		</div>
 	</div>
 </body>

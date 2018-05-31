@@ -87,7 +87,7 @@
 			</ul>
 		</div>
 		<div class="row">
-			<form action="searchBoard.do" method="post">
+			<form action="searchFreeBoard.do" method="post">
 				<div id="searchSelect" class="form-group col-sm-4">
 					<select name="condition" class="custom-select">
 						<option value="title">글 제목</option>
@@ -95,15 +95,17 @@
 					</select>
 				</div>
 				<div id="search" class="form-group col-sm-4">
-					<input id="searchContent" type="text" name="search" class="form-control"
-						placeholder="검색">
-					<input type="hidden" name="page_num" value="1">
+					<input id="searchContent" type="text" name="search"
+						class="form-control" placeholder="검색">
 				</div>
-				<div class="form-group col-sm-4">
+				<div class="form-group col-sm-1">
 					<button id="searchBoardBtn" type="submit" class="btn btn-success">검색</button>
-					<button id="insertBoardBtn" class="btn btn-info">글쓰기</button>
 				</div>
+				<input type="hidden" name="page_num" value="${thisPage}">
 			</form>
+			<div class="form-group col-sm-3" style="text-align: left;">
+				<button id="insertBoardBtn" class="btn btn-info">글쓰기</button>
+			</div>
 		</div>
 	</div>
 </body>

@@ -40,12 +40,112 @@ public class FreeBoardController {
 	@Resource(name = "FileService")
 	FileService file_service;
 
-	@RequestMapping(value= "/viewSCFreeBoard.do")
-	public String viewSCFreeBoard(String condition, String search, int fb_num, int thisPage) {
-		
+	/**
+	 * 검색된 게시글을 수정하기 위해 수정페이지로 이동 
+	 * 이동 이전페이지, 다음페이지, 삭제, 수정등
+	 * 다시 검색된 목록에 해당하는 페이지를 띄워주어야 하므로 다 따로 만들어짐
+	 * 
+	 * @param condition
+	 *            검색하고자 하는 아이디나, 게시판 제목
+	 * @param search
+	 *            검색하고자 하는 것의 내용
+	 * @param fb_num
+	 *            현재 게시글 번호
+	 * @param thisPage
+	 *            수정 취소나 수정 시 다시 돌아갈 페이지 번호
+	 * @param request
+	 *            현제 수정하고자 하는 게시글 정보와, 수정 취소나 수정 시 다시 돌아갈 페이지 번호를 넣기 위해 사용
+	 * @return modifySCFreeBoard.jsp
+	 */
+	@RequestMapping(value = "/modifySCFreeBoard.do", method = RequestMethod.GET)
+	public String modifyFreeBoard(String condition, String search, int fb_num, int thisPage,
+			HttpServletRequest request) {
+		HashMap<String, Object> boardInfo = fb_service.viewBoard(fb_num);
+		request.setAttribute("board", (FreeBoardVO) boardInfo.get("board"));
+		request.setAttribute("thisPage", thisPage);
+		request.setAttribute("condition", condition);
+		request.setAttribute("search", search);
+		return "index.jsp?content=board/modifySCFreeBoard";
+	}
+
+	/**
+	 * 검색된 게시글을 수정
+	 * 이동 이전페이지, 다음페이지, 삭제, 수정등
+	 * 다시 검색된 목록에 해당하는 페이지를 띄워주어야 하므로 다 따로 만들어짐
+	 * @param condition
+	 *            검색하고자 하는 아이디나, 게시판 제목
+	 * @param search
+	 *            검색하고자 하는 것의 내용
+	 * @param fb_num
+	 *            현재 게시글 번호
+	 * @param thisPage
+	 *            수정 취소나 수정 시 다시 돌아갈 페이지 번호
+	 * @param id
+	 *            작성자
+	 * @param editor
+	 *            수정된 게시글의 내용
+	 * @return viewSCFreeBoard.do
+	 */
+	@RequestMapping(value = "/modifySCFreeBoard.do", method = RequestMethod.POST)
+	public String modfiySCFreeBoard(String condition, String search, int fb_num, String title, String id, int thisPage,
+			String editor) {
+		fb_service.modifyFreeBoard(new FreeBoardVO(fb_num, title, editor, id));
+		return "redirect:viewSCFreeBoard.do?condition=" + condition + "&search=" + search + "&fb_num=" + fb_num
+				+ "&thisPage=" + thisPage;
+	}
+
+	/**
+	 * 검색된 게시글을 삭제하는 함수
+	 * 이동 이전페이지, 다음페이지, 삭제, 수정등
+	 * 다시 검색된 목록에 해당하는 페이지를 띄워주어야 하므로 다 따로 만들어짐
+	 * @param condition
+	 *            검색하고자 하는 아이디나, 게시판 제목
+	 * @param search
+	 *            검색하고자 하는 것의 내용
+	 * @param fb_num
+	 *            현재 게시글 번호
+	 * @param thisPage
+	 *            수정 취소나 수정 시 다시 돌아갈 페이지 번호
+	 * @return searchFreeBoard.do
+	 */
+	@RequestMapping(value = "/deleteSCFreeBoard.do")
+	public String deleteSCFreeBoard(String condition, String search, int fb_num, int thisPage) {
+		fb_service.deleteFreeBoard(fb_num);
+		return "redirect:searchFreeBoard.do?condition=" + condition + "&search=" + search + "&page_num=" + thisPage;
+	}
+
+	/**
+	 * 검색된 게시글을 띄워주는 함수
+	 * 이동 이전페이지, 다음페이지, 삭제, 수정등
+	 * 다시 검색된 목록에 해당하는 페이지를 띄워주어야 하므로 다 따로 만들어짐
+	 * @param condition
+	 *            검색하고자 하는 아이디나, 게시판 제목
+	 * @param search
+	 *            검색하고자 하는 것의 내용
+	 * @param fb_num
+	 *            현재 게시글 번호
+	 * @param thisPage
+	 *            수정 취소나 수정 시 다시 돌아갈 페이지 번호
+	 * @param request
+	 * @return viewSCFreeBoard.jsp
+	 */
+	@RequestMapping(value = "/viewSCFreeBoard.do")
+	public String viewSCFreeBoard(String condition, String search, int fb_num, int thisPage,
+			HttpServletRequest request) {
+		HashMap<String, Object> boardInfo = fb_service.scViewBoard(condition, search, fb_num);
+		FreeBoardVO board = (FreeBoardVO) boardInfo.get("board");
+		int prevfb_num = (int) boardInfo.get("prevfb_num");
+		int nextfb_num = (int) boardInfo.get("nextfb_num");
+		// 댓글도 가져와서 request에 넣어 보내줘야한다.
+		request.setAttribute("board", board);
+		request.setAttribute("prevfb_num", prevfb_num);
+		request.setAttribute("nextfb_num", nextfb_num);
+		request.setAttribute("thisPage", thisPage);
+		request.setAttribute("condition", condition);
+		request.setAttribute("search", search);
 		return "index.jsp?content=board/viewSCFreeBoard";
 	}
-	
+
 	/**
 	 * condition = search인 게시글들을 검색하는 함수
 	 * 
@@ -57,8 +157,8 @@ public class FreeBoardController {
 	 */
 	@RequestMapping(value = "/searchFreeBoard.do")
 	public String searchFreeBoard(String condition, String search, int page_num, HttpServletRequest request) {
-		//매퍼, DAO, Service모두 짜서 만들어야함
-		HashMap<String, Object> boardInfo = fb_service.boardList(page_num);
+		// 매퍼, DAO, Service모두 짜서 만들어야함
+		HashMap<String, Object> boardInfo = fb_service.scBoardList(condition, search, page_num);
 		List<FreeBoardVO> list = (List<FreeBoardVO>) boardInfo.get("list");
 		int page = (int) boardInfo.get("count_page");
 		int limit = (int) boardInfo.get("limit");
@@ -67,6 +167,8 @@ public class FreeBoardController {
 		request.setAttribute("page", page);
 		request.setAttribute("limit", limit);
 		request.setAttribute("thisPage", thisPage);
+		request.setAttribute("condition", condition);
+		request.setAttribute("search", search);
 		return "index.jsp?content=board/scFreeBoard";
 	}
 
