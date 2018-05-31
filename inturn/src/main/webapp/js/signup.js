@@ -17,10 +17,12 @@ function chkId() {
 			if (data.result == "success") {
 				if (confirm(id + ' 은/는 사용 가능한 아이디 입니다. 사용하시겠습니까?')) {
 					$('#id').val(id);
+					return false;
 				}
 			} else {
 				alert('사용할 수 없는 아이디 입니다.');
 				$('#id').val('');
+				return false;
 			}
 		}
 	});
