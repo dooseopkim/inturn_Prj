@@ -14,9 +14,9 @@
 			<div class="col-sm-6">
 				<h3>학력사항</h3>
 			</div>
-			<div class="col-sm-6 text-right">
-				<input type="button" class="btn btn-primary" id="btn_addSchool"
-					value="추가">
+			<div class="col-sm-6 box_addCloseBtn">
+				<input type="button" class="btn btn-primary" id="btn_addSchool" value="추가">
+				<input type="button" class="btn btn-default" id="btn_closeSchool" value="닫기">
 			</div>
 		</div>
 		
@@ -82,7 +82,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="box_addEduBtn">
+			<div class="box_eduBtn">
 				<input type="button" id="btn_addEducation" class="btn btn-primary" value="저장">
 				<input type="button" id="btn_cancelAddEducation" class="btn btn-default" value="취소">
 			</div>

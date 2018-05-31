@@ -142,7 +142,6 @@
 	</div>
 	<!-- 프로필(container-wrap) div END -->
 
-	<jsp:include page="schoolJS.jsp"></jsp:include>
 
 	<!-- 학력사항 모달 -->
 	<jsp:include page="user/profileEduModal.jsp" />
