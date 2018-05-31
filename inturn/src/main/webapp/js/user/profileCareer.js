@@ -106,6 +106,55 @@ $(function(){
 		});
 		
 	});
+//	$("#btn_addEducation").click(function(){
+//		if($("#school_name").val()==""){
+//			alert("학교명을 입력하세요.");
+//			$("#school_name").focus();
+//			return false;
+//		} else if($("#admission_date").val()==""){
+//			alert("입학일을 입력하세요.");
+//			$("#admission_date").focus();
+//			return false;
+//		} else if($("#graduation_date").val()==""){
+//			alert("졸업일을 입력하세요.");
+//			$("#graduation_date").focus();
+//			return false;
+//		} else if($("#major").val()==""){
+//			alert("전공을 입력하세요.");
+//			$("#major").focus();
+//			return false;
+//		} else if($("#avg_score").val()==""){
+//			alert("학점을 입력하세요.");
+//			$("#avg_score").focus();
+//			return false;
+//		}
+//		
+//		$.ajax({
+//			url: "addProfileEdu.do",
+//			method: "POST",
+//			type: "JSON",
+//			data: {
+//				"degree_level" : $("#degree_level").val(),
+//				"school_name" : $("#school_name").val(),
+//				"admission_date" : $("#admission_date").val(),
+//				"graduation_date" : $("#graduation_date").val(),
+//				"current_status" : $("#current_status").val(),
+//				"major" : $("#major").val(),
+//				"avg_score" : $("#avg_score").val(),
+//				"total_score" : $("#total_score").val()
+//			},
+//			success: function(data){
+//				if(data.result=="success"){
+//					alert("학력사항을 추가했습니다.");
+//				} else {
+//					alert(data.result);
+//				}
+//			}
+//				
+//			
+//		});
+//		
+//	});
 });
 
 /**

@@ -91,14 +91,19 @@
 						</div>
 					</div>
 				</div>
-				<!-- 인적사항 div END -->
 
+				<div class="card">
+					<h3>인적사항</h3>
+				</div>
+				<div class="card">
+					<h3>인적사항</h3>
+				</div>
+				
 				<!-- 학력사항 -->
 				<jsp:include page="user/profileEdu.jsp" />
 
 				<!-- 경력사항 -->
 				<jsp:include page="user/profileCareer.jsp" />
-
 			</div>
 
 			<!-- 우측(사이드 네비게이션) -->

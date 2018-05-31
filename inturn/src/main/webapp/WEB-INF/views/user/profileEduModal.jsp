@@ -7,7 +7,7 @@
 <title></title>
 </head>
 <body>
-<!-- 모달 : 학력사항 - 고등학교 선택 -->
+<!-- 모달 : 학력사항 - 학교 선택 -->
 	<div class="modal" id="schoolModal">
 	<div class="modal-dialog" role="document">
     <div class="modal-content">
