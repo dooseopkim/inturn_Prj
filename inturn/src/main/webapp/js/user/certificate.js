@@ -5,11 +5,21 @@
  * @see 자격증과 관련된 자바스크립트, JQuery함수
  */
 
+function insertCertificate() {
+	
+}
+
+function deleteCertificate() {
+	
+}
+
 /**
  * 추가한 자격증 창 삭제
  */
 function deleteCertificate(certificateCount) {
-	$("#license"+certificateCount).remove();
+	var executeDelete = confirm("정말 삭제하시겠습니까?")
+	if(executeDelete)
+		$("#certBody"+certificateCount).remove();
 }
 
 /**
@@ -39,23 +49,35 @@ $(function(){
 	 * @returns 자격증에 대한 태그들 추가
 	 */
 	$("#formLicense").click(function() {
+		$("#license").toggle(function(){	
+		});
+	})
+	
+	/**
+	 * 자격증 추가 버튼 클릭시 모두 저장 / 모두 삭제버튼 한 번만 생기게 하는 함수
+	 */
+	$("#addCertificate").one("click", function(){
+		var tag ='';
+		tag += '<div class="row text-right">';
+		tag += '<input type="button" class="btn btn-info" onclick="insertCertificate()" value="모두 저장">';
+		tag += '<input type="button" class="btn btn-danger" onclick="deleteCertificate()" value="모두 삭제">';
+		tag += '</div>';
+		$("#certificateFooter").append(tag);
+	});
+	
+	/**
+	 * 자격증 목록 추가 함수
+	 */
+	$("#addCertificate").click(function() {
 		var certificateCount = parseInt($("#certificateCount").val());
 		certificateCount = certificateCount + 1;
 		$("#certificateCount").val(certificateCount);
 		var tag = '';
-		tag += '<div id="license'+certificateCount+'" class="card">';
-		tag += '<div class="card-header">';
-		tag += '<div class="row">';
-		tag += '<div class="col-sm-6">';
-		tag += '<h3>자격증</h3>';
-		tag += '</div>';
-		tag += '<div class="col-sm-6" style="text-align: right;">';
+		tag += '<div id="certBody'+certificateCount+'" class="row">';
+		tag += '<div class="col-sm-12 text-right">';
 		tag += '<span id="explain">*어학자격증이 아닌 자격증만 입력해주세요 &nbsp;&nbsp;&nbsp;&nbsp;</span>';
 		tag += '<a onclick="deleteCertificate('+certificateCount+')"><span class="icon-cross"></span></a>';
-		tag += '</div>';
-		tag += '</div>';
-		tag += '</div>';
-		tag += '<div class="card-body">';
+		tag += '</div>'
 		tag += '<div class="row">';
 		tag += '<div id="cerName" class="col-sm-6">';
 		tag += '<label>자격증</label> ';
@@ -603,8 +625,8 @@ $(function(){
 		tag += '<input type="text" class="form-control"	id="certificate_num'+certificateCount+'" name="certificate_num[]">';
 		tag += '</div>';
 		tag += '</div>';
+		tag += '<br>';
 		tag += '</div>';
-		tag += '</div>';
-		$("#leftcolumn").append(tag);
+		$("#plusCertificate").append(tag);
 	});
 })

@@ -97,6 +97,9 @@
 
 				<!-- 경력사항 -->
 				<jsp:include page="user/profileCareer.jsp" />
+				
+				<!-- 자격증사항 -->
+				<jsp:include page="user/certificate.jsp" />
 			</div>
 
 			<!-- 우측(사이드 네비게이션) -->
@@ -113,7 +116,7 @@
 							</a></li>
 							<input type="hidden" id="certificateCount" value="0">
 							<li><a class="btn icon-newspaper" href="javascript:void(0);"
-								id="formLicense" > <span>자격증</span>
+								id="formLicense"> <span>자격증</span>
 							</a></li>
 							<li><a class="btn icon-book" href="javascript:void(0);"
 								id="formPortfolio" onclick="formPortfolioClick()"> <span>포트폴리오</span>
