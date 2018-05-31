@@ -2,6 +2,7 @@ package com.inturn.biz.web.controller;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,15 +14,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.inturn.biz.users.service.CareerService;
+import com.inturn.biz.users.service.CertificateService;
 import com.inturn.biz.users.service.EducationalLevelService;
 import com.inturn.biz.users.service.JobService;
 import com.inturn.biz.users.service.MailService;
 import com.inturn.biz.users.service.UserService;
 import com.inturn.biz.users.vo.CareerVO;
+import com.inturn.biz.users.vo.CertificateVO;
 import com.inturn.biz.users.vo.EducationalLevelVO;
 import com.inturn.biz.users.vo.JobVO;
 import com.inturn.biz.users.vo.UserVO;
@@ -43,6 +47,9 @@ public class UserController {
 	
 	@Resource(name="JobService")
 	JobService jobService;
+
+	@Resource(name="CertificateService")
+	CertificateService CertificateService;
 	
 	/**
 	 * userMenu에서 회원가입 클릭시 약관동의 및 이메일 인증 페이지로 이동
@@ -342,4 +349,55 @@ public class UserController {
 		System.out.println("addProfileCareerDo() 끝");
 		return mav;
 	}
+	
+	// 받을때, String[] 이나 int[]가능 하지만, data[]는 안됨 (JSON 데이터 타입과 동일)
+	@RequestMapping(value="/insertCertificate.do", method=RequestMethod.POST)
+	public ModelAndView insertCertificate(@RequestParam("certificate_num") ArrayList<String> certificate_num, 
+			@RequestParam("certificate_name") ArrayList<String> certificate_name, 
+			@RequestParam("published_by_license") ArrayList<String> published_by_license,
+			@RequestParam("acquisition_date") ArrayList<String> acquisition_date,
+			@RequestParam("id") String id) {
+		HashMap<String, Object> map = new HashMap<>();
+		CertificateService.insertCertificates(certificate_num, certificate_name, published_by_license, acquisition_date, id);
+		List<CertificateVO> list = CertificateService.getCertificates(id);
+		map.put("result", "success");
+		map.put("list", list);
+		return new ModelAndView("jsonView",map);
+	}
+	
+	@RequestMapping(value="/modifyCertificate.do", method=RequestMethod.POST)
+	public ModelAndView modifyCertificate(CertificateVO or_vo, CertificateVO ne_vo) {
+		HashMap<String, Object> map = new HashMap<>();
+		CertificateService.modifyCertificate(or_vo, ne_vo);
+		map.put("result", "success");
+		map.put("list", ne_vo);
+		return new ModelAndView("jsonView", map);
+	}
+
+	@RequestMapping(value="/deleteRegisteredCertificate.do", method=RequestMethod.POST)
+	public ModelAndView deleteRegisteredCertificate(String certificate_num) {
+		HashMap<String, Object> map = new HashMap<>();
+		CertificateService.deleteCertificate(certificate_num);
+		map.put("result", "success");
+		return new ModelAndView("jsonView", map);
+	}
+
+	@RequestMapping(value="/deleteAllCertificate.do")
+	public ModelAndView deleteAllCertificate(HttpSession session) {
+		HashMap<String, Object> map = new HashMap<>();
+		UserVO vo = (UserVO) session.getAttribute("login");
+		CertificateService.deleteCertificates(vo.getId());
+		map.put("result", "success");
+		return new ModelAndView("jsonView", map);
+	}
+	
+	@RequestMapping(value="/getCertificates.do")
+	public ModelAndView getCertificates(HttpSession session) {
+		HashMap<String, Object> map = new HashMap<>();
+		UserVO vo = (UserVO) session.getAttribute("login");
+		map.put("result", "success");
+		map.put("list", CertificateService.getCertificates(vo.getId()));
+		return new ModelAndView("jsonView", map);
+	}
 }
+

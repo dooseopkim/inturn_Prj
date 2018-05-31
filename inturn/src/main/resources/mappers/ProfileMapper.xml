@@ -65,4 +65,25 @@
 		FROM job
 		WHERE job_num = #{job_num}
 	</select>
+	
+	<insert id="insertCertificates" parameterType="CertificateVO">
+		INSERT INTO certificate (certificate_num, certificate_name, published_by_license, acquisition_date, id)
+		VALUES (#{certificate_num}, #{certificate_name}, #{published_by_license}, #{acquisition_date}, #{id})
+	</insert>
+	
+	<select id="getCertificate" parameterType="String" resultType="CertificateVO">
+		SELECT * FROM certificate WHERE certificate_num = #{certificate_num}
+	</select>
+
+	<select id="getCertificates" parameterType="String" resultType="CertificateVO">
+		SELECT * FROM certificate WHERE id = #{id}
+	</select>
+	
+	<delete id="deleteCertificate" parameterType="String">
+		DELETE FROM certificate WHERE certificate_num = #{certificate_num}
+	</delete>
+
+	<delete id="deleteCertificates" parameterType="String">
+		DELETE FROM certificate WHERE id = #{id}
+	</delete>
 </mapper>
