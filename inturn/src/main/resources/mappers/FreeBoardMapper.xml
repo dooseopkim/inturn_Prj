@@ -67,7 +67,8 @@
 	</insert>
 	
 	<update id="modifyFreeBoard" parameterType="FreeBoardVO">
-		UPDATE freeBoard SET content = #{content} WHERE fb_num = #{fb_num}
+		UPDATE freeBoard SET title = #{title} WHERE fb_num = #{fb_num};
+		UPDATE freeBoard SET content = #{content} WHERE fb_num = #{fb_num};
 	</update>
 	
 	<update id="countUp" parameterType="int">

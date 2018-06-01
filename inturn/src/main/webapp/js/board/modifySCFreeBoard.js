@@ -17,6 +17,11 @@ $(function() {
 	});
 	//전송버튼
 	$("#modifyBoard").click(function() {
+		if($("#title").val() == '') {
+			alert("제목을 입력해주세요");
+			return false;
+		}
+
 		//id가 smarteditor인 textarea에 에디터에서 대입
 		obj.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
 		//폼 submit

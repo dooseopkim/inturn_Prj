@@ -1,5 +1,12 @@
+SET @tables = NULL;
+SELECT GROUP_CONCAT(table_schema, '.', table_name) INTO @tables
+    FROM information_schema.tables 
+    WHERE table_schema = 'inturnDB';
 
-
+SET @tables = CONCAT('DROP TABLE ', @tables);
+PREPARE stmt FROM @tables;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
 
 -- users
 CREATE TABLE `users` (
@@ -138,15 +145,13 @@ ALTER TABLE `portfolio`
 
 -- reply
 CREATE TABLE `reply` (
-	`rb_num`     INT           NOT NULL COMMENT 'rb_num', -- rb_num
+	`rp_num`     INT           NOT NULL COMMENT 'rp_num', -- rb_num
 	`fb_num`     INT           NULL     COMMENT 'fb_num', -- fb_num
 	`cb_num`     INT           NULL     COMMENT 'cb_num', -- cb_num
-	`title`      VARCHAR(200)  NULL     COMMENT 'title', -- title
 	`content`    VARCHAR(1000) NULL     COMMENT 'content', -- content
 	`regDate`    DATE          NULL     COMMENT 'regDate', -- regDate
 	`parentNum`  INT           NULL     COMMENT 'parentNum', -- parentNum
-	`childCount` INT           NULL     COMMENT 'childCount', -- childCount
-	`position`   VARCHAR(30)   NULL     COMMENT 'position', -- position
+	`position`   INT		   NULL     COMMENT 'position', -- position
 	`id`         VARCHAR(30)   NULL     COMMENT 'id' -- id
 )
 COMMENT 'reply';

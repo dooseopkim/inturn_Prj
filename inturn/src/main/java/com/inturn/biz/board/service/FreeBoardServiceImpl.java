@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.inturn.biz.board.dao.FileDAO;
 import com.inturn.biz.board.dao.FreeBoardDAO;
+import com.inturn.biz.board.dao.ReplyDAO;
 import com.inturn.biz.board.vo.FileGroupVO;
 import com.inturn.biz.board.vo.FilesVO;
 import com.inturn.biz.board.vo.FreeBoardVO;
@@ -30,6 +31,8 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 	FreeBoardDAO fb_dao;
 	@Resource(name = "FileDAO")
 	FileDAO file_dao;
+	@Resource(name = "ReplyDAO")
+	ReplyDAO reply_dao;
 	
 	/**
 	 * @param FreeBoardVO로
@@ -106,6 +109,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 			row += file_dao.deleteFile(fileGroupNum);
 			row += file_dao.delete_FB_FileGroup(fb_num);
 		}
+		row += reply_dao.deleteReplies(fb_num);
 		row += fb_dao.deleteFreeBoard(fb_num);
 		return row;
 	}
@@ -220,7 +224,6 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		fb_dao.countUp(fb_num);
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		FreeBoardVO vo = fb_dao.viewBoard(fb_num);
-		// 여기에 이제, 댓글도 result에 put해서 보내주어야함.
 		result.put("board", vo);
 		result.put("prevfb_num", fb_dao.prevfb_num(fb_num));
 		result.put("nextfb_num", fb_dao.nextfb_num(fb_num));
@@ -237,7 +240,6 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		fb_dao.countUp(fb_num);
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		FreeBoardVO vo = fb_dao.viewBoard(fb_num);
-		// 여기에 이제, 댓글도 result에 put해서 보내주어야함.
 		result.put("board", vo);
 		result.put("prevfb_num", fb_dao.scPrevfb_num(condition, search, fb_num));
 		result.put("nextfb_num", fb_dao.scNextfb_num(condition, search, fb_num));

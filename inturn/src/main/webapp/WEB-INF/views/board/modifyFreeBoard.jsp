@@ -53,7 +53,7 @@
 			    	<div class="row">
 			    		<input type="hidden" id="fb_num" name="fb_num" value="${board.fb_num}">
 			    		<div class="form-group">
-				    		제목 : <input id="title" type="text" name="title" class="form-control" readonly="readonly" value="${board.title}">
+				    		제목 : <input id="title" type="text" name="title" class="form-control" value="${board.title}" required="required">
 			    		</div>
 			    		<input type="hidden" id="id" name="id" value="${login.id}">
 			    		<input type="hidden" id="thisPage" name="thisPage" value="${thisPage}">
