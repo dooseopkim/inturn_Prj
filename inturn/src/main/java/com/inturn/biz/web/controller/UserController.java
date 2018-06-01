@@ -201,13 +201,25 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="addProfileEdu.do", method=RequestMethod.POST)
-	public ModelAndView addProfileEduDo(EducationalLevelVO vo, HttpSession session) {
+	public ModelAndView addProfileEduDo(String degree_level, String school_name, 
+										Date admission_date, Date graduation_date, 
+										String current_status, @RequestParam(value="major", defaultValue="")String major,
+										@RequestParam(value="avg_score", defaultValue="0")double avg_score, double total_score,
+										HttpSession session) {
 		System.out.println("addProfileEduDo() 진입");
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo);
 		UserVO user = (UserVO)session.getAttribute("login");
 		String id = user.getId();
 		System.out.println("id : " + id);
+		EducationalLevelVO vo = new EducationalLevelVO();
+		vo.setDegree_level(degree_level);
+		vo.setSchool_name(school_name);
+		vo.setAdmission_date(admission_date);
+		vo.setGraduation_date(graduation_date);
+		vo.setCurrent_status(current_status);
+		vo.setMajor(major);
+		vo.setAvg_score(avg_score);
+		vo.setTotal_score(total_score);
 		vo.setId(id);
 		System.out.println(vo);
 		int result = eduLvlService.insertEduLvl(vo);
@@ -253,15 +265,29 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="modifyEdu.do", method=RequestMethod.POST)
-	public ModelAndView modifyEduDo(EducationalLevelVO vo, HttpSession session) {
+	public ModelAndView modifyEduDo(int eduLevel_num, String degree_level, String school_name, 
+									Date admission_date, Date graduation_date, 
+									String current_status, @RequestParam(value="major", defaultValue="")String major,
+									@RequestParam(value="avg_score", defaultValue="0")double avg_score, double total_score,
+									HttpSession session) {
 		System.out.println("modifyEduDo() 진입");
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo);
 		UserVO user = (UserVO)session.getAttribute("login");
 		if(user != null) {
 			String id = user.getId();
 			System.out.println("로그인 정보 확인 id : " + id);
+			EducationalLevelVO vo = new EducationalLevelVO();
+			vo.setEduLevel_num(eduLevel_num);
+			vo.setDegree_level(degree_level);
+			vo.setSchool_name(school_name);
+			vo.setAdmission_date(admission_date);
+			vo.setGraduation_date(graduation_date);
+			vo.setCurrent_status(current_status);
+			vo.setMajor(major);
+			vo.setAvg_score(avg_score);
+			vo.setTotal_score(total_score);
 			vo.setId(id);;
+			System.out.println(vo);
 			int result = eduLvlService.modifyEduLvl(vo);
 			if(result == 1) {
 				System.out.println("수정 성공");
