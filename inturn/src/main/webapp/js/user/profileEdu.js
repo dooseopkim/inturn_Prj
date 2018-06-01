@@ -62,15 +62,13 @@ $(function(){
 			alert("졸업일을 입력하세요.");
 			$("#graduation_date").focus();
 			return false;
-		} else if($("#major").val()==""){
-			alert("전공을 입력하세요.");
-			$("#major").focus();
-			return false;
-		} else if($("#avg_score").val()==""){
-			alert("학점을 입력하세요.");
-			$("#avg_score").focus();
-			return false;
-		}
+		} else if($("#degree_level").val()=="전문대학" || $("#degree_level").val()=="대학(4년제)"){
+			if($("#major").val()==""){
+				alert("전공을 입력하세요.");
+				$("#major").focus();
+				return false;
+			} 
+		} 
 		
 		$.ajax({
 			url: "addProfileEdu.do",
@@ -111,9 +109,6 @@ $(function(){
 		$("#total_score").val("4.5");
 	}
 	
-	function resetModalSchool(){
-		
-	}
 });
 
 
@@ -217,6 +212,14 @@ function cencelModifyEdu(eduLevel_num){
 }
 
 function modifyEdu(eduLevel_num){
+	if($("#degree_level"+eduLevel_num).val()=="전문대학" || $("#degree_level"+eduLevel_num).val()=="대학(4년제)"){
+		if($("#major"+eduLevel_num).val()==""){
+			alert("전공을 입력하세요.");
+			$("#major"+eduLevel_num).focus();
+			return false;
+		} 
+	} 
+	
 	$.ajax({
 		url: "modifyEdu.do",
 		method: "POST",
@@ -410,5 +413,4 @@ function setModifyEduForm(data){
 	$("#current_status"+data.eduLvl.eduLevel_num).val(data.eduLvl.current_status);
 	$("#total_score"+data.eduLvl.eduLevel_num).val(data.eduLvl.total_score);
 }
-
 
