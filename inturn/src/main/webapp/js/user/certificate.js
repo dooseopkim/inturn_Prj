@@ -5,6 +5,9 @@
  * @see 자격증과 관련된 자바스크립트, JQuery함수
  */
 
+/**
+ * 페이지 로딩시 자격증 정보를 가져오는 함수
+ */
 $(window).load(function() {
 	$.ajax({
 		url: "getCertificates.do",
@@ -16,6 +19,13 @@ $(window).load(function() {
 	})
 })
 
+/**
+ * 수정버튼 후 작성버튼 클릭시 자격증 수정
+ * 수정 전 정보와, 수정 후 정보를 가져와 ajax로 보냄
+ * temp로 시작하는 부분이 수정버튼을 누르면 만들어졌다가
+ * 수정이 완료되면 삭제할 input 태그로
+ * 이 태그를 이용해서 값을 주고 받는다
+ */
 function modify_cert(i) {
 	var name = $("#registered_certificate_name"+i).val();
 	var date = $("#registered_acquisition_date"+i).val();
@@ -65,10 +75,17 @@ function modify_cert(i) {
 				$("#temp_certnum"+i).val(data.list.certificate_num);
 				cancel_reg_cert_Modify(i);
 			}
+			else
+				alert("이미 등록된 자격증 번호입니다.");
 		}
 	})
 }
-	
+
+/**
+ * 수정 버튼 클릭후 수정 취소 시
+ * 수정 버튼 클릭 직후 만들어져있던 temp input태그에서
+ * 그 값들을 가져온 와 원래 값을 입력 후 다시 자격증 정보를 띄워줌
+ */
 function cancel_reg_cert_Modify(i) {
 	name = $("#temp_name"+i).val(); 
 	date = $("#temp_date"+i).val();
@@ -107,6 +124,12 @@ function cancel_reg_cert_Modify(i) {
 	$("#registered_certificate"+i).append(tag);
 }
 
+/**
+ * 수정 시 자격증 이름을 바꾸면 자격증 발급처를 알아서 띄워주는 함수
+ * 밑에 똑같은 함수가 자세히 설명되어있음
+ * 모듈화시켜야하는데 정신이없어서 내뚬...
+ * 마지막 발급처 input 태그만 다르고 내용은 똑같음
+ */
 function reg_publishedByLicense(num){
 	var pbl = ["한국산업인력공단","대한상공회의소","영화진흥위원회","한국광해관리공단","한국기술자격검정원","한국방송통신전파진흥원","한국원자력안전기술원","한국인터넷진흥원","한국콘텐츠진흥원"];
 	var cerName = $("#registered_certificate_name"+num).val();
@@ -120,6 +143,9 @@ function reg_publishedByLicense(num){
 	$("#registered_published_by_license"+num).val(pbl[index]);
 }
 
+/**
+ * 수정 버튼을 눌렀을 때 수정할 수 있는 태그로 바뀌는 함수
+ */
 function modifyCertificate(num) {
 	var name = $("#registered_certificate_name"+num).val();
 	var date = $("#registered_acquisition_date"+num).val();
@@ -815,6 +841,8 @@ function insertCertificate() {
 				$("#certificateFlag").val("true");
 				$("#certificateRemain").val(0);
 			}
+			else
+				alert("이미 등록된 자격증 번호입니다.");
 		}
 	});
 }

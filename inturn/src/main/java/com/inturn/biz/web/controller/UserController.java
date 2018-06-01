@@ -350,7 +350,17 @@ public class UserController {
 		return mav;
 	}
 	
-	// 받을때, String[] 이나 int[]가능 하지만, data[]는 안됨 (JSON 데이터 타입과 동일)
+	/**
+	 * 받을때, String[] 이나 int[]로도 가능 하지만, date[]는 안됨 (JSON 데이터 타입과 동일)
+	 * 자격증 정보를 DB에 넣는 함수 각 리스트로 받은 변수들을 먼저 무결성 검증을 한 후에
+	 * 없는 데이터일 경우 CertificateVO로 만들어서 모두 insert 해준다.
+	 * @param certificate_num 자격증 번호
+	 * @param certificate_name 자격증 이름
+	 * @param published_by_license 자격증 발급처
+	 * @param acquisition_date 자격증 취득일
+	 * @param id 유저ID
+	 * @return
+	 */
 	@RequestMapping(value="/insertCertificate.do", method=RequestMethod.POST)
 	public ModelAndView insertCertificate(@RequestParam("certificate_num") ArrayList<String> certificate_num, 
 			@RequestParam("certificate_name") ArrayList<String> certificate_name, 
@@ -358,22 +368,43 @@ public class UserController {
 			@RequestParam("acquisition_date") ArrayList<String> acquisition_date,
 			@RequestParam("id") String id) {
 		HashMap<String, Object> map = new HashMap<>();
-		CertificateService.insertCertificates(certificate_num, certificate_name, published_by_license, acquisition_date, id);
-		List<CertificateVO> list = CertificateService.getCertificates(id);
-		map.put("result", "success");
-		map.put("list", list);
+		int row = CertificateService.insertCertificates(certificate_num, certificate_name, published_by_license, acquisition_date, id);
+		if(row != -1) {
+			List<CertificateVO> list = CertificateService.getCertificates(id);
+			map.put("result", "success");
+			map.put("list", list);
+		}
+		else
+			map.put("result","fail");
 		return new ModelAndView("jsonView",map);
 	}
 	
+	/**
+	 * 자격증 정보를 수정하는 함수
+	 * 그러나 certificate_num이 사실 기본키이므로 해당 자격증 삭제 후 새로 insert한다.
+	 * ne_vo가 먼저 무결성검증을 거친 후 이상이 없으면 수행
+	 * @param or_vo 바꾸기 전 값을 가지고 있는 vo
+	 * @param ne_vo 새로 수정된 값을 가지고 있는 vo
+	 * @return
+	 */
 	@RequestMapping(value="/modifyCertificate.do", method=RequestMethod.POST)
 	public ModelAndView modifyCertificate(CertificateVO or_vo, CertificateVO ne_vo) {
 		HashMap<String, Object> map = new HashMap<>();
-		CertificateService.modifyCertificate(or_vo, ne_vo);
-		map.put("result", "success");
-		map.put("list", ne_vo);
+		int row = CertificateService.modifyCertificate(or_vo, ne_vo);
+		if(row != -1) {
+			map.put("result", "success");
+			map.put("list", ne_vo);
+		}
+		else
+			map.put("result","fail");
 		return new ModelAndView("jsonView", map);
 	}
-
+	
+	/**
+	 * 해당 자격증 번호의 자격증을 삭제
+	 * @param certificate_num 자격증 번호
+	 * @return
+	 */
 	@RequestMapping(value="/deleteRegisteredCertificate.do", method=RequestMethod.POST)
 	public ModelAndView deleteRegisteredCertificate(String certificate_num) {
 		HashMap<String, Object> map = new HashMap<>();
@@ -382,6 +413,11 @@ public class UserController {
 		return new ModelAndView("jsonView", map);
 	}
 
+	/**
+	 * 해당 유저의 모든 자격증 삭제
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/deleteAllCertificate.do")
 	public ModelAndView deleteAllCertificate(HttpSession session) {
 		HashMap<String, Object> map = new HashMap<>();
@@ -391,12 +427,24 @@ public class UserController {
 		return new ModelAndView("jsonView", map);
 	}
 	
+	/**
+	 * 자격증 정보를 가져오는 함수
+	 * 페이지 로딩시 수행되는 부분으로
+	 * 해당 유저가 가지고있는 모든 자격증 정보를 보내주는 함수
+	 * 만약 자격증이없으면 javascript에서도 나머지 함수를 수행할 필요가 없으므로,
+	 * 밑에와 같이 구분함
+	 */
 	@RequestMapping(value="/getCertificates.do")
 	public ModelAndView getCertificates(HttpSession session) {
 		HashMap<String, Object> map = new HashMap<>();
 		UserVO vo = (UserVO) session.getAttribute("login");
-		map.put("result", "success");
-		map.put("list", CertificateService.getCertificates(vo.getId()));
+		List<CertificateVO> list = CertificateService.getCertificates(vo.getId());
+		if(list != null) {
+			map.put("result", "success");
+			map.put("list", list);
+		}
+		else
+			map.put("result", "none");
 		return new ModelAndView("jsonView", map);
 	}
 }
