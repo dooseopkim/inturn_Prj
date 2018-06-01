@@ -64,4 +64,14 @@ public class ReplyDAOImpl implements ReplyDAO{
 		System.out.println(parentNum);
 		return mybatis.selectOne("ReplyMapper.getPosition", parentNum);
 	}
+
+	@Override
+	public int deleteReplies(int fb_num) {
+		return mybatis.delete("ReplyMapper.deleteReplies", fb_num);
+	}
+
+	@Override
+	public int deleteChildReply(int rp_num) {
+		return mybatis.delete("ReplyMapper.deleteChildReply", rp_num);
+	}
 }

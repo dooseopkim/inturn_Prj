@@ -1,6 +1,5 @@
 package com.inturn.biz.web.controller;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,6 +25,11 @@ public class ReplyController {
 	@Resource(name="ReplyService")
 	ReplyService ReplyService;
 	
+	/**
+	 * 댓글 작성 수행 함수
+	 * @param vo
+	 * @return
+	 */
 	@RequestMapping(value="/insertReply.do", method=RequestMethod.POST)
 	public ModelAndView insertReply(ReplyVO vo) {
 		int row = ReplyService.insertFBReply(vo);
@@ -37,20 +41,34 @@ public class ReplyController {
 		return new ModelAndView("jsonView",map);
 	}
 	
+	/**
+	 * 로딩시, 혹은 호출시 해당 페이지, 게시글에 있는
+	 * 댓글을 페이징처리하여 보내주는 함수
+	 * @param page_num
+	 * @return
+	 */
 	@RequestMapping(value="/getReplies.do")
 	public ModelAndView getReplies(int page_num) {
 		HashMap<String, Object> map = new HashMap<>();
 		HashMap<String, Object> result = ReplyService.getFBReplies(page_num);
 		List<ReplyVO> list = (List<ReplyVO>) result.get("list");
+		int count_page = (int) result.get("count_page");
 		if(list != null) {
 			map.put("result", "success");
 			map.put("list", list);
+			map.put("page", count_page);
+			map.put("thisPage", page_num);
 		}
 		else
 			map.put("result", "none");
 		return new ModelAndView("jsonView",map);
 	}
 	
+	/**
+	 * 댓글을 삭제해주는 함수
+	 * @param rp_num
+	 * @return
+	 */
 	@RequestMapping(value="/deleteReply.do", method=RequestMethod.POST)
 	public ModelAndView deleteReply(int rp_num) {
 		int row = ReplyService.deleteReply(rp_num);
@@ -62,6 +80,11 @@ public class ReplyController {
 		return new ModelAndView("jsonView",map);
 	}
 	
+	/**
+	 * 댓글을 수정해주는 함수
+	 * @param vo
+	 * @return
+	 */
 	@RequestMapping(value="/modifyReply.do", method=RequestMethod.POST)
 	public ModelAndView modifyReply(ReplyVO vo) {
 		int row = ReplyService.modifyReply(vo);
@@ -73,6 +96,11 @@ public class ReplyController {
 		return new ModelAndView("jsonView",map);
 	}
 	
+	/**
+	 * 대 댓글 입력함수
+	 * @param vo
+	 * @return
+	 */
 	@RequestMapping(value="/insertReReply.do", method=RequestMethod.POST)
 	public ModelAndView insertReReply(ReplyVO vo) {
 		int row = ReplyService.insertFBReReply(vo);

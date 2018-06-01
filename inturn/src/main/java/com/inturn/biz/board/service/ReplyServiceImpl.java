@@ -18,6 +18,9 @@ public class ReplyServiceImpl implements ReplyService {
 	@Resource(name = "ReplyDAO")
 	ReplyDAO dao;
 
+	/**
+	 * 댓글 입력 함수
+	 */
 	@Override
 	public int insertFBReply(ReplyVO vo) {
 		java.util.Date udate = new java.util.Date();
@@ -26,6 +29,13 @@ public class ReplyServiceImpl implements ReplyService {
 		return dao.insertFBReply(vo);
 	}
 
+	/**
+	 * 대댓글 입력함수
+	 * 대댓글 입력시 해당 부모위치를 자신의 위치로하고
+	 * 해당 부모위치 부터 그 위로 모두 position을 1개씩 증가시켜준다.
+	 * 이렇게 하면 position으로 댓글을 불러왔을 때,
+	 * 대댓글까지 모두 그 위치가 알맞게 맞춰져 정렬된다.
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public int insertFBReReply(ReplyVO vo) {
@@ -35,6 +45,10 @@ public class ReplyServiceImpl implements ReplyService {
 		return row;
 	}
 
+	/**
+	 * 댓글을 불러오는 함수로
+	 * 페이징는 처리 게시판과 똑같다.
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public HashMap<String, Object> getFBReplies(int page_num) {
@@ -86,6 +100,12 @@ public class ReplyServiceImpl implements ReplyService {
 		return dao.downPosition(position);
 	}
 
+	/**
+	 * 대댓글 때문에 position의 위치가 매우 중요하다.
+	 * position으로 정렬하여 나타내기 때문이다.
+	 * 따라서 해당부분 댓글이 삭제되면 그 위의 모든 댓글의
+	 * position 값을 -1씩 해주어야 한다.
+	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public int deleteReply(int rp_num) {
@@ -93,6 +113,7 @@ public class ReplyServiceImpl implements ReplyService {
 		ReplyVO vo = dao.getReply(rp_num);
 		row += dao.downPosition(vo.getPosition());
 		row += dao.deleteReply(rp_num);
+		row += dao.deleteChildReply(rp_num);
 		return row;
 	}
 }

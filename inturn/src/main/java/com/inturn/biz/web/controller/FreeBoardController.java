@@ -136,7 +136,6 @@ public class FreeBoardController {
 		FreeBoardVO board = (FreeBoardVO) boardInfo.get("board");
 		int prevfb_num = (int) boardInfo.get("prevfb_num");
 		int nextfb_num = (int) boardInfo.get("nextfb_num");
-		// 댓글도 가져와서 request에 넣어 보내줘야한다.
 		request.setAttribute("board", board);
 		request.setAttribute("prevfb_num", prevfb_num);
 		request.setAttribute("nextfb_num", nextfb_num);
@@ -246,7 +245,6 @@ public class FreeBoardController {
 		FreeBoardVO board = (FreeBoardVO) boardInfo.get("board");
 		int prevfb_num = (int) boardInfo.get("prevfb_num");
 		int nextfb_num = (int) boardInfo.get("nextfb_num");
-		// 댓글도 가져와서 request에 넣어 보내줘야한다.
 		request.setAttribute("board", board);
 		request.setAttribute("prevfb_num", prevfb_num);
 		request.setAttribute("nextfb_num", nextfb_num);

@@ -15,5 +15,7 @@ public interface ReplyDAO {
 	public int upPosition(int position);
 	public int downPosition(int position);
 	public int deleteReply(int rp_num);
+	public int deleteChildReply(int rp_num);
+	public int deleteReplies(int fb_num);
 	public int countReplies();
 }
