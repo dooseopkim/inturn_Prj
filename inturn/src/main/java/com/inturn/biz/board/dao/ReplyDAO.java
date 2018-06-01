@@ -10,6 +10,7 @@ public interface ReplyDAO {
 	public int insertFBReReply(ReplyVO vo);
 	public List<ReplyVO> getFBReplies(HashMap<String, Object> map);
 	public ReplyVO getReply(int rp_num);
+	public int getPosition(int parentNum);
 	public int modifyReply(ReplyVO vo);
 	public int upPosition(int position);
 	public int downPosition(int position);

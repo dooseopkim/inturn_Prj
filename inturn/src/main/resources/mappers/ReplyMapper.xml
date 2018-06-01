@@ -11,8 +11,16 @@
 		INSERT INTO reply (rp_num, fb_num, content, regDate, parentNum, position, id)
 		VALUES((SELECT IFNULL(max(r.rp_num),0)+1 FROM reply r),
 			#{fb_num}, #{content}, #{regDate}, #{parentNum},
-			(SELECT IFNULL(max(r.position),0)+1 FROM reply r WHERE parentNum = #{parentNum}), #{id})
+			(SELECT IFNULL(MIN(r.position),
+				(SELECT r1.position FROM reply r1 WHERE rp_num = #{parentNum})) 
+					FROM reply r WHERE parentNum = #{parentNum}), #{id})
 	</insert>
+	
+	<select id="getPosition" parameterType="int" resultType="int">
+		SELECT IFNULL(MIN(r.position),
+				(SELECT r1.position FROM reply r1 WHERE rp_num = #{parentNum})) 
+					FROM reply r WHERE parentNum = #{parentNum}
+	</select>
 	
 	<select id="getFBReplies" parameterType="HashMap" resultType="ReplyVO">
 		SELECT * 

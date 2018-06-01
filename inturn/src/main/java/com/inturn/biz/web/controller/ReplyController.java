@@ -72,4 +72,15 @@ public class ReplyController {
 			map.put("reulst", "fail");
 		return new ModelAndView("jsonView",map);
 	}
+	
+	@RequestMapping(value="/insertReReply.do", method=RequestMethod.POST)
+	public ModelAndView insertReReply(ReplyVO vo) {
+		int row = ReplyService.insertFBReReply(vo);
+		HashMap<String, Object> map = new HashMap<>();
+		if(row >= 1)
+			map.put("result", "success");
+		else
+			map.put("reulst", "fail");
+		return new ModelAndView("jsonView",map);
+	}
 }

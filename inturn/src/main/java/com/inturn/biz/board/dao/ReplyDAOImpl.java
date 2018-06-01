@@ -58,4 +58,10 @@ public class ReplyDAOImpl implements ReplyDAO{
 	public ReplyVO getReply(int rp_num) {
 		return mybatis.selectOne("ReplyMapper.getReply", rp_num);
 	}
+
+	@Override
+	public int getPosition(int parentNum) {
+		System.out.println(parentNum);
+		return mybatis.selectOne("ReplyMapper.getPosition", parentNum);
+	}
 }

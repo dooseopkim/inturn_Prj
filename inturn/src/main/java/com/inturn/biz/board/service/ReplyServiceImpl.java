@@ -27,8 +27,12 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public int insertFBReReply(ReplyVO vo) {
-		return dao.insertFBReReply(vo);
+		int row = 0;
+		row += dao.upPosition(dao.getPosition(vo.getParentNum()));
+		row += dao.insertFBReReply(vo);
+		return row;
 	}
 
 	@Override
@@ -88,6 +92,7 @@ public class ReplyServiceImpl implements ReplyService {
 		int row = 0;
 		ReplyVO vo = dao.getReply(rp_num);
 		row += dao.downPosition(vo.getPosition());
-		return dao.deleteReply(rp_num);
+		row += dao.deleteReply(rp_num);
+		return row;
 	}
 }
