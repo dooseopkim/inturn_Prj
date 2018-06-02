@@ -32,7 +32,7 @@
 						<li class="has-dropdown"><a href="#">이용안내</a>
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>
-								<li><a href="csBoard.do">고객서비스</a></li>
+								<li><a href="csBoard.do?page_num=1">고객서비스</a></li>
 							</ul></li>
 					</ul>
 				</div>

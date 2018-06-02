@@ -6,9 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.inturn.biz.users.dao.CareerDAO;
 import com.inturn.biz.users.dao.JobDAO;
-import com.inturn.biz.users.vo.CareerVO;
 import com.inturn.biz.users.vo.JobVO;
 
 @Service("JobService")

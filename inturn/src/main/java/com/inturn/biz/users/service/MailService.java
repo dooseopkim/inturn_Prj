@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 
 import javax.mail.MessagingException;
 
+import com.inturn.biz.users.vo.MailVO;
+
 public interface MailService {
 	/**
 	 * 인증 메일 전송 메소드
@@ -16,5 +18,6 @@ public interface MailService {
 	 * @throws MessagingException 
 	 * @throws UnsupportedEncodingException 
 	 */
-	public boolean sendEmail(String subject, String text, String to) ;
+	public MailVO init();
+	public boolean sendEmail(String subject, String contents, String to, MailVO vo);
 }

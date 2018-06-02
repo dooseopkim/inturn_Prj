@@ -1,6 +1,3 @@
-
-
-
 -- users
 CREATE TABLE `users` (
 	`id`       VARCHAR(30)  NOT NULL COMMENT '아이디', -- id
@@ -292,7 +289,7 @@ CREATE TABLE `fileGroup` (
 	`fileGroupNum` INT         NOT NULL COMMENT 'fileGroupNum', -- fileGroupNum
 	`flag`         VARCHAR(30) NULL     COMMENT 'flag', -- flag
 	`fb_num`       INT         NULL     COMMENT 'fb_num', -- fb_num
-	`qna_num`      INT         NULL     COMMENT 'qna_num' -- qna_num
+	`cs_num`       INT         NULL     COMMENT 'cs_num' -- cs_num
 )
 COMMENT 'fileGroup';
 
@@ -310,9 +307,9 @@ CREATE TABLE `dic_select` (
 )
 COMMENT 'dic_select';
 
--- qnaBoard
-CREATE TABLE `qnaBoard` (
-	`qna_num`    INT           NOT NULL COMMENT 'qna_num', -- qna_num
+-- csBoard
+CREATE TABLE `csBoard` (
+	`cs_num`     INT           NOT NULL COMMENT 'cs_num', -- cs_num
 	`grpno`      INT           NULL     COMMENT 'grpno', -- grpno
 	`grpord`     INT           NULL     COMMENT 'grpord', -- grpord
 	`dept`       INT           NULL     COMMENT 'dept', -- dept
@@ -323,13 +320,32 @@ CREATE TABLE `qnaBoard` (
 	`pw`         VARCHAR(50)   NULL     COMMENT 'pw', -- pw
 	`id`         VARCHAR(30)   NULL     COMMENT 'id' -- id
 )
-COMMENT 'qnaBoard';
+COMMENT 'csBoard';
 
--- qnaBoard
-ALTER TABLE `qnaBoard`
-	ADD CONSTRAINT `PK_qnaBoard` -- qnaBoard 기본키
+-- csBoard
+ALTER TABLE `csBoard`
+	ADD CONSTRAINT `PK_csBoard` -- csBoard 기본키
 		PRIMARY KEY (
-			`qna_num` -- qna_num
+			`cs_num` -- cs_num
+		);
+
+-- mail
+CREATE TABLE `mail` (
+	`m_num`             VARCHAR(2)   NOT NULL COMMENT 'm_num', -- m_num
+	`from_addr`         VARCHAR(40)  NULL     COMMENT 'from_addr', -- from_addr
+	`fromname`          VARCHAR(40)  NULL     COMMENT 'fromname', -- fromname
+	`smtp_username`     VARCHAR(100) NULL     COMMENT 'smtp_username', -- smtp_username
+	`smtp_userpassword` VARCHAR(200) NULL     COMMENT 'smtp_userpassword', -- smtp_userpassword
+	`host`              VARCHAR(100) NULL     COMMENT 'host', -- host
+	`port`              INT          NULL     COMMENT 'port' -- port
+)
+COMMENT 'mail';
+
+-- mail
+ALTER TABLE `mail`
+	ADD CONSTRAINT `PK_mail` -- mail 기본키
+		PRIMARY KEY (
+			`m_num` -- m_num
 		);
 
 -- users
@@ -514,12 +530,12 @@ ALTER TABLE `fileGroup`
 
 -- fileGroup
 ALTER TABLE `fileGroup`
-	ADD CONSTRAINT `FK_qnaBoard_TO_fileGroup` -- qnaBoard -> fileGroup
+	ADD CONSTRAINT `FK_csBoard_TO_fileGroup` -- csBoard -> fileGroup
 		FOREIGN KEY (
-			`qna_num` -- qna_num
+			`cs_num` -- cs_num
 		)
-		REFERENCES `qnaBoard` ( -- qnaBoard
-			`qna_num` -- qna_num
+		REFERENCES `csBoard` ( -- csBoard
+			`cs_num` -- cs_num
 		);
 
 -- dic_select
@@ -542,9 +558,9 @@ ALTER TABLE `dic_select`
 			`id` -- id
 		);
 
--- qnaBoard
-ALTER TABLE `qnaBoard`
-	ADD CONSTRAINT `FK_users_TO_qnaBoard` -- users -> qnaBoard
+-- csBoard
+ALTER TABLE `csBoard`
+	ADD CONSTRAINT `FK_users_TO_csBoard` -- users -> csBoard
 		FOREIGN KEY (
 			`id` -- id
 		)

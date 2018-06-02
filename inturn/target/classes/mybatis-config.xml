@@ -8,6 +8,7 @@
 		<typeAlias type="com.inturn.biz.users.vo.EducationalLevelVO" alias="EducationalLevelVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.users.vo.CareerVO" alias="CareerVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.users.vo.JobVO" alias="JobVO"></typeAlias>
+		<typeAlias type="com.inturn.biz.users.vo.MailVO" alias="MailVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.board.vo.FreeBoardVO" alias="FreeBoardVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.board.vo.FileGroupVO" alias="FileGroupVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.board.vo.FilesVO" alias="FilesVO"></typeAlias>
@@ -19,5 +20,6 @@
 		<mapper resource="./mappers/FileMapper.xml" />
 		<mapper resource="./mappers/EducationalLevelMapper.xml" />
 		<mapper resource="./mappers/ProfileMapper.xml" />
+		<mapper resource="./mappers/MailMapper.xml" />
 	</mappers>
 </configuration>

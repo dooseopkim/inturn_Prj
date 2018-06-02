@@ -72,7 +72,7 @@ ALTER TABLE `fileGroup`
 
 -- fileGroup
 ALTER TABLE `fileGroup`
-	DROP FOREIGN KEY `FK_qnaBoard_TO_fileGroup`; -- qnaBoard -> fileGroup
+	DROP FOREIGN KEY `FK_csBoard_TO_fileGroup`; -- csBoard -> fileGroup
 
 -- dic_select
 ALTER TABLE `dic_select`
@@ -82,9 +82,9 @@ ALTER TABLE `dic_select`
 ALTER TABLE `dic_select`
 	DROP FOREIGN KEY `FK_users_TO_dic_select`; -- users -> dic_select
 
--- qnaBoard
-ALTER TABLE `qnaBoard`
-	DROP FOREIGN KEY `FK_users_TO_qnaBoard`; -- users -> qnaBoard
+-- csBoard
+ALTER TABLE `csBoard`
+	DROP FOREIGN KEY `FK_users_TO_csBoard`; -- users -> csBoard
 
 -- users
 ALTER TABLE `users`
@@ -154,9 +154,13 @@ ALTER TABLE `files`
 ALTER TABLE `fileGroup`
 	DROP PRIMARY KEY; -- fileGroup 기본키
 
--- qnaBoard
-ALTER TABLE `qnaBoard`
-	DROP PRIMARY KEY; -- qnaBoard 기본키
+-- csBoard
+ALTER TABLE `csBoard`
+	DROP PRIMARY KEY; -- csBoard 기본키
+
+-- mail
+ALTER TABLE `mail`
+	DROP PRIMARY KEY; -- mail 기본키
 
 -- users
 DROP TABLE IF EXISTS `users` RESTRICT;
@@ -212,5 +216,8 @@ DROP TABLE IF EXISTS `fileGroup` RESTRICT;
 -- dic_select
 DROP TABLE IF EXISTS `dic_select` RESTRICT;
 
--- qnaBoard
-DROP TABLE IF EXISTS `qnaBoard` RESTRICT;
+-- csBoard
+DROP TABLE IF EXISTS `csBoard` RESTRICT;
+
+-- mail
+DROP TABLE IF EXISTS `mail` RESTRICT;
