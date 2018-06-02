@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReplyMapper">
+	<insert id="insertFBReply" parameterType="ReplyVO">
+		INSERT INTO reply (rp_num, fb_num, content, regDate, parentNum, position, id)
+		VALUES((SELECT IFNULL(max(r.rp_num),0)+1 FROM reply r), #{fb_num}, #{content}, #{regDate}, 
+		-1, (SELECT IFNULL(max(r.position),0)+1 FROM reply r), #{id})
+	</insert>
+	
+	<insert id="insertFBReReply" parameterType="ReplyVO">
+		INSERT INTO reply (rp_num, fb_num, content, regDate, parentNum, position, id)
+		VALUES((SELECT IFNULL(max(r.rp_num),0)+1 FROM reply r),
+			#{fb_num}, #{content}, #{regDate}, #{parentNum},
+			(SELECT IFNULL(MIN(r.position),
+				(SELECT r1.position FROM reply r1 WHERE rp_num = #{parentNum})) -1 
+					FROM reply r WHERE parentNum = #{parentNum}), #{id})
+	</insert>
+	
+	<select id="getPosition" parameterType="int" resultType="int">
+		SELECT IFNULL(MIN(r.position),
+				(SELECT r1.position FROM reply r1 WHERE rp_num = #{parentNum})) 
+					FROM reply r WHERE parentNum = #{parentNum}
+	</select>
+	
+	<select id="getFBReplies" parameterType="HashMap" resultType="ReplyVO">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM reply
+			ORDER BY position
+			LIMIT #{offset}, #{limit}
+		) A ORDER BY position DESC
+	</select>
+	
+	<select id="getReply" parameterType="int" resultType="ReplyVO">
+		SELECT * FROM reply WHERE rp_num = #{rp_num}
+	</select>
+	
+	<select id="countReplies" resultType="int">
+		SELECT count(*) FROM reply
+	</select>
+	
+	<update id="modifyReply" parameterType="ReplyVO">
+		UPDATE reply SET content = #{content} WHERE rp_num = #{rp_num}
+	</update>
+
+	<update id="upPosition" parameterType="int">
+		UPDATE reply SET position = position + 1 WHERE position >= #{position}
+	</update>
+
+	<update id="downPosition" parameterType="int">
+		UPDATE reply SET position = position - 1 WHERE position >= #{position}
+	</update>
+	
+	<delete id="deleteReply" parameterType="int">
+		DELETE FROM reply WHERE rp_num = #{rp_num}
+	</delete>
+	
+	<delete id="deleteChildReply" parameterType="int">
+		DELETE FROM reply WHERE parentNum = #{rp_num}
+	</delete>
+	
+	<delete id="deleteReplies" parameterType="int">
+		DELETE FROM reply WHERE fb_num = #{fb_num}
+	</delete>
+</mapper>

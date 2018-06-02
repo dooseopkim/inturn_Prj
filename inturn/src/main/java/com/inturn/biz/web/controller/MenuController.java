@@ -46,7 +46,7 @@ public class MenuController {
 	 */
 	@RequestMapping(value="/mentor.do")
 	public String mentorDO() {
-		return "index.jsp?content=mentor";
+		return "index.jsp?content=board/mentorBoard";
 	}
 	
 	/**

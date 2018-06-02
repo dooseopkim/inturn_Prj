@@ -52,7 +52,7 @@
 			    	<div class="row">&nbsp;</div>
 			    	<div class="row">
 			    		<div class="form-group">
-				    		제목 : <input id="title" type="text" name="title" class="form-control" placeholder="글 제목">
+				    		제목 : <input id="title" type="text" name="title" class="form-control" placeholder="글 제목" required="required">
 			    		</div>
 			    		<input type="hidden" name="id" value="${login.id}">
 			    	</div>

@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.container-wrap {
+	border: 1px solid #e8e8e8;
+}
+
+#page_insertMentorBoard{
+	margin: 50px 150px 50px 150px;
+}

@@ -1,4 +1,7 @@
-$(function() {
+/**
+ * 
+ */
+$(function(){
 	//전역변수
 	var obj = [];
 	//스마트에디터 프레임생성
@@ -15,21 +18,17 @@ $(function() {
 			bUseModeChanger : true,
 		}
 	});
-	//전송버튼
-	$("#modifyBoard").click(function() {
-		if($("#title").val() == '') {
-			alert("제목을 입력해주세요");
-			return false;
-		}
-
+	
+	$("#btn_insertMentorBoard").click(function() {
 		//id가 smarteditor인 textarea에 에디터에서 대입
 		obj.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
 		//폼 submit
-		$("#modifyBoardFrm").submit();
+		$("#insertBoardFrm").submit();
 	});
-	$("#cancelBtn").click(function() {
-		var execute = confirm("게시글 작성을 취소하시겠습니까?");
-		if(execute)
-			location.href = "/viewSCFreeBoard.do?condition="+$("#condition").val()+"&search="+$("#search").val()+"&fb_num="+$("#fb_num").val()+"&thisPage="+$("#thisPage").val();
+	$("#btn_cancelMentorBoard").click(function() {
+		if(confirm("게시글 작성을 취소하시겠습니까?")){
+			location.href = "mentor.do";
+		}
 	});
+	
 });

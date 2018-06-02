@@ -81,5 +81,6 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../reply/reply.jsp" />
 </body>
 </html>

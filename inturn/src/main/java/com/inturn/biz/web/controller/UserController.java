@@ -2,6 +2,7 @@ package com.inturn.biz.web.controller;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,15 +14,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.inturn.biz.users.service.CareerService;
+import com.inturn.biz.users.service.CertificateService;
 import com.inturn.biz.users.service.EducationalLevelService;
 import com.inturn.biz.users.service.JobService;
 import com.inturn.biz.users.service.MailService;
 import com.inturn.biz.users.service.UserService;
 import com.inturn.biz.users.vo.CareerVO;
+import com.inturn.biz.users.vo.CertificateVO;
 import com.inturn.biz.users.vo.EducationalLevelVO;
 import com.inturn.biz.users.vo.JobVO;
 import com.inturn.biz.users.vo.MailVO;
@@ -44,6 +48,9 @@ public class UserController {
 	
 	@Resource(name="JobService")
 	JobService jobService;
+
+	@Resource(name="CertificateService")
+	CertificateService CertificateService;
 	
 	/**
 	 * userMenu에서 회원가입 클릭시 약관동의 및 이메일 인증 페이지로 이동
@@ -198,13 +205,25 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="addProfileEdu.do", method=RequestMethod.POST)
-	public ModelAndView addProfileEduDo(EducationalLevelVO vo, HttpSession session) {
+	public ModelAndView addProfileEduDo(String degree_level, String school_name, 
+										Date admission_date, Date graduation_date, 
+										String current_status, @RequestParam(value="major", defaultValue="")String major,
+										@RequestParam(value="avg_score", defaultValue="0")double avg_score, double total_score,
+										HttpSession session) {
 		System.out.println("addProfileEduDo() 진입");
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo);
 		UserVO user = (UserVO)session.getAttribute("login");
 		String id = user.getId();
 		System.out.println("id : " + id);
+		EducationalLevelVO vo = new EducationalLevelVO();
+		vo.setDegree_level(degree_level);
+		vo.setSchool_name(school_name);
+		vo.setAdmission_date(admission_date);
+		vo.setGraduation_date(graduation_date);
+		vo.setCurrent_status(current_status);
+		vo.setMajor(major);
+		vo.setAvg_score(avg_score);
+		vo.setTotal_score(total_score);
 		vo.setId(id);
 		System.out.println(vo);
 		int result = eduLvlService.insertEduLvl(vo);
@@ -250,15 +269,29 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="modifyEdu.do", method=RequestMethod.POST)
-	public ModelAndView modifyEduDo(EducationalLevelVO vo, HttpSession session) {
+	public ModelAndView modifyEduDo(int eduLevel_num, String degree_level, String school_name, 
+									Date admission_date, Date graduation_date, 
+									String current_status, @RequestParam(value="major", defaultValue="")String major,
+									@RequestParam(value="avg_score", defaultValue="0")double avg_score, double total_score,
+									HttpSession session) {
 		System.out.println("modifyEduDo() 진입");
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo);
 		UserVO user = (UserVO)session.getAttribute("login");
 		if(user != null) {
 			String id = user.getId();
 			System.out.println("로그인 정보 확인 id : " + id);
+			EducationalLevelVO vo = new EducationalLevelVO();
+			vo.setEduLevel_num(eduLevel_num);
+			vo.setDegree_level(degree_level);
+			vo.setSchool_name(school_name);
+			vo.setAdmission_date(admission_date);
+			vo.setGraduation_date(graduation_date);
+			vo.setCurrent_status(current_status);
+			vo.setMajor(major);
+			vo.setAvg_score(avg_score);
+			vo.setTotal_score(total_score);
 			vo.setId(id);;
+			System.out.println(vo);
 			int result = eduLvlService.modifyEduLvl(vo);
 			if(result == 1) {
 				System.out.println("수정 성공");
@@ -346,4 +379,103 @@ public class UserController {
 		System.out.println("addProfileCareerDo() 끝");
 		return mav;
 	}
+	
+	/**
+	 * 받을때, String[] 이나 int[]로도 가능 하지만, date[]는 안됨 (JSON 데이터 타입과 동일)
+	 * 자격증 정보를 DB에 넣는 함수 각 리스트로 받은 변수들을 먼저 무결성 검증을 한 후에
+	 * 없는 데이터일 경우 CertificateVO로 만들어서 모두 insert 해준다.
+	 * @param certificate_num 자격증 번호
+	 * @param certificate_name 자격증 이름
+	 * @param published_by_license 자격증 발급처
+	 * @param acquisition_date 자격증 취득일
+	 * @param id 유저ID
+	 * @return
+	 */
+	@RequestMapping(value="/insertCertificate.do", method=RequestMethod.POST)
+	public ModelAndView insertCertificate(@RequestParam("certificate_num") ArrayList<String> certificate_num, 
+			@RequestParam("certificate_name") ArrayList<String> certificate_name, 
+			@RequestParam("published_by_license") ArrayList<String> published_by_license,
+			@RequestParam("acquisition_date") ArrayList<String> acquisition_date,
+			@RequestParam("id") String id) {
+		HashMap<String, Object> map = new HashMap<>();
+		int row = CertificateService.insertCertificates(certificate_num, certificate_name, published_by_license, acquisition_date, id);
+		if(row != -1) {
+			List<CertificateVO> list = CertificateService.getCertificates(id);
+			map.put("result", "success");
+			map.put("list", list);
+		}
+		else
+			map.put("result","fail");
+		return new ModelAndView("jsonView",map);
+	}
+	
+	/**
+	 * 자격증 정보를 수정하는 함수
+	 * 그러나 certificate_num이 사실 기본키이므로 해당 자격증 삭제 후 새로 insert한다.
+	 * ne_vo가 먼저 무결성검증을 거친 후 이상이 없으면 수행
+	 * @param or_vo 바꾸기 전 값을 가지고 있는 vo
+	 * @param ne_vo 새로 수정된 값을 가지고 있는 vo
+	 * @return
+	 */
+	@RequestMapping(value="/modifyCertificate.do", method=RequestMethod.POST)
+	public ModelAndView modifyCertificate(CertificateVO or_vo, CertificateVO ne_vo) {
+		HashMap<String, Object> map = new HashMap<>();
+		int row = CertificateService.modifyCertificate(or_vo, ne_vo);
+		if(row != -1) {
+			map.put("result", "success");
+			map.put("list", ne_vo);
+		}
+		else
+			map.put("result","fail");
+		return new ModelAndView("jsonView", map);
+	}
+	
+	/**
+	 * 해당 자격증 번호의 자격증을 삭제
+	 * @param certificate_num 자격증 번호
+	 * @return
+	 */
+	@RequestMapping(value="/deleteRegisteredCertificate.do", method=RequestMethod.POST)
+	public ModelAndView deleteRegisteredCertificate(String certificate_num) {
+		HashMap<String, Object> map = new HashMap<>();
+		CertificateService.deleteCertificate(certificate_num);
+		map.put("result", "success");
+		return new ModelAndView("jsonView", map);
+	}
+
+	/**
+	 * 해당 유저의 모든 자격증 삭제
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/deleteAllCertificate.do")
+	public ModelAndView deleteAllCertificate(HttpSession session) {
+		HashMap<String, Object> map = new HashMap<>();
+		UserVO vo = (UserVO) session.getAttribute("login");
+		CertificateService.deleteCertificates(vo.getId());
+		map.put("result", "success");
+		return new ModelAndView("jsonView", map);
+	}
+	
+	/**
+	 * 자격증 정보를 가져오는 함수
+	 * 페이지 로딩시 수행되는 부분으로
+	 * 해당 유저가 가지고있는 모든 자격증 정보를 보내주는 함수
+	 * 만약 자격증이없으면 javascript에서도 나머지 함수를 수행할 필요가 없으므로,
+	 * 밑에와 같이 구분함
+	 */
+	@RequestMapping(value="/getCertificates.do")
+	public ModelAndView getCertificates(HttpSession session) {
+		HashMap<String, Object> map = new HashMap<>();
+		UserVO vo = (UserVO) session.getAttribute("login");
+		List<CertificateVO> list = CertificateService.getCertificates(vo.getId());
+		if(list != null) {
+			map.put("result", "success");
+			map.put("list", list);
+		}
+		else
+			map.put("result", "none");
+		return new ModelAndView("jsonView", map);
+	}
 }
+
