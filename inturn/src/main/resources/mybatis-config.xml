@@ -10,6 +10,7 @@
 		<typeAlias type="com.inturn.biz.users.vo.JobVO" alias="JobVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.users.vo.MailVO" alias="MailVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.users.vo.CertificateVO" alias="CertificateVO"></typeAlias>
+		<typeAlias type="com.inturn.biz.board.vo.CsBoardVO" alias="CsBoardVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.board.vo.FreeBoardVO" alias="FreeBoardVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.board.vo.FileGroupVO" alias="FileGroupVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.board.vo.FilesVO" alias="FilesVO"></typeAlias>
@@ -19,6 +20,7 @@
 	<mappers>
 		<mapper resource="./mappers/UserMapper.xml" />
 		<mapper resource="./mappers/FreeBoardMapper.xml" />
+		<mapper resource="./mappers/CsBoardMapper.xml" />
 		<mapper resource="./mappers/FileMapper.xml" />
 		<mapper resource="./mappers/EducationalLevelMapper.xml" />
 		<mapper resource="./mappers/ProfileMapper.xml" />

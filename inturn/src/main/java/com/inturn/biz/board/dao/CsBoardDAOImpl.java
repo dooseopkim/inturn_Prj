@@ -1,34 +1,33 @@
-package com.inturn.biz.board.service;
+package com.inturn.biz.board.dao;
 
 import java.util.HashMap;
 import java.util.List;
 
-import javax.annotation.Resource;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import org.springframework.stereotype.Service;
+import com.inturn.biz.board.vo.CsBoardVO;
 
-import com.inturn.biz.board.dao.QnQBoardDAO;
-import com.inturn.biz.board.vo.QnABoardVO;
-
-@Service("CsBoardService")
-public class QnABoardServiceImpl implements QnABoardService{
-	@Resource(name="CsBoardDAO")
-	QnQBoardDAO dao;
+@Repository("CsBoardDAO")
+public class CsBoardDAOImpl implements CsBoardDAO{
+	@Autowired
+	SqlSessionTemplate mybatis;
 
 	@Override
-	public List<QnABoardVO> boardList(HashMap<String, Integer> map) {
+	public List<CsBoardVO> boardList(HashMap<String, Integer> map) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<QnABoardVO> scBoardList(HashMap<String, Object> map) {
+	public List<CsBoardVO> scBoardList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public QnABoardVO viewBoard(int fb_num) {
+	public CsBoardVO viewBoard(int cs_num) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,56 +45,59 @@ public class QnABoardServiceImpl implements QnABoardService{
 	}
 
 	@Override
-	public int findBoard(QnABoardVO vo) {
+	public int findBoard(CsBoardVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int insertQnABoard(QnABoardVO vo) {
+	public int insertCsBoard(CsBoardVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int modifyQnABoard(QnABoardVO vo) {
+	public int modifyCsBoard(CsBoardVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int deleteQnABoard(int fb_num) {
+	public int deleteCsBoard(int cs_num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int countUp(int fb_num) {
+	public int countUp(int cs_num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int prevfb_num(int fb_num) {
+	public int prevcs_num(int cs_num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int nextfb_num(int fb_num) {
+	public int nextcs_num(int cs_num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int scPrevfb_num(String condition, String search, int fb_num) {
+	public int scPrevcs_num(String condition, String search, int cs_num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int scNextfb_num(String condition, String search, int fb_num) {
+	public int scNextcs_num(String condition, String search, int cs_num) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+
 }
