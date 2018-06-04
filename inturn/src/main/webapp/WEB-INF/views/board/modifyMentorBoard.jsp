@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/board/insertMentorBoard.css">
+<link rel="stylesheet" href="/css/board/modifyMentorBoard.css">
 <script src="https://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="js/board/insertMentorBoard.js"></script>
+<script type="text/javascript" src="js/board/modifyMentorBoard.js"></script>
 <script type="text/javascript" src="./resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
@@ -45,17 +45,21 @@
 	</nav>
 	
 	<div class="container-wrap">
-		<div id="page_insertMentorBoard">
-			<form action="insertMentorBoard.do" method="POST" id="insertMentorBoardFrm" enctype="multipart/form-data">
+		<div id="page_modifyMentorBoard">
+			<form action="modifyMentorBoard.do" method="POST" id="modifyMentorBoardFrm" enctype="multipart/form-data">
 				<div id="box_title">
-						<input type="text" name="title" id="title" class="form-control" placeholder="제목을 입력하세요.">
+						<input type="text" id="title" name="title" class="form-control" value="${mentorBoard.title}">
 				</div>
 				<div id="box_content">
-					<textarea name="editor" id="editor"></textarea>
+					<textarea name="editor" id="editor">${mentorBoard.content}</textarea>
 				</div>
-			</form>
-			<div id="box_btnInsertMentorBoard">
-				<input type="button" id="btn_insertMentorBoard" class="btn btn-primary" value="저장">
+				<input type="hidden" id="nowPage" name="nowPage" value="${nowPage}">
+				<input type="hidden" id="condition" name="condition" value="${condition}">	
+				<input type="hidden" id="keyword" name="keyword" value="${keyword}">	
+				<input type="hidden" id="mb_num" name="mb_num" value="${mentorBoard.mb_num}">
+			</form>	
+			<div id="box_btnModifyMentorBoard">
+				<input type="button" id="btn_modifyMentorBoard" class="btn btn-primary" value="저장">
 				<input type="button" id="btn_cancelMentorBoard" class="btn btn-default" value="취소">
 			</div>
 		</div>

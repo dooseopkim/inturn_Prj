@@ -44,57 +44,93 @@
 	</nav>
 	
 	<div class="container-wrap">
-		<div id="page_mentorBoard">	
+		<div id="page_mentorBoard">
 			<div id="box_keyword"></div>
 			<div id="box_mentorCards">
 				<c:forEach var="mentorBoardList" items="${mentorBoardList}">
-				<div class="card border-success mb-3" onclick="viewMentorBoard(${mentorBoardList.id})">
-					<div class="card-header">
-						<img class="card-img" alt="thor" src="https://cdn.vox-cdn.com/thumbor/59bGBdvjHpvNw8jW2vC5shp9s54=/0x0:1200x503/1200x800/filters:focal(537x159:729x351)/cdn.vox-cdn.com/uploads/chorus_image/image/57500661/thor6.0.jpeg">
-						<strong>${mentorBoardList.id} 님</strong>
-					</div>
+				<div class="card border-success mb-3" onclick="viewMentorBoard(${mentorBoardList.mb_num})">
+					<div class="card-header text-center">${mentorBoardList.title}</div>
 					<div class="card-body">
-						<h4 class="card-title">${mentorBoardList.title}</h4>
-						<p class="card-text">${mentorBoardList.content}</p>
+						<div class="card-subtitle">${mentorBoardList.id} 님</div>
+						<div class="card-text">${mentorBoardList.content}</div>
 					</div>
 				</div>
 				</c:forEach>
 			</div>
 			<div id="box_vsw" class="row">
 				<div id="box_viewList" class="col-sm-3">
-					<input type="button" id="btn_mentorBoardList" class="btn btn-default btn-sm" value="목록보기">
+					<input type="button" id="btn_mentorBoardList" class="btn btn-default btn-sm" value="목록보기" onclick="location.href='mentorBoard.do'">
 				</div>
 				<div id="box_search" class="col-sm-6">
-					<select id="condition" class="from-control m-1">
-						<option value="board_title">제목</option>
-						<option value="board_content">내용</option>
-						<option value="board_content">전공</option>
-						<option value="user_id">작성자</option>
-					</select>
-					<input id="keyword" class="form-control" type="text" placeholder="검색어를 입력하세요">
-					<input type="button" id="btn_searchMentorBoard" class="btn btn-dark btn-sm" value="검색">
+					<form action="mentorBoard.do" method="POST">
+						<select  name="condition" class="from-control m-1">
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="id">작성자</option>
+						</select>
+						<input name="keyword" class="form-control" type="text" placeholder="검색어를 입력하세요">
+						<input type="submit" class="btn btn-dark btn-sm" value="검색">
+					</form>
 				</div>
 				<div id="box_write" class="col-sm-3">
-					<input type="button" id="btn_mentorBoardWriteForm" class="btn btn-default btn-sm" value="글쓰기">
+					<input type="button" id="btn_mentorBoardForm" class="btn btn-default btn-sm" value="글쓰기">
 				</div>
 			</div>
-			
+			<input type="hidden" id="nowPage" value="${nowPage}">	
+			<input type="hidden" id="condition" value="${condition}">	
+			<input type="hidden" id="keyword" value="${keyword}">	
 			
 			<div id="box_page">
 				<ul class="pagination pagination-sm">
-					<li class="page-item disabled"><a class="page-link" href="#">«</a>
-					</li>
-					<li class="page-item active"><a class="page-link" href="#">1</a>
-					</li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">4</a></li>
-					<li class="page-item"><a class="page-link" href="#">5</a></li>
-					<li class="page-item"><a class="page-link" href="#">»</a></li>
+					<c:if test="${totalPage > 0 }">
+						<c:choose>
+							<c:when test="${nowPage eq 1 }">
+								<li class="page-item disabled"><a href="#">&laquo;</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a
+									href="mentorBoard.do?nowPage=1">&laquo;</a></li>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${nowPage eq 1}">
+								<li class="page-item disabled"><a href="#">&lsaquo;</a></li>						
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a href="mentorBoard.do?nowPage=${nowPage-1}">&lsaquo;</a></li>
+							</c:otherwise>
+						</c:choose>
+						<c:forEach var="i" begin="${startPage}" end="${endPage}">
+							<c:choose>
+								<c:when test="${nowPage eq i}">
+									<li class="page-item active"><a href="mentorBoard.do?nowPage=${i}">${i}</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a href="mentorBoard.do?nowPage=${i}">${i}</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${nowPage eq totalPage}">
+								<li class="page-item disabled"><a href="#">&rsaquo;</a></li>						
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a href="mentorBoard.do?nowPage=${nowPage+1}">&rsaquo;</a></li>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${nowPage eq totalPage}">
+								<li class="page-item disabled"><a href="#">&raquo;</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a
+									href="mentorBoard.do?nowPage=${totalPage}">&raquo;</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
 				</ul>
 			</div>
 		</div>	
-	</div>
-
+	</div>	
 </body>
 </html>

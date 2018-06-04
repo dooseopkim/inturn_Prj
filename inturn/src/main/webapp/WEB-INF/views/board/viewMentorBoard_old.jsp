@@ -10,7 +10,7 @@
 <script type="text/javascript" src="js/board/viewMentorBoard.js"></script>
 </head>
 <body>
-	<jsp:include page="../userMenu.jsp" />
+<jsp:include page="../userMenu.jsp" />
 	<nav class="fh5co-nav" role="navigation">
 	<div class="container-wrap">
 		<div class="top-menu">
@@ -45,36 +45,46 @@
 	
 	<div class="container-wrap">
 		<div id="page_viewMentorBoard">
-		<div id="box_btnPrevNext" class="row">
-			<div class="col-sm-6 text-left">
-				<input type="button" id="btn_prevMentorBoard" class="btn btn-primary" value="이전 글">
+		<div class="row">
+			<div class="col-sm-4" style="text-align: left;">
+				<button id="btn_prevMentorBoard" class="btn btn-primary">이전 글</button>
+				<button id="btn_nextMentorBoard" class="btn btn-warning">다음 글</button>
 			</div>
-			<div class="col-sm-6 text-right">
-				<input type="button" id="btn_nextMentorBoard" class="btn btn-warning" value="다음 글">
-			</div>
-		</div>
-			<div id="box_writerRegDate">
-				작성자 : ${mentorBoard.id} 님 &nbsp;&nbsp;|&nbsp;&nbsp;
-				작성일 : ${mentorBoard.regDate}
-			</div>
-			<div id="box_title">
-					<input type="text" name="title" id="title" class="form-control" value="${mentorBoard.title}" readonly="">
-			</div>
-			<div id="box_content">${mentorBoard.content}</div>
-			<div id="box_btnList">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4" style="text-align: right;">
 				<button id="btn_mentorBoardList" class="btn btn-success">목록</button>
 				<c:if test="${mentorBoard.id eq login.id}">
 					<button id="btn_modifyMentorBoardForm" class="btn btn-info">수정</button>
 					<button id="btn_deleteMentorBoard" class="btn btn-danger">삭제</button>
 				</c:if>
 			</div>
-		<input type="hidden" id="mb_num" value="${mentorBoard.mb_num}">	
+		</div>
+		<div class="row">
+			<br>
+			<div class="col-sm-7" style="text-align: left;">
+				제목 : ${mentorBoard.title}
+			</div>
+			<div class="col-sm-5" style="text-align: right;">
+				작성일 : ${mentorBoard.regDate} |
+				작성자 : ${mentorBoard.id} |
+				<%-- 조회수 : ${board.hit} --%>
+			</div>
+		</div>
+		<div class="row">
+			<br>
+			<div id="boardContent" class="col-sm-12">
+				내용 : ${mentorBoard.content}
+			</div>
+		</div>
 		<input type="hidden" id="nowPage" value="${nowPage}">
 		<input type="hidden" id="prevMb_num" value="${prevMb_num}">
 		<input type="hidden" id="nextMb_num" value="${nextMb_num}">
 		<input type="hidden" id="condition" value="${condition}">	
 		<input type="hidden" id="keyword" value="${keyword}">	
+		<input type="hidden" id="mb_num" value="${mentorBoard.mb_num}">	
 		</div>
+		
 	</div>
+	<jsp:include page="../reply/reply.jsp" />
 </body>
 </html>

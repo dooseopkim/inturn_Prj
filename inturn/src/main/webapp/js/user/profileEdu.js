@@ -1,6 +1,11 @@
 /**
  * 
+ * @author 이슬기
+ * @version 1.0
+ * @since 2018.05.28
+ * @see MentorBoard modify 관련 JQuery 및 JavaScript
  */
+
 $(function(){
 	/**
 	 * 학력사항 카드에서 추가 관련 function

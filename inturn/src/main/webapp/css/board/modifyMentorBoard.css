@@ -4,7 +4,7 @@
 	border: 1px solid #e8e8e8;
 }
 
-#page_insertMentorBoard{
+#page_modifyMentorBoard{
 	margin: 50px 150px 50px 150px;
 }
 
@@ -18,19 +18,6 @@
 	border: 2px solid #66D37E !important;
 }
 
-#box_checkProfile{
-	border: 2px solid #DDD !important;
-	height: 45px;
-	line-height: 45px;
-	padding-left: 20px;
-	margin-bottom: 20px;
-}
-
-#box_checkProfile label{
-	font-weight: normal;
-	color: #343535;
-}
-
 #box_content{
 	border: 2px solid #DDD !important;
 	
@@ -41,7 +28,7 @@
 	border: 2px solid #DDD !important;
 }
 
-#box_btnInsertMentorBoard{
+#box_btnModifyMentorBoard{
 	margin-top: 20px;
 	padding-right: 10px;
 	text-align: right;

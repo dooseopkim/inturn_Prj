@@ -1,6 +1,10 @@
 /**
- * 
+ * @author 이슬기
+ * @since 2018.05.18
+ * @see modifyUserPW 관련 JQuery 및 JavaScript
+ * @returns
  */
+
 $(function(){
 	var newPw = $("#newPw").val(),
 		rePw = $("#rePw").val();

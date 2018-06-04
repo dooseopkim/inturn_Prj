@@ -161,7 +161,7 @@ public class UserController {
 	}
 			
 	/**
-	 * 프로필 페이지의 우측 배너(이력서 항목)에서 학력 클릭 시 학력사항 카드에 기존 데이터 불러오기
+	 * 프로필 페이지에서 학력사항 카드에 기존 데이터 불러오기
 	 * @param id
 	 * @param session
 	 * @return
@@ -238,6 +238,12 @@ public class UserController {
 		return mav;
 	}
 	
+	/**
+	 * 프로필 페이지에서 학력사항 수정 폼으로 이동 시
+	 * @param eduLevel_num
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="modifyEduForm.do", method=RequestMethod.POST)
 	public ModelAndView modifyEduFormDo(int eduLevel_num, HttpSession session) {
 		System.out.println("modifyEduFormDo() 진입");
@@ -264,6 +270,20 @@ public class UserController {
 		return mav;
 	}
 	
+	/**
+	 * 프로필 페이지에서 학력사항 수정 시
+	 * @param eduLevel_num
+	 * @param degree_level
+	 * @param school_name
+	 * @param admission_date
+	 * @param graduation_date
+	 * @param current_status
+	 * @param major
+	 * @param avg_score
+	 * @param total_score
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="modifyEdu.do", method=RequestMethod.POST)
 	public ModelAndView modifyEduDo(int eduLevel_num, String degree_level, String school_name, 
 									Date admission_date, Date graduation_date, 
@@ -308,6 +328,12 @@ public class UserController {
 		return mav;
 	}
 	
+	/**
+	 * 프로필 페이지에서 학력사항 삭제 시
+	 * @param eduLevel_num
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="deleteProfileEdu.do", method=RequestMethod.POST)
 	public ModelAndView deleteProfileEduDo(int eduLevel_num, HttpSession session) {
 		System.out.println("deleteProfileEduDo() 진입");
