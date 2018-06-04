@@ -10,21 +10,21 @@ DEALLOCATE PREPARE stmt;
 
 -- users
 CREATE TABLE `users` (
-	`id`       VARCHAR(30)  NOT NULL COMMENT '아이디', -- id
-	`pw`       VARCHAR(100) NOT NULL COMMENT '비밀번호', -- pw
-	`name`     VARCHAR(20)  NOT NULL COMMENT '이름', -- name
-	`phone`    VARCHAR(15)  NULL     COMMENT '연락처', -- phone
-	`email`    VARCHAR(50)  NOT NULL COMMENT '이메일', -- email
-	`birthday` DATE         NOT NULL COMMENT '생년월일', -- birthday
-	`type`     VARCHAR(20)  NOT NULL COMMENT '타입', -- type
-	`idx`      INT          NOT NULL COMMENT '인덱스', -- idx
+	`id`       VARCHAR(30)  NOT NULL COMMENT '�븘�씠�뵒', -- id
+	`pw`       VARCHAR(100) NOT NULL COMMENT '鍮꾨�踰덊샇', -- pw
+	`name`     VARCHAR(20)  NOT NULL COMMENT '�씠由�', -- name
+	`phone`    VARCHAR(15)  NULL     COMMENT '�뿰�씫泥�', -- phone
+	`email`    VARCHAR(50)  NOT NULL COMMENT '�씠硫붿씪', -- email
+	`birthday` DATE         NOT NULL COMMENT '�깮�뀈�썡�씪', -- birthday
+	`type`     VARCHAR(20)  NOT NULL COMMENT '���엯', -- type
+	`idx`      INT          NOT NULL COMMENT '�씤�뜳�뒪', -- idx
 	`icon_num` INT          NULL     COMMENT 'icon_num' -- icon_num
 )
 COMMENT 'users';
 
 -- users
 ALTER TABLE `users`
-	ADD CONSTRAINT `PK_users` -- users 기본키
+	ADD CONSTRAINT `PK_users` -- users 湲곕낯�궎
 		PRIMARY KEY (
 			`id` -- id
 		);
@@ -32,17 +32,17 @@ ALTER TABLE `users`
 -- career
 CREATE TABLE `career` (
 	`num`         INT          NOT NULL COMMENT 'PK', -- num
-	`company_num` VARCHAR(100) NULL     COMMENT '회사명', -- company_name
-	`dept_name`   VARCHAR(50)  NULL     COMMENT '부서명', -- dept_name
-	`indate`      DATE         NULL     COMMENT '입사일', -- indate
-	`outdate`     DATE         NULL     COMMENT '퇴사일', -- outdate
-	`id`          VARCHAR(30)  NULL     COMMENT '아이디' -- id
+	`company_num` VARCHAR(100) NULL     COMMENT '�쉶�궗紐�', -- company_name
+	`dept_name`   VARCHAR(50)  NULL     COMMENT '遺��꽌紐�', -- dept_name
+	`indate`      DATE         NULL     COMMENT '�엯�궗�씪', -- indate
+	`outdate`     DATE         NULL     COMMENT '�눜�궗�씪', -- outdate
+	`id`          VARCHAR(30)  NULL     COMMENT '�븘�씠�뵒' -- id
 )
 COMMENT 'career';
 
 -- career
 ALTER TABLE `career`
-	ADD CONSTRAINT `PK_career` -- career 기본키
+	ADD CONSTRAINT `PK_career` -- career 湲곕낯�궎
 		PRIMARY KEY (
 			`num` -- num
 		);
@@ -59,7 +59,7 @@ COMMENT 'job';
 
 -- job
 ALTER TABLE `job`
-	ADD CONSTRAINT `PK_job` -- job 기본키
+	ADD CONSTRAINT `PK_job` -- job 湲곕낯�궎
 		PRIMARY KEY (
 			`job_num` -- job_num
 		);
@@ -75,7 +75,7 @@ COMMENT 'introduce';
 
 -- introduce
 ALTER TABLE `introduce`
-	ADD CONSTRAINT `PK_introduce` -- introduce 기본키
+	ADD CONSTRAINT `PK_introduce` -- introduce 湲곕낯�궎
 		PRIMARY KEY (
 			`introduce_num` -- introduce_num
 		);
@@ -89,7 +89,7 @@ COMMENT 'icon';
 
 -- icon
 ALTER TABLE `icon`
-	ADD CONSTRAINT `PK_icon` -- icon 기본키
+	ADD CONSTRAINT `PK_icon` -- icon 湲곕낯�궎
 		PRIMARY KEY (
 			`icon_num` -- icon_num
 		);
@@ -103,7 +103,7 @@ COMMENT 'dictionary';
 
 -- dictionary
 ALTER TABLE `dictionary`
-	ADD CONSTRAINT `PK_dictionary` -- dictionary 기본키
+	ADD CONSTRAINT `PK_dictionary` -- dictionary 湲곕낯�궎
 		PRIMARY KEY (
 			`dic_num` -- dic_num
 		);
@@ -121,7 +121,7 @@ COMMENT 'review';
 
 -- review
 ALTER TABLE `review`
-	ADD CONSTRAINT `PK_review` -- review 기본키
+	ADD CONSTRAINT `PK_review` -- review 湲곕낯�궎
 		PRIMARY KEY (
 			`review_num` -- review_num
 		);
@@ -138,7 +138,7 @@ COMMENT 'portfolio';
 
 -- portfolio
 ALTER TABLE `portfolio`
-	ADD CONSTRAINT `PK_portfolio` -- portfolio 기본키
+	ADD CONSTRAINT `PK_portfolio` -- portfolio 湲곕낯�궎
 		PRIMARY KEY (
 			`portfolio_num` -- portfolio_num
 		);
@@ -158,24 +158,24 @@ COMMENT 'reply';
 
 -- reply
 ALTER TABLE `reply`
-	ADD CONSTRAINT `PK_reply` -- reply 기본키
+	ADD CONSTRAINT `PK_reply` -- reply 湲곕낯�궎
 		PRIMARY KEY (
-			`rb_num` -- rb_num
+			`rp_num` -- rb_num
 		);
 
 -- mentorboard
 CREATE TABLE `mentorboard` (
 	`mb_num`  INT           NOT NULL COMMENT 'PK', -- mb_num
-	`title`   VARCHAR(200)  NULL     COMMENT '제목', -- title
-	`content` VARCHAR(1000) NULL     COMMENT '내용', -- content
-	`regDate` DATE          NULL     COMMENT '등록일자', -- regDate
-	`id`      VARCHAR(30)   NULL     COMMENT '아이디' -- id
+	`title`   VARCHAR(200)  NULL     COMMENT '�젣紐�', -- title
+	`content` VARCHAR(1000) NULL     COMMENT '�궡�슜', -- content
+	`regDate` DATE          NULL     COMMENT '�벑濡앹씪�옄', -- regDate
+	`id`      VARCHAR(30)   NULL     COMMENT '�븘�씠�뵒' -- id
 )
 COMMENT 'mentorboard';
 
 -- mentorboard
 ALTER TABLE `mentorboard`
-	ADD CONSTRAINT `PK_mentorboard` -- mentorboard 기본키
+	ADD CONSTRAINT `PK_mentorboard` -- mentorboard 湲곕낯�궎
 		PRIMARY KEY (
 			`mb_num` -- mb_num
 		);
@@ -194,7 +194,7 @@ COMMENT 'counselBoard';
 
 -- counselBoard
 ALTER TABLE `counselBoard`
-	ADD CONSTRAINT `PK_counselBoard` -- counselBoard 기본키
+	ADD CONSTRAINT `PK_counselBoard` -- counselBoard 湲곕낯�궎
 		PRIMARY KEY (
 			`cb_num` -- cb_num
 		);
@@ -202,21 +202,21 @@ ALTER TABLE `counselBoard`
 -- educational_level
 CREATE TABLE `educational_level` (
 	`eduLevel_num`    INT          NOT NULL COMMENT 'PK', -- eduLevel_num
-	`degree_level`    VARCHAR(10)  NULL     COMMENT '학업수준', -- degree_level
-	`school_name`     VARCHAR(50)  NULL     COMMENT '학교명', -- school_name
-	`admission_date`  DATE         NULL     COMMENT '입학일', -- admission_date
-	`graduation_date` DATE         NULL     COMMENT '졸업일', -- graduation_date
-	`current_status`  VARCHAR(50)  NULL     COMMENT '현재상태', -- current_status
-	`major`           VARCHAR(100) NULL     COMMENT '전공', -- major
-	`avg_score`       DECIMAL(5,2) NULL     COMMENT '평점', -- avg_score
-	`total_score`     DECIMAL(5,2) NULL     COMMENT '총점', -- total_score
-	`id`              VARCHAR(30)  NULL     COMMENT '아이디' -- id
+	`degree_level`    VARCHAR(10)  NULL     COMMENT '�븰�뾽�닔以�', -- degree_level
+	`school_name`     VARCHAR(50)  NULL     COMMENT '�븰援먮챸', -- school_name
+	`admission_date`  DATE         NULL     COMMENT '�엯�븰�씪', -- admission_date
+	`graduation_date` DATE         NULL     COMMENT '議몄뾽�씪', -- graduation_date
+	`current_status`  VARCHAR(50)  NULL     COMMENT '�쁽�옱�긽�깭', -- current_status
+	`major`           VARCHAR(100) NULL     COMMENT '�쟾怨�', -- major
+	`avg_score`       DECIMAL(5,2) NULL     COMMENT '�룊�젏', -- avg_score
+	`total_score`     DECIMAL(5,2) NULL     COMMENT '珥앹젏', -- total_score
+	`id`              VARCHAR(30)  NULL     COMMENT '�븘�씠�뵒' -- id
 )
 COMMENT 'educational_level';
 
 -- educational_level
 ALTER TABLE `educational_level`
-	ADD CONSTRAINT `PK_educational_level` -- educational_level 기본키
+	ADD CONSTRAINT `PK_educational_level` -- educational_level 湲곕낯�궎
 		PRIMARY KEY (
 			`eduLevel_num` -- eduLevel_num
 		);
@@ -233,7 +233,7 @@ COMMENT 'certificate';
 
 -- certificate
 ALTER TABLE `certificate`
-	ADD CONSTRAINT `PK_certificate` -- certificate 기본키
+	ADD CONSTRAINT `PK_certificate` -- certificate 湲곕낯�궎
 		PRIMARY KEY (
 			`certificate_num` -- certificate_num
 		);
@@ -250,7 +250,7 @@ COMMENT 'mentoring';
 
 -- mentoring
 ALTER TABLE `mentoring`
-	ADD CONSTRAINT `PK_mentoring` -- mentoring 기본키
+	ADD CONSTRAINT `PK_mentoring` -- mentoring 湲곕낯�궎
 		PRIMARY KEY (
 			`mentoring_num` -- mentoring_num
 		);
@@ -268,7 +268,7 @@ COMMENT 'freeBoard';
 
 -- freeBoard
 ALTER TABLE `freeBoard`
-	ADD CONSTRAINT `PK_freeBoard` -- freeBoard 기본키
+	ADD CONSTRAINT `PK_freeBoard` -- freeBoard 湲곕낯�궎
 		PRIMARY KEY (
 			`fb_num` -- fb_num
 		);
@@ -287,7 +287,7 @@ COMMENT 'files';
 
 -- files
 ALTER TABLE `files`
-	ADD CONSTRAINT `PK_files` -- files 기본키
+	ADD CONSTRAINT `PK_files` -- files 湲곕낯�궎
 		PRIMARY KEY (
 			`file_num` -- file_num
 		);
@@ -303,7 +303,7 @@ COMMENT 'fileGroup';
 
 -- fileGroup
 ALTER TABLE `fileGroup`
-	ADD CONSTRAINT `PK_fileGroup` -- fileGroup 기본키
+	ADD CONSTRAINT `PK_fileGroup` -- fileGroup 湲곕낯�궎
 		PRIMARY KEY (
 			`fileGroupNum` -- fileGroupNum
 		);
@@ -332,7 +332,7 @@ COMMENT 'csBoard';
 
 -- csBoard
 ALTER TABLE `csBoard`
-	ADD CONSTRAINT `PK_csBoard` -- csBoard 기본키
+	ADD CONSTRAINT `PK_csBoard` -- csBoard 湲곕낯�궎
 		PRIMARY KEY (
 			`cs_num` -- cs_num
 		);
@@ -351,7 +351,7 @@ COMMENT 'mail';
 
 -- mail
 ALTER TABLE `mail`
-	ADD CONSTRAINT `PK_mail` -- mail 기본키
+	ADD CONSTRAINT `PK_mail` -- mail 湲곕낯�궎
 		PRIMARY KEY (
 			`m_num` -- m_num
 		);

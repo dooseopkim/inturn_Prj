@@ -1,5 +1,6 @@
 package com.inturn.biz.web.controller;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.inturn.biz.board.service.CsBoardService;
 import com.inturn.biz.board.service.FileService;
 import com.inturn.biz.board.vo.CsBoardVO;
+import com.inturn.biz.board.vo.FreeBoardVO;
 
 @Controller
 public class CsBoardController {
@@ -45,4 +47,32 @@ public class CsBoardController {
 		request.setAttribute("thisPage", thisPage);
 		return "index.jsp?content=board/csBoard";
 	}
+
+
+	/**
+	 * @return 게시판 입력 페이지 이동 설정 insertFreeBoard.jsp
+	 */
+	@RequestMapping(value = "/insertCsBoard.do", method = RequestMethod.GET)
+	public String insertBoard() {
+		return "index.jsp?content=board/insertCsBoard";
+	}
+	
+	/**
+	 * 게시글을 입력하는 함수로, File처리까지 한다. service 단에서 transaction 처리되어 입력된다.
+	 * 
+	 * @param title
+	 *            게시글 제목
+	 * @param id
+	 *            게시글 작성자
+	 * @param editor
+	 *            게시글 내용
+	 * @return freeBoard.do 게시글 목록으로 이동
+	 */
+//	@RequestMapping(value = "/insertCsBoard.do", method = RequestMethod.POST)
+//	public String insertBoard(String title, String id, String editor) {
+//		java.util.Date udate = new java.util.Date();
+//		Date regDate = new Date(udate.getTime());
+//		cb_service.insertCsBoard(new CsBoardVO(title, editor, regDate, 0, id));
+//		return "redirect:freeBoard.do?page_num=1";
+//	}
 }

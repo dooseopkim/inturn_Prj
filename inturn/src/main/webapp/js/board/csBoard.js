@@ -10,6 +10,6 @@ $(function(){
 	 * 글쓰기 버튼을 눌렀을 때, 글쓰기 게시판으로 이동
 	 */
 	$("#insertBoardBtn").click(function(){
-		location.href="/insertcsBoard.do";
+		location.href="/insertCsBoard.do";
 	})
 })

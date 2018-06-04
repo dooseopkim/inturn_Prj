@@ -16,8 +16,7 @@ public class CsBoardDAOImpl implements CsBoardDAO{
 
 	@Override
 	public List<CsBoardVO> boardList(HashMap<String, Integer> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return mybatis.selectList("CsBoardMapper.boardList",map);
 	}
 
 	@Override
