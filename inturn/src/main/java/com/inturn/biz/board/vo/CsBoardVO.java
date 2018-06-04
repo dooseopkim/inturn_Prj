@@ -17,8 +17,8 @@ public class CsBoardVO {
 
 	
 	
-	public CsBoardVO() {	}
 
+	
 	public CsBoardVO(int cs_num, int grpno, int grpord, int dept, String title, String content, Date regDate,
 			String makePublic, String pw, int hit, String id) {
 		this.cs_num = cs_num;

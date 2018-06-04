@@ -45,9 +45,9 @@
 			SELECT * 
 			FROM (
 				SELECT * 
-				FROM freeBoard
+				FROM csBoard
 				LIMIT #{offset}, #{limit}
-			) A ORDER BY fb_num DESC
+			) A ORDER BY cs_num DESC
 		</select>
 		
 		<select id="countBoards" resultType="int">
