@@ -28,6 +28,7 @@ import com.inturn.biz.users.vo.CareerVO;
 import com.inturn.biz.users.vo.CertificateVO;
 import com.inturn.biz.users.vo.EducationalLevelVO;
 import com.inturn.biz.users.vo.JobVO;
+import com.inturn.biz.users.vo.MailVO;
 import com.inturn.biz.users.vo.UserVO;
 
 @Controller
@@ -76,11 +77,14 @@ public class UserController {
 		session.setAttribute("email", to);
 		System.out.println("여기까진 성공");
 		
-		
+		// 이메일 전송정보 로딩
+		MailVO mail_setting = mailService.init();
+	
 		String subject = "[人Turn] 회원가입 인증 코드 발급 안내";
 		StringBuffer sb = new StringBuffer();
-		sb.append("<h2>[人Turn] 회원가입 인증 코드 발급 안내</h2><br><br><hr><br>귀하의 인증 코드는 <strong style='color: green; font-weight: bold; font-size: large;'>"+code+"</strong> 입니다. <br>인증번호를 입력해서 회원가입을 진행해 주세요.");
-		boolean flag = mailService.sendEmail(subject, sb.toString(), to);
+		sb.append("<h2>[人Turn] 회원가입 인증 코드 발급 안내</h2><br><br><hr><br>귀하의 인증 코드는 <strong style='color: green; font-weight: bold; font-size: large;'>"+code+"</strong>입니다. <br>인증번호를 입력해서 회원가입을 진행해 주세요.");
+		//이게 진짜 메일 전송
+		boolean flag = mailService.sendEmail(subject, sb.toString(), to, mail_setting);
 		if(flag){
 			return code;
 		}

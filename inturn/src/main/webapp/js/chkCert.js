@@ -167,6 +167,7 @@ function sendEmail(emailAddress) {
 		},
 		success : function(data) {
 			$("#joinCode").val(data);
+			return false;
 		}
 	})
 }

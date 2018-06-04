@@ -50,8 +50,8 @@ public class ReplyDAOImpl implements ReplyDAO{
 	}
 
 	@Override
-	public int countReplies() {
-		return mybatis.selectOne("ReplyMapper.countReplies");
+	public int countReplies(int fb_num) {
+		return mybatis.selectOne("ReplyMapper.countReplies", fb_num);
 	}
 
 	@Override
@@ -73,5 +73,10 @@ public class ReplyDAOImpl implements ReplyDAO{
 	@Override
 	public int deleteChildReply(int rp_num) {
 		return mybatis.delete("ReplyMapper.deleteChildReply", rp_num);
+	}
+	
+	@Override
+	public List<ReplyVO> freeBoardAlarm(String id) {
+		return mybatis.selectList("ReplyMapper.freeBoardAlarm", id);
 	}
 }

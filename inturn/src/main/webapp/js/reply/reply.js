@@ -22,7 +22,8 @@ function getReplies(pageNum) {
 		method: "POST",
 		datatype: "JSON",
 		data: {
-			"page_num" : pageNum
+			"page_num" : pageNum,
+			"fb_num" : $("#fb_num").val()
 		},
 		success: function(data){
 			if(data.result == "success")
@@ -49,8 +50,10 @@ function insertReply() {
 				"id" : $("#id").val()
 			},
 			success: function(data){
-				if(data.result == "success") 
+				if(data.result == "success") {
+					$("#replyContent").val("");
 					getReplies(1);
+				}
 			}
 		})
 	}
@@ -174,7 +177,7 @@ function insertReReply(rp_num, i) {
 				"id" : $("#reReplyId"+i).val()
 			},
 			success: function(data){
-				if(data.result == "success") 
+				if(data.result == "success")  
 					getReplies($("#thisReplyPage").val());
 			}
 		})

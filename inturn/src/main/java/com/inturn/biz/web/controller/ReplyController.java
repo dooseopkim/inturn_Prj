@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.inturn.biz.board.service.ReplyService;
 import com.inturn.biz.board.vo.ReplyVO;
+import com.inturn.biz.users.vo.UserVO;
 
 /**
  * 
@@ -24,6 +26,25 @@ import com.inturn.biz.board.vo.ReplyVO;
 public class ReplyController {
 	@Resource(name="ReplyService")
 	ReplyService ReplyService;
+	
+	/**
+	 * 자유게시판과 관련된 댓글 최근 10개를 가져와서 알려주는 함수
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/freeBoardAlarm.do")
+	public ModelAndView freeBoardAlarm(HttpSession session) {
+		UserVO login = (UserVO) session.getAttribute("login");
+		List<ReplyVO> list = ReplyService.freeBoardAlarm(login.getId());
+		HashMap<String, Object> map = new HashMap<>();
+		if(list != null) {
+			map.put("result", "success");
+			map.put("list", list);
+		}
+		else
+			map.put("result", "none");
+		return new ModelAndView("jsonView",map);
+	}
 	
 	/**
 	 * 댓글 작성 수행 함수
@@ -48,9 +69,9 @@ public class ReplyController {
 	 * @return
 	 */
 	@RequestMapping(value="/getReplies.do")
-	public ModelAndView getReplies(int page_num) {
+	public ModelAndView getReplies(int page_num, int fb_num) {
 		HashMap<String, Object> map = new HashMap<>();
-		HashMap<String, Object> result = ReplyService.getFBReplies(page_num);
+		HashMap<String, Object> result = ReplyService.getFBReplies(page_num, fb_num);
 		List<ReplyVO> list = (List<ReplyVO>) result.get("list");
 		int count_page = (int) result.get("count_page");
 		if(list != null) {

@@ -34,7 +34,7 @@
 						<li class="has-dropdown"><a href="#">이용안내</a>
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>
-								<li><a href="csBoard.do">고객서비스</a></li>
+								<li><a href="csBoard.do?page_num=1">고객서비스</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -51,7 +51,7 @@
 						<th id="table">제목</th>
 						<th id="table">작성일</th>
 						<th id="table">조회수</th>
-						<th id="table">작성자</th>
+						<th id="table">짝썽짜</th>
 					</tr>
 				</thead>
 				<tbody>

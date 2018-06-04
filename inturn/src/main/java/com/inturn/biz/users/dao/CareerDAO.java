@@ -3,7 +3,6 @@ package com.inturn.biz.users.dao;
 import java.util.List;
 
 import com.inturn.biz.users.vo.CareerVO;
-import com.inturn.biz.users.vo.EducationalLevelVO;
 
 public interface CareerDAO {
 	public List<CareerVO> getUserCareer(String id);

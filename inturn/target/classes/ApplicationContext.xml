@@ -17,14 +17,6 @@
 		<constructor-arg ref="dataSource"></constructor-arg>
 	</bean>
 
-	<!-- basic datasource(DBCP) 설정 -->
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521"></property>
-		<property name="username" value="inturn"></property>
-		<property name="password" value="1234"></property>
-	</bean> -->
-	
 	<!-- Mysql DBCP설정 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property> <!-- mariadb로 바꾸면 여기만 mysql에서 maridb로만 바꾸면 됨 -->
@@ -39,6 +31,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 	</bean>
+	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
@@ -47,6 +40,7 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<tx:method name="select*" read-only="true" />
@@ -56,6 +50,9 @@
 			<tx:method name="*" rollback-for="Exception" />
 		</tx:attributes>
 	</tx:advice>
+	
+	<tx:annotation-driven transaction-manager="txManager"/> 
+	
 	<aop:config>
 		<aop:pointcut id="requiredTx"
 			expression="execution(* com.inturn.biz.board.service.*Impl.*(..))" />
