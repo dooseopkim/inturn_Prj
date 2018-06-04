@@ -14,6 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MenuController {
 	
 	/**
+	 * 회원정보 페이지로 이동하는 함수
+	 * @return myPage.jsp
+	 */
+	@RequestMapping(value="/mypage.do")
+	public String myPage() {
+		
+		return "index.jsp?content=user/myPage";
+	}
+	
+	/**
 	 * 메인 페이지로 이동하는 함수
 	 * @return main.jsp
 	 */

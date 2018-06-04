@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReplyMapper">
+	<select id="freeBoardAlarm" parameterType="String" resultType="ReplyVO">
+		SELECT * FROM reply WHERE fb_num in (SELECT f.fb_num FROM freeBoard f WHERE f.id = #{id}) ORDER BY fb_num DESC LIMIT 10
+	</select>
+
 	<insert id="insertFBReply" parameterType="ReplyVO">
 		INSERT INTO reply (rp_num, fb_num, content, regDate, parentNum, position, id)
 		VALUES((SELECT IFNULL(max(r.rp_num),0)+1 FROM reply r), #{fb_num}, #{content}, #{regDate}, 
@@ -27,6 +31,7 @@
 		FROM (
 			SELECT * 
 			FROM reply
+			WHERE fb_num = #{fb_num}
 			ORDER BY position
 			LIMIT #{offset}, #{limit}
 		) A ORDER BY position DESC
@@ -36,8 +41,8 @@
 		SELECT * FROM reply WHERE rp_num = #{rp_num}
 	</select>
 	
-	<select id="countReplies" resultType="int">
-		SELECT count(*) FROM reply
+	<select id="countReplies" parameterType="int" resultType="int">
+		SELECT count(*) FROM reply WHERE fb_num = #{fb_num}
 	</select>
 	
 	<update id="modifyReply" parameterType="ReplyVO">

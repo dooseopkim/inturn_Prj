@@ -17,7 +17,15 @@ import com.inturn.biz.board.vo.ReplyVO;
 public class ReplyServiceImpl implements ReplyService {
 	@Resource(name = "ReplyDAO")
 	ReplyDAO dao;
-
+	
+	/**
+	 * 내 게시글에 대한 가장 최근 댓글 10개
+	 */
+	@Override
+	public List<ReplyVO> freeBoardAlarm(String id){
+		return dao.freeBoardAlarm(id);
+	}
+	
 	/**
 	 * 댓글 입력 함수
 	 */
@@ -51,9 +59,9 @@ public class ReplyServiceImpl implements ReplyService {
 	 */
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
-	public HashMap<String, Object> getFBReplies(int page_num) {
+	public HashMap<String, Object> getFBReplies(int page_num, int fb_num) {
 		// 전체 게시판 개수를 가져옴
-		int total_boards = dao.countReplies();
+		int total_boards = dao.countReplies(fb_num);
 		// 게시판을 10개씩 페이징 처리했을 때, 총 몇개의 목록이 나오는지 계산
 		int count_page = (total_boards + 9) / 10;
 		// 만약 마지막 페이지의 게시글이 1개 인데 삭제된 경우
@@ -76,6 +84,7 @@ public class ReplyServiceImpl implements ReplyService {
 		limit -= offset; // 마지막과 첫 번호의 차를 구해 가져올 개수를 구함
 		map.put("offset", offset); // 계시판 페이징의 시작 게시판 번호 값
 		map.put("limit", limit); // 시작번호로 부터 몇개를 가져올지 계산한 값을 넣는다.
+		map.put("fb_num", fb_num); // 시작번호로 부터 몇개를 가져올지 계산한 값을 넣는다.
 		// 결과값을 list에 넣는다.
 		List<ReplyVO> list = dao.getFBReplies(map);
 		// 총 페이지수가 몇개인지도 보내줘야 하므로 Map구조로 put해서 result를 return
