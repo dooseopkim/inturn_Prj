@@ -495,7 +495,7 @@ public class UserController {
 		HashMap<String, Object> map = new HashMap<>();
 		UserVO vo = (UserVO) session.getAttribute("login");
 		List<CertificateVO> list = CertificateService.getCertificates(vo.getId());
-		if(list != null) {
+		if(!list.isEmpty()) {
 			map.put("result", "success");
 			map.put("list", list);
 		}

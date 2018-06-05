@@ -15,6 +15,8 @@ $(window).load(function() {
 			if(data.result == "success") {
 				getRegisteredCertificate(data.list);
 			}
+			else
+				$("#license").css("display","none");
 		}
 	})
 })

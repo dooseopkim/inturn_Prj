@@ -37,7 +37,7 @@ public class ReplyController {
 		UserVO login = (UserVO) session.getAttribute("login");
 		List<ReplyVO> list = ReplyService.freeBoardAlarm(login.getId());
 		HashMap<String, Object> map = new HashMap<>();
-		if(list != null) {
+		if(!list.isEmpty()) {
 			map.put("result", "success");
 			map.put("list", list);
 		}
@@ -74,7 +74,7 @@ public class ReplyController {
 		HashMap<String, Object> result = ReplyService.getFBReplies(page_num, fb_num);
 		List<ReplyVO> list = (List<ReplyVO>) result.get("list");
 		int count_page = (int) result.get("count_page");
-		if(list != null) {
+		if(!list.isEmpty()) {
 			map.put("result", "success");
 			map.put("list", list);
 			map.put("page", count_page);
