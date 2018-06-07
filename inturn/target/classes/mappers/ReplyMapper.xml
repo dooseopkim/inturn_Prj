@@ -68,4 +68,59 @@
 	<delete id="deleteReplies" parameterType="int">
 		DELETE FROM reply WHERE fb_num = #{fb_num}
 	</delete>
+	
+	<select id="mentorBoardAlarm" parameterType="String" resultType="ReplyVO">
+		SELECT * FROM reply  
+		WHERE mb_num in (SELECT m.mb_num FROM mentorBoard m WHERE m.id = #{id}) 
+		ORDER BY mb_num DESC LIMIT 10
+	</select>
+	
+	<insert id="insertMBReply" parameterType="ReplyVO">
+		INSERT INTO reply (rp_num, mb_num, content, regDate, parentNum, position, id)
+		VALUES(
+			(SELECT IFNULL(max(r.rp_num),0)+1 FROM reply r), 
+			#{mb_num}, 
+			#{content}, 
+			now(), 
+			-1, 
+			(SELECT IFNULL(max(r.position),0)+1 FROM reply r), 
+			#{id}
+		)
+	</insert>
+	
+	<insert id="insertMBReReply" parameterType="ReplyVO">
+		INSERT INTO reply (rp_num, mb_num, content, regDate, parentNum, position, id)
+		VALUES(
+			(SELECT IFNULL(max(r.rp_num),0)+1 FROM reply r),
+			#{mb_num}, 
+			#{content}, 
+			#{regDate}, 
+			#{parentNum}, 
+			(SELECT IFNULL(MIN(r.position), 
+			(SELECT r1.position FROM reply r1 WHERE rp_num = #{parentNum})) -1 FROM reply r WHERE parentNum = #{parentNum}), 
+			#{id})
+	</insert>
+	
+	<select id="getMBReplies" parameterType="HashMap" resultType="ReplyVO">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM reply
+			WHERE mb_num = #{mb_num}
+			ORDER BY position
+			LIMIT #{offset}, #{limit}
+		) A ORDER BY position DESC
+	</select>
+	
+	<delete id="deleteMBReplies" parameterType="int">
+		DELETE FROM reply 
+		WHERE mb_num = #{mb_num}
+	</delete>
+	
+	<select id="countMBReplies" parameterType="int" resultType="int">
+		SELECT count(*) 
+		FROM reply 
+		WHERE mb_num = #{mb_num}
+	</select>
+	
 </mapper>

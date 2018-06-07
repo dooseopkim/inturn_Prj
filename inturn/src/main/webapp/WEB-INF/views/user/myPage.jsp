@@ -46,7 +46,7 @@
 		<div class="row">
 			<div class="col-sm-8">
 				<div class="row">
-					<div id="mentorAlarm" class="col-sm-6">
+					<div id="mentorBoardAlarm" class="col-sm-6">
 						<label>멘토게시판 알림</label>
 						<p>가장 최근 게시글들의 댓글을 알려드립니다.</p>
 					</div>

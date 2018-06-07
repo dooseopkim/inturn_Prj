@@ -14,4 +14,9 @@ public interface ReplyService {
 	public int downPosition(int position);
 	public int deleteReply(int rp_num);
 	public List<ReplyVO> freeBoardAlarm(String id);
+	public List<ReplyVO> mentorBoardAlarm(String id);
+	public int insertMBReply(ReplyVO vo);
+	public int insertMBReReply(ReplyVO vo);
+	public HashMap<String, Object> getMBReplies(int page_num, int mb_num);
+	
 }

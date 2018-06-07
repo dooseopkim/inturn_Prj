@@ -7,6 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="css/board/viewFreeBoard.css">
 	<script type="text/javascript" src="js/board/viewFreeBoard.js"></script>
+	<script type="text/javascript" src="js/reply/reply.js"></script>
 	<title>View Board</title>
 </head>
 <body>

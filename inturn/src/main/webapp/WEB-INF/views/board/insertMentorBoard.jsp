@@ -50,6 +50,15 @@
 				<div id="box_title">
 						<input type="text" name="title" id="title" class="form-control" placeholder="제목을 입력하세요.">
 				</div>
+				<div id="box_checkProfile" class="form-check">
+					<label class="form-check-label"> 공개할 정보를 체크하세요&nbsp;&nbsp;:&nbsp;&nbsp;</label>
+	                <label class="form-check-label" for="edu">학력</label>
+					<input class="form-check-input" id="edu" name="edu" type="checkbox" value="true">
+					<label class="form-check-label" for="career">&nbsp;&nbsp;경력</label>
+					<input class="form-check-input" id="career" name="career" type="checkbox" value="true">
+					<label class="form-check-label" for="">&nbsp;&nbsp;자격증</label>
+					<input class="form-check-input" id="certificate" name="certificate" type="checkbox" value="true">
+				</div>
 				<div id="box_content">
 					<textarea name="editor" id="editor"></textarea>
 				</div>

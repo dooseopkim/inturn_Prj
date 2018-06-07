@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/board/viewMentorBoard.css">
 <script type="text/javascript" src="js/board/viewMentorBoard.js"></script>
+<script type="text/javascript" src="js/reply/mentorBoardReply.js"></script>
 </head>
 <body>
 	<jsp:include page="../userMenu.jsp" />
@@ -54,7 +55,7 @@
 			</div>
 		</div>
 			<div id="box_writerRegDate">
-				작성자 : ${mentorBoard.id} 님 &nbsp;&nbsp;|&nbsp;&nbsp;
+				작성자 : ${mentorBoard.id} 님 <a href="#" id="link_profile">(프로필 열기)</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 				작성일 : ${mentorBoard.regDate}
 			</div>
 			<div id="box_title">
@@ -69,12 +70,47 @@
 				</c:if>
 			</div>
 		<input type="hidden" id="mb_num" value="${mentorBoard.mb_num}">	
+		<input type="hidden" id="writerID" value="${mentorBoard.id}">	
+		<input type="hidden" id="edu" value="${mentorBoard.edu}">	
+		<input type="hidden" id="career" value="${mentorBoard.career}">	
+		<input type="hidden" id="certificate" value="${mentorBoard.certificate}">	
 		<input type="hidden" id="nowPage" value="${nowPage}">
 		<input type="hidden" id="prevMb_num" value="${prevMb_num}">
 		<input type="hidden" id="nextMb_num" value="${nextMb_num}">
 		<input type="hidden" id="condition" value="${condition}">	
-		<input type="hidden" id="keyword" value="${keyword}">	
+		<input type="hidden" id="keyword" value="${keyword}">
+		
 		</div>
 	</div>
+	<jsp:include page="../reply/reply.jsp" />
+
+		<div class="modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title"><strong>${mentorBoard.id}님 프로필</strong></h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div id="mb_edu">
+					</div>
+					<div id="mb_career">
+						<%-- <div id="box_career" class="box_career">
+							회사명 : 부서명 : <br/>
+							직급/직책 : 직무 : 세부직무 : <br/>
+							입사일 : 퇴사일 : 
+						</div> --%>
+					</div>
+					<div id="mb_certificate"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

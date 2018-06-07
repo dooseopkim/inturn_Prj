@@ -76,15 +76,22 @@
 			(SELECT IFNULL(max(mb_num),0)+1 FROM mentorBoard m),
 			#{title},
 			#{content},
+			#{edu},
+			#{career},
+			#{certificate},
 			now(),
 			#{id}
-			)
+		)
 	</insert>
 	
 	<update id="modifyMentorBoard" parameterType="MentorBoardVO">
 		UPDATE mentorBoard
 		SET title = #{title},
-			content = #{content}
+			content = #{content},
+			edu = #{edu},
+			career = #{career},
+			certificate = #{certificate}
+			
 		WHERE mb_num = #{mb_num}
 	</update>
 		

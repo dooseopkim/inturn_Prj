@@ -34,7 +34,7 @@ public class MentorBoardController {
 	@RequestMapping(value="mentorBoard.do", method={ RequestMethod.GET, RequestMethod.POST })
 	public String mentorBoardDo(@RequestParam(value="nowPage", defaultValue="1")int nowPage,
 								@RequestParam(value="condition", defaultValue="")String condition, 
-								@RequestParam(value="keyword", defaultValue="")String keyword, 
+								@RequestParam(value="keyword", defaultValue="")String keyword,
 								HttpServletRequest req) {
 		
 		System.out.println("mentorBoardDo() 진입");
@@ -107,7 +107,8 @@ public class MentorBoardController {
 	}
 	
 	@RequestMapping(value="viewMentorBoard.do")
-	public String viewMentorBoardDo(int mb_num, int nowPage, HttpServletRequest req,
+	public String viewMentorBoardDo(int mb_num, HttpServletRequest req,
+									@RequestParam(value="nowPage", defaultValue="1")int nowPage,
 									@RequestParam(value="condition", defaultValue="")String condition, 
 									@RequestParam(value="keyword", defaultValue="")String keyword) {
 		
@@ -116,6 +117,7 @@ public class MentorBoardController {
 		setReqViewMentorBoard(req, mb_num, nowPage, condition, keyword);
 		System.out.println("viewMentorBoardDo() 끝");
 		return "index.jsp?content=board/viewMentorBoard";
+	
 	}
 	
 	@RequestMapping("mentorBoardForm.do")
@@ -124,11 +126,15 @@ public class MentorBoardController {
 	}
 	
 	@RequestMapping(value="insertMentorBoard.do", method = RequestMethod.POST)
-	public String insertMentorBoardDo(String title, String editor, HttpSession session) {
+	public String insertMentorBoardDo(String title, String editor, HttpSession session,
+									@RequestParam(value="edu", defaultValue="")String edu,
+									@RequestParam(value="career", defaultValue="")String career,
+									@RequestParam(value="certificate", defaultValue="")String certificate) {
+		
 		System.out.println("insertMentorBoardDo()진입");
 		UserVO user = (UserVO)session.getAttribute("login");
 		String id = user.getId();
-		MentorBoardVO vo = new MentorBoardVO(0, title, editor, null, id);
+		MentorBoardVO vo = new MentorBoardVO(0, title, editor, edu, career, certificate, null, id);
 		System.out.println(vo);
 		int result = mb_service.insertMentorBoard(vo);
 		if(result == 1) {
@@ -164,13 +170,19 @@ public class MentorBoardController {
 	
 	@RequestMapping(value="modifyMentorBoard.do", method=RequestMethod.POST)
 	public String modifyMentorBoardDo(int mb_num, int nowPage, HttpServletRequest req,
-										String title, String editor, 
+										String title, String editor,
+										@RequestParam(value="edu", defaultValue="")String edu,
+										@RequestParam(value="career", defaultValue="")String career,
+										@RequestParam(value="certificate", defaultValue="")String certificate,
 										@RequestParam(value="condition", defaultValue="")String condition, 
 										@RequestParam(value="keyword", defaultValue="")String keyword) {
 		System.out.println("modifyMentorBoardDo() 진입");
 		System.out.println("mb_num : "+mb_num);
 		System.out.println("title : "+title);
 		System.out.println("editor : "+editor);
+		System.out.println("edu : "+edu);
+		System.out.println("career : "+career);
+		System.out.println("certificate : "+certificate);
 		System.out.println("nowPage : "+nowPage);
 		System.out.println("condition : "+condition);
 		System.out.println("keyword : "+keyword);
@@ -179,6 +191,9 @@ public class MentorBoardController {
 		System.out.println("수정 전 : " +vo);
 		vo.setTitle(title);
 		vo.setContent(editor);
+		vo.setEdu(edu);
+		vo.setCareer(career);
+		vo.setCertificate(certificate);
 		mb_service.modifyMentorBoard(vo);
 		setReqViewMentorBoard(req, mb_num, nowPage, condition, keyword);
 	
@@ -215,9 +230,9 @@ public class MentorBoardController {
 		if(!condition.equals("")) {
 			System.out.println("검색");
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("mb_num", mb_num);
 			map.put("condition", condition);
 			map.put("keyword", keyword);
+			map.put("mb_num", mb_num);
 			prevMb_num = mb_service.scPrevMb_num(map);
 			nextMb_num = mb_service.scNextMb_num(map);
 			req.setAttribute("condition", condition);

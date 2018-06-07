@@ -6,17 +6,24 @@ public class MentorBoardVO {
 	private int mb_num;
 	private String title;
 	private String content;
+	private String edu;
+	private String career;
+	private String certificate;
 	private Date regDate;
 	private String id;
 	
 	public MentorBoardVO() {
 	}
 
-	public MentorBoardVO(int mb_num, String title, String content, Date regDate, String id) {
+	public MentorBoardVO(int mb_num, String title, String content, String edu, String career, String certificate,
+			Date regDate, String id) {
 		super();
 		this.mb_num = mb_num;
 		this.title = title;
 		this.content = content;
+		this.edu = edu;
+		this.career = career;
+		this.certificate = certificate;
 		this.regDate = regDate;
 		this.id = id;
 	}
@@ -45,6 +52,30 @@ public class MentorBoardVO {
 		this.content = content;
 	}
 
+	public String getEdu() {
+		return edu;
+	}
+
+	public void setEdu(String edu) {
+		this.edu = edu;
+	}
+
+	public String getCareer() {
+		return career;
+	}
+
+	public void setCareer(String career) {
+		this.career = career;
+	}
+
+	public String getCertificate() {
+		return certificate;
+	}
+
+	public void setCertificate(String certificate) {
+		this.certificate = certificate;
+	}
+
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -63,8 +94,9 @@ public class MentorBoardVO {
 
 	@Override
 	public String toString() {
-		return "MentorBoardVO [mb_num=" + mb_num + ", title=" + title + ", content=" + content + ", regDate=" + regDate
-				+ ", id=" + id + "]";
+		return "MentorBoardVO [mb_num=" + mb_num + ", title=" + title + ", content=" + content + ", edu=" + edu
+				+ ", career=" + career + ", certificate=" + certificate + ", regDate=" + regDate + ", id=" + id + "]";
 	}
 
+	
 }

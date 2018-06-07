@@ -18,6 +18,19 @@
 	border: 2px solid #66D37E !important;
 }
 
+#box_checkProfile{
+	border: 2px solid #DDD !important;
+	height: 45px;
+	line-height: 45px;
+	padding-left: 20px;
+	margin-bottom: 20px;
+}
+
+#box_checkProfile label{
+	font-weight: normal;
+	color: #343535;
+}
+
 #box_content{
 	border: 2px solid #DDD !important;
 	

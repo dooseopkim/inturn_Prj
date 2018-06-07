@@ -7,6 +7,7 @@
  */
 $(window).load(function(){
 	getFreeBoardReply();
+	getMentorBoardReply();
 })
 
 /**
@@ -53,4 +54,41 @@ function getFreeBoardReply() {
 				writeFreeBoardNull();
 		}
 	})
+}
+
+/**
+ * mentorBoard 최신 댓글 불러오기 관련 함수
+ * 
+ */
+function getMentorBoardReply() {
+	$.ajax({
+		url: "mentorBoardAlarm.do",
+		success: function(data) {
+			if(data.result == "success") 
+				writeMentorBoardAlarm(data.list);
+			else 
+				writeMentorBoardNull();
+		}
+	})
+}
+
+function writeMentorBoardAlarm(list) {
+	var tag ='';
+	tag += '<ul>';
+	for(i=0; i<list.length; i++) {		
+		var contents;
+		if(list[i].content.length > 15)
+			contents = list[i].content.substring(0,11)+"....";
+		else
+			contents = list[i].content;
+		tag += '<li><a href="viewMentorBoard.do?mb_num='+list[i].mb_num+'">'+list[i].id+' : '+contents+'</a></li>';
+	}
+	tag += '</ul>';
+	$("#mentorBoardAlarm").append(tag);
+}
+
+function writeMentorBoardNull() {
+	var tag ='';
+	tag += '<p>최근 게시글에 대한 댓글이 없습니다.</p>';
+	$("#mentorMentorAlarm").append(tag);
 }

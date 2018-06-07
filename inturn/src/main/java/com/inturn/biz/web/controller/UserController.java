@@ -171,29 +171,27 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="getUserEduLvl.do")
-	public ModelAndView getUserEduLvlDo(String name, HttpSession session) {
+	public ModelAndView getUserEduLvlDo(HttpSession session,
+										@RequestParam(value="id", defaultValue="")String id) {
 		System.out.println("getUserEduLvlDo() 진입");
 		ModelAndView mav = new ModelAndView();
-		UserVO user = (UserVO)session.getAttribute("login");
-		System.out.println(user);
-		if(user != null) {
-			String id = user.getId();
-			System.out.println("id : "+id);
-			List<EducationalLevelVO> eduLvlList = eduLvlService.getUserEduLvl(id);
-			System.out.println(eduLvlList);
-			if(eduLvlList.size()!=0) {
-				System.out.println("eduLvlList 불러오기 성공");
-				mav.addObject("eduLvlList", eduLvlList);
-				mav.addObject("result", "success");
-			} else {
-				System.out.println("eduLvlList.size()==0");
-				mav.addObject("eduLvlList", null);
-				mav.addObject("result", "null");
-			}
-		} else {
-			System.out.println("로그인 정보 없음");
-			mav.addObject("result", "로그인 후 이용해 주세요.");
+		if(id.equals("")) {
+			UserVO user = (UserVO)session.getAttribute("login");
+			id=user.getId();
 		}
+		System.out.println(id);
+		List<EducationalLevelVO> eduLvlList = eduLvlService.getUserEduLvl(id);
+		System.out.println(eduLvlList);
+		if(eduLvlList.size()!=0) {
+			System.out.println("eduLvlList 불러오기 성공");
+			mav.addObject("eduLvlList", eduLvlList);
+			mav.addObject("result", "success");
+		} else {
+			System.out.println("eduLvlList.size()==0");
+			mav.addObject("eduLvlList", null);
+			mav.addObject("result", "null");
+		}
+		
 		mav.setViewName("jsonView");
 		return mav;
 	}
@@ -490,11 +488,30 @@ public class UserController {
 	 * 만약 자격증이없으면 javascript에서도 나머지 함수를 수행할 필요가 없으므로,
 	 * 밑에와 같이 구분함
 	 */
+//	@RequestMapping(value="/getCertificates.do")
+//	public ModelAndView getCertificates(HttpSession session) {
+//		HashMap<String, Object> map = new HashMap<>();
+//		UserVO vo = (UserVO) session.getAttribute("login");
+//		List<CertificateVO> list = CertificateService.getCertificates(vo.getId());
+//		if(!list.isEmpty()) {
+//			map.put("result", "success");
+//			map.put("list", list);
+//		}
+//		else
+//			map.put("result", "none");
+//		return new ModelAndView("jsonView", map);
+//	}
+	
 	@RequestMapping(value="/getCertificates.do")
-	public ModelAndView getCertificates(HttpSession session) {
+	public ModelAndView getCertificates(HttpSession session,
+										@RequestParam(value="id", defaultValue="")String id) {
 		HashMap<String, Object> map = new HashMap<>();
-		UserVO vo = (UserVO) session.getAttribute("login");
-		List<CertificateVO> list = CertificateService.getCertificates(vo.getId());
+		if(id.equals("")) {
+			UserVO user = (UserVO)session.getAttribute("login");
+			id=user.getId();
+		}
+		System.out.println(id);
+		List<CertificateVO> list = CertificateService.getCertificates(id);
 		if(!list.isEmpty()) {
 			map.put("result", "success");
 			map.put("list", list);
@@ -503,5 +520,6 @@ public class UserController {
 			map.put("result", "none");
 		return new ModelAndView("jsonView", map);
 	}
+	
 }
 

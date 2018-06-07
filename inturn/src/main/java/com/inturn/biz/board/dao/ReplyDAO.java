@@ -19,4 +19,10 @@ public interface ReplyDAO {
 	public int deleteReplies(int fb_num);
 	public int countReplies(int fb_num);
 	public List<ReplyVO> freeBoardAlarm(String id);
+	public List<ReplyVO> mentorBoardAlarm(String id);
+	public int insertMBReply(ReplyVO vo);
+	public int insertMBReReply(ReplyVO vo);
+	public List<ReplyVO> getMBReplies(HashMap<String, Object> map);
+	public int deleteMBReplies(int mb_num);
+	public int countMBReplies(int mb_num);
 }
