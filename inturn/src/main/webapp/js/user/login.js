@@ -1,7 +1,7 @@
 /**
  * @author 이슬기
  * @since 2018.05.17
- * @see login과 관련된 JQuery 및 JavaScript
+ * @see login 관련 JQuery 및 JavaScript
  */
 $(function(){
 	/** 

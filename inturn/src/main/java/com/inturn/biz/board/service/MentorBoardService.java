@@ -1,17 +1,21 @@
 package com.inturn.biz.board.service;
 
 import java.util.HashMap;
+import java.util.List;
 
-import com.inturn.biz.board.vo.FreeBoardVO;
+import com.inturn.biz.board.vo.MentorBoardVO;
 
 public interface MentorBoardService {
-	public HashMap<String, Object> MentorBbsList(int page_num);
-	public HashMap<String, Object> scBoardList(String condition, String search, int page_num);
-	public HashMap<String, Object> viewBoard(int mb_num);
-	public HashMap<String, Object> scViewBoard(String condition, String search, int fb_num);
-	public int countBoards();
-	public int findBoard(FreeBoardVO vo);
-	public int insertFreeBoard(FreeBoardVO vo);
-	public int modifyFreeBoard(FreeBoardVO vo);
-	public int deleteFreeBoard(int fb_num);
+	public List<MentorBoardVO> mentorBoardList(HashMap<String, Object> map);
+	public List<MentorBoardVO> searchMentorBoardList(HashMap<String, Object> map);
+	public int getCntMentorBoard();
+	public int getSearchCntMentorBoard(HashMap<String, Object> map);
+	public int prevMb_num(int mb_num);
+	public int nextMb_num(int mb_num);
+	public int scPrevMb_num(HashMap<String, Object> map);
+	public int scNextMb_num(HashMap<String, Object> map);
+	public  MentorBoardVO viewMentorBoard(int mb_num);
+	public int insertMentorBoard(MentorBoardVO vo);
+	public int modifyMentorBoard(MentorBoardVO vo);
+	public int deleteMentorBoard(int mb_num);
 }

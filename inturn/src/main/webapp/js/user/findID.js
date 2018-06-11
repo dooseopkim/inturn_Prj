@@ -1,7 +1,7 @@
 /**
  * @author 이슬기
  * @since 2018.05.18
- * @see findID과 관련된 JQuery 및 JavaScript
+ * @see findID 관련 JQuery 및 JavaScript
  * @returns
  */
 $(function(){

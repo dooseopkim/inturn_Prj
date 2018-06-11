@@ -1,10 +1,7 @@
 /**
- * 댓글 CRUD 기능 관련 함수
- * @author 박현호
- * @version 1.0
- * @since 2018.06.01
- * @see 
+ * 
  */
+
 
 /**
  * 페이지 로딩시 해당 게시글의 댓글을 가져온다.
@@ -18,12 +15,12 @@ $(window).load(function() {
  */
 function getReplies(pageNum) {
 	$.ajax({
-		url: "getReplies.do",
+		url: "getMBReplies.do",
 		method: "POST",
 		datatype: "JSON",
 		data: {
 			"page_num" : pageNum,
-			"fb_num" : $("#fb_num").val()
+			"mb_num" : $("#mb_num").val()
 		},
 		success: function(data){
 			if(data.result == "success")
@@ -41,11 +38,11 @@ function insertReply() {
 		alert("아무것도 입력되지 않았습니다.");
 	else {
 		$.ajax({
-			url: "insertReply.do",
+			url: "insertMBReply.do",
 			method: "POST",
 			datatype: "JSON",
 			data: {
-				"fb_num" : $("#fb_num").val(),
+				"mb_num" : $("#mb_num").val(),
 				"content" : $("#replyContent").val(),
 				"id" : $("#id").val()
 			},
@@ -166,11 +163,11 @@ function insertReReply(rp_num, i) {
 		alert("아무것도 입력되지 않았습니다.");
 	else {
 		$.ajax({
-			url: "insertReReply.do",
+			url: "insertMBReReply.do",
 			method: "POST",
 			datatype: "JSON",
 			data: {
-				"fb_num" : $("#fb_num").val(),
+				"mb_num" : $("#mb_num").val(),
 				"content" : $("#reReplyContent"+i).val(),
 				"regDate" : $("#reReplyDate"+i).val(),
 				"parentNum" : rp_num,

@@ -21,11 +21,11 @@
 	text-align: center;
 }
 
-#condition{
+input[name^="condition"] {
 	height: 30px !important;
 } 
 
-#keyword{
+input[name^="keyword"]{
 	height: 30px !important;
 	width: 200px !important;
 	display: inline-block !important;
@@ -67,11 +67,13 @@
 	word-wrap: break-word;
 	background-color: #fff;
 	background-clip: border-box;
-	border: 1px solid rgba(0, 0, 0, 0.125);
+	border: 2px solid rgba(0, 0, 0, 0.125);
 	border-radius: 0.25rem;
 	width: 28%;
 	height: 300px !important;
 	margin: 0px 2% 50px 2%;
+	padding: 0px !important;
+	cursor: pointer; 
 }
 
 }
@@ -93,7 +95,8 @@
 .card-body {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
-	padding: 1.25rem;
+	padding: 2rem 2rem 0rem 2rem;
+	
 }
 
 .card-title {
@@ -106,13 +109,17 @@
 .card-subtitle {
 	margin-top: -0.375rem;
 	margin-bottom: 0;
+	text-align: right;
 }
 
 .card-text{
 	overflow: hidden; 
-	text-overflow: ellipsis;
+	/* white-space: pre-wrap; */
+	padding-top: 10px;
+	height: 160px;
+	line-height: 25px;
 	white-space: pre-wrap;
-	height: 140px;
+	text-overflow: ellipsis !important;
 }
 
 .card-text:last-child {
@@ -128,10 +135,17 @@
 }
 
 .card-header {
-	padding: 0.75rem 1.25rem;
+	overflow: hidden;
+	padding: 2rem;
 	margin-bottom: 0;
 	background-color: rgba(0, 0, 0, 0.03);
 	border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+	font-size: 15px;
+	font-weight: bold;
+	color: black;
+	height: 60px;
+	text-overflow: ellipsis !important;
+	white-space: nowrap !important;
 }
 
 .card-header hr {

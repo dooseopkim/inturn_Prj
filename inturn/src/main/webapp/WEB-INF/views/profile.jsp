@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/user/certificate.css">
 <script type="text/javascript" src="js/profile.js"></script>
 <script type="text/javascript" src="js/user/certificate.js"></script>
+<script type="text/javascript" src="/js/user/profileEdu.js"></script>
 </head>
 <body>
 	<!-- 우측 최상단 메뉴 -->

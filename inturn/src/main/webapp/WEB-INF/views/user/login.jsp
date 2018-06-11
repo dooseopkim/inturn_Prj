@@ -115,7 +115,7 @@
 	/* 네이버아디디로로그인 초기화 Script */
 	var naverLogin = new naver.LoginWithNaverId({
 		clientId : "QmvYUAYvK3me4MirilEo",
-		callbackUrl : "http://127.0.0.1:9000/naverLogin.do",
+		callbackUrl : "https://inturn.cf/naverLogin.do",
 		isPopup : false, /* 팝업을 통한 연동처리 여부 */
 		callbackHandle: true,
 		loginButton : {

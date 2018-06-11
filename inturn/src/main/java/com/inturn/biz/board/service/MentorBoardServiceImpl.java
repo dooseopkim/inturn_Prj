@@ -1,70 +1,78 @@
 package com.inturn.biz.board.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.inturn.biz.board.dao.MentorBoardDAO;
-import com.inturn.biz.board.vo.FreeBoardVO;
+import com.inturn.biz.board.vo.MentorBoardVO;
 
 @Service("MentorBoardService")
 public class MentorBoardServiceImpl implements MentorBoardService{
 	@Resource(name="MentorBoardDAO")
 	MentorBoardDAO dao;
-
+	
 	@Override
-	public HashMap<String, Object> MentorBbsList(int page_num) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MentorBoardVO> mentorBoardList(HashMap<String, Object> map) {
+		return dao.mentorBoardList(map);
 	}
 
 	@Override
-	public HashMap<String, Object> scBoardList(String condition, String search, int page_num) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MentorBoardVO> searchMentorBoardList(HashMap<String, Object> map) {
+		return dao.searchMentorBoardList(map);
 	}
 
 	@Override
-	public HashMap<String, Object> viewBoard(int mb_num) {
-		// TODO Auto-generated method stub
-		return null;
+	public int getCntMentorBoard() {
+		return dao.getCntMentorBoard();
 	}
 
 	@Override
-	public HashMap<String, Object> scViewBoard(String condition, String search, int fb_num) {
-		// TODO Auto-generated method stub
-		return null;
+	public int getSearchCntMentorBoard(HashMap<String, Object> map) {
+		return dao.getSearchCntMentorBoard(map);
 	}
 
 	@Override
-	public int countBoards() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int prevMb_num(int mb_num) {
+		return dao.prevMb_num(mb_num);
 	}
 
 	@Override
-	public int findBoard(FreeBoardVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int nextMb_num(int mb_num) {
+		return dao.nextMb_num(mb_num);
 	}
 
 	@Override
-	public int insertFreeBoard(FreeBoardVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int scPrevMb_num(HashMap<String, Object> map) {
+		return dao.scPrevMb_num(map);
 	}
 
 	@Override
-	public int modifyFreeBoard(FreeBoardVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int scNextMb_num(HashMap<String, Object> map) {
+		return dao.scNextMb_num(map);
+	}
+	
+	@Override
+	public MentorBoardVO viewMentorBoard(int mb_num) {
+		return dao.viewMentorBoard(mb_num);
 	}
 
 	@Override
-	public int deleteFreeBoard(int fb_num) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertMentorBoard(MentorBoardVO vo) {
+		return dao.insertMentorBoard(vo);
 	}
+
+	@Override
+	public int modifyMentorBoard(MentorBoardVO vo) {
+		return dao.modifyMentorBoard(vo);
+	}
+
+	@Override
+	public int deleteMentorBoard(int mb_num) {
+		return dao.deleteMentorBoard(mb_num);
+	}
+	
 }

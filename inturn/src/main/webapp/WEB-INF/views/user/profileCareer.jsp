@@ -20,7 +20,7 @@
 		</div>
 
 		<!-- 기존에 등록한 경력사항 -->
-		<div id="getUserCareer"></div>
+		<div id="getUserCareers"></div>
 
 		<!-- 경력사항 추가 -->
 		<div id="box_addCareer">

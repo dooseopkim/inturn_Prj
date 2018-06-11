@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MentorBoardMapper">
+	
+	<select id="mentorBoardList" parameterType="HashMap" resultType="MentorBoardVO">
+		SELECT * 
+		FROM mentorBoard
+		ORDER BY mb_num DESC
+        LIMIT #{start_point}, #{row}		
+	</select>
+	
+	<select id="searchMentorBoardList" parameterType="HashMap" resultType="MentorBoardVO">
+		SELECT * 
+		FROM mentorBoard
+		WHERE ${condition} LIKE CONCAT('%',#{keyword},'%')
+		ORDER BY mb_num DESC
+		LIMIT #{start_point}, #{row}
+	</select>
+	
+	<select id="getCntMentorBoard" resultType="int">
+    	SELECT count(*)
+    	FROM mentorBoard
+	</select>
+ 
+	 <select id="getSearchCntMentorBoard" parameterType="HashMap" resultType="int">
+   		SELECT count(*)
+   		FROM mentorBoard
+   		WHERE ${condition} LIKE CONCAT('%',#{keyword},'%')
+	</select>
+	
+	<select id="prevMb_num" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT IFNULL(MAX(mb_num), -1) 
+			FROM mentorBoard 
+			WHERE mb_num < #{mb_num};
+		]]>
+	</select>
+	
+	<select id="nextMb_num" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT IFNULL(MIN(mb_num), -1) 
+			FROM mentorBoard 
+			WHERE mb_num > #{mb_num};
+		]]>
+	</select>
+	
+	<select id="scPrevMb_num" parameterType="HashMap" resultType="int">
+		<![CDATA[
+			SELECT IFNULL(MAX(mb_num), -1) 
+			FROM mentorBoard 
+			WHERE ${condition} LIKE CONCAT('%',#{keyword},'%') 
+				AND mb_num < #{mb_num};
+		]]>
+	</select>
+	
+	<select id="scNextMb_num" parameterType="HashMap" resultType="int">
+		<![CDATA[
+			SELECT IFNULL(MIN(mb_num), -1) 
+			FROM mentorBoard 
+			WHERE ${condition} LIKE CONCAT('%',#{keyword},'%')
+			AND mb_num > #{mb_num};
+		]]>
+	</select>
+	
+	<select id="viewMentorBoard" resultType="MentorBoardVO">
+		SELECT *
+		FROM mentorBoard
+		WHERE mb_num = #{mb_num}
+	</select>
+	
+	<insert id="insertMentorBoard" parameterType="MentorBoardVO">
+		INSERT INTO mentorBoard
+		VALUES(
+			(SELECT IFNULL(max(mb_num),0)+1 FROM mentorBoard m),
+			#{title},
+			#{content},
+			#{edu},
+			#{career},
+			#{certificate},
+			now(),
+			#{id}
+		)
+	</insert>
+	
+	<update id="modifyMentorBoard" parameterType="MentorBoardVO">
+		UPDATE mentorBoard
+		SET title = #{title},
+			content = #{content},
+			edu = #{edu},
+			career = #{career},
+			certificate = #{certificate}
+			
+		WHERE mb_num = #{mb_num}
+	</update>
+		
+	<delete id="deleteMentorBoard" parameterType="int">
+		DELETE FROM mentorBoard
+		WHERE mb_num = #{mb_num}
+	</delete>
+		
+</mapper>

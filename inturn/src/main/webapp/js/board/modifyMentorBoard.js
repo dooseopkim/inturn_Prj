@@ -3,10 +3,10 @@
  * @author 이슬기
  * @version 1.0
  * @since 2018.06.01
- * @see MentorBoard insert 관련 JQuery 및 JavaScript
+ * @see MentorBoard modify 관련 JQuery 및 JavaScript
  */
 
-$(function(){
+$(function() {
 	//전역변수
 	var obj = [];
 	//스마트에디터 프레임생성
@@ -32,22 +32,29 @@ $(function(){
 		} 
 	});
 	
-	$("#btn_insertMentorBoard").click(function() {
+	//전송버튼
+	$("#btn_modifyMentorBoard").click(function() {
 		if($("#title").val() == '') {
-			alert("제목을 입력해주세요.");
-			$("#title").focus();
+			alert("제목을 입력해주세요");
 			return false;
 		}
-		
 		//id가 smarteditor인 textarea에 에디터에서 대입
 		obj.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
 		//폼 submit
-		$("#insertMentorBoardFrm").submit();
+		$("#modifyMentorBoardFrm").submit();
 	});
 	
 	$("#btn_cancelMentorBoard").click(function() {
 		if(confirm("게시글 작성을 취소하시겠습니까?")){
-			location.href = "mentor.do";
+			var mb_num = $("#mb_num").val();
+			var nowPage = $("#nowPage").val();
+			var condition = $("#condition").val();
+			var keyword = $("#keyword").val();
+			if(condition==""){
+				location.href="viewMentorBoard.do?mb_num="+mb_num+"&nowPage="+nowPage;
+			} else {
+				location.href="viewMentorBoard.do?mb_num="+mb_num+"&nowPage="+nowPage+"&condition="+condition+"&keyword="+keyword;
+			}
 		}
 	});
 	

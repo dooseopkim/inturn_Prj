@@ -50,8 +50,8 @@ public class ReplyDAOImpl implements ReplyDAO{
 	}
 
 	@Override
-	public int countReplies() {
-		return mybatis.selectOne("ReplyMapper.countReplies");
+	public int countReplies(int fb_num) {
+		return mybatis.selectOne("ReplyMapper.countReplies", fb_num);
 	}
 
 	@Override
@@ -74,4 +74,40 @@ public class ReplyDAOImpl implements ReplyDAO{
 	public int deleteChildReply(int rp_num) {
 		return mybatis.delete("ReplyMapper.deleteChildReply", rp_num);
 	}
+	
+	@Override
+	public List<ReplyVO> freeBoardAlarm(String id) {
+		return mybatis.selectList("ReplyMapper.freeBoardAlarm", id);
+	}
+
+	@Override
+	public List<ReplyVO> mentorBoardAlarm(String id) {
+		return mybatis.selectList("ReplyMapper.mentorBoardAlarm", id);
+	}
+
+	@Override
+	public int insertMBReply(ReplyVO vo) {
+		return mybatis.insert("ReplyMapper.insertMBReply", vo);
+	}
+
+	@Override
+	public int insertMBReReply(ReplyVO vo) {
+		return mybatis.insert("ReplyMapper.insertMBReReply", vo);
+	}
+
+	@Override
+	public List<ReplyVO> getMBReplies(HashMap<String, Object> map) {
+		return mybatis.selectList("ReplyMapper.getMBReplies", map);
+	}
+
+	@Override
+	public int deleteMBReplies(int mb_num) {
+		return mybatis.delete("ReplyMapper.deleteMBReplies", mb_num);
+	}
+
+	@Override
+	public int countMBReplies(int mb_num) {
+		return mybatis.selectOne("ReplyMapper.countMBReplies", mb_num);
+	}
+	
 }

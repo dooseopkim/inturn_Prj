@@ -165,35 +165,33 @@ public class UserController {
 	}
 			
 	/**
-	 * 프로필 페이지의 우측 배너(이력서 항목)에서 학력 클릭 시 학력사항 카드에 기존 데이터 불러오기
+	 * 프로필 페이지에서 학력사항 카드에 기존 데이터 불러오기
 	 * @param id
 	 * @param session
 	 * @return
 	 */
 	@RequestMapping(value="getUserEduLvl.do")
-	public ModelAndView getUserEduLvlDo(String name, HttpSession session) {
+	public ModelAndView getUserEduLvlDo(HttpSession session,
+										@RequestParam(value="id", defaultValue="")String id) {
 		System.out.println("getUserEduLvlDo() 진입");
 		ModelAndView mav = new ModelAndView();
-		UserVO user = (UserVO)session.getAttribute("login");
-		System.out.println(user);
-		if(user != null) {
-			String id = user.getId();
-			System.out.println("id : "+id);
-			List<EducationalLevelVO> eduLvlList = eduLvlService.getUserEduLvl(id);
-			System.out.println(eduLvlList);
-			if(eduLvlList.size()!=0) {
-				System.out.println("eduLvlList 불러오기 성공");
-				mav.addObject("eduLvlList", eduLvlList);
-				mav.addObject("result", "success");
-			} else {
-				System.out.println("eduLvlList.size()==0");
-				mav.addObject("eduLvlList", null);
-				mav.addObject("result", "null");
-			}
-		} else {
-			System.out.println("로그인 정보 없음");
-			mav.addObject("result", "로그인 후 이용해 주세요.");
+		if(id.equals("")) {
+			UserVO user = (UserVO)session.getAttribute("login");
+			id=user.getId();
 		}
+		System.out.println(id);
+		List<EducationalLevelVO> eduLvlList = eduLvlService.getUserEduLvl(id);
+		System.out.println(eduLvlList);
+		if(eduLvlList.size()!=0) {
+			System.out.println("eduLvlList 불러오기 성공");
+			mav.addObject("eduLvlList", eduLvlList);
+			mav.addObject("result", "success");
+		} else {
+			System.out.println("eduLvlList.size()==0");
+			mav.addObject("eduLvlList", null);
+			mav.addObject("result", "null");
+		}
+		
 		mav.setViewName("jsonView");
 		return mav;
 	}
@@ -242,6 +240,12 @@ public class UserController {
 		return mav;
 	}
 	
+	/**
+	 * 프로필 페이지에서 학력사항 수정 폼으로 이동 시
+	 * @param eduLevel_num
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="modifyEduForm.do", method=RequestMethod.POST)
 	public ModelAndView modifyEduFormDo(int eduLevel_num, HttpSession session) {
 		System.out.println("modifyEduFormDo() 진입");
@@ -268,6 +272,20 @@ public class UserController {
 		return mav;
 	}
 	
+	/**
+	 * 프로필 페이지에서 학력사항 수정 시
+	 * @param eduLevel_num
+	 * @param degree_level
+	 * @param school_name
+	 * @param admission_date
+	 * @param graduation_date
+	 * @param current_status
+	 * @param major
+	 * @param avg_score
+	 * @param total_score
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="modifyEdu.do", method=RequestMethod.POST)
 	public ModelAndView modifyEduDo(int eduLevel_num, String degree_level, String school_name, 
 									Date admission_date, Date graduation_date, 
@@ -312,6 +330,12 @@ public class UserController {
 		return mav;
 	}
 	
+	/**
+	 * 프로필 페이지에서 학력사항 삭제 시
+	 * @param eduLevel_num
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="deleteProfileEdu.do", method=RequestMethod.POST)
 	public ModelAndView deleteProfileEduDo(int eduLevel_num, HttpSession session) {
 		System.out.println("deleteProfileEduDo() 진입");
@@ -377,6 +401,115 @@ public class UserController {
 		}
 		mav.setViewName("jsonView");
 		System.out.println("addProfileCareerDo() 끝");
+		return mav;
+	}
+	
+	/**
+	 * 기존에 등록된 경력사항을 불러옴
+	 * @param session
+	 * @param id 사용자 아이디
+	 * @return
+	 */
+	@RequestMapping(value="/getUserCareer.do")
+	public ModelAndView getUserCareerDo(HttpSession session,
+			@RequestParam(value="id", defaultValue="")String id){
+		System.out.println("getUserCareerDo() 진입");
+		ModelAndView mav = new ModelAndView();
+		if(id.equals("")) {
+			UserVO user = (UserVO)session.getAttribute("login");
+			id=user.getId();
+		}
+		System.out.println(id);
+		List<CareerVO> careerList = careerService.getUserCareer(id);
+		List<JobVO> jobList = jobService.getUserJob(id);
+		if(careerList.size()!=0 && jobList.size()!=0) {
+			System.out.println("경력사항 불러오기 성공");
+			mav.addObject("careerList", careerList);
+			mav.addObject("jobList", jobList);
+			mav.addObject("result", "success");
+		} else {
+			System.out.println("기존에 등록된 경력사항이 없습니다.");
+			mav.addObject("careerList", null);
+			mav.addObject("jobList", null);
+			mav.addObject("result", "null");
+		}
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
+	/**
+	 * 경력사항 삭제
+	 * @param num career의 num
+	 * @param job_num  job의 num
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="deleteProfileCareer.do", method=RequestMethod.POST)
+	public ModelAndView deleteProfileCareerDo(int num, int job_num, HttpSession session){
+		ModelAndView mav = new ModelAndView();
+		System.out.println("경력사항 삭제 do 진입");
+		UserVO user = (UserVO)session.getAttribute("login");
+		if(user!=null) {
+			int result1 = jobService.deleteJob(job_num);
+			int result2 = careerService.deleteCareer(num);
+			if(result1 == 1 && result2 ==1) {
+				System.out.println("삭제 성공");
+				mav.addObject("result", "success");
+				List<CareerVO> careerList = careerService.getUserCareer(user.getId());
+				List<JobVO> jobList = jobService.getUserJob(user.getId());
+				if(careerList.size()!=0 && jobList.size()!=0) {
+					System.out.println("careerList.size()!=0   jobList.size()!=0");
+					mav.addObject("careerList", careerList);
+					mav.addObject("jobList", jobList);
+				} else {
+					System.out.println("careerList.size()==0    jobList.size()==0");
+					mav.addObject("result", "null");
+					mav.addObject("careerList", null);
+					mav.addObject("jobList", null);
+				}
+			} else {
+				System.out.println("삭제 실패");
+				mav.addObject("result", "삭제 실패. 잠시 후 다시 시도해 주세요.");
+			}
+		} else {
+			System.out.println("로그인 정보 없음");
+			mav.addObject("result", "로그인 후 이용해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		System.out.println("deleteProfileCareerDo() 끝");
+		return mav;
+	}
+	
+	/**
+	 * 경력사항 수정 후 저장 버튼 클릭 시
+	 * @param cvo
+	 * @param jvo
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="modifyCareer.do", method=RequestMethod.POST)
+	public ModelAndView modifyCareerDo(CareerVO cvo, JobVO jvo, HttpSession session){
+		System.out.println("modifyCareeDo() 접근");
+		ModelAndView mav = new ModelAndView();
+		UserVO uvo = (UserVO)session.getAttribute("login");
+		String id= uvo.getId();
+		int resultCvo = careerService.modifyCareer(cvo);
+		int resultJvo = jobService.insertJob(jvo);
+		if(resultCvo==1&&resultJvo==1) {
+			System.out.println("modify 성공");
+			List<CareerVO> careerList = careerService.getUserCareer(id);
+			System.out.println(careerList);
+			List<JobVO> jobList = jobService.getUserJob(id);
+			System.out.println(jobList);
+			mav.addObject("careerList", careerList);
+			mav.addObject("jobList", jobList);
+			mav.addObject("result", "success");
+		} else {
+			System.out.println("insert 실패");
+			mav.addObject("result", "경력사항 저장에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		System.out.println("modifyCareerDo() 끝");
 		return mav;
 	}
 	
@@ -464,12 +597,31 @@ public class UserController {
 	 * 만약 자격증이없으면 javascript에서도 나머지 함수를 수행할 필요가 없으므로,
 	 * 밑에와 같이 구분함
 	 */
+//	@RequestMapping(value="/getCertificates.do")
+//	public ModelAndView getCertificates(HttpSession session) {
+//		HashMap<String, Object> map = new HashMap<>();
+//		UserVO vo = (UserVO) session.getAttribute("login");
+//		List<CertificateVO> list = CertificateService.getCertificates(vo.getId());
+//		if(!list.isEmpty()) {
+//			map.put("result", "success");
+//			map.put("list", list);
+//		}
+//		else
+//			map.put("result", "none");
+//		return new ModelAndView("jsonView", map);
+//	}
+	
 	@RequestMapping(value="/getCertificates.do")
-	public ModelAndView getCertificates(HttpSession session) {
+	public ModelAndView getCertificates(HttpSession session,
+										@RequestParam(value="id", defaultValue="")String id) {
 		HashMap<String, Object> map = new HashMap<>();
-		UserVO vo = (UserVO) session.getAttribute("login");
-		List<CertificateVO> list = CertificateService.getCertificates(vo.getId());
-		if(list != null) {
+		if(id.equals("")) {
+			UserVO user = (UserVO)session.getAttribute("login");
+			id=user.getId();
+		}
+		System.out.println(id);
+		List<CertificateVO> list = CertificateService.getCertificates(id);
+		if(!list.isEmpty()) {
 			map.put("result", "success");
 			map.put("list", list);
 		}
@@ -477,5 +629,6 @@ public class UserController {
 			map.put("result", "none");
 		return new ModelAndView("jsonView", map);
 	}
+	
 }
 
