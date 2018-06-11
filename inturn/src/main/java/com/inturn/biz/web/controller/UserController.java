@@ -405,6 +405,115 @@ public class UserController {
 	}
 	
 	/**
+	 * 기존에 등록된 경력사항을 불러옴
+	 * @param session
+	 * @param id 사용자 아이디
+	 * @return
+	 */
+	@RequestMapping(value="/getUserCareer.do")
+	public ModelAndView getUserCareerDo(HttpSession session,
+			@RequestParam(value="id", defaultValue="")String id){
+		System.out.println("getUserCareerDo() 진입");
+		ModelAndView mav = new ModelAndView();
+		if(id.equals("")) {
+			UserVO user = (UserVO)session.getAttribute("login");
+			id=user.getId();
+		}
+		System.out.println(id);
+		List<CareerVO> careerList = careerService.getUserCareer(id);
+		List<JobVO> jobList = jobService.getUserJob(id);
+		if(careerList.size()!=0 && jobList.size()!=0) {
+			System.out.println("경력사항 불러오기 성공");
+			mav.addObject("careerList", careerList);
+			mav.addObject("jobList", jobList);
+			mav.addObject("result", "success");
+		} else {
+			System.out.println("기존에 등록된 경력사항이 없습니다.");
+			mav.addObject("careerList", null);
+			mav.addObject("jobList", null);
+			mav.addObject("result", "null");
+		}
+		mav.setViewName("jsonView");
+		return mav;
+	}
+	
+	/**
+	 * 경력사항 삭제
+	 * @param num career의 num
+	 * @param job_num  job의 num
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="deleteProfileCareer.do", method=RequestMethod.POST)
+	public ModelAndView deleteProfileCareerDo(int num, int job_num, HttpSession session){
+		ModelAndView mav = new ModelAndView();
+		System.out.println("경력사항 삭제 do 진입");
+		UserVO user = (UserVO)session.getAttribute("login");
+		if(user!=null) {
+			int result1 = jobService.deleteJob(job_num);
+			int result2 = careerService.deleteCareer(num);
+			if(result1 == 1 && result2 ==1) {
+				System.out.println("삭제 성공");
+				mav.addObject("result", "success");
+				List<CareerVO> careerList = careerService.getUserCareer(user.getId());
+				List<JobVO> jobList = jobService.getUserJob(user.getId());
+				if(careerList.size()!=0 && jobList.size()!=0) {
+					System.out.println("careerList.size()!=0   jobList.size()!=0");
+					mav.addObject("careerList", careerList);
+					mav.addObject("jobList", jobList);
+				} else {
+					System.out.println("careerList.size()==0    jobList.size()==0");
+					mav.addObject("result", "null");
+					mav.addObject("careerList", null);
+					mav.addObject("jobList", null);
+				}
+			} else {
+				System.out.println("삭제 실패");
+				mav.addObject("result", "삭제 실패. 잠시 후 다시 시도해 주세요.");
+			}
+		} else {
+			System.out.println("로그인 정보 없음");
+			mav.addObject("result", "로그인 후 이용해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		System.out.println("deleteProfileCareerDo() 끝");
+		return mav;
+	}
+	
+	/**
+	 * 경력사항 수정 후 저장 버튼 클릭 시
+	 * @param cvo
+	 * @param jvo
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="modifyCareer.do", method=RequestMethod.POST)
+	public ModelAndView modifyCareerDo(CareerVO cvo, JobVO jvo, HttpSession session){
+		System.out.println("modifyCareeDo() 접근");
+		ModelAndView mav = new ModelAndView();
+		UserVO uvo = (UserVO)session.getAttribute("login");
+		String id= uvo.getId();
+		int resultCvo = careerService.modifyCareer(cvo);
+		int resultJvo = jobService.insertJob(jvo);
+		if(resultCvo==1&&resultJvo==1) {
+			System.out.println("modify 성공");
+			List<CareerVO> careerList = careerService.getUserCareer(id);
+			System.out.println(careerList);
+			List<JobVO> jobList = jobService.getUserJob(id);
+			System.out.println(jobList);
+			mav.addObject("careerList", careerList);
+			mav.addObject("jobList", jobList);
+			mav.addObject("result", "success");
+		} else {
+			System.out.println("insert 실패");
+			mav.addObject("result", "경력사항 저장에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+		}
+		mav.setViewName("jsonView");
+		System.out.println("modifyCareerDo() 끝");
+		return mav;
+	}
+	
+	/**
 	 * 받을때, String[] 이나 int[]로도 가능 하지만, date[]는 안됨 (JSON 데이터 타입과 동일)
 	 * 자격증 정보를 DB에 넣는 함수 각 리스트로 받은 변수들을 먼저 무결성 검증을 한 후에
 	 * 없는 데이터일 경우 CertificateVO로 만들어서 모두 insert 해준다.

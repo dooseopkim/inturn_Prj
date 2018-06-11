@@ -1,13 +1,27 @@
-/**
- * 
- */
 $(function() {
+
+	$.ajax({
+		url : "getUserCareer.do",
+		method : "POST",
+		type : "JSON",
+		data : {},
+		success : function(data) {
+			if (data.result == "success") {
+				setCareerList(data);
+				// $("#btn_addSchool").show();
+				$("#career").show();
+			} else {
+				console.log("career & job : " + data.result);
+			}
+		}
+	});
+
 	/**
 	 * 경력사항 추가 버튼 클릭 시
 	 */
 	$("#btn_addCareer").click(function() {
 		$("#box_addCareer").show();
-		$("#company_name2").focus();
+		$("#company_name").focus();
 	});
 
 	/**
@@ -83,7 +97,15 @@ $(function() {
 								return false;
 							} else {
 								$("#positionModal").modal("hide");
-								$("#position").val($(':radio[name="job_grade"]:checked').val()+ "/"+ $(':radio[name="job_duties"]:checked').val());
+								$("#position")
+										.val(
+												$(
+														':radio[name="job_grade"]:checked')
+														.val()
+														+ "/"
+														+ $(
+																':radio[name="job_duties"]:checked')
+																.val());
 								$("#duty").focus();
 							}
 						}
@@ -161,10 +183,11 @@ $(function() {
 				"position" : $("#position").val(),
 				"kinds" : $("#kinds").val(),
 				"duty" : $("#duty").val(),
+				"num" : $("#")
 			},
 			success : function(data) {
 				if (data.result == "success") {
-					alert("학력사항을 추가했습니다.");
+					alert("경력사항을 추가했습니다.");
 					resetboxAddCareer();
 					$("#box_addCareer").hide();
 					setCareerList(data);
@@ -184,15 +207,6 @@ $(function() {
  * @returns
  */
 function formCareerClick() {
-	/*
-	 * var tag = ''; tag += '<div id="education" class="card">'; tag += '<div
-	 * class="row">'; tag += '<div class="col-sm-6">'; tag += '<h3>학력</h3>';
-	 * tag += '</div>'; tag += '<div class="col-sm-6">'; tag += '<input
-	 * type="button" id="addSchool" value="추가">'; tag += '<input type="button"
-	 * id="deleteSchool" value="삭제">'; tag += '</div>'; tag += '</div>'; tag += '<div
-	 * id="schoolArea" class="row border border-info">'; tag += '테스트'; tag += '</div>';
-	 * tag += '</div>'; $("#leftcolumn").append(tag);
-	 */
 	$("#career").toggle(function() {
 		$("#box_addCareer").hide();
 		$('#company_name').focus();
@@ -200,60 +214,226 @@ function formCareerClick() {
 }
 
 /**
- * 경력사항 추가 완료 시 
- * @param data 유저의 모든 career와 job정보를 담고 있음
+ * 기존 데이터를 불러와서 뿌려줌
+ * 
+ * @param data
+ *            유저의 모든 career와 job정보를 담고 있음
  * @returns
  */
-function setCareerList(data){
-	$("#getUserCareer").empty();
+function setCareerList(data) {
+	$("#getUserCareers").empty();
 	var a = '';
-	for(var i=0 ; i< data.careerList.length; i++){
-		a += '<div id="box_education'+ data.eduLvlList[i].eduLevel_num+'" class="box_education">';
-//		a += '<form action="deleteEducation.do" method="POST" onsubmit="return chkDelete('+ data.eduLvlList[i].eduLevel_num+')">';
-		a += '<div class="row">';
+	for (var i = 0; i < data.careerList.length; i++) {
+		a += '<div id="getUserCareer' + data.careerList[i].num
+				+ '" class="getUserCareer"><div class="row">';
+		a += '<div class="col-sm-6"><input type="hidden" id="job_num'+data.jobList[i].job_num+'" value="'+data.jobList[i].job_num+'"><input type="hidden" id="num'+data.careerList[i].num+'" value="'+data.careerList[i].num+'">';
+		a += '<label>회사명</label> <input type="text" id="company_name'
+				+ data.careerList[i].num
+				+ '"class="form-control" readonly="" value="'
+				+ data.careerList[i].company_num + '"></div>';
 		a += '<div class="col-sm-6">';
-		a += '<label class="col-form-label label-edu" for="school_name'+ data.eduLvlList[i].eduLevel_num+'">학교명</label>';
-		a += '<input type="text" id="school_name'+ data.eduLvlList[i].eduLevel_num+'" class="form-control" readonly="" value="'+ data.eduLvlList[i].school_name+'">';
-		a += '</div>';
-		a += '<div class="col-sm-6">';
-		a += '<label class="col-form-label label-edu" for="degree_level'+ data.eduLvlList[i].eduLevel_num+'">구분</label>';
-		a += '<input type="text" id="degree_level'+ data.eduLvlList[i].eduLevel_num+'" class="form-control" readonly="" value="'+ data.eduLvlList[i].degree_level+'">';
-		a += '</div>';
-		a += '</div>';
-		a += '<div class="row">';
+		a += '<label>부서명</label> <input type="text" id="dept_name'
+				+ data.careerList[i].num
+				+ '"class="form-control" readonly="" value="'
+				+ data.careerList[i].dept_name + '"></div></div><br>';
+		a += '<div class="row"><div class="col-sm-4">';
+		a += '<label>직급/직책</label> <input type="text" id="position'
+				+ data.jobList[i].job_num
+				+ '"class="form-control" readonly="" value="'
+				+ data.jobList[i].position + '"></div>';
 		a += '<div class="col-sm-4">';
-		a += '<label class="col-form-label label-edu" for="admission_date'+ data.eduLvlList[i].eduLevel_num+'">입학일</label>';
-		a += '<input type="text" id="admission_date'+ data.eduLvlList[i].eduLevel_num+'" class="form-control" readonly="" value="'+ data.eduLvlList[i].admission_date+'">';
-		a += '</div>';
+		a += '<label>직무</label> <input type="text" id="duty'
+				+ data.jobList[i].job_num
+				+ '" class="form-control" readonly="" value="'
+				+ data.jobList[i].duty + '"></div>';
 		a += '<div class="col-sm-4">';
-		a += '<label class="col-form-label label-edu" for="graduation_date'+ data.eduLvlList[i].eduLevel_num+'">졸업일</label>';
-		a += '<input type="text" id="graduation_date'+ data.eduLvlList[i].eduLevel_num+'" class="form-control" readonly="" value="'+ data.eduLvlList[i].graduation_date+'">';
-		a += '</div>';
+		a += '<label>세부직무</label> <input type="text" id="kinds'
+				+ data.jobList[i].job_num
+				+ '"class="form-control" readonly="" value="'
+				+ data.jobList[i].kinds + '"></div></div><br/>';
+		a += '<div class="row"><div class="col-sm-4">';
+		a += '<label>입사일</label> <input type="date" id="indate'
+				+ data.careerList[i].job_num
+				+ '"class="form-control" readonly="" value="'
+				+ data.careerList[i].indate + '"></div>';
 		a += '<div class="col-sm-4">';
-		a += '<label class="col-form-label label-edu" for="current_status'+ data.eduLvlList[i].eduLevel_num+'">현재상태</label>';
-		a += '<input type="text" id=current_status'+ data.eduLvlList[i].eduLevel_num+'" class="form-control" readonly="" value="'+ data.eduLvlList[i].current_status+'">';
-		a += '</div>';
-		a += '</div>';
-		a += '<div class="row">';
-		a += '<div class="col-sm-6">';
-		a += '<label class="col-form-label label-edu" for="major'+ data.eduLvlList[i].eduLevel_num+'">전공</label>';
-		a += '<input type="text" id="major'+ data.eduLvlList[i].eduLevel_num+'" class="form-control" readonly="" value="'+ data.eduLvlList[i].major+'">';
-		a += '</div>';
-		a += '<div class="col-sm-1"></div>';
-		a += '<div class="col-sm-5">';
-		a += '<label class="col-form-label label-edu" for="avg_score'+ data.eduLvlList[i].eduLevel_num+'">학점 / 총점</label>';
-		a += '<div>';
-		a += '<input type="text" id="avg_score'+ data.eduLvlList[i].eduLevel_num+'" class="form-control avg_score" readonly="" value="'+ data.eduLvlList[i].avg_score+'"> <span>/</span>';
-		a += '<input type="text" id="total_score'+ data.eduLvlList[i].eduLevel_num+'" class="form-control total_score" readonly="" value="'+ data.eduLvlList[i].total_score+'">';
-		a += '</div>';
-		a += '</div>';
-		a += '</div>';
-		a += '<div id="box_eduBtn'+ data.eduLvlList[i].eduLevel_num+'" class="box_eduBtn">';
-		a += '<input type="button" id="btn_education" class="btn btn-primary" value="수정" onclick="modifyEdu('+ data.eduLvlList[i].eduLevel_num+')">';
-		a += '<input type="button" id="btn_deleteEducation" class="btn btn-default" value="삭제" onclick="deleteEdu('+ data.eduLvlList[i].eduLevel_num+')">';
-		a += '</div>';
-//		a += '</form>';
-		a += '</div>';
+		a += '<label>퇴사일</label> <input type="date" id="outdate'
+				+ data.careerList[i].job_num
+				+ '"class="form-control" readonly="" value="'
+				+ data.careerList[i].outdate + '"></div></div>';
+		a += '<div class="box_careerBtn">';
+		a += '<input type="button" id="btn_submitAddCareer" class="btn btn-primary" value="수정" onclick="modifyCareerForm('
+				+ data.jobList[i].job_num
+				+ ')"> <input type="button" id="btn_cancelAddCareer" class="btn btn-tmp" value="삭제" onclick="delCareer('
+				+ data.careerList[i].num
+				+ ')"></div></div>';
 	}
-	$("#getUserEdu").append(a);
+	$("#getUserCareers").append(a);
+}
+
+/**
+ * 각 경력사항에 대하여 수정 버튼 클릭 시 수정 가능한 폼으로 변경
+ * 
+ * @param job_num
+ * @param num
+ * @returns
+ */
+function modifyCareerForm(num) {
+	
+	$("#company_name"+num).prop("readonly", false);
+	$("#dept_name"+num).prop("readonly", false);
+	$("#indate"+num).prop("readonly", false);
+	$("#outdate"+num).prop("readonly", false);
+	$("#position"+num).prop("readonly", false);
+	$("#kinds"+num).prop("readonly", false);
+	$("#duty"+num).prop("readonly", false);
+
+	$("#company_name"+num).focus().select();
+
+	$("#btn_submitAddCareer").val("저장");
+	$("#btn_cancelAddCareer").val("취소");
+	
+	$("btn_submitAddCareer").setAttribute( "onClick", "modifyCareer(num)");
+	$("btn_cancelAddCareer").setAttribute( "onClick", "cencelModifyCareer(num)");
+
+}
+
+
+/**
+ * 경력사항 수정 후 수정 버튼 클릭 시
+ * @param job_num
+ * @param num
+ * @returns
+ */
+function modifyCareer(num) {
+	if ($("#company_name"+num).val() == "") {
+		alert("회사명을 입력하세요.");
+		$("#company_name"+num).focus();
+		return false;
+	} else if ($("#dept_name"+num).val() == "") {
+		alert("부서명을 입력하세요.");
+		$("#dept_name"+num).focus();
+		return false;
+	} else if ($("#position"+num).val() == "") {
+		alert("직급/직책을 입력하세요.");
+		$("#position"+num).focus();
+		return false;
+	} else if ($("#duty"+num).val() == "") {
+		alert("직무를 입력하세요.");
+		$("#duty"+num).focus();
+		return false;
+	} else if ($("#kinds"+num).val() == "") {
+		alert("상세직무를 입력하세요.");
+		$("#kinds"+num).focus();
+		return false;
+	} else if ($("#indate"+num).val() == "") {
+		alert("입사년월을 입력하세요.");
+		$("indate"+num).focus();
+		return false;
+	} else if ($("#outdate"+num).val() == "") {
+		alert("퇴사년월을 입력하세요.");
+		$("#outdate"+num).focus();
+		return false;
+	}
+
+	$.ajax({
+		url : "modifyCareer.do",
+		method : "POST",
+		type : "JSON",
+		data : {
+			"company_num" : $("#company_name"+num).val(),
+			"dept_name" : $("#dept_name"+num).val(),
+			"indate" : $("#indate"+num).val(),
+			"outdate" : $("#outdate"+num).val(),
+			"position" : $("#position"+num).val(),
+			"kinds" : $("#kinds"+num).val(),
+			"duty" : $("#duty"+num).val(),
+			"job_num" : $("job_num"+num).val(),
+			"num" : $("num"+num).val()
+		},
+		success : function(data) {
+			if (data.result == "success") {
+				alert("경력사항을 수정했습니다.");
+				$("#company_name"+num).prop("readonly", true);
+				$("#dept_name"+num).prop("readonly", true);
+				$("#indate"+num).prop("readonly", true);
+				$("#outdate"+num).prop("readonly", true);
+				$("#position"+num).prop("readonly", true);
+				$("#kinds"+num).prop("readonly", true);
+				$("#duty"+num).prop("readonly", true);
+
+				$("#btn_submitAddCareer").val("수정");
+				$("#btn_cancelAddCareer").val("삭제");
+				
+				$("btn_submitAddCareer").setAttribute( "onClick", "modifyCareerForm(num)");
+				$("btn_cancelAddCareer").setAttribute( "onClick", "delCareer(num)");
+
+				setCareerList(data);
+			} else {
+				alert(data.result);
+			}
+		}
+	});
+}
+
+
+/**
+ * 기존 등록 경력사항의 삭제 버튼 클릭 시
+ * 
+ * @param num
+ * @param job_num
+ * @returns
+ */
+function delCareer(num, job_num) {
+	if (confirm("삭제 후 복구할 수 없습니다. 삭제하시겠습니까?")) {
+	} else {
+		return false;
+	}
+	$.ajax({
+		url : "deleteProfileCareer.do",
+		method : "POST",
+		type : "JSON",
+		data : {
+			"num" : num,
+			"job_num" : job_num
+		},
+		success : function(data) {
+			if (data.result == "success") {
+				alert("삭제 완료했습니다.");
+				setCareerList(data);
+			} else if (data.result == "null") {
+				alert("삭제 완료했습니다.");
+				$("#getUserCareers").empty();
+			} else {
+				alert(data.result);
+			}
+		}
+	});
+}
+
+/**
+ * 경력사항 수정 중 취소 버튼 클릭 시
+ * @param num
+ * @returns
+ */
+function cencelModifyCareer(num) {
+	if (confirm("수정을 취소하시겠습니까?")) {
+		$.ajax({
+			url : "getUserCareer.do",
+			method : "POST",
+			type : "JSON",
+			data : {},
+			success : function(data) {
+				if (data.result == "success") {
+					setEduLvlList(data);
+				} else if (data.result == "null") {
+					$("#career").show();
+				} else {
+					alert(data.result);
+				}
+			}
+		});
+	} else {
+		return false;
+	}
 }
