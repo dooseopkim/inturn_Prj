@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -53,11 +54,32 @@
 				<div id="box_checkProfile" class="form-check">
 					<label class="form-check-label"> 공개할 정보를 체크하세요&nbsp;&nbsp;:&nbsp;&nbsp;</label>
 	                <label class="form-check-label" for="edu">학력</label>
-					<input class="form-check-input" id="edu" name="edu" type="checkbox" value="true">
+					<c:choose>
+						<c:when test="${mentorBoard.edu eq 'true'}">
+							<input class="form-check-input" id="edu" name="edu" type="checkbox" value="true" checked="checked">
+						</c:when>
+						<c:otherwise>
+							<input class="form-check-input" id="edu" name="edu" type="checkbox" value="true">
+						</c:otherwise>
+					</c:choose>
 					<label class="form-check-label" for="career">&nbsp;&nbsp;경력</label>
-					<input class="form-check-input" id="career" name="career" type="checkbox" value="true">
+					<c:choose>
+						<c:when test="${mentorBoard.career eq 'true'}">
+							<input class="form-check-input" id="career" name="career" type="checkbox" value="true" checked="checked">
+						</c:when>
+						<c:otherwise>
+							<input class="form-check-input" id="career" name="career" type="checkbox" value="true">
+						</c:otherwise>
+					</c:choose>
 					<label class="form-check-label" for="">&nbsp;&nbsp;자격증</label>
-					<input class="form-check-input" id="certificate" name="certificate" type="checkbox" value="true">
+					<c:choose>
+						<c:when test="${mentorBoard.certificate eq 'true'}">
+							<input class="form-check-input" id="certificate" name="certificate" type="checkbox" value="true" checked="checked">
+						</c:when>
+						<c:otherwise>
+							<input class="form-check-input" id="certificate" name="certificate" type="checkbox" value="true">
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div id="box_content">
 					<textarea name="editor" id="editor">${mentorBoard.content}</textarea>

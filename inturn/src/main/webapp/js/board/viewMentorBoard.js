@@ -41,6 +41,7 @@ $(function(){
 				if (data.result == "success") {
 					setEduLvlList(data);
 					$("#link_profile").show();
+					$("#mb_edu").show();
 				} else {
 					console.log("edu : " + data.result);
 				}
@@ -48,24 +49,25 @@ $(function(){
 		});
 	}
 
-//	if ($("#career").val() == "true") {
-//		$.ajax({
-//			url : "getUserEduLvl.do",
-//			method : "POST",
-//			type : "JSON",
-//			data : {
-//				"id" : $("#writerID").val()
-//			},
-//			success : function(data) {
-//				if (data.result == "success") {
-//					setCareerList(data);
-//					$("#link_profile").show();
-//				} else {
-//					console.log("edu : " + data.result);
-//				}
-//			}
-//		});
-//	}
+	if ($("#career").val() == "true") {
+		$.ajax({
+			url : "getUserCareer.do",
+			method : "POST",
+			type : "JSON",
+			data : {
+				"id" : $("#writerID").val()
+			},
+			success : function(data) {
+				if (data.result == "success") {
+					setCareerList(data);
+					$("#link_profile").show();
+					$("#mb_career").show();
+				} else {
+					console.log("career : " + data.result);
+				}
+			}
+		});
+	}
 
 	if ($("#certificate").val() == "true") {
 		$.ajax({
@@ -79,6 +81,7 @@ $(function(){
 				if (data.result == "success") {
 					setCertificateList(data);
 					$("#link_profile").show();
+					$("#mb_certificate").show();
 				} else {
 					console.log("certificate : " + data.result);
 				}
@@ -153,9 +156,9 @@ function setEduLvlList(data) {
 	
 	for (var i = 0; i < data.eduLvlList.length; i++) {
 		a += '<div id="box_edu' + data.eduLvlList[i].eduLevel_num + '" class="box_edu">';
-		a += '학교명&nbsp;&nbsp;:&nbsp;&nbsp;' + data.eduLvlList[i].school_name + '&nbsp;&nbsp;(' + data.eduLvlList[i].current_status +')<br/>';
-		a += '입학일&nbsp;&nbsp;:&nbsp;&nbsp;' + data.eduLvlList[i].admission_date + '&nbsp;&nbsp;/&nbsp;&nbsp;졸업일&nbsp;&nbsp;:&nbsp;&nbsp;' + data.eduLvlList[i].graduation_date + '<br/>';
-		a += '전공 :&nbsp;&nbsp;&nbsp;&nbsp;' + data.eduLvlList[i].major + '<br/>';
+		a += '<b>학교명&nbsp;&nbsp;:&nbsp;&nbsp;' + data.eduLvlList[i].school_name + '&nbsp;&nbsp;(' + data.eduLvlList[i].current_status +')</b><br/>';
+		a += '입학일&nbsp;&nbsp;:&nbsp;&nbsp;' + data.eduLvlList[i].admission_date + '&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;졸업일&nbsp;&nbsp;:&nbsp;&nbsp;' + data.eduLvlList[i].graduation_date + '<br/>';
+		a += '전공 &nbsp;&nbsp;:&nbsp;&nbsp;' + data.eduLvlList[i].major + '<br/>';
 		a += '학점&nbsp;&nbsp;:&nbsp;&nbsp;' + data.eduLvlList[i].avg_score + ' / '+ data.eduLvlList[i].total_score;
 		a += '</div>';
 	}
@@ -172,9 +175,10 @@ function setCareerList(data){
 	
 	for(var i = 0 ; i < data.careerList.length ; i++){
 		a += '<div id="box_career'+ data.careerList[i].num +'" class="box_career">';
-		a += '회사명&nbsp;&nbsp;:&nbsp;&nbsp;' + data.careerList[i].company_name + '&nbsp;&nbsp;/&nbsp;&nbsp;부서명&nbsp;&nbsp;:&nbsp;&nbsp;' + data.careerList[i].dept_name + '<br/>';
-		a += '직급/직책&nbsp;&nbsp;:&nbsp;&nbsp; 직무 : 세부직무 : <br/>';
-		a += '입사일 : 퇴사일 :';
+		a += '<b>회사명&nbsp;&nbsp;:&nbsp;&nbsp;' + data.careerList[i].company_num + '</b><br/>';
+		a += '부서명&nbsp;&nbsp;:&nbsp;&nbsp;' + data.careerList[i].dept_name + '&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;직급/직책&nbsp;&nbsp;:&nbsp;&nbsp;' + data.jobList[i].position + '<br/>';
+		a += '직무&nbsp;&nbsp;:&nbsp;&nbsp;' + data.jobList[i].duty + '&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;세부직무&nbsp;&nbsp;:&nbsp;&nbsp;' + data.jobList[i].kinds + '<br/>';
+		a += '입사일&nbsp;&nbsp;:&nbsp;&nbsp;' + data.careerList[i].indate + '&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;퇴사일&nbsp;&nbsp;:&nbsp;&nbsp;' + data.careerList[i].outdate + '<br/>';
 		a += '</div>';
 	}
 	
@@ -190,8 +194,10 @@ function setCertificateList(data){
 	
 	for(var i = 0 ; i < data.list.length ; i++){
 		a += '<div id="box_certificate'+ data.list[i].certificate_num +'" class="box_certificate">';
-		a += '자격증명 : '+ data.list[i].certificate_name +' 취득일 : '+ data.list[i].acquisition_date +'<br/>';
-		a += '발급기관 : '+ data.list[i].published_by_license +' 등록번호 : '+ data.list[i].certificate_num +'<br/>';
+		a += '<b>자격증명&nbsp;&nbsp;:&nbsp;&nbsp;'+ data.list[i].certificate_name +'</b><br/>';
+		a += '취득일&nbsp;&nbsp;:&nbsp;&nbsp;'+ data.list[i].acquisition_date +'<br/>';
+		a += '발급기관&nbsp;&nbsp;:&nbsp;&nbsp;'+ data.list[i].published_by_license +'<br/>';
+		a += '등록번호&nbsp;&nbsp;:&nbsp;&nbsp;'+ data.list[i].certificate_num +'<br/>';
 		a += '</div>';
 	}
 	
