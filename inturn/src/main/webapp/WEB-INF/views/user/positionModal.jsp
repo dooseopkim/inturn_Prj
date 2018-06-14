@@ -250,17 +250,17 @@
 					<div class="box_select_etc">
 						<label class="sri_check small sri_radio" for="job_grade_etc020">
 							<input type="radio" id="job_grade_etc020" name="job_grade_etc"
-							class="inp_check" value="etc020"> <span class="txt_check" style="padding-right: 1em;">임시직/프리랜서</span>
+							class="inp_check" value="etc020" onclick="free()"> <span class="txt_check" style="padding-right: 1em;">임시직/프리랜서</span>
 						</label> <label class="sri_check small sri_radio" for="job_grade_etc021">
 							<input type="radio" id="job_grade_etc021" name="job_grade_etc"
-							class="inp_check" value="etc021"> <span class="txt_check" style="padding-right: 1em;">직접입력</span>
+							class="inp_check" value="etc021" onclick="self()"> <span class="txt_check" style="padding-right: 1em;">직접입력</span>
 						</label> <input type="text" id="job_text_input" name="job_text_input" class="form-control"
 							style="width: 250px; display: inline;" maxlength="20" readonly="readonly">
 					</div>
 				</div>
 				<!-- modal body END -->
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="modalOk" style="height: 40.47px; margin-bottom: 0px; margin-left: 4px">완료</button>
+					<button type="button" class="btn btn-primary" id="modalOk" onclick="" style="height: 40.47px; margin-bottom: 0px; margin-left: 4px" >완료</button>
 					<button type="button" class="btn btn-tmp" id="modalCancel">취소</button>
 					<button type="button" class="btn btn-default" id="modalClear">초기화</button>
 

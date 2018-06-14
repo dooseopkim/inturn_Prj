@@ -43,6 +43,7 @@
 			<div class="row">
 				<div class="col-sm-4">
 					<label>직급/직책</label> <input type="text" id="position"
+						onclick="modalShow(0)" onkeydown="modalShow(0)"
 						class="form-control" name="position" readonly="readonly">
 				</div>
 				<div class="col-sm-4">
@@ -54,7 +55,7 @@
 						class="form-control" name="kinds">
 				</div>
 			</div>
-			<br/>
+			<br />
 			<div class="row">
 				<div class="col-sm-4">
 					<label>입사일</label> <input type="date" id="indate"

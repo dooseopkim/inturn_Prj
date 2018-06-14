@@ -32,7 +32,7 @@
 		SET company_num = #{company_num}, 
 			dept_name = #{dept_name}, 
 			indate = #{indate}, 
-			outdate = #{outdate}, 
+			outdate = #{outdate} 
 		WHERE num = #{num}
 	</update>
 	
@@ -40,7 +40,7 @@
 		UPDATE job
 		SET position = #{position}, 
 			kinds = #{kinds}, 
-			duty = #{duty}, 
+			duty = #{duty}
 		WHERE job_num = #{job_num}
 	</update>
 	

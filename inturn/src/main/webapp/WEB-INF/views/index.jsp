@@ -64,7 +64,6 @@
 			</c:otherwise>
 		</c:choose>
 		
-		
 		<div class="container-wrap">
 		<jsp:include page="footer.jsp" />
 		</div>

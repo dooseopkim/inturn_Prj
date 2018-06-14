@@ -5,6 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Main</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="js/mainJs.js"></script>
 </head>
 <body>
 	<jsp:include page="userMenu.jsp" />
@@ -40,101 +43,78 @@
 	</div>
 	</nav>
 	<div class="container-wrap">
-		<div id="fh5co-work" class="fh5co-light-grey">
-			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Work</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga
-						molestias accusamus alias autem provident. Odit ab aliquam dolor
-						eius.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 text-center animate-box">
-					<a href="work-single.html" class="work"
-						style="background-image: url(images/portfolio-1.jpg);">
-						<div class="desc">
-							<h3>Project Name</h3>
-							<span>Illustration</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a href="work-single.html" class="work"
-						style="background-image: url(images/portfolio-2.jpg);">
-						<div class="desc">
-							<h3>Project Name</h3>
-							<span>Brading</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-4 text-center animate-box">
-					<a href="work-single.html" class="work"
-						style="background-image: url(images/portfolio-3.jpg);">
-						<div class="desc">
-							<h3>Project Name</h3>
-							<span>Illustration</span>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<div class="container-wrap">
-		<div id="fh5co-blog" class="blog-flex">
-			<div class="featured-blog"
-				style="background-image: url(images/blog-1.jpg);">
-				<div class="desc-t">
-					<div class="desc-tc">
-						<span class="featured-head">Featured Posts</span>
+		<div id="myCarousel" class="carousel slide">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li class="item1 active"></li>
+				<li class="item2"></li>
+				<li class="item3"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+
+				<div class="item active">
+					<img src="images/main01.png" alt="main01">
+					<div class="carousel-caption carousel-caption-title">
+						<h1>
+							<strong>人Turn, 다시 인생을 시작하다</strong>
+						</h1>
 						<h3>
-							<a href="#">Top 20 Best WordPress Themes 2017 Multi Purpose
-								and Creative Websites</a>
+							<strong>당신의 경험으로 누군가의 미래를 성공으로 이끌 수 있습니다.</strong>
 						</h3>
-						<span><a href="#" class="read-button">Learn More</a></span>
+					</div>
+					<div class="carousel-caption carousel-caption-btn">
+						<button class="btn btn-primary btn-lg btn-signup">회원가입</button>
+						<button class="btn btn-primary btn-lg btn-login">로그인</button>
 					</div>
 				</div>
+
+				<div class="item">
+					<img src="images/main02.png" alt="main02">
+					<div class="carousel-caption carousel-caption-title">
+						<h1>
+							<strong>人Turn, 다시 인생을 시작하다</strong>
+						</h1>
+						<h3>
+							<strong>당신의 꿈은 누군가의 조언으로 실현될 수 있습니다.</strong>
+						</h3>
+					</div>
+					<div class="carousel-caption carousel-caption-btn">
+						<button class="btn btn-primary btn-lg btn-signup">회원가입</button>
+						<button class="btn btn-primary btn-lg btn-login">로그인</button>
+					</div>
+				</div>
+
+				<div class="item">
+					<img src="images/main03.png" alt="main03">
+					<div class="carousel-caption carousel-caption-title">
+						<h1>
+							<strong>人Turn, 다시 인생을 시작하다</strong>
+						</h1>
+						<h3>
+							<strong>멘토, 멘티가 되어 인턴의 놀라운 서비스를 경험하세요.</strong>
+						</h3>
+					</div>
+					<div class="carousel-caption carousel-caption-btn">
+						<button class="btn btn-primary btn-lg btn-signup">회원가입</button>
+						<button class="btn btn-primary btn-lg btn-login">로그인</button>
+					</div>
+				</div>
+
 			</div>
-			<div class="blog-entry fh5co-light-grey">
-				<div class="row animate-box">
-					<div class="col-md-12">
-						<h2>Latest Posts</h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 animate-box">
-						<a href="#" class="blog-post"> <span class="img"
-							style="background-image: url(images/blog-2.jpg);"></span>
-							<div class="desc">
-								<h3>26 Best Education WordPress Themes 2017 You Need To See</h3>
-								<span class="cat">Collection</span>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-12 animate-box">
-						<a href="#" class="blog-post"> <span class="img"
-							style="background-image: url(images/blog-1.jpg);"></span>
-							<div class="desc">
-								<h3>16 Outstanding Photography WordPress Themes You Must
-									See</h3>
-								<span class="cat">Collection</span>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-12 animate-box">
-						<a href="#" class="blog-post"> <span class="img"
-							style="background-image: url(images/blog-3.jpg);"></span>
-							<div class="desc">
-								<h3>16 Outstanding Photography WordPress Themes You Must
-									See</h3>
-								<span class="cat">Collection</span>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
+
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" role="button">
+				<span class="glyphicon glyphicon-chevron-left"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#myCarousel" role="button">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
 		</div>
+
 	</div>
 	<!-- END container-wrap -->
 </body>

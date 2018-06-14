@@ -494,7 +494,7 @@ public class UserController {
 		UserVO uvo = (UserVO)session.getAttribute("login");
 		String id= uvo.getId();
 		int resultCvo = careerService.modifyCareer(cvo);
-		int resultJvo = jobService.insertJob(jvo);
+		int resultJvo = jobService.modifyJob(jvo);
 		if(resultCvo==1&&resultJvo==1) {
 			System.out.println("modify 성공");
 			List<CareerVO> careerList = careerService.getUserCareer(id);

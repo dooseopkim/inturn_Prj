@@ -15,40 +15,7 @@ $(function() {
 			}
 		}
 	});
-
-	/**
-	 * 경력사항 추가 버튼 클릭 시
-	 */
-	$("#btn_addCareer").click(function() {
-		$("#box_addCareer").show();
-		$("#company_name").focus();
-	});
-
-	/**
-	 * 직급/직책 입력란 클릭 시
-	 */
-	$("input[name=position]").click(function() {
-		$("#positionModal").modal("show");
-	});
-
-	/**
-	 * 직급/직책 모달에서 직접입력 선택 시
-	 */
-	$("#job_grade_etc021").click(function() {
-		$("#job_text_input").attr("readonly", false);
-		$("input:radio[name=job_grade]").removeAttr('checked');
-		$("input:radio[name=job_duties]").removeAttr('checked');
-	});
-
-	/**
-	 * 직급/직책 모달에서 프리랜서 선택 시
-	 */
-	$("#job_grade_etc020").click(function() {
-		$("#job_text_input").attr("readonly", true);
-		$("input:radio[name=job_grade]").removeAttr('checked');
-		$("input:radio[name=job_duties]").removeAttr('checked');
-	});
-
+	
 	/**
 	 * 직급/직책 모달에서 초기화 버튼 클릭 시
 	 */
@@ -64,53 +31,30 @@ $(function() {
 	$("#modalCancel").click(function() {
 		$("#positionModal").modal("hide");
 	});
+	
+	/**
+	 * 직급 라디오버튼 선택 시 임시직/프리랜서 , 직접입력 중 선택 된 것 해제
+	 */
+	$('input:radio[name="job_grade"]').click(function(){
+		$("#job_text_input").attr("readonly", true);
+		$("input:radio[name=job_grade_etc]").removeAttr('checked');
+	});
 
 	/**
-	 * 직급/직책 모달에서 완료 버튼 클릭 시
+	 * 직책 라디오버튼 선택 시 임시직/프리랜서 , 직접입력 중 선택 된 것 해제
 	 */
-	$("#modalOk")
-			.click(
-					function() {
-						var job_grade = $(':radio[name="job_grade"]:checked')
-								.size();
-						var job_duties = $(':radio[name="job_duties"]:checked')
-								.size();
+	$('input:radio[name="job_duties"]').click(function(){
+		$("#job_text_input").attr("readonly", true);
+		$("input:radio[name=job_grade_etc]").removeAttr('checked');
+	});
 
-						var job_grade_etc020 = $(
-								':radio[id="job_grade_etc020"]:checked').val();
-						var job_grade_etc021 = $(
-								':radio[id="job_grade_etc021"]:checked').val();
-
-						if (job_grade_etc020 != null) {
-							$("#positionModal").modal("hide");
-							$("#position").val('임시직/프리랜서');
-						} else if (job_grade_etc021 != null) {
-							$("#positionModal").modal("hide");
-							$("#position").val($("#job_text_input").val());
-						} else if (job_grade_etc020 == null
-								&& job_grade_etc021 == null) {
-							if (job_grade == 0 && job_duties == 1) {
-								alert("직급을 선택해주세요!");
-								return false;
-							} else if (job_grade == 1 && job_duties == 0) {
-								alert("직책을 선택해주세요!");
-								return false;
-							} else {
-								$("#positionModal").modal("hide");
-								$("#position")
-										.val(
-												$(
-														':radio[name="job_grade"]:checked')
-														.val()
-														+ "/"
-														+ $(
-																':radio[name="job_duties"]:checked')
-																.val());
-								$("#duty").focus();
-							}
-						}
-
-					});
+	/**
+	 * 경력사항 추가 버튼 클릭 시
+	 */
+	$("#btn_addCareer").click(function() {
+		$("#box_addCareer").show();
+		$("#company_name").focus();
+	});
 
 	/**
 	 * 경력사항 취소 버튼 클릭 시
@@ -182,8 +126,7 @@ $(function() {
 				"outdate" : $("#outdate").val(),
 				"position" : $("#position").val(),
 				"kinds" : $("#kinds").val(),
-				"duty" : $("#duty").val(),
-				"num" : $("#")
+				"duty" : $("#duty").val()
 			},
 			success : function(data) {
 				if (data.result == "success") {
@@ -200,6 +143,86 @@ $(function() {
 
 	});
 });
+
+/**
+ * 경력사항 수정 시 직급/직책란 마우스/키보드 이벤트 발생 시
+ * 
+ * @returns
+ */
+function modalShow(index) {
+	$("#positionModal").modal("show");
+	document.getElementById('modalOk').setAttribute("onClick",
+			"modalOK(" + index + ")");
+}
+
+/**
+ * 직급/직책 모달에서 프리랜서 선택 시
+ */
+function free() {
+	$("#job_text_input").attr("readonly", true);
+	$("input:radio[name=job_grade]").removeAttr('checked');
+	$("input:radio[name=job_duties]").removeAttr('checked');
+}
+
+/**
+ * 직급/직책 모달에서 직접입력 선택 시
+ */
+function self() {
+	$("#job_text_input").attr("readonly", false);
+	$("input:radio[name=job_grade]").removeAttr('checked');
+	$("input:radio[name=job_duties]").removeAttr('checked');
+}
+
+/**
+ * 직급/직책 선택 모달 창에서 완료 버튼 클릭 시
+ * @param index
+ * @returns
+ */
+function modalOK(index) {
+	var job_grade = $(':radio[name="job_grade"]:checked').size();
+	var job_duties = $(':radio[name="job_duties"]:checked').size();
+
+	var job_grade_etc020 = $(':radio[id="job_grade_etc020"]:checked').val();
+	var job_grade_etc021 = $(':radio[id="job_grade_etc021"]:checked').val();
+
+	if (job_grade_etc020 != null) {
+		$("#positionModal").modal("hide");
+		if (index == 0) {
+			$("#position").val('임시직/프리랜서');
+		} else {
+			$("#position" + index).val('임시직/프리랜서');
+		}
+	} else if (job_grade_etc021 != null) {
+		$("#positionModal").modal("hide");
+		if (index == 0) {
+			$("#position").val($("#job_text_input").val());
+		} else {
+			$("#position" + index).val($("#job_text_input").val());
+		}
+	} else if (job_grade_etc020 == null && job_grade_etc021 == null) {
+		if (job_grade == 0 && job_duties == 1) {
+			alert("직급을 선택해주세요!");
+			return false;
+		} else if (job_grade == 1 && job_duties == 0) {
+			alert("직책을 선택해주세요!");
+			return false;
+		} else {
+			$("#positionModal").modal("hide");
+			if (index == 0) {
+
+				$("#position").val(
+						$(':radio[name="job_grade"]:checked').val() + "/"
+								+ $(':radio[name="job_duties"]:checked').val());
+				$("#duty").focus();
+			} else {
+				$("#position"+index).val(
+						$(':radio[name="job_grade"]:checked').val() + "/"
+								+ $(':radio[name="job_duties"]:checked').val());
+				$("#duty"+index).focus();
+			}
+		}
+	}
+}
 
 /**
  * 사이드네비에서 경력 항목을 클릭할 때
@@ -226,7 +249,11 @@ function setCareerList(data) {
 	for (var i = 0; i < data.careerList.length; i++) {
 		a += '<div id="getUserCareer' + data.careerList[i].num
 				+ '" class="getUserCareer"><div class="row">';
-		a += '<div class="col-sm-6"><input type="hidden" id="job_num'+data.jobList[i].job_num+'" value="'+data.jobList[i].job_num+'"><input type="hidden" id="num'+data.careerList[i].num+'" value="'+data.careerList[i].num+'">';
+		a += '<div class="col-sm-6"><input type="hidden" id="job_num'
+				+ data.jobList[i].job_num + '" value="'
+				+ data.jobList[i].job_num + '"><input type="hidden" id="num'
+				+ data.careerList[i].num + '" value="' + data.careerList[i].num
+				+ '">';
 		a += '<label>회사명</label> <input type="text" id="company_name'
 				+ data.careerList[i].num
 				+ '"class="form-control" readonly="" value="'
@@ -240,7 +267,8 @@ function setCareerList(data) {
 		a += '<label>직급/직책</label> <input type="text" id="position'
 				+ data.jobList[i].job_num
 				+ '"class="form-control" readonly="" value="'
-				+ data.jobList[i].position + '"></div>';
+				+ data.jobList[i].position
+				+ '" onclick="" onkeydown="" ></div>';
 		a += '<div class="col-sm-4">';
 		a += '<label>직무</label> <input type="text" id="duty'
 				+ data.jobList[i].job_num
@@ -253,19 +281,23 @@ function setCareerList(data) {
 				+ data.jobList[i].kinds + '"></div></div><br/>';
 		a += '<div class="row"><div class="col-sm-4">';
 		a += '<label>입사일</label> <input type="date" id="indate'
-				+ data.careerList[i].job_num
+				+ data.careerList[i].num
 				+ '"class="form-control" readonly="" value="'
 				+ data.careerList[i].indate + '"></div>';
 		a += '<div class="col-sm-4">';
 		a += '<label>퇴사일</label> <input type="date" id="outdate'
-				+ data.careerList[i].job_num
+				+ data.careerList[i].num
 				+ '"class="form-control" readonly="" value="'
 				+ data.careerList[i].outdate + '"></div></div>';
 		a += '<div class="box_careerBtn">';
-		a += '<input type="button" id="btn_submitAddCareer" class="btn btn-primary" value="수정" onclick="modifyCareerForm('
-				+ data.jobList[i].job_num
-				+ ')"> <input type="button" id="btn_cancelAddCareer" class="btn btn-tmp" value="삭제" onclick="delCareer('
+		a += '<input type="button" id="btn_submitAddCareer'
 				+ data.careerList[i].num
+				+ '" class="btn btn-primary" value="수정" onclick="modifyCareerForm('
+				+ data.jobList[i].job_num + ',' + data.careerList[i].num
+				+ ')"> <input type="button" id="btn_cancelAddCareer'
+				+ data.careerList[i].num
+				+ '" class="btn btn-tmp" value="삭제" onclick="delCareer('
+				+ data.jobList[i].job_num + ',' + data.careerList[i].num
 				+ ')"></div></div>';
 	}
 	$("#getUserCareers").append(a);
@@ -278,104 +310,118 @@ function setCareerList(data) {
  * @param num
  * @returns
  */
-function modifyCareerForm(num) {
-	
-	$("#company_name"+num).prop("readonly", false);
-	$("#dept_name"+num).prop("readonly", false);
-	$("#indate"+num).prop("readonly", false);
-	$("#outdate"+num).prop("readonly", false);
-	$("#position"+num).prop("readonly", false);
-	$("#kinds"+num).prop("readonly", false);
-	$("#duty"+num).prop("readonly", false);
+function modifyCareerForm(job_num, num) {
 
-	$("#company_name"+num).focus().select();
+	$("#company_name" + num).prop("readonly", false);
+	$("#dept_name" + num).prop("readonly", false);
+	$("#indate" + num).prop("readonly", false);
+	$("#outdate" + num).prop("readonly", false);
+	$("#position" + job_num).prop("readonly", false);
+	$("#kinds" + job_num).prop("readonly", false);
+	$("#duty" + job_num).prop("readonly", false);
 
-	$("#btn_submitAddCareer").val("저장");
-	$("#btn_cancelAddCareer").val("취소");
-	
-	$("btn_submitAddCareer").setAttribute( "onClick", "modifyCareer(num)");
-	$("btn_cancelAddCareer").setAttribute( "onClick", "cencelModifyCareer(num)");
+	$("#company_name" + num).focus().select();
 
+	$("#btn_submitAddCareer" + num).val("저장");
+	$("#btn_cancelAddCareer" + num).val("취소");
+
+	document.getElementById('position' + job_num).setAttribute("onClick",
+			"modalShow("+job_num+")");
+	document.getElementById('position' + job_num).setAttribute("onKeydown",
+			"modalShow("+job_num+")");
+
+	document.getElementById('btn_submitAddCareer' + num).setAttribute(
+			"onClick", "modifyCareer(" + job_num + "," + num + ")");
+	document.getElementById('btn_cancelAddCareer' + num).setAttribute(
+			"onClick", "cencelModifyCareer(" + job_num + "," + num + ")");
 }
 
-
 /**
- * 경력사항 수정 후 수정 버튼 클릭 시
+ * 경력사항 수정 후 저장 버튼 클릭 시
+ * 
  * @param job_num
  * @param num
  * @returns
  */
-function modifyCareer(num) {
-	if ($("#company_name"+num).val() == "") {
+function modifyCareer(job_num, num) {
+	if ($("#company_name" + num).val() == "") {
 		alert("회사명을 입력하세요.");
-		$("#company_name"+num).focus();
+		$("#company_name" + num).focus();
 		return false;
-	} else if ($("#dept_name"+num).val() == "") {
+	} else if ($("#dept_name" + num).val() == "") {
 		alert("부서명을 입력하세요.");
-		$("#dept_name"+num).focus();
+		$("#dept_name" + num).focus();
 		return false;
-	} else if ($("#position"+num).val() == "") {
+	} else if ($("#position" + job_num).val() == "") {
 		alert("직급/직책을 입력하세요.");
-		$("#position"+num).focus();
+		$("#position" + job_num).focus();
 		return false;
-	} else if ($("#duty"+num).val() == "") {
+	} else if ($("#duty" + job_num).val() == "") {
 		alert("직무를 입력하세요.");
-		$("#duty"+num).focus();
+		$("#duty" + job_num).focus();
 		return false;
-	} else if ($("#kinds"+num).val() == "") {
+	} else if ($("#kinds" + job_num).val() == "") {
 		alert("상세직무를 입력하세요.");
-		$("#kinds"+num).focus();
+		$("#kinds" + job_num).focus();
 		return false;
-	} else if ($("#indate"+num).val() == "") {
+	} else if ($("#indate" + num).val() == "") {
 		alert("입사년월을 입력하세요.");
-		$("indate"+num).focus();
+		$("indate" + num).focus();
 		return false;
-	} else if ($("#outdate"+num).val() == "") {
+	} else if ($("#outdate" + num).val() == "") {
 		alert("퇴사년월을 입력하세요.");
-		$("#outdate"+num).focus();
+		$("#outdate" + num).focus();
 		return false;
 	}
 
-	$.ajax({
-		url : "modifyCareer.do",
-		method : "POST",
-		type : "JSON",
-		data : {
-			"company_num" : $("#company_name"+num).val(),
-			"dept_name" : $("#dept_name"+num).val(),
-			"indate" : $("#indate"+num).val(),
-			"outdate" : $("#outdate"+num).val(),
-			"position" : $("#position"+num).val(),
-			"kinds" : $("#kinds"+num).val(),
-			"duty" : $("#duty"+num).val(),
-			"job_num" : $("job_num"+num).val(),
-			"num" : $("num"+num).val()
-		},
-		success : function(data) {
-			if (data.result == "success") {
-				alert("경력사항을 수정했습니다.");
-				$("#company_name"+num).prop("readonly", true);
-				$("#dept_name"+num).prop("readonly", true);
-				$("#indate"+num).prop("readonly", true);
-				$("#outdate"+num).prop("readonly", true);
-				$("#position"+num).prop("readonly", true);
-				$("#kinds"+num).prop("readonly", true);
-				$("#duty"+num).prop("readonly", true);
+	$
+			.ajax({
+				url : "modifyCareer.do",
+				method : "POST",
+				type : "JSON",
+				data : {
+					"company_num" : $("#company_name" + num).val(),
+					"dept_name" : $("#dept_name" + num).val(),
+					"indate" : $("#indate" + num).val(),
+					"outdate" : $("#outdate" + num).val(),
+					"position" : $("#position" + job_num).val(),
+					"kinds" : $("#kinds" + job_num).val(),
+					"duty" : $("#duty" + job_num).val(),
+					"job_num" : job_num,
+					"num" : num
+				},
+				success : function(data) {
+					if (data.result == "success") {
+						alert("경력사항을 수정했습니다.");
+						$("#company_name" + num).prop("readonly", true);
+						$("#dept_name" + num).prop("readonly", true);
+						$("#indate" + num).prop("readonly", true);
+						$("#outdate" + num).prop("readonly", true);
+						$("#position" + job_num).prop("readonly", true);
+						$("#kinds" + job_num).prop("readonly", true);
+						$("#duty" + job_num).prop("readonly", true);
 
-				$("#btn_submitAddCareer").val("수정");
-				$("#btn_cancelAddCareer").val("삭제");
-				
-				$("btn_submitAddCareer").setAttribute( "onClick", "modifyCareerForm(num)");
-				$("btn_cancelAddCareer").setAttribute( "onClick", "delCareer(num)");
+						$("#btn_submitAddCareer" + num).val("수정");
+						$("#btn_cancelAddCareer" + num).val("삭제");
 
-				setCareerList(data);
-			} else {
-				alert(data.result);
-			}
-		}
-	});
+						document.getElementById('btn_submitAddCareer' + num)
+								.setAttribute(
+										"onClick",
+										"modifyCareerForm(" + job_num + ","
+												+ num + ")");
+						document.getElementById('btn_cancelAddCareer' + num)
+								.setAttribute(
+										"onClick",
+										"delCareer(" + job_num + "," + num
+												+ ")");
+
+						setCareerList(data);
+					} else {
+						alert(data.result);
+					}
+				}
+			});
 }
-
 
 /**
  * 기존 등록 경력사항의 삭제 버튼 클릭 시
@@ -384,7 +430,7 @@ function modifyCareer(num) {
  * @param job_num
  * @returns
  */
-function delCareer(num, job_num) {
+function delCareer(job_num, num) {
 	if (confirm("삭제 후 복구할 수 없습니다. 삭제하시겠습니까?")) {
 	} else {
 		return false;
@@ -413,10 +459,11 @@ function delCareer(num, job_num) {
 
 /**
  * 경력사항 수정 중 취소 버튼 클릭 시
+ * 
  * @param num
  * @returns
  */
-function cencelModifyCareer(num) {
+function cencelModifyCareer(job_num, num) {
 	if (confirm("수정을 취소하시겠습니까?")) {
 		$.ajax({
 			url : "getUserCareer.do",
@@ -425,9 +472,7 @@ function cencelModifyCareer(num) {
 			data : {},
 			success : function(data) {
 				if (data.result == "success") {
-					setEduLvlList(data);
-				} else if (data.result == "null") {
-					$("#career").show();
+					setCareerList(data);
 				} else {
 					alert(data.result);
 				}
