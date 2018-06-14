@@ -6,13 +6,13 @@
 
 	<select id="scPrevfb_num" parameterType="HashMap" resultType="int">
 			<![CDATA[
-				SELECT IFNULL(MAX(fb_num), -1) FROM freeBoard WHERE ${condition} LIKE '%' #{search} '%' and fb_num < #{fb_num};
+				SELECT IFNULL(MAX(cs_num), -1) FROM csBoard WHERE ${condition} LIKE '%' #{search} '%' and cs_num < #{cs_num};
 			]]>
 		</select>
 		
 		<select id="scNextfb_num" parameterType="HashMap" resultType="int">
 			<![CDATA[
-				SELECT IFNULL(MIN(fb_num), -1) FROM freeBoard WHERE ${condition} LIKE '%' #{search} '%' and fb_num > #{fb_num};
+				SELECT IFNULL(MIN(cs_num), -1) FROM csBoard WHERE ${condition} LIKE '%' #{search} '%' and cs_num > #{cs_num};
 			]]>
 		</select>
 		
@@ -20,24 +20,24 @@
 			SELECT * 
 			FROM (
 				SELECT * 
-				FROM freeBoard
+				FROM csBoard
 				WHERE ${condition} LIKE '%' #{search} '%'
 				LIMIT #{offset}, #{limit}
-			) A ORDER BY fb_num DESC
+			) A ORDER BY cs_num DESC
 		</select>
 		
 		<select id="scCountBoards" parameterType="HashMap" resultType="int">
-			SELECT COUNT(*) FROM freeBoard WHERE ${condition} LIKE '%' #{search} '%'
+			SELECT COUNT(*) FROM csBoard WHERE ${condition} LIKE '%' #{search} '%'
 		</select>
 		
 		<select id="prevfb_num" parameterType="int" resultType="int">
 			<![CDATA[
-				SELECT IFNULL(MAX(fb_num), -1) FROM freeBoard WHERE fb_num < #{fb_num};
+				SELECT IFNULL(MAX(cs_num), -1) FROM csBoard WHERE cs_num < #{cs_num};
 			]]>
 		</select>
 		<select id="nextfb_num" parameterType="int" resultType="int">
 			<![CDATA[
-				SELECT IFNULL(MIN(fb_num), -1) FROM freeBoard WHERE fb_num > #{fb_num};
+				SELECT IFNULL(MIN(cs_num), -1) FROM csBoard WHERE cs_num > #{cs_num};
 			]]>
 		</select>
 	
@@ -51,33 +51,34 @@
 		</select>
 		
 		<select id="countBoards" resultType="int">
-			SELECT COUNT(*) FROM freeBoard
+			SELECT COUNT(*) FROM csBoard
 		</select>
 		
 		<select id="viewBoard" parameterType="int" resultType="CsBoardVO">
-			SELECT * FROM freeBoard WHERE fb_num = #{fb_num}
+			SELECT * FROM csBoard WHERE cs_num = #{cs_num}
 		</select>
 		
 		<select id="findBoard" parameterType="CsBoardVO" resultType="int">
-			SELECT IFNULL(max(fb_num),0) FROM freeBoard WHERE title = #{title} AND content = #{content} AND id = #{id}
+			SELECT IFNULL(max(cs_num),0) FROM csBoard WHERE title = #{title} AND content = #{content} AND id = #{id}
 		</select>
 	
-		<insert id="insertFreeBoard" parameterType="CsBoardVO">
-			INSERT INTO freeBoard (fb_num, title, content, regDate, hit, id)
-			VALUES((SELECT IFNULL(max(f.fb_num),0)+1 FROM freeBoard f), #{title}, #{content}, #{regDate}, #{hit}, #{id})
+		<insert id="insertCsBoard" parameterType="CsBoardVO">
+			INSERT INTO csBoard (cs_num, grpno, grpord, dept, title, content, regDate, makePublic, pw, hit, id)
+			VALUES((SELECT IFNULL(max(cs.cs_num),0)+1 FROM csBoard cs), #{grpno}, #{grpord}, #{dept}, 
+					#{title}, #{content}, #{regDate}, #{makePublic}, #{pw}, #{hit}, #{id})
 		</insert>
 		
-		<update id="modifyFreeBoard" parameterType="CsBoardVO">
-			UPDATE freeBoard SET title = #{title} WHERE fb_num = #{fb_num};
-			UPDATE freeBoard SET content = #{content} WHERE fb_num = #{fb_num};
+		<update id="modifycsBoard" parameterType="CsBoardVO">
+			UPDATE csBoard SET title = #{title} WHERE cs_num = #{cs_num};
+			UPDATE csBoard SET content = #{content} WHERE cs_num = #{cs_num};
 		</update>
 		
 		<update id="countUp" parameterType="int">
-			UPDATE freeBoard SET hit = hit + 1 WHERE fb_num = #{fb_num}
+			UPDATE csBoard SET hit = hit + 1 WHERE cs_num = #{cs_num}
 		</update>
 	
-		<delete id="deleteFreeBoard">
-			DELETE FROM freeBoard WHERE fb_num = #{fb_num}
+		<delete id="deletecsBoard">
+			DELETE FROM csBoard WHERE cs_num = #{cs_num}
 		</delete>
 
 </mapper>
