@@ -35,4 +35,16 @@ $(function(){
 		location.href="loginForm.do";
 	});
 	
+	$(".btn-mentor").click(function(){
+		location.href="mentor.do";
+	});
+	
+	$(".btn-mentee").click(function(){
+		location.href="mentee.do";
+	});
+	
+	$(".btn-free").click(function(){
+		location.href="freeBoard.do?page_num=1";
+	});
+	
 });

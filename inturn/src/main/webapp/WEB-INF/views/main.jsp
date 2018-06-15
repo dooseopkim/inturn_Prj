@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -66,8 +67,20 @@
 						</h3>
 					</div>
 					<div class="carousel-caption carousel-caption-btn">
-						<button class="btn btn-primary btn-lg btn-signup">회원가입</button>
-						<button class="btn btn-primary btn-lg btn-login">로그인</button>
+						<c:choose>
+							<c:when test="${login.type eq 'mentor'}">
+								<button class="btn btn-primary btn-lg btn-mentee">멘티찾기</button>
+								<button class="btn btn-primary btn-lg btn-free">자유게시판</button>
+							</c:when>
+							<c:when test="${login.type eq 'mentee'}">
+								<button class="btn btn-primary btn-lg btn-mentor">멘토찾기</button>
+								<button class="btn btn-primary btn-lg btn-free">자유게시판</button>
+							</c:when>
+							<c:otherwise>
+								<button class="btn btn-primary btn-lg btn-signup">회원가입</button>
+								<button class="btn btn-primary btn-lg btn-login">로그인</button>	
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 
@@ -82,8 +95,20 @@
 						</h3>
 					</div>
 					<div class="carousel-caption carousel-caption-btn">
-						<button class="btn btn-primary btn-lg btn-signup">회원가입</button>
-						<button class="btn btn-primary btn-lg btn-login">로그인</button>
+						<c:choose>
+							<c:when test="${login.type eq 'mentor'}">
+								<button class="btn btn-primary btn-lg btn-mentee">멘티찾기</button>
+								<button class="btn btn-primary btn-lg btn-free">자유게시판</button>
+							</c:when>
+							<c:when test="${login.type eq 'mentee'}">
+								<button class="btn btn-primary btn-lg btn-mentor">멘토찾기</button>
+								<button class="btn btn-primary btn-lg btn-free">자유게시판</button>
+							</c:when>
+							<c:otherwise>
+								<button class="btn btn-primary btn-lg btn-signup">회원가입</button>
+								<button class="btn btn-primary btn-lg btn-login">로그인</button>	
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 
@@ -98,8 +123,20 @@
 						</h3>
 					</div>
 					<div class="carousel-caption carousel-caption-btn">
-						<button class="btn btn-primary btn-lg btn-signup">회원가입</button>
-						<button class="btn btn-primary btn-lg btn-login">로그인</button>
+						<c:choose>
+							<c:when test="${login.type eq 'mentor'}">
+								<button class="btn btn-primary btn-lg btn-mentee">멘티찾기</button>
+								<button class="btn btn-primary btn-lg btn-free">자유게시판</button>
+							</c:when>
+							<c:when test="${login.type eq 'mentee'}">
+								<button class="btn btn-primary btn-lg btn-mentor">멘토찾기</button>
+								<button class="btn btn-primary btn-lg btn-free">자유게시판</button>
+							</c:when>
+							<c:otherwise>
+								<button class="btn btn-primary btn-lg btn-signup">회원가입</button>
+								<button class="btn btn-primary btn-lg btn-login">로그인</button>	
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 
