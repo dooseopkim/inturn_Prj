@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/resources/ApplicationContext.xml</config>
 		<config>src/main/webapp/WEB-INF/DispatcherServlet.xml</config>
+		<config>src/main/resources/ApplicationSecurity.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
