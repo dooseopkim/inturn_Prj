@@ -16,9 +16,8 @@ public class CsBoardVO {
 	private String id;         	//VARCHAR(30)   NULL     COMMENT 'id' -- id
 
 	
-	
+	public CsBoardVO() {	}
 
-	
 	public CsBoardVO(int cs_num, int grpno, int grpord, int dept, String title, String content, Date regDate,
 			String makePublic, String pw, int hit, String id) {
 		this.cs_num = cs_num;
@@ -32,6 +31,21 @@ public class CsBoardVO {
 		this.pw = pw;
 		this.hit = hit;
 		this.id = id;
+	}
+
+	public CsBoardVO(int grpno, int grpord, int dept, String title, String content, Date regDate, String makePublic,
+		String pw, int hit, String id) {
+	super();
+	this.grpno = grpno;
+	this.grpord = grpord;
+	this.dept = dept;
+	this.title = title;
+	this.content = content;
+	this.regDate = regDate;
+	this.makePublic = makePublic;
+	this.pw = pw;
+	this.hit = hit;
+	this.id = id;
 	}
 
 	public int getCs_num() {

@@ -33,8 +33,7 @@ public class CsBoardDAOImpl implements CsBoardDAO{
 
 	@Override
 	public int countBoards() {
-		// TODO Auto-generated method stub
-		return 0;
+		return mybatis.selectOne("CsBoardMapper.countBoards");
 	}
 
 	@Override
@@ -51,8 +50,8 @@ public class CsBoardDAOImpl implements CsBoardDAO{
 
 	@Override
 	public int insertCsBoard(CsBoardVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("insertCsBoard 디에이오임플 거쳐가여");
+		return mybatis.insert("CsBoardMapper.insertCsBoard",vo);
 	}
 
 	@Override

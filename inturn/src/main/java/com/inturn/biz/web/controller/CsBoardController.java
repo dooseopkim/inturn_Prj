@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.inturn.biz.board.service.CsBoardService;
 import com.inturn.biz.board.service.FileService;
 import com.inturn.biz.board.vo.CsBoardVO;
-import com.inturn.biz.board.vo.FreeBoardVO;
 
 @Controller
 public class CsBoardController {
@@ -68,11 +67,13 @@ public class CsBoardController {
 	 *            게시글 내용
 	 * @return freeBoard.do 게시글 목록으로 이동
 	 */
-//	@RequestMapping(value = "/insertCsBoard.do", method = RequestMethod.POST)
-//	public String insertBoard(String title, String id, String editor) {
-//		java.util.Date udate = new java.util.Date();
-//		Date regDate = new Date(udate.getTime());
-//		cb_service.insertCsBoard(new CsBoardVO(title, editor, regDate, 0, id));
-//		return "redirect:freeBoard.do?page_num=1";
-//	}
+	@RequestMapping(value = "/insertCsBoard.do", method = RequestMethod.POST)
+	public String insertBoard(String title, String id, String editor) {
+		java.util.Date udate = new java.util.Date();
+		Date regDate = new Date(udate.getTime());
+		cb_service.insertCsBoard(new CsBoardVO(0, 0, 0, title, editor, regDate, "T", "pw", 0, id));
+		System.out.println("insertBoard 컨트롤러");
+		return "redirect:csBoard.do?page_num=1";
+
+	}
 }

@@ -32,4 +32,15 @@ $(function() {
 		if(execute)
 			location.href = "/csBoard.do?page_num=1";
 	});
+	//비밀글여부
+	$("#secret_chk").change(function(){
+		if($("#secret_chk").prop("checked")){
+			$("#secret_pw").attr("disabled", false);
+		}else{
+			$("#secret_pw").attr("disabled", true);
+		}
+	});
+
+
+	
 });

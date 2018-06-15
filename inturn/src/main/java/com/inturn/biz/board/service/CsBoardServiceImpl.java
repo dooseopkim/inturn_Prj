@@ -90,8 +90,8 @@ public class CsBoardServiceImpl implements CsBoardService{
 
 	@Override
 	public int insertCsBoard(CsBoardVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("insertCsBoard 서비스임플 거쳐가여");
+		return cs_dao.insertCsBoard(vo);
 	}
 
 	@Override

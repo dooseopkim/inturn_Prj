@@ -30,8 +30,8 @@
 							</ul></li>
 						<li><a href="mentor.do">멘토찾기</a></li>
 						<li><a href="mentee.do">멘티찾기</a></li>
-						<li class="active"><a href="freeBoard.do?page_num=1">자유게시판</a></li>
-						<li class="has-dropdown"><a href="#">이용안내</a>
+						<li><a href="freeBoard.do?page_num=1">자유게시판</a></li>
+						<li class="active has-dropdown"><a href="#">이용안내</a>
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>
 								<li><a href="csBoard.do?page_num=1">고객서비스</a></li>
@@ -61,7 +61,7 @@
 						<tr>
 							<td id="table">${index}</td>
 							<td id="table"><a
-								href="viewcsBoard.do?fb_num=${csBoard.fb_num}&thisPage=${thisPage}">${csBoard.title}</a>
+								href="viewcsBoard.do?cs_num=${csBoard.cs_num}&thisPage=${thisPage}">${csBoard.title}</a>
 							</td>
 							<td id="table">${csBoard.regDate}</td>
 							<td id="table">${csBoard.hit}</td>
