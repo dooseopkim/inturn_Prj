@@ -5,11 +5,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<security:http auto-config="true" use-expressions="true">
+<!-- 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/**" requires-channel="https"/>
 		<security:port-mappings>
-			<security:port-mapping http="80" https="443"/>
+			<security:port-mapping http="8080" https="443"/>
 		</security:port-mappings>
 	</security:http>
-
+	
+	<security:authentication-manager></security:authentication-manager> -->
 </beans>
