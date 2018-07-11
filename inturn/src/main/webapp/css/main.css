@@ -12,14 +12,8 @@
 	right: 25% !important;	
 }
 
-.btn-signup{
+.carousel-caption-btn .btn{
 	background-color: #66D37E !important;
 	border-color: #66D37E !important;
 	margin: 0px 50px 0px 50px !important;
-}
-
-.btn-login{
-	background-color: #66D37E !important;
-	border-color: #66D37E !important;
-	margin: 0px 50px 0px 50px !important;
-}
+} 

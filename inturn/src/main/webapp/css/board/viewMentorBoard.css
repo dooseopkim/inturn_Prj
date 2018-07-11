@@ -70,6 +70,7 @@
 	padding: 15px 10% 5px 10%;
 	border: 1px solid #DDD !important;
 	margin-bottom: 15px;
+	display: none;
 }
 
 .box_edu{
@@ -77,9 +78,10 @@
 }
 
 #mb_career{
-	/* padding: 15px 10% 5px 10%;
+	padding: 15px 10% 5px 10%;
 	border: 1px solid #DDD !important;
-	margin-bottom: 15px; */
+	margin-bottom: 15px;
+	display: none;
 }
 
 .box_career{
@@ -90,6 +92,7 @@
 	padding: 15px 10% 5px 10%;
 	border: 1px solid #DDD !important;
 	margin-bottom: 15px;
+	display: none;
 }
 
 .box_certificate{
