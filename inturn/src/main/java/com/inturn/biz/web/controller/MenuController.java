@@ -65,7 +65,7 @@ public class MenuController {
 	 */
 	@RequestMapping(value="/mentee.do")
 	public String menteeDo() {
-		return "index.jsp?content=mentee";
+		return "redirect:menteeBoard.do";
 	}
 	
 	/**
