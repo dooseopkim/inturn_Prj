@@ -16,4 +16,12 @@
 	background-color: #66D37E !important;
 	border-color: #66D37E !important;
 	margin: 0px 50px 0px 50px !important;
-} 
+}
+
+a, a:link, a:visited, a:focus, a:hover, a:active{
+  text-decoration:none !important;
+}
+
+#fh5co-logo a {
+	color: #000 !important;
+}
