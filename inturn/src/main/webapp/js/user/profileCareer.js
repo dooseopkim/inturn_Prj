@@ -55,6 +55,11 @@ $(function() {
 		$("#box_addCareer").show();
 		$("#company_name").focus();
 	});
+	
+	$("#btn_closeCareer").click(function(){
+		$("#career").hide();
+		$("#box_addCareer").hide();
+	})
 
 	/**
 	 * 경력사항 취소 버튼 클릭 시

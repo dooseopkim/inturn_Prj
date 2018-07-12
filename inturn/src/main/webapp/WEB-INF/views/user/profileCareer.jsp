@@ -15,7 +15,8 @@
 			</div>
 			<div class="col-sm-6 text-right">
 				<input type="button" class="btn btn-primary" id="btn_addCareer"
-					value="추가">
+					value="추가"> <input type="button" class="btn btn-tmp"
+					id="btn_closeCareer" value="닫기">
 			</div>
 		</div>
 
