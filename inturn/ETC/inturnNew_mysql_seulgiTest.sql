@@ -141,6 +141,7 @@ CREATE TABLE `reply` (
    `fb_num`     INT           NULL     COMMENT 'fb_num', -- fb_num
    `cb_num`     INT           NULL     COMMENT 'cb_num', -- cb_num
    `mb_num`     INT           NULL     COMMENT 'mb_num', -- mb_num
+   `tb_num`     INT           NULL     COMMENT 'tb_num', -- tb_num
    `content`    VARCHAR(1000) NULL     COMMENT 'content', -- content
    `regDate`    DATE          NULL     COMMENT 'regDate', -- regDate
    `parentNum`  INT           NULL     COMMENT 'parentNum', -- parentNum
@@ -176,6 +177,22 @@ ALTER TABLE `mentorboard`
          `mb_num` -- mb_num
       );
 
+-- menteeBoard
+CREATE TABLE `menteeBoard` (
+   `tb_num`     INT           NOT NULL COMMENT 'tb_num', -- tb_num
+   `title`      VARCHAR(200)  NULL     COMMENT 'title', -- title
+   `content`    VARCHAR(1000) NULL     COMMENT 'content', -- content
+   `regDate`    DATE          NULL     COMMENT 'regDate', -- regDate
+   `id`         VARCHAR(30)   NULL     COMMENT 'id' -- id
+)
+COMMENT 'menteeBoard';
+
+-- menteeBoard
+ALTER TABLE `menteeBoard`
+   ADD CONSTRAINT `PK_menteeBoard` -- menteeBoard 기본키
+      PRIMARY KEY (
+         `tb_num` -- tb_num
+      );
 -- counselBoard
 CREATE TABLE `counselBoard` (
    `cb_num`     INT           NOT NULL COMMENT 'cb_num', -- cb_num
