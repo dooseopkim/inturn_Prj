@@ -5,8 +5,9 @@
  
  
  <mapper namespace="MailMapper">
-	<select id="Mail_Info" resultType="MailVO">
-		SELECT m_num,from_addr,fromname,smtp_username,smtp_userpassword,host,port 
-		FROM mail;
+	<select id="Mail_Info" parameterType="int" resultType="MailVO">
+		SELECT * 
+		FROM mail
+		WHERE port = #{port};
 	</select>
-</mapper>	
+</mapper>		

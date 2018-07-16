@@ -67,7 +67,7 @@ public class UserController {
 	 * @param to 받는 사람의 이메일 주소
 	 * @return
 	 */
-	@RequestMapping(value="/sendEmail.do", method=RequestMethod.POST)
+	@RequestMapping(value="/sendEmail.do", method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public String sendEmailDo(HttpSession session, String to) {
 		// 인증코드 생성한 후 session에 박아놓기
@@ -78,7 +78,7 @@ public class UserController {
 		System.out.println("여기까진 성공");
 		
 		// 이메일 전송정보 로딩
-		MailVO mail_setting = mailService.init();
+		MailVO mail_setting = mailService.init(587);
 	
 		String subject = "[人Turn] 회원가입 인증 코드 발급 안내";
 		StringBuffer sb = new StringBuffer();

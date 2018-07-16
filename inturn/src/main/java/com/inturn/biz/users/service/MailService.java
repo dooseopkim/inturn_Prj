@@ -18,6 +18,6 @@ public interface MailService {
 	 * @throws MessagingException 
 	 * @throws UnsupportedEncodingException 
 	 */
-	public MailVO init();
+	public MailVO init(int port);
 	public boolean sendEmail(String subject, String contents, String to, MailVO vo);
 }

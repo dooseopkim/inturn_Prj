@@ -24,17 +24,16 @@ public class MailDAOImpl implements MailDAO{
 	SqlSessionTemplate mybatis;
 	
 	@Override
-	public MailVO init() {
-		return mybatis.selectOne("MailMapper.Mail_Info");
+	public MailVO init(int port) {
+		return mybatis.selectOne("MailMapper.Mail_Info",port);
 	}
 
 	@Override
 	public boolean sendEmail(String subject, String contents, String to, MailVO vo) {
 		 // Create a Properties object to contain connection configuration information.
     	Properties props = System.getProperties();
-    	props.put("mail.transport.protocol", "smtp");
+    	props.put("mail.transport.protocol", "smtps");
     	props.put("mail.smtp.port", vo.getPort()); 
-    	props.put("mail.smtp.starttls.enable", "true");
     	props.put("mail.smtp.auth", "true");
     	props.put("mail.smtp.ssl.enable", "true"); 
 
@@ -71,7 +70,6 @@ public class MailDAOImpl implements MailDAO{
         try
         {
             System.out.println("Sending...");
-            
             // Connect to Amazon SES using the SMTP username and password you specified above.
             transport.connect(vo.getHost(), vo.getSmtp_username(), vo.getSmtp_userpassword());
         	

@@ -109,7 +109,7 @@ public class LogInOutController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(value="sendNewPW.do", method=RequestMethod.POST)
+	@RequestMapping(value="sendNewPW.do", method={RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView sendNewPWDo(UserVO vo, HttpSession session) {
 		System.out.println("sendNewPWDo() 진입");
 		System.out.println(vo);
@@ -124,7 +124,7 @@ public class LogInOutController {
 			String userEmail = vo.getEmail();
 			
 			// 이메일 전송정보 로딩
-			MailVO mail_setting = mailService.init();
+			MailVO mail_setting = mailService.init(587);
 			System.out.println("여기까진 성공");
 			String subject = "[人Turn] 임시 비밀번호 발급 안내";
 			StringBuffer sb = new StringBuffer();
