@@ -76,6 +76,7 @@ public class UserController {
 		session.setAttribute("code", code);
 		session.setAttribute("email", to);
 		System.out.println("여기까진 성공");
+		System.out.println(code);
 		
 		// 이메일 전송정보 로딩
 		MailVO mail_setting = mailService.init();
@@ -86,6 +87,7 @@ public class UserController {
 		//이게 진짜 메일 전송
 		boolean flag = mailService.sendEmail(subject, sb.toString(), to, mail_setting);
 		if(flag){
+			System.out.println(code);
 			return code;
 		}
 		return null;

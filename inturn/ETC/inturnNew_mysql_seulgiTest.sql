@@ -183,6 +183,7 @@ CREATE TABLE `menteeBoard` (
    `title`      VARCHAR(200)  NULL     COMMENT 'title', -- title
    `content`    VARCHAR(1000) NULL     COMMENT 'content', -- content
    `regDate`    DATE          NULL     COMMENT 'regDate', -- regDate
+   `hit`     INT           NULL     COMMENT 'hit', -- hit
    `id`         VARCHAR(30)   NULL     COMMENT 'id' -- id
 )
 COMMENT 'menteeBoard';

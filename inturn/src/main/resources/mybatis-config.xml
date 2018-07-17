@@ -16,6 +16,7 @@
 		<typeAlias type="com.inturn.biz.board.vo.FileGroupVO" alias="FileGroupVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.board.vo.FilesVO" alias="FilesVO"></typeAlias>
 		<typeAlias type="com.inturn.biz.board.vo.ReplyVO" alias="ReplyVO"></typeAlias>
+		<typeAlias type="com.inturn.biz.board.vo.MenteeBoardVO" alias="MenteeBoardVO"></typeAlias>
 	</typeAliases>
 
 	<mappers>
@@ -28,5 +29,6 @@
 		<mapper resource="./mappers/ProfileMapper.xml" />
 		<mapper resource="./mappers/MailMapper.xml" />
 		<mapper resource="./mappers/ReplyMapper.xml" />
+		<mapper resource="./mappers/MenteeBoardMapper.xml"/>
 	</mappers>
 </configuration>

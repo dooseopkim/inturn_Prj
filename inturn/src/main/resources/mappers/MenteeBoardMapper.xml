@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MenteeBoardMapper">
+	<!-- 현재 게시물의 이전 게시물 (조건 적용) -->
+	<select id="scPrevtb_num" parameterType="HashMap" resultType="int">
+		<![CDATA[
+			SELECT IFNULL(MAX(tb_num), -1) FROM menteeBoard WHERE ${condition} LIKE '%' #{search} '%' and fb_num < #{tb_num};
+		]]>
+	</select>
+	
+	<!-- 현재 게시물의 다음 게시물 (조건 적용) -->
+	<select id="scNexttb_num" parameterType="HashMap" resultType="int">
+		<![CDATA[
+			SELECT IFNULL(MIN(tb_num), -1) FROM menteeBoard WHERE ${condition} LIKE '%' #{search} '%' and tb_num > #{tb_num};
+		]]>
+	</select>
+	
+	<!-- 조건 검색 후 나온 게시물 리스트 (페이징 때문에 따로 처리) -->
+	<select id="scBoardList" parameterType="HashMap" resultType="MenteeBoardVO">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM menteeBoard
+			WHERE ${condition} LIKE '%' #{search} '%'
+			LIMIT #{offset}, #{limit}
+		) A ORDER BY tb_num DESC
+	</select>
+	
+	<!-- 조건 검색 후 게시물 개수 -->
+	<select id="scCountBoards" parameterType="HashMap" resultType="int">
+		SELECT COUNT(*) FROM menteeBoard WHERE ${condition} LIKE '%' #{search} '%'
+	</select>
+	
+	<!-- 이전 게시물 번호 -->
+	<select id="prevtb_num" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT IFNULL(MAX(tb_num), -1) FROM menteeBoard WHERE tb_num < #{tb_num};
+		]]>
+	</select>
+	
+	<!-- 다음 게시물 번호 -->
+	<select id="nexttb_num" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT IFNULL(MIN(tb_num), -1) FROM menteeBoard WHERE tb_num > #{tb_num};
+		]]>
+	</select>
+
+	<!-- 모든 게시물 리스트 -->
+	<select id="boardList" parameterType="HashMap" resultType="MenteeBoardVO">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM menteeBoard
+			LIMIT #{offset}, #{limit}
+		) A ORDER BY tb_num DESC
+	</select>
+	
+	<!-- 게시물수 -->
+	<select id="countBoards" resultType="int">
+		SELECT COUNT(*) FROM menteeBoard
+	</select>
+	
+	<!-- 게시물 내용 정보 -->
+	<select id="viewBoard" parameterType="int" resultType="MenteeBoardVO">
+		SELECT * FROM menteeBoard WHERE tb_num = #{tb_num}
+	</select>
+	
+	<!-- 게시물 찾기() -->
+	<select id="findBoard" parameterType="MenteeBoardVO" resultType="int">
+		SELECT IFNULL(max(tb_num),0) FROM menteeBoard WHERE title = #{title} AND content = #{content} AND id = #{id}
+	</select>
+
+	<!-- 게시물 작성 -->
+	<insert id="insertMenteeBoard" parameterType="MenteeBoardVO">
+		INSERT INTO menteeBoard (tb_num, title, content, regDate, id)
+		VALUES((SELECT IFNULL(max(t.tb_num),0)+1 FROM menteeBoard t), #{title}, #{content}, #{regDate}, #{id})
+	</insert>
+	
+	<!-- 게시물 수정 -->
+	<update id="modifyMenteeBoard" parameterType="MenteeBoardVO">
+		UPDATE menteeBoard SET title = #{title} WHERE tb_num = #{tb_num};
+		UPDATE menteeBoard SET content = #{content} WHERE tb_num = #{tb_num};
+	</update>
+	
+	<!-- 해당 게시물 조회수 -->
+	<update id="countUp" parameterType="int">
+		UPDATE menteeBoard SET hit = hit + 1 WHERE tb_num = #{tb_num}
+	</update>
+
+	<!-- 해당 게시물 삭제 -->
+	<delete id="deleteMenteeBoard">
+		DELETE FROM menteeBoard WHERE tb_num = #{tb_num}
+	</delete>
+</mapper>
