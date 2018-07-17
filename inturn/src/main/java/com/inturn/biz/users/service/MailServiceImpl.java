@@ -14,8 +14,8 @@ public class MailServiceImpl implements MailService{
 	MailDAO dao;
 	
 	@Override
-	public MailVO init() {
-		return dao.init();
+	public MailVO init(int port) {
+		return dao.init(port);
 	}
 
 	@Override
