@@ -311,6 +311,7 @@ CREATE TABLE `fileGroup` (
    `fileGroupNum` INT         NOT NULL COMMENT 'fileGroupNum', -- fileGroupNum
    `flag`         VARCHAR(30) NULL     COMMENT 'flag', -- flag
    `fb_num`       INT         NULL     COMMENT 'fb_num', -- fb_num
+   `tb_num`       INT         NULL     COMMENT 'tb_num', -- tb_num
    `cs_num`       INT         NULL     COMMENT 'cs_num' -- cs_num
 )
 COMMENT 'fileGroup';

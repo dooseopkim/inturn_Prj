@@ -24,8 +24,8 @@
 	</update>
 	
 	<insert id="addUser" parameterType="UserVO">
-		INSERT INTO users(id, pw, name, phone, birthday, email, type, idx)
-		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{birthday}, #{email} ,#{type}, (select ifnull(max(u.idx),0)+1 from users u))
+		INSERT INTO users(id, pw, name, phone, email, birthday, type, idx)
+		VALUES(#{id}, #{pw}, #{name}, #{phone}, #{email}, #{birthday}, #{type}, (select ifnull(max(u.idx),0)+1 from users u))
 	</insert>
 
 	<update id="modifyUser" parameterType="UserVO">

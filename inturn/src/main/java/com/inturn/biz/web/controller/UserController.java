@@ -142,11 +142,14 @@ public class UserController {
 		Map<String, String> map = new HashMap<String, String>();
 		System.out.println(birthday);
 		UserVO uvo = new UserVO(id, pw, name, phone, email, Date.valueOf(birthday), type);
+		System.out.println(uvo.toString());
 		int num = UserService.insertUser(uvo);
 		if(num==1){
 			map.put("result", "success");
+			System.out.println("insertUser 성공");
 		}else{
 			map.put("result", "fail");
+			System.out.println("insertUser 실패");
 		}
 		return new ModelAndView("jsonView", map);
 	}

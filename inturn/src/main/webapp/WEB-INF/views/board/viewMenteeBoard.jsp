@@ -6,9 +6,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="css/board/viewFreeBoard.css">
-	<script type="text/javascript" src="js/board/viewFreeBoard.js"></script>
-	<script type="text/javascript" src="js/reply/reply.js"></script>
-	<title>View Board</title>
+	<script type="text/javascript" src="js/board/viewMenteeBoard.js"></script>
+	<script type="text/javascript" src="js/reply/menteeReply.js"></script>
+	<title>게시물</title>
 </head>
 <body>
 	<jsp:include page="../userMenu.jsp" />
@@ -30,8 +30,8 @@
 								<li><a href="intro2.do">서비스소개</a></li>
 							</ul></li>
 						<li><a href="mentor.do">멘토찾기</a></li>
-						<li><a href="mentee.do">멘티찾기</a></li>
-						<li class="active"><a href="freeBoard.do?page_num=1">자유게시판</a></li>
+						<li class="active"><a href="mentee.do">멘티찾기</a></li>
+						<li><a href="freeBoard.do?page_num=1">자유게시판</a></li>
 						<li class="has-dropdown"><a href="#">이용안내</a>
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>
@@ -46,9 +46,9 @@
 	</nav>
 	<div class="container-wrap">
 	<input type="hidden" id="thisPage" value="${thisPage}">
-	<input type="hidden" id="prevfb_num" value="${prevfb_num}">
-	<input type="hidden" id="nextfb_num" value="${nextfb_num}">
-	<input type="hidden" id="fb_num" value="${board.fb_num}">
+	<input type="hidden" id="prevtb_num" value="${prevtb_num}">
+	<input type="hidden" id="nexttb_num" value="${nexttb_num}">
+	<input type="hidden" id="tb_num" value="${board.tb_num}">
 		<div class="row">
 			<div class="col-sm-4" style="text-align: left;">
 				<button id="prevBtn" class="btn btn-primary">이전 글</button>

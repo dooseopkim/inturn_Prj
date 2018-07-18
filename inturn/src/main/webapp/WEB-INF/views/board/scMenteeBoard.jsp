@@ -6,8 +6,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="css/board/freeBoard.css">
-	<script type="text/javascript" src="js/board/freeBoard.js"></script>
-	<title>Searched Free Board</title>
+	<script type="text/javascript" src="js/board/menteeBoard.js"></script>
+	<title>게시물검색</title>
 </head>
 <body>
 	<jsp:include page="../userMenu.jsp" />
@@ -29,8 +29,8 @@
 								<li><a href="intro2.do">서비스소개</a></li>
 							</ul></li>
 						<li><a href="mentor.do">멘토찾기</a></li>
-						<li><a href="mentee.do">멘티찾기</a></li>
-						<li class="active"><a href="freeBoard.do?page_num=1">자유게시판</a></li>
+						<li class="active"><a href="mentee.do">멘티찾기</a></li>
+						<li><a href="freeBoard.do?page_num=1">자유게시판</a></li>
 						<li class="has-dropdown"><a href="#">이용안내</a>
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>
@@ -57,16 +57,16 @@
 				</thead>
 				<tbody>
 					<c:set var="index" value="${limit}"></c:set>
-					<c:forEach var="freeBoard" items="${list}">
+					<c:forEach var="menteeBoard" items="${list}">
 						<c:set var="index" value="${index - 1}" />
 						<tr>
 							<td id="table">${index}</td>
 							<td id="table">
-								<a href="viewSCFreeBoard.do?condition=${condition}&search=${search}&fb_num=${freeBoard.fb_num}&thisPage=${thisPage}">${freeBoard.title}</a>
+								<a href="viewSCMenteeBoard.do?condition=${condition}&search=${search}&tb_num=${menteeBoard.tb_num}&thisPage=${thisPage}">${menteeBoard.title}</a>
 							</td>
-							<td id="table">${freeBoard.regDate}</td>
-							<td id="table">${freeBoard.hit}</td>
-							<td id="table">${freeBoard.id}</td>
+							<td id="table">${menteeBoard.regDate}</td>
+							<td id="table">${menteeBoard.hit}</td>
+							<td id="table">${menteeBoard.id}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -77,17 +77,17 @@
 				<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
 					<c:forEach var="i" begin="1" end="${page}" step="1">
 					<c:if test="${thisPage eq i}">
-						<li class="page-item active"><a class="page-link" href="searchFreeBoard.do?condition=${condition}&search=${search}&page_num=${i}">${i}</a></li>
+						<li class="page-item active"><a class="page-link" href="searchMenteeBoard.do?condition=${condition}&search=${search}&page_num=${i}">${i}</a></li>
 					</c:if>
 					<c:if test="${thisPage ne i}">
-						<li class="page-item"><a class="page-link" href="searchFreeBoard.do?condition=${condition}&search=${search}&page_num=${i}">${i}</a></li>
+						<li class="page-item"><a class="page-link" href="searchMenteeBoard.do?condition=${condition}&search=${search}&page_num=${i}">${i}</a></li>
 					</c:if>
 					</c:forEach>
 				<li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
 			</ul>
 		</div>
 		<div class="row">
-			<form action="searchFreeBoard.do" method="post">
+			<form action="searchMenteeBoard.do" method="post">
 				<div id="searchSelect" class="form-group col-sm-4">
 					<select name="condition" class="custom-select">
 						<option value="title">글 제목</option>

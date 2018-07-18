@@ -4,10 +4,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>멘티게시글작성</title>
 	<link rel="stylesheet" href="/css/board/insertFreeBoard.css">
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
-	<script type="text/javascript" src="js/board/insertFreeBoard.js"></script>
+	<script type="text/javascript" src="js/board/insertMenteeBoard.js"></script>
 	<script type="text/javascript" src="./resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
@@ -30,8 +30,8 @@
 								<li><a href="intro2.do">서비스소개</a></li>
 							</ul></li>
 						<li><a href="mentor.do">멘토찾기</a></li>
-						<li><a href="mentee.do">멘티찾기</a></li>
-						<li class="active"><a href="freeBoard.do?page_num=1">자유게시판</a></li>
+						<li class="active"><a href="mentee.do">멘티찾기</a></li>
+						<li><a href="freeBoard.do?page_num=1">자유게시판</a></li>
 						<li class="has-dropdown"><a href="#">이용안내</a>
 							<ul class="dropdown">
 								<li><a href="#">자주 묻는 질문</a></li>
@@ -48,7 +48,7 @@
  		<div class="row">
  			<div class="col-sm-2"></div>
  			<div class="col-sm-10">
-			    <form action="/insertFreeBoard.do" method="post" id="insertBoardFrm" enctype="multipart/form-data">
+			    <form action="/insertMenteeBoard.do" method="post" id="insertBoardFrm" enctype="multipart/form-data">
 			    	<div class="row">&nbsp;</div>
 			    	<div class="row">
 			    		<div class="form-group">

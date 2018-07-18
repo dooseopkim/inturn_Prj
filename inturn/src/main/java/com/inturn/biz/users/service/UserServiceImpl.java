@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public int insertUser(UserVO vo) {
+		System.out.println("service : "+vo);
 		return dao.insertUser(vo);
 	}
 	

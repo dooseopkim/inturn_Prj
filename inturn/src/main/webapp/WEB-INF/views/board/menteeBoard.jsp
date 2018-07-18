@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="css/board/freeBoard.css">
-<script type="text/javascript" src="js/board/freeBoard.js"></script>
-<title>Mentee Board</title>
+<script type="text/javascript" src="js/board/menteeBoard.js"></script>
+<title>멘티게시판</title>
 </head>
 <body>
 	<%-- <jsp:include page="../userMenu.jsp" /> --%>
@@ -43,6 +43,11 @@
 	</div>
 	</nav>
 	<div class="container-wrap">
+		<div id="fh5co-blog">
+			<div class="row">
+				<div style="text-align: center; vertical-align: middle; font-size: x-large; color: black; font-weight: bold;"> 청년 멘티를 소개합니다 :D</div>
+			</div>
+		</div>
 		<div class="row">
 			<table class="table table-striped">
 				<thead>
@@ -56,16 +61,16 @@
 				</thead>
 				<tbody>
 					<c:set var="index" value="${limit}"></c:set>
-					<c:forEach var="freeBoard" items="${list}">
+					<c:forEach var="menteeBoard" items="${list}">
 						<c:set var="index" value="${index - 1}" />
 						<tr>
 							<td id="table">${index}</td>
 							<td id="table"><a
-								href="viewFreeBoard.do?fb_num=${freeBoard.fb_num}&thisPage=${thisPage}">${freeBoard.title}</a>
+								href="viewMenteeBoard.do?tb_num=${menteeBoard.tb_num}&thisPage=${thisPage}">${menteeBoard.title}</a>
 							</td>
-							<td id="table">${freeBoard.regDate}</td>
-							<td id="table">${freeBoard.hit}</td>
-							<td id="table">${freeBoard.id}</td>
+							<td id="table">${menteeBoard.regDate}</td>
+							<td id="table">${menteeBoard.hit}</td>
+							<td id="table">${menteeBoard.id}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -77,18 +82,18 @@
 				<c:forEach var="i" begin="1" end="${page}" step="1">
 					<c:if test="${thisPage eq i}">
 						<li class="page-item active"><a class="page-link"
-							href="freeBoard.do?page_num=${i}">${i}</a></li>
+							href="menteeBoard.do?page_num=${i}">${i}</a></li>
 					</c:if>
 					<c:if test="${thisPage ne i}">
 						<li class="page-item"><a class="page-link"
-							href="freeBoard.do?page_num=${i}">${i}</a></li>
+							href="menteeBoard.do?page_num=${i}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				<li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
 			</ul>
 		</div>
 		<div class="row">
-			<form action="searchFreeBoard.do" method="post">
+			<form action="searchMenteeBoard.do" method="post">
 				<div id="searchSelect" class="form-group col-sm-4">
 					<select name="condition" class="custom-select">
 						<option value="title">글 제목</option>
