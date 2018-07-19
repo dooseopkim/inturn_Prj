@@ -6,6 +6,7 @@ public class ReplyVO {
 	private int rp_num;
 	private int fb_num;
 	private int cb_num;
+	private int tb_num;
 	private int mb_num;
 	private String content;
 	private Date regDate;
@@ -22,6 +23,22 @@ public class ReplyVO {
 		this.rp_num = rp_num;
 		this.fb_num = fb_num;
 		this.cb_num = cb_num;
+		this.mb_num = mb_num;
+		this.content = content;
+		this.regDate = regDate;
+		this.parentNum = parentNum;
+		this.position = position;
+		this.id = id;
+	}
+	
+
+	public ReplyVO(int rp_num, int fb_num, int cb_num, int tb_num, int mb_num, String content, Date regDate,
+			int parentNum, int position, String id) {
+		super();
+		this.rp_num = rp_num;
+		this.fb_num = fb_num;
+		this.cb_num = cb_num;
+		this.tb_num = tb_num;
 		this.mb_num = mb_num;
 		this.content = content;
 		this.regDate = regDate;
@@ -101,12 +118,20 @@ public class ReplyVO {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	public int getTb_num() {
+		return tb_num;
+	}
+
+	public void setTb_num(int tb_num) {
+		this.tb_num = tb_num;
+	}
 
 	@Override
 	public String toString() {
-		return "ReplyVO [rp_num=" + rp_num + ", fb_num=" + fb_num + ", cb_num=" + cb_num + ", mb_num=" + mb_num
-				+ ", content=" + content + ", regDate=" + regDate + ", parentNum=" + parentNum + ", position="
-				+ position + ", id=" + id + "]";
+		return "ReplyVO [rp_num=" + rp_num + ", fb_num=" + fb_num + ", cb_num=" + cb_num + ", tb_num=" + tb_num
+				+ ", mb_num=" + mb_num + ", content=" + content + ", regDate=" + regDate + ", parentNum=" + parentNum
+				+ ", position=" + position + ", id=" + id + "]";
 	}
 
 }

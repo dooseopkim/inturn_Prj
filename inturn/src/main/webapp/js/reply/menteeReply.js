@@ -18,7 +18,7 @@ $(window).load(function() {
  */
 function getReplies(pageNum) {
 	$.ajax({
-		url: "getReplies.do",
+		url: "getTBReplies.do",
 		method: "POST",
 		datatype: "JSON",
 		data: {
@@ -28,6 +28,9 @@ function getReplies(pageNum) {
 		success: function(data){
 			if(data.result == "success")
 				writeReplies(data.list, data.page, pageNum);
+		},
+		error: function(request, status, error){
+			alert("error: "+error);
 		}
 	})
 }
@@ -41,7 +44,7 @@ function insertReply() {
 		alert("아무것도 입력되지 않았습니다.");
 	else {
 		$.ajax({
-			url: "insertReply.do",
+			url: "insertTBReply.do",
 			method: "POST",
 			datatype: "JSON",
 			data: {
@@ -166,7 +169,7 @@ function insertReReply(rp_num, i) {
 		alert("아무것도 입력되지 않았습니다.");
 	else {
 		$.ajax({
-			url: "insertReReply.do",
+			url: "insertTBReReply.do",
 			method: "POST",
 			datatype: "JSON",
 			data: {

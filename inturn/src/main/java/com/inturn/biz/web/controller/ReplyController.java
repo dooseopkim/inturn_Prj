@@ -53,6 +53,7 @@ public class ReplyController {
 	 */
 	@RequestMapping(value="/insertReply.do", method=RequestMethod.POST)
 	public ModelAndView insertReply(ReplyVO vo) {
+		System.out.println(vo.toString()); //여기서 fb_num 값 있는지 확인해보기
 		int row = ReplyService.insertFBReply(vo);
 		HashMap<String, Object> map = new HashMap<>();
 		if(row >= 1)
@@ -194,6 +195,82 @@ public class ReplyController {
 	public ModelAndView getMBReplies(int page_num, int mb_num) {
 		HashMap<String, Object> map = new HashMap<>();
 		HashMap<String, Object> result = ReplyService.getMBReplies(page_num, mb_num);
+		List<ReplyVO> list = (List<ReplyVO>) result.get("list");
+		int count_page = (int) result.get("count_page");
+		if(!list.isEmpty()) {
+			map.put("result", "success");
+			map.put("list", list);
+			map.put("page", count_page);
+			map.put("thisPage", page_num);
+		}
+		else
+			map.put("result", "none");
+		return new ModelAndView("jsonView",map);
+	}
+
+	/////////멘티게시판 댓글 관련/////////
+	/**
+	 * menteeBoard와 관련된 댓글 최근 10개를 가져와서 알려주는 함수
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value="/menteeBoardAlarm.do")
+	public ModelAndView menteeBoardAlarm(HttpSession session) {
+		UserVO login = (UserVO) session.getAttribute("login");
+		List<ReplyVO> list = ReplyService.menteeBoardAlarm(login.getId());
+		HashMap<String, Object> map = new HashMap<>();
+		if(!list.isEmpty()) {
+			map.put("result", "success");
+			map.put("list", list);
+		}
+		else
+			map.put("result", "none");
+		return new ModelAndView("jsonView",map);
+	}
+	
+	/**
+	 * menteeBoard 댓글 작성 수행 함수
+	 * @param vo
+	 * @return
+	 */
+	@RequestMapping(value="/insertTBReply.do", method=RequestMethod.POST)
+	public ModelAndView insertTBReply(ReplyVO vo) {
+		System.out.println(vo.toString());
+		int row = ReplyService.insertTBReply(vo);
+		System.out.println("댓글작성완료");
+		HashMap<String, Object> map = new HashMap<>();
+		if(row >= 1)
+			map.put("result", "success");
+		else
+			map.put("reulst", "fail");
+		return new ModelAndView("jsonView",map);
+	}
+	
+	/**
+	 * menteeBoard 대 댓글 입력함수
+	 * @param vo
+	 * @return
+	 */
+	@RequestMapping(value="/insertTBReReply.do", method=RequestMethod.POST)
+	public ModelAndView insertTBReReply(ReplyVO vo) {
+		int row = ReplyService.insertTBReReply(vo);
+		HashMap<String, Object> map = new HashMap<>();
+		if(row >= 1)
+			map.put("result", "success");
+		else
+			map.put("reulst", "fail");
+		return new ModelAndView("jsonView",map);
+	}
+	/**
+	 * menteeBoard 로딩시, 혹은 호출시 해당 페이지, 게시글에 있는
+	 * 댓글을 페이징처리하여 보내주는 함수
+	 * @param page_num
+	 * @return
+	 */
+	@RequestMapping(value="/getTBReplies.do")
+	public ModelAndView getTBReplies(int page_num, int tb_num) {
+		HashMap<String, Object> map = new HashMap<>();
+		HashMap<String, Object> result = ReplyService.getTBReplies(page_num, tb_num);
 		List<ReplyVO> list = (List<ReplyVO>) result.get("list");
 		int count_page = (int) result.get("count_page");
 		if(!list.isEmpty()) {

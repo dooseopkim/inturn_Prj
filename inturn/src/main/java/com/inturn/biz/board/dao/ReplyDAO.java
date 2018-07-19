@@ -25,4 +25,11 @@ public interface ReplyDAO {
 	public List<ReplyVO> getMBReplies(HashMap<String, Object> map);
 	public int deleteMBReplies(int mb_num);
 	public int countMBReplies(int mb_num);
+	
+	public int insertTBReply(ReplyVO vo);
+	public int insertTBReReply(ReplyVO vo);
+	public List<ReplyVO> getTBReplies(HashMap<String, Object> map);
+	public List<ReplyVO> menteeBoardAlarm(String id);
+	public int deleteTBReplies(int tb_num);
+	public int countTBReplies(int tb_num);
 }
