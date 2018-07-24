@@ -151,20 +151,21 @@ function signup(event) {
 				"pw" : CryptoJS.SHA256($("#pw").val()).toString(),
 				"phone" : $("#phone").val(),
 				"birthday" : birthday,
-				"email" : $("#email").val(),
+				"email" : $("#email").val()
 			},
 			success : function(data) {
 				if (data.result == "success") {
 					alert('회원가입에 성공했습니다.');
-					location.href = "successSignup.do"
-
+					location.href = "successSignup.do";
+					null;
 				} else {
 					alert('죄송합니다. 회원가입에 실패했습니다. 다시 진행해주세요.');
-					location.href = "signup.do"
+					location.href = "signup.do";
+					null;
 				}
 			},
 			error : function(request, status, error) {
-				alert("error:" + error)
+				alert("error:" + error);
 			}
 		});
 	}

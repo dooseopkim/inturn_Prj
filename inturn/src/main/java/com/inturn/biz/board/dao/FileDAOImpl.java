@@ -11,7 +11,7 @@ import com.inturn.biz.board.vo.FileGroupVO;
 import com.inturn.biz.board.vo.FilesVO;
 
 @Repository("FileDAO")
-public class FileDAOImpl implements FileDAO{
+public class FileDAOImpl implements FileDAO {
 	@Autowired
 	SqlSessionTemplate mybatis;
 
@@ -19,6 +19,7 @@ public class FileDAOImpl implements FileDAO{
 	public int findFileGroup(String flag) {
 		return mybatis.selectOne("FileMapper.findFileGroup", flag);
 	}
+
 	@Override
 	public int insertFileGroup(String flag) {
 		return mybatis.insert("FileMapper.insertFileGroup", flag);
@@ -33,6 +34,7 @@ public class FileDAOImpl implements FileDAO{
 	public int update_FB_FileGroup(FileGroupVO vo) {
 		return mybatis.update("FileMapper.update_FB_FileGroup", vo);
 	}
+
 	@Override
 	public int delete_CB_FileGroup(int cb_num) {
 		return mybatis.delete("FileMapper.delete_CB_FileGroup", cb_num);
@@ -45,9 +47,9 @@ public class FileDAOImpl implements FileDAO{
 
 	@Override
 	public int findFile(FilesVO vo) {
-		return mybatis.selectOne("FileMapper.findFile",vo);
+		return mybatis.selectOne("FileMapper.findFile", vo);
 	}
-	
+
 	@Override
 	public int insertFile(FilesVO vo) {
 		return mybatis.insert("FileMapper.insertFile", vo);
@@ -57,32 +59,61 @@ public class FileDAOImpl implements FileDAO{
 	public int deleteFile(int fileGroupNum) {
 		return mybatis.delete("FileMapper.deleteFile", fileGroupNum);
 	}
+
 	@Override
 	public int insertBoard(String flag) {
-		return mybatis.update("FileMapper.insertBoard",flag);
+		return mybatis.update("FileMapper.insertBoard", flag);
 	}
+
 	@Override
 	public int deleteFileGroup(int fileGroupNum) {
 		return mybatis.delete("FileMapper.deleteFileGroup", fileGroupNum);
 	}
+
 	@Override
 	public int findFileGroupNumMax(int fb_num) {
 		return mybatis.selectOne("FileMapper.findFileGroupNumMax", fb_num);
 	}
+
 	@Override
 	public int findFileGroupNumMin(int fb_num) {
 		return mybatis.selectOne("FileMapper.findFileGroupNumMin", fb_num);
 	}
+
 	@Override
 	public int modify_FB_files(HashMap<String, Integer> map) {
 		return mybatis.update("FileMapper.modify_FB_files", map);
 	}
+
 	@Override
 	public int delete_FB_Files(int fb_num) {
 		return mybatis.delete("FileMapper.delete_FB_Files", fb_num);
 	}
+
 	@Override
 	public List<FilesVO> findFiles(int fileGroupNum) {
 		return mybatis.selectList("FileMapper.findFiles", fileGroupNum);
+	}
+
+	@Override
+	public int update_TB_FileGroup(FileGroupVO vo) {
+		return mybatis.update("FileMapper.update_TB_FileGroup", vo);
+	}
+
+	@Override
+	public int delete_TB_FileGroup(int tb_num) {
+		return mybatis.delete("FileMapper.delete_TB_FileGroup", tb_num);
+	}
+
+	@Override
+	public int modify_TB_files(HashMap<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete_TB_Files(int tb_num) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

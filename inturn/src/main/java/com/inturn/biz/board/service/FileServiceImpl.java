@@ -152,4 +152,26 @@ public class FileServiceImpl implements FileService{
 		row += dao.deleteFileGroup(fileGroupNum);
 		return row;
 	}
+
+	/**
+	 * @param vo
+	 * 멘티 게시판에 작성시
+	 * MenteeBoard의 num을
+	 * 해당 File이 들어있는 FileGroupNum과 매칭하여
+	 * FileGroup의 고객게시판 번호를 업데이트 해주는 함수
+	 */
+	@Override
+	public int update_TB_FileGroup(FileGroupVO vo) {
+		return dao.update_TB_FileGroup(vo);
+	}
+
+	/**
+	 * @param tb_num
+	 * 게시판 삭제 or 수정 시 파일을 모두 지워을 경우
+	 * tb_num에 해당하는 FileGroup DB를 삭제하는 함수
+	 */
+	@Override
+	public int delete_TB_FileGroup(int tb_num) {
+		return dao.delete_TB_FileGroup(tb_num);
+	}
 }

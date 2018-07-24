@@ -109,5 +109,36 @@ public class ReplyDAOImpl implements ReplyDAO{
 	public int countMBReplies(int mb_num) {
 		return mybatis.selectOne("ReplyMapper.countMBReplies", mb_num);
 	}
+
+	//////멘티 게시판 댓글 관련//////
+	@Override
+	public int insertTBReply(ReplyVO vo) {
+		return mybatis.insert("ReplyMapper.insertTBReply", vo);
+	}
+
+	@Override
+	public int insertTBReReply(ReplyVO vo) {
+		return mybatis.insert("ReplyMapper.insertTBReReply", vo);
+	}
+
+	@Override
+	public List<ReplyVO> getTBReplies(HashMap<String, Object> map) {
+		return mybatis.selectList("ReplyMapper.getTBReplies", map);
+	}
+
+	@Override
+	public List<ReplyVO> menteeBoardAlarm(String id) {
+		return mybatis.selectList("ReplyMapper.menteeBoardAlarm", id);
+	}
+
+	@Override
+	public int deleteTBReplies(int tb_num) {
+		return mybatis.delete("ReplyMapper.deleteTBReplies", tb_num);
+	}
+
+	@Override
+	public int countTBReplies(int tb_num) {
+		return mybatis.selectOne("ReplyMapper.countTBReplies", tb_num);
+	}
 	
 }

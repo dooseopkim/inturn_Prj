@@ -40,8 +40,10 @@ public class MenteeBoardController {
 	 */
 	@RequestMapping(value = "/menteeBoard.do", method = RequestMethod.GET)
 	public String menteeBoardDo(int page_num, HttpServletRequest request) {
+		System.out.println("멘티게시판 고고고고!!");
 		HashMap<String, Object> boardInfo = tb_service.boardList(page_num);
 		List<MenteeBoardVO> list = (List<MenteeBoardVO>) boardInfo.get("list");
+		System.out.println(list.toString());
 		int page = (int) boardInfo.get("count_page");
 		int limit = (int) boardInfo.get("limit");
 		int thisPage = (int) boardInfo.get("thisPage");
@@ -289,8 +291,10 @@ public class MenteeBoardController {
 	@RequestMapping(value = "/insertMenteeBoard.do", method = RequestMethod.POST)
 	public String insertBoard(String title, String id, String editor) {
 		java.util.Date udate = new java.util.Date();
+		System.out.println(title);
 		Date regDate = new Date(udate.getTime());
-		tb_service.insertMenteeBoard(new MenteeBoardVO(title, editor, regDate, id));
+		tb_service.insertMenteeBoard(new MenteeBoardVO(title, editor, regDate, 0, id));
+		System.out.println("insert Mentee Board Test OK");
 		return "redirect:menteeBoard.do?page_num=1";
 	}
 

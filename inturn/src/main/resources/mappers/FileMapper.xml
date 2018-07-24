@@ -27,6 +27,10 @@
 	<update id="update_FB_FileGroup" parameterType="FileGroupVO">
 		UPDATE fileGroup SET fb_num = #{fb_num} WHERE fileGroupNum = #{fileGroupNum}
 	</update>
+
+	<update id="update_TB_FileGroup" parameterType="FileGroupVO">
+		UPDATE fileGroup SET tb_num = #{tb_num} WHERE fileGroupNum = #{fileGroupNum}
+	</update>
 	
 	<update id="modify_FB_files" parameterType="HashMap">
 		UPDATE files SET fileGroupNum = #{min} WHERE fileGroupNum = #{max}
@@ -42,6 +46,10 @@
 
 	<delete id="delete_FB_FileGroup">
 		DELETE FROM fileGroup WHERE fb_num = #{fb_num}
+	</delete>
+
+	<delete id="delete_TB_FileGroup">
+		DELETE FROM fileGroup WHERE tb_num = #{tb_num}
 	</delete>
 
 	<delete id="delete_FB_Files">

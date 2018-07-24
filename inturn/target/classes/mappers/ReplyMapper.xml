@@ -123,4 +123,47 @@
 		WHERE mb_num = #{mb_num}
 	</select>
 	
+	<!-- 멘티 게시물 댓글 -->
+	<insert id="insertTBReply" parameterType="ReplyVO">
+		INSERT INTO reply (rp_num, tb_num, content, regDate, parentNum, position, id)
+		VALUES((SELECT IFNULL(max(r.rp_num),0)+1 FROM reply r), #{tb_num}, #{content}, #{regDate}, 
+		-1, (SELECT IFNULL(max(r.position),0)+1 FROM reply r), #{id})
+	</insert>
+	
+	<insert id="insertTBReReply" parameterType="ReplyVO">
+		INSERT INTO reply (rp_num, tb_num, content, regDate, parentNum, position, id)
+		VALUES((SELECT IFNULL(max(r.rp_num),0)+1 FROM reply r),
+			#{tb_num}, #{content}, #{regDate}, #{parentNum},
+			(SELECT IFNULL(MIN(r.position),
+				(SELECT r1.position FROM reply r1 WHERE rp_num = #{parentNum})) -1 
+					FROM reply r WHERE parentNum = #{parentNum}), #{id})
+	</insert>
+	
+	<delete id="deleteTBReplies" parameterType="int">
+		DELETE FROM reply 
+		WHERE tb_num = #{tb_num}
+	</delete>
+	
+	<select id="countTBReplies" parameterType="int" resultType="int">
+		SELECT count(*) 
+		FROM reply 
+		WHERE tb_num = #{tb_num}
+	</select>
+	
+	<select id="getTBReplies" parameterType="HashMap" resultType="ReplyVO">
+		SELECT * 
+		FROM (
+			SELECT * 
+			FROM reply
+			WHERE tb_num = #{tb_num}
+			ORDER BY position
+			LIMIT #{offset}, #{limit}
+		) A ORDER BY position DESC
+	</select>
+	
+	<select id="menteeBoardAlarm" parameterType="String" resultType="ReplyVO">
+		SELECT * FROM reply  
+		WHERE tb_num in (SELECT t.tb_num FROM menteeBoard t WHERE t.id = #{id}) 
+		ORDER BY tb_num DESC LIMIT 10
+	</select>
 </mapper>

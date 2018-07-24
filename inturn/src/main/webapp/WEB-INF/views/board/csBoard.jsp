@@ -43,6 +43,13 @@
 	</div>
 	</nav>
 	<div class="container-wrap">
+		<div id="fh5co-blog">
+			<div class="row">
+				<div
+					style="text-align: center; vertical-align: middle; font-size: x-large; color: black; font-weight: bold;">
+					고객상담게시판</div>
+			</div>
+		</div>
 		<div class="row">
 			<table class="table table-striped">
 				<thead>

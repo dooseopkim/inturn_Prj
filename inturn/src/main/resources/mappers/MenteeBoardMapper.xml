@@ -74,8 +74,8 @@
 
 	<!-- 게시물 작성 -->
 	<insert id="insertMenteeBoard" parameterType="MenteeBoardVO">
-		INSERT INTO menteeBoard (tb_num, title, content, regDate, id)
-		VALUES((SELECT IFNULL(max(t.tb_num),0)+1 FROM menteeBoard t), #{title}, #{content}, #{regDate}, #{id})
+		INSERT INTO menteeBoard (tb_num, title, content, regDate, hit, id)
+		VALUES((SELECT IFNULL(max(t.tb_num),0)+1 FROM menteeBoard t), #{title}, #{content}, #{regDate}, #{hit}, #{id})
 	</insert>
 	
 	<!-- 게시물 수정 -->

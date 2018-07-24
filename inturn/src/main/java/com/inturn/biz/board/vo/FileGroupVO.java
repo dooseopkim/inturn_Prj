@@ -5,6 +5,7 @@ public class FileGroupVO {
 	private String flag;
 	private int fb_num;
 	private int cb_num;
+	private int tb_num;
 	
 	public FileGroupVO() {
 		super();
@@ -17,8 +18,16 @@ public class FileGroupVO {
 		this.fb_num = fb_num;
 		this.cb_num = cb_num;
 	}
-
 	
+	public FileGroupVO(int fileGroupNum, String flag, int fb_num, int cb_num, int tb_num) {
+		super();
+		this.fileGroupNum = fileGroupNum;
+		this.flag = flag;
+		this.fb_num = fb_num;
+		this.cb_num = cb_num;
+		this.tb_num = tb_num;
+	}
+
 	public FileGroupVO(int fileGroupNum, int fb_num) {
 		super();
 		this.fileGroupNum = fileGroupNum;
@@ -56,10 +65,19 @@ public class FileGroupVO {
 	public void setCb_num(int cb_num) {
 		this.cb_num = cb_num;
 	}
+	
+	public int getTb_num() {
+		return tb_num;
+	}
+
+	public void setTb_num(int tb_num) {
+		this.tb_num = tb_num;
+	}
 
 	@Override
 	public String toString() {
 		return "FileGroupVO [fileGroupNum=" + fileGroupNum + ", flag=" + flag + ", fb_num=" + fb_num + ", cb_num="
-				+ cb_num + "]";
+				+ cb_num + ", tb_num=" + tb_num + "]";
 	}
+
 }

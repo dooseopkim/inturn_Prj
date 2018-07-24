@@ -7,11 +7,31 @@ public class MenteeBoardVO {
 	private String title;
 	private String content;
 	private Date regDate;
+	private int hit;
 	private String id;
 	
 	public MenteeBoardVO() {
 	}
 	
+	public MenteeBoardVO(int tb_num, String title, String content, Date regDate, int hit, String id) {
+		super();
+		this.tb_num = tb_num;
+		this.title = title;
+		this.content = content;
+		this.regDate = regDate;
+		this.hit = hit;
+		this.id = id;
+	}
+
+	public MenteeBoardVO(String title, String content, Date regDate, int hit, String id) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.regDate = regDate;
+		this.hit = hit;
+		this.id = id;
+	}
+
 	public MenteeBoardVO(int tb_num, String title, String content, Date regDate, String id) {
 		this.tb_num = tb_num;
 		this.title = title;
@@ -83,10 +103,18 @@ public class MenteeBoardVO {
 		this.id = id;
 	}
 
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
 	@Override
 	public String toString() {
 		return "MenteeBoardVO [tb_num=" + tb_num + ", title=" + title + ", content=" + content + ", regDate=" + regDate
-				+ ", id=" + id + "]";
+				+ ", hit=" + hit + ", id=" + id + "]";
 	}
 
 	@Override
@@ -94,6 +122,7 @@ public class MenteeBoardVO {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		result = prime * result + hit;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((regDate == null) ? 0 : regDate.hashCode());
 		result = prime * result + tb_num;
@@ -115,6 +144,8 @@ public class MenteeBoardVO {
 				return false;
 		} else if (!content.equals(other.content))
 			return false;
+		if (hit != other.hit)
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -134,6 +165,7 @@ public class MenteeBoardVO {
 			return false;
 		return true;
 	}
+
 	
 	
 }
