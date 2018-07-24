@@ -26,6 +26,7 @@ public class MentorBoardDAOImpl implements MentorBoardDAO{
 
 	@Override
 	public int getCntMentorBoard() {
+		System.out.println("DAOImpl getCntMentorBoard() 진입");
 		return mybatis.selectOne("MentorBoardMapper.getCntMentorBoard");
 	}
 

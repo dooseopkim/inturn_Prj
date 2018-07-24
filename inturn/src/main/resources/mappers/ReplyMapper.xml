@@ -71,7 +71,7 @@
 	
 	<select id="mentorBoardAlarm" parameterType="String" resultType="ReplyVO">
 		SELECT * FROM reply  
-		WHERE mb_num in (SELECT m.mb_num FROM mentorBoard m WHERE m.id = #{id}) 
+		WHERE mb_num in (SELECT m.mb_num FROM mentorboard m WHERE m.id = #{id}) 
 		ORDER BY mb_num DESC LIMIT 10
 	</select>
 	

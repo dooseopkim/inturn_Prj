@@ -59,9 +59,9 @@ function insertReply() {
 /**
  * 대댓글을 수정할 때 엔터키로 수행함
  */
-function modifyReReplyEnter(i) {
+function modifyReReplyEnter(rp_num, i) {
 	if(event.keyCode == 13)
-		modifyReReply(i);
+		modifyReReply(rp_num, i);
 }
 
 /**
@@ -69,17 +69,17 @@ function modifyReReplyEnter(i) {
  * 수정이 완료되어 DB에 정상적으로 등록되면
  * 전체 리스트를 지우고 다시불러온다.
  */
-function modifyReReply(i) {
-	if($("#modifyContent").val() =='')
+function modifyReReply(rp_num, i) {
+	if($("#modifyContent"+i).val() =='')
 		alert("아무것도 입력되지 않았습니다.");
 	else {
 		$.ajax({
-			url: "",
+			url: "modifyReply.do",
 			method: "POST",
 			datatype: "JSON",
 			data: {
 				"rp_num" : rp_num,
-				"content" : $("#modifyContent").val()
+				"content" : $("#modifyContent"+i).val()
 			},
 			success: function(data) {
 				if(data.result == "success") 

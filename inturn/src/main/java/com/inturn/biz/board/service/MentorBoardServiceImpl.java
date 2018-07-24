@@ -13,66 +13,67 @@ import com.inturn.biz.board.vo.MentorBoardVO;
 @Service("MentorBoardService")
 public class MentorBoardServiceImpl implements MentorBoardService{
 	@Resource(name="MentorBoardDAO")
-	MentorBoardDAO dao;
+	MentorBoardDAO mb_dao;
 	
 	@Override
 	public List<MentorBoardVO> mentorBoardList(HashMap<String, Object> map) {
-		return dao.mentorBoardList(map);
+		return mb_dao.mentorBoardList(map);
 	}
 
 	@Override
 	public List<MentorBoardVO> searchMentorBoardList(HashMap<String, Object> map) {
-		return dao.searchMentorBoardList(map);
+		return mb_dao.searchMentorBoardList(map);
 	}
 
 	@Override
 	public int getCntMentorBoard() {
-		return dao.getCntMentorBoard();
+		System.out.println("serviceImpl getCntMentorBoard() 진입");
+		return mb_dao.getCntMentorBoard();
 	}
 
 	@Override
 	public int getSearchCntMentorBoard(HashMap<String, Object> map) {
-		return dao.getSearchCntMentorBoard(map);
+		return mb_dao.getSearchCntMentorBoard(map);
 	}
 
 	@Override
 	public int prevMb_num(int mb_num) {
-		return dao.prevMb_num(mb_num);
+		return mb_dao.prevMb_num(mb_num);
 	}
 
 	@Override
 	public int nextMb_num(int mb_num) {
-		return dao.nextMb_num(mb_num);
+		return mb_dao.nextMb_num(mb_num);
 	}
 
 	@Override
 	public int scPrevMb_num(HashMap<String, Object> map) {
-		return dao.scPrevMb_num(map);
+		return mb_dao.scPrevMb_num(map);
 	}
 
 	@Override
 	public int scNextMb_num(HashMap<String, Object> map) {
-		return dao.scNextMb_num(map);
+		return mb_dao.scNextMb_num(map);
 	}
 	
 	@Override
 	public MentorBoardVO viewMentorBoard(int mb_num) {
-		return dao.viewMentorBoard(mb_num);
+		return mb_dao.viewMentorBoard(mb_num);
 	}
 
 	@Override
 	public int insertMentorBoard(MentorBoardVO vo) {
-		return dao.insertMentorBoard(vo);
+		return mb_dao.insertMentorBoard(vo);
 	}
 
 	@Override
 	public int modifyMentorBoard(MentorBoardVO vo) {
-		return dao.modifyMentorBoard(vo);
+		return mb_dao.modifyMentorBoard(vo);
 	}
 
 	@Override
 	public int deleteMentorBoard(int mb_num) {
-		return dao.deleteMentorBoard(mb_num);
+		return mb_dao.deleteMentorBoard(mb_num);
 	}
 	
 }

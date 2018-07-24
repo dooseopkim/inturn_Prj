@@ -29,7 +29,7 @@
 								<li><a href="intro1.do">사업소개</a></li>
 								<li><a href="intro2.do">서비스소개</a></li>
 							</ul></li>
-						<li><a href="mentor.do">멘토찾기</a></li>
+						<li><a href="mentorBoard.do">멘토찾기</a></li>
 						<li><a href="mentee.do">멘티찾기</a></li>
 						<li><a href="freeBoard.do?page_num=1">자유게시판</a></li>
 						<li class="has-dropdown"><a href="#">이용안내</a>

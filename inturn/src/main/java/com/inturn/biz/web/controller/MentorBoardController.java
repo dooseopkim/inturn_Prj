@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.inturn.biz.board.dao.ReplyDAO;
 import com.inturn.biz.board.service.MentorBoardService;
 import com.inturn.biz.board.vo.MentorBoardVO;
 import com.inturn.biz.users.vo.UserVO;
@@ -31,7 +32,10 @@ public class MentorBoardController {
 	@Resource(name="MentorBoardService")
 	MentorBoardService mb_service;
 	
-	@RequestMapping(value="mentorBoard.do", method={ RequestMethod.GET, RequestMethod.POST })
+	@Resource(name = "ReplyDAO")
+	ReplyDAO reply_dao;
+	
+	@RequestMapping(value="/mentorBoard.do", method={ RequestMethod.GET, RequestMethod.POST })
 	public String mentorBoardDo(@RequestParam(value="nowPage", defaultValue="1")int nowPage,
 								@RequestParam(value="condition", defaultValue="")String condition, 
 								@RequestParam(value="keyword", defaultValue="")String keyword,
@@ -58,7 +62,8 @@ public class MentorBoardController {
 			System.out.println("전체 리스트!!");
 			totalCnt = mb_service.getCntMentorBoard();
 			mentorBoardList = mb_service.mentorBoardList(map);
-			req.setAttribute("condition", null);			
+			System.out.println("mentorBoardList : " + mentorBoardList);
+			req.setAttribute("condition", null);
 			
 		} else {
 			System.out.println("검색 결과 리스트!!");
@@ -106,7 +111,7 @@ public class MentorBoardController {
 		return "index.jsp?content=board/mentorBoard";
 	}
 	
-	@RequestMapping(value="viewMentorBoard.do")
+	@RequestMapping(value="/viewMentorBoard.do")
 	public String viewMentorBoardDo(int mb_num, HttpServletRequest req,
 									@RequestParam(value="nowPage", defaultValue="1")int nowPage,
 									@RequestParam(value="condition", defaultValue="")String condition, 
@@ -120,12 +125,12 @@ public class MentorBoardController {
 	
 	}
 	
-	@RequestMapping("mentorBoardForm.do")
+	@RequestMapping("/mentorBoardForm.do")
 	public String mentorBoardFormDo() {
 		return "index.jsp?content=board/insertMentorBoard";
 	}
 	
-	@RequestMapping(value="insertMentorBoard.do", method = RequestMethod.POST)
+	@RequestMapping(value="/insertMentorBoard.do", method = RequestMethod.POST)
 	public String insertMentorBoardDo(String title, String editor, HttpSession session,
 									@RequestParam(value="edu", defaultValue="")String edu,
 									@RequestParam(value="career", defaultValue="")String career,
@@ -146,7 +151,7 @@ public class MentorBoardController {
 		return "redirect:mentorBoard.do";
 	}
 	
-	@RequestMapping("modifyMentorBoardForm.do")
+	@RequestMapping("/modifyMentorBoardForm.do")
 	public String modifyMentorBoardFormDo(int mb_num, int nowPage, HttpServletRequest req,
 										@RequestParam(value="condition", defaultValue="")String condition, 
 										@RequestParam(value="keyword", defaultValue="")String keyword) {
@@ -168,7 +173,7 @@ public class MentorBoardController {
 		return "index.jsp?content=board/modifyMentorBoard";
 	}
 	
-	@RequestMapping(value="modifyMentorBoard.do", method=RequestMethod.POST)
+	@RequestMapping(value="/modifyMentorBoard.do", method=RequestMethod.POST)
 	public String modifyMentorBoardDo(int mb_num, int nowPage, HttpServletRequest req,
 										String title, String editor,
 										@RequestParam(value="edu", defaultValue="")String edu,
@@ -201,13 +206,16 @@ public class MentorBoardController {
 		return "index.jsp?content=board/viewMentorBoard";
 	}
 	
-	@RequestMapping(value="deleteMentorBoard.do", method=RequestMethod.POST)
+	@RequestMapping(value="/deleteMentorBoard.do", method=RequestMethod.POST)
 	public ModelAndView deleteMentorBoardDo(int mb_num) {
 		System.out.println("deleteMentorBoardDo() 진입");
 		ModelAndView mav = new ModelAndView();
+		if(reply_dao.deleteMBReplies(mb_num) == 1) {
+			System.out.println("댓글 삭제 성공");
+		}
 		int result = mb_service.deleteMentorBoard(mb_num);
 		if(result == 1) {
-			System.out.println("삭제 성공");
+			System.out.println("게시글 삭제 성공");
 			mav.addObject("result", "success");
 		} else {
 			System.out.println("삭제 실패");
